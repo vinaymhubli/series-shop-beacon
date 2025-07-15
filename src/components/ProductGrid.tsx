@@ -40,7 +40,7 @@ const ProductGrid = () => {
       volume: "Action",
       price: "$10.99",
       coins: "1099 coins",
-      imageUrl: "https://images.unsplash.com/photo-1626618012641-bfbca5362dd1?w=400&h=600&fit=crop&crop=center",
+      imageUrl: "/lovable-uploads/907e2c66-ea0e-425d-8b48-a80ffcbd2267.png",
       rating: 5
     },
     {
