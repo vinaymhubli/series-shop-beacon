@@ -8,7 +8,7 @@ const RecommendedSection = () => {
       author: "Sui Ishida",
       price: "$12.99",
       coins: "1299 coins",
-      imageUrl: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&h=500&fit=crop&crop=center",
+      imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
       type: "Digital"
     },
     {
