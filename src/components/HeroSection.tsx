@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Heart, Star } from 'lucide-react';
 import { useEffect, useRef } from 'react';
@@ -39,11 +38,11 @@ const HeroSection = () => {
 
   return (
     <section className="relative bg-gradient-to-r from-gray-900 via-red-900/20 to-gray-900 py-20 overflow-hidden">
-      {/* Large Cartoon Background Image */}
+      {/* Large Cartoon/Comic Background Image */}
       <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transform scale-110"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&h=1080&fit=crop&crop=center')`
+          backgroundImage: `url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=2048&h=1365&fit=crop&crop=center')`
         }}
       />
       
@@ -67,8 +66,8 @@ const HeroSection = () => {
         <source src="https://videos.pexels.com/video-files/6344139/6344139-hd_1920_1080_25fps.mp4" type="video/mp4" />
       </video>
       
-      {/* Dark overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/60"></div>
+      {/* Lighter overlay for better image visibility */}
+      <div className="absolute inset-0 bg-black/40"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl">
