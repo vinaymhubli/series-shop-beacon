@@ -1,10 +1,11 @@
-
 import { Button } from '@/components/ui/button';
 import { Heart, Star } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useTypingAnimation } from '@/hooks/useTypingAnimation';
 
 const HeroSection = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.2);
+  const { displayedText, isComplete } = useTypingAnimation('Crossed Hearts: Exclusive Edition', 100, 800);
 
   return (
     <section 
@@ -47,22 +48,19 @@ const HeroSection = () => {
         <div className={`max-w-3xl transition-all duration-1500 delay-300 transform ${
           isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
         }`}>
-          {/* Logo replacing the title */}
-          <div className="mb-6 min-h-[1.2em] relative">
-            <img 
-              src="/lovable-uploads/2c5604f6-57cc-4557-a8f4-996b91e1d0f7.png" 
-              alt="Crossed Hearts: Exclusive Edition"
-              className="w-full max-w-lg h-auto object-contain"
-            />
-            {/* Glow effect for logo */}
-            <div className="absolute inset-0 opacity-30 blur-lg">
-              <img 
-                src="/lovable-uploads/2c5604f6-57cc-4557-a8f4-996b91e1d0f7.png" 
-                alt=""
-                className="w-full max-w-lg h-auto object-contain"
-              />
+          {/* Enhanced title with glow effect */}
+          <h2 className="text-5xl lg:text-6xl font-bold text-white mb-6 min-h-[1.2em] relative">
+            <span className="bg-gradient-to-r from-white via-red-200 to-purple-200 bg-clip-text text-transparent">
+              {displayedText}
+            </span>
+            {!isComplete && (
+              <span className="animate-pulse text-red-400 text-5xl lg:text-6xl">|</span>
+            )}
+            {/* Glow effect */}
+            <div className="absolute inset-0 text-5xl lg:text-6xl font-bold bg-gradient-to-r from-red-500/30 via-purple-500/30 to-pink-500/30 bg-clip-text text-transparent blur-lg -z-10">
+              {displayedText}
             </div>
-          </div>
+          </h2>
 
           {/* Enhanced author info */}
           <div className={`transition-all duration-1000 delay-700 transform ${
