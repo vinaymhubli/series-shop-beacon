@@ -1,45 +1,11 @@
 
 import { Button } from '@/components/ui/button';
 import { Heart, Star } from 'lucide-react';
-import { useEffect, useRef } from 'react';
 
 const HeroSection = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      console.log('Video element found, attempting to play...');
-      
-      video.addEventListener('loadeddata', () => {
-        console.log('Video data loaded');
-      });
-      
-      video.addEventListener('canplay', () => {
-        console.log('Video can play');
-        video.play().catch(err => {
-          console.error('Video play failed:', err);
-        });
-      });
-      
-      video.addEventListener('error', (e) => {
-        console.error('Video error:', e);
-      });
-
-      // Force play attempt after a short delay
-      setTimeout(() => {
-        if (video.readyState >= 3) {
-          video.play().catch(err => {
-            console.error('Delayed video play failed:', err);
-          });
-        }
-      }, 1000);
-    }
-  }, []);
-
   return (
     <section className="relative bg-gradient-to-r from-gray-900 via-red-900/20 to-gray-900 py-20 overflow-hidden">
-      {/* Large Cartoon/Comic Background Image */}
+      {/* Comic Background Image */}
       <div 
         className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transform scale-110"
         style={{
@@ -47,27 +13,7 @@ const HeroSection = () => {
         }}
       />
       
-      {/* Video Background (hidden initially, shows if it loads successfully) */}
-      <video
-        ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        onLoadedData={() => {
-          if (videoRef.current) {
-            videoRef.current.style.opacity = '1';
-          }
-        }}
-      >
-        <source src="https://videos.pexels.com/video-files/4622735/4622735-hd_1920_1080_30fps.mp4" type="video/mp4" />
-        <source src="https://videos.pexels.com/video-files/3945008/3945008-hd_1920_1080_30fps.mp4" type="video/mp4" />
-        <source src="https://videos.pexels.com/video-files/6344139/6344139-hd_1920_1080_25fps.mp4" type="video/mp4" />
-      </video>
-      
-      {/* Lighter overlay for better image visibility */}
+      {/* Lighter overlay for better text visibility */}
       <div className="absolute inset-0 bg-black/40"></div>
       
       <div className="container mx-auto px-4 relative z-10">
