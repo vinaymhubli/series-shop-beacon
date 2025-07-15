@@ -13,7 +13,10 @@ const HeroSection = () => {
         }}
       />
       
-      {/* Lighter overlay for better text visibility */}
+      {/* Additional subtle overlay for depth */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20"></div>
+      
+      {/* Main overlay for text visibility */}
       <div className="absolute inset-0 bg-black/40"></div>
       
       <div className="container mx-auto px-4 relative z-10">
