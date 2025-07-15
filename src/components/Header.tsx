@@ -24,7 +24,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/b303e6ac-f71f-4969-b8b5-b567e0c9bf95.png" 
               alt="Crossed Hearts" 
-              className="h-16 w-auto"
+              className="h-18 w-auto"
             />
           </div>
 
