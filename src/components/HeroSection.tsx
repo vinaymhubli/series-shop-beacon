@@ -39,25 +39,32 @@ const HeroSection = () => {
 
   return (
     <section className="relative bg-gradient-to-r from-gray-900 via-red-900/20 to-gray-900 py-20 overflow-hidden">
-      {/* Video Background */}
+      {/* Large Cartoon Background Image */}
+      <div 
+        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&h=1080&fit=crop&crop=center')`
+        }}
+      />
+      
+      {/* Video Background (hidden initially, shows if it loads successfully) */}
       <video
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000"
         autoPlay
         loop
         muted
         playsInline
         preload="auto"
+        onLoadedData={() => {
+          if (videoRef.current) {
+            videoRef.current.style.opacity = '1';
+          }
+        }}
       >
         <source src="https://videos.pexels.com/video-files/4622735/4622735-hd_1920_1080_30fps.mp4" type="video/mp4" />
         <source src="https://videos.pexels.com/video-files/3945008/3945008-hd_1920_1080_30fps.mp4" type="video/mp4" />
         <source src="https://videos.pexels.com/video-files/6344139/6344139-hd_1920_1080_25fps.mp4" type="video/mp4" />
-        {/* Fallback image if video doesn't load */}
-        <img 
-          src="https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=1200&h=800&fit=crop&crop=center" 
-          alt="Comic book background"
-          className="w-full h-full object-cover"
-        />
       </video>
       
       {/* Dark overlay for better text readability */}
