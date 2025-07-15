@@ -1,4 +1,3 @@
-
 import ProductCard from './ProductCard';
 
 const ProductGrid = () => {
@@ -40,7 +39,7 @@ const ProductGrid = () => {
       volume: "Action",
       price: "$10.99",
       coins: "1099 coins",
-      imageUrl: "/lovable-uploads/907e2c66-ea0e-425d-8b48-a80ffcbd2267.png",
+      imageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
       rating: 5
     },
     {
