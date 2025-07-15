@@ -9,7 +9,7 @@ const ProductGrid = () => {
       volume: "Adventure",
       price: "$11.99",
       coins: "1199 coins",
-      imageUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=600&fit=crop&crop=center",
+      imageUrl: "https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=400&h=600&fit=crop&crop=center",
       isNew: true,
       rating: 5
     },
@@ -19,7 +19,7 @@ const ProductGrid = () => {
       volume: "Action",
       price: "$12.99",
       coins: "1299 coins",
-      imageUrl: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=400&h=600&fit=crop&crop=center",
+      imageUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&h=600&fit=crop&crop=center",
       isNew: true,
       rating: 5
     },
@@ -30,7 +30,7 @@ const ProductGrid = () => {
       price: "$9.99",
       originalPrice: "$14.99",
       coins: "999 coins",
-      imageUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=600&fit=crop&crop=center",
+      imageUrl: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&h=600&fit=crop&crop=center",
       isOnSale: true,
       rating: 4
     },
@@ -40,7 +40,7 @@ const ProductGrid = () => {
       volume: "Action",
       price: "$10.99",
       coins: "1099 coins",
-      imageUrl: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=400&h=600&fit=crop&crop=center",
+      imageUrl: "https://images.unsplash.com/photo-1626618012641-bfbca5362dd1?w=400&h=600&fit=crop&crop=center",
       rating: 5
     },
     {
@@ -49,7 +49,7 @@ const ProductGrid = () => {
       volume: "Comedy",
       price: "$9.99",
       coins: "999 coins",
-      imageUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=600&fit=crop&crop=center",
+      imageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
       rating: 4
     },
     {
@@ -58,7 +58,7 @@ const ProductGrid = () => {
       volume: "Horror",
       price: "$12.99",
       coins: "1299 coins",
-      imageUrl: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=400&h=600&fit=crop&crop=center",
+      imageUrl: "https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?w=400&h=600&fit=crop&crop=center",
       rating: 4
     }
   ];

@@ -27,11 +27,6 @@ const ProductCard = ({
   isOnSale,
   rating 
 }: ProductCardProps) => {
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    const target = e.target as HTMLImageElement;
-    target.src = 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=600&fit=crop&crop=center';
-  };
-
   return (
     <div className="bg-gray-800 rounded-lg overflow-hidden hover:bg-gray-750 transition-colors duration-200 group">
       <div className="relative">
@@ -39,8 +34,6 @@ const ProductCard = ({
           src={imageUrl} 
           alt={title}
           className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-200"
-          onError={handleImageError}
-          loading="lazy"
         />
         {isNew && (
           <span className="absolute top-2 left-2 bg-red-600 text-white text-xs px-2 py-1 rounded">
