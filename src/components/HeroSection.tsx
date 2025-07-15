@@ -2,9 +2,11 @@
 import { Button } from '@/components/ui/button';
 import { Heart, Star } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useTypingAnimation } from '@/hooks/useTypingAnimation';
 
 const HeroSection = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.2);
+  const { displayedText, isComplete } = useTypingAnimation('Crossed Hearts: Exclusive Edition', 100, 800);
 
   return (
     <section 
@@ -33,8 +35,9 @@ const HeroSection = () => {
         <div className={`max-w-2xl transition-all duration-1000 delay-300 transform ${
           isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
         }`}>
-          <h2 className="text-5xl font-bold text-white mb-4 animate-pulse">
-            Crossed Hearts: Exclusive Edition
+          <h2 className="text-5xl font-bold text-white mb-4 min-h-[1.2em]">
+            {displayedText}
+            {!isComplete && <span className="animate-pulse">|</span>}
           </h2>
           <p className="text-lg text-gray-300 mb-2">by Miyuki Tanaka</p>
           <p className="text-gray-400 mb-8 max-w-lg">
