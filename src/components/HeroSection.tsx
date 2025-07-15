@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Heart, Star } from 'lucide-react';
 
@@ -39,8 +38,8 @@ const HeroSection = () => {
               <Heart className="w-4 h-4 mr-2" />
               Add to Cart
             </Button>
-            <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-800 px-8 py-3">
-              <Star className="w-4 h-4 mr-2" />
+            <Button variant="outline" className="border-gray-600 text-black hover:bg-gray-800 hover:text-white px-8 py-3">
+              <Star className="w-4 h-4 mr-2 text-black" />
               Wishlist
             </Button>
           </div>
