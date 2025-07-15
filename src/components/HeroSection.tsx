@@ -4,7 +4,14 @@ import { Heart, Star } from 'lucide-react';
 
 const HeroSection = () => {
   return (
-    <section className="relative bg-gradient-to-r from-gray-900 via-red-900/20 to-gray-900 py-20">
+    <section 
+      className="relative bg-gradient-to-r from-gray-900 via-red-900/20 to-gray-900 py-20"
+      style={{
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&h=800&fit=crop&crop=center')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}
+    >
       <div className="absolute inset-0 bg-black/50"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl">

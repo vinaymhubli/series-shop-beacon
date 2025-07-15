@@ -9,7 +9,7 @@ const RecommendedSection = () => {
       author: "Sui Ishida",
       price: "$12.99",
       coins: "1299 coins",
-      imageUrl: "https://images.unsplash.com/photo-1601645191163-3fc0d5d64e35?w=400&h=500&fit=crop&crop=center",
+      imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=500&fit=crop&crop=center",
       type: "Digital"
     },
     {
@@ -17,7 +17,7 @@ const RecommendedSection = () => {
       author: "Koyoharu Gotouge",
       price: "$49.99",
       coins: "4999 coins",
-      imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=500&fit=crop&crop=center",
+      imageUrl: "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=400&h=500&fit=crop&crop=center",
       type: "Merchandise"
     },
     {
@@ -33,7 +33,7 @@ const RecommendedSection = () => {
       author: "Kohei Horikoshi",
       price: "$14.99",
       coins: "1499 coins",
-      imageUrl: "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=400&h=500&fit=crop&crop=center",
+      imageUrl: "https://images.unsplash.com/photo-1601645191163-3fc0d5d64e35?w=400&h=500&fit=crop&crop=center",
       type: "Merchandise"
     }
   ];
