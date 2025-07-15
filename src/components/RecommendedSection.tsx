@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Heart, ShoppingCart } from 'lucide-react';
 
@@ -9,7 +8,7 @@ const RecommendedSection = () => {
       author: "Sui Ishida",
       price: "$12.99",
       coins: "1299 coins",
-      imageUrl: "https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=400&h=500&fit=crop&crop=center",
+      imageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=500&fit=crop&crop=center",
       type: "Digital"
     },
     {
