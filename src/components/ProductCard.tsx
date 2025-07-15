@@ -90,9 +90,9 @@ const ProductCard = ({
           <Button 
             size="sm" 
             variant="outline" 
-            className="border-gray-600 text-gray-300 hover:bg-gray-700 text-xs"
+            className="border-gray-600 text-black hover:bg-gray-700 hover:text-white text-xs"
           >
-            <Unlock className="w-3 h-3 mr-1" />
+            <Unlock className="w-3 h-3 mr-1 text-black" />
             Unlock
           </Button>
         </div>
