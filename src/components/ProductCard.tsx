@@ -31,7 +31,7 @@ const ProductCard = ({
     <div className="bg-gray-800 rounded-lg overflow-hidden hover:bg-gray-750 transition-colors duration-200 group">
       <div className="relative">
         <img 
-          src={imageUrl} 
+          src="/lovable-uploads/c5e8045e-b2b6-4bc4-943e-e584211ec55a.png" 
           alt={title}
           className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-200"
         />
