@@ -7,7 +7,7 @@ const HeroSection = () => {
     <section 
       className="relative bg-gradient-to-r from-gray-900 via-red-900/20 to-gray-900 py-20"
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=1200&h=800&fit=crop&crop=center')`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&h=800&fit=crop&crop=center')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}
