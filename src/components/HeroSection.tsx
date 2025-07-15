@@ -4,15 +4,27 @@ import { Heart, Star } from 'lucide-react';
 
 const HeroSection = () => {
   return (
-    <section 
-      className="relative bg-gradient-to-r from-gray-900 via-red-900/20 to-gray-900 py-20"
-      style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=1200&h=800&fit=crop&crop=center')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }}
-    >
-      <div className="absolute inset-0 bg-black/50"></div>
+    <section className="relative bg-gradient-to-r from-gray-900 via-red-900/20 to-gray-900 py-20 overflow-hidden">
+      {/* Video Background */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src="https://videos.pexels.com/video-files/5752729/5752729-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+        {/* Fallback image if video doesn't load */}
+        <img 
+          src="https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=1200&h=800&fit=crop&crop=center" 
+          alt="Comic book background"
+          className="w-full h-full object-cover"
+        />
+      </video>
+      
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/60"></div>
+      
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl">
           <h2 className="text-5xl font-bold text-white mb-4">
