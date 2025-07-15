@@ -1,19 +1,47 @@
 
 import { Button } from '@/components/ui/button';
 import { Heart, Star } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 
 const HeroSection = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      console.log('Video element found, attempting to play...');
+      
+      video.addEventListener('loadeddata', () => {
+        console.log('Video data loaded');
+      });
+      
+      video.addEventListener('canplay', () => {
+        console.log('Video can play');
+        video.play().catch(err => {
+          console.error('Video play failed:', err);
+        });
+      });
+      
+      video.addEventListener('error', (e) => {
+        console.error('Video error:', e);
+      });
+    }
+  }, []);
+
   return (
     <section className="relative bg-gradient-to-r from-gray-900 via-red-900/20 to-gray-900 py-20 overflow-hidden">
       {/* Video Background */}
       <video
+        ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay
         loop
         muted
         playsInline
+        preload="auto"
       >
-        <source src="https://videos.pexels.com/video-files/5752729/5752729-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+        <source src="https://videos.pexels.com/video-files/3773800/3773800-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+        <source src="https://videos.pexels.com/video-files/6985584/6985584-uhd_2560_1440_25fps.mp4" type="video/mp4" />
         {/* Fallback image if video doesn't load */}
         <img 
           src="https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=1200&h=800&fit=crop&crop=center" 
