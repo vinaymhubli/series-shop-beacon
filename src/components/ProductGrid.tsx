@@ -1,6 +1,9 @@
 import ProductCard from './ProductCard';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const ProductGrid = () => {
+  const { elementRef, isVisible } = useScrollAnimation(0.1);
+
   const products = [
     {
       title: "One Piece Vol. 98",
@@ -63,22 +66,29 @@ const ProductGrid = () => {
   ];
 
   return (
-    <section className="bg-gray-900 py-16">
+    <section 
+      ref={elementRef}
+      className={`bg-gray-900 py-16 transition-all duration-1000 transform ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+    >
       <div className="container mx-auto px-4">
         {/* Section Navigation */}
-        <div className="flex items-center justify-between mb-8">
+        <div className={`flex items-center justify-between mb-8 transition-all duration-700 delay-200 transform ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}>
           <div className="flex space-x-8">
-            <button className="text-red-500 font-semibold border-b-2 border-red-500 pb-2">
+            <button className="text-red-500 font-semibold border-b-2 border-red-500 pb-2 transform hover:scale-105 transition-transform duration-200">
               New Releases
             </button>
-            <button className="text-gray-400 hover:text-white transition-colors">
+            <button className="text-gray-400 hover:text-white transition-colors transform hover:scale-105 duration-200">
               Best Sellers
             </button>
-            <button className="text-gray-400 hover:text-white transition-colors">
+            <button className="text-gray-400 hover:text-white transition-colors transform hover:scale-105 duration-200">
               Leaving Soon
             </button>
           </div>
-          <button className="text-red-500 hover:text-red-400 text-sm">
+          <button className="text-red-500 hover:text-red-400 text-sm transform hover:scale-105 transition-transform duration-200">
             View All →
           </button>
         </div>
@@ -86,7 +96,15 @@ const ProductGrid = () => {
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {products.map((product, index) => (
-            <ProductCard key={index} {...product} />
+            <div
+              key={index}
+              className={`transition-all duration-700 transform ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${400 + index * 100}ms` }}
+            >
+              <ProductCard {...product} />
+            </div>
           ))}
         </div>
       </div>
