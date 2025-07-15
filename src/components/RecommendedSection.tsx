@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Heart, ShoppingCart } from 'lucide-react';
 
@@ -16,7 +17,7 @@ const RecommendedSection = () => {
       author: "Koyoharu Gotouge",
       price: "$49.99",
       coins: "4999 coins",
-      imageUrl: "https://images.unsplash.com/photo-1634712282287-14ed57b9cc89?w=400&h=500&fit=crop&crop=center",
+      imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
       type: "Merchandise"
     },
     {
@@ -24,7 +25,7 @@ const RecommendedSection = () => {
       author: "Masashi Kishimoto",
       price: "$9.99",
       coins: "999 coins",
-      imageUrl: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&h=500&fit=crop&crop=center",
+      imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
       type: "Digital"
     },
     {
@@ -32,7 +33,7 @@ const RecommendedSection = () => {
       author: "Kohei Horikoshi",
       price: "$14.99",
       coins: "1499 coins",
-      imageUrl: "https://images.unsplash.com/photo-1626618012641-bfbca5362dd1?w=400&h=500&fit=crop&crop=center",
+      imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
       type: "Merchandise"
     }
   ];
