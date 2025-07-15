@@ -11,7 +11,7 @@ const HeroSection = () => {
   return (
     <section 
       ref={elementRef}
-      className={`relative bg-gradient-to-br from-gray-900 via-red-900/30 to-purple-900/20 min-h-screen flex items-center overflow-hidden transition-all duration-1000 transform ${
+      className={`relative bg-gradient-to-br from-gray-900 via-red-900/30 to-purple-900/20 min-h-[70vh] flex items-center overflow-hidden transition-all duration-1000 transform ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
     >
@@ -43,22 +43,22 @@ const HeroSection = () => {
       
       {/* Enhanced gradient overlays */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-red-900/40 to-transparent"></div>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20"></div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 py-12 relative z-10">
         <div className={`max-w-3xl transition-all duration-1500 delay-300 transform ${
           isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
         }`}>
           {/* Enhanced title with glow effect */}
-          <h2 className="text-6xl lg:text-7xl font-bold text-white mb-6 min-h-[1.2em] relative">
+          <h2 className="text-5xl lg:text-6xl font-bold text-white mb-6 min-h-[1.2em] relative">
             <span className="bg-gradient-to-r from-white via-red-200 to-purple-200 bg-clip-text text-transparent">
               {displayedText}
             </span>
             {!isComplete && (
-              <span className="animate-pulse text-red-400 text-6xl lg:text-7xl">|</span>
+              <span className="animate-pulse text-red-400 text-5xl lg:text-6xl">|</span>
             )}
             {/* Glow effect */}
-            <div className="absolute inset-0 text-6xl lg:text-7xl font-bold bg-gradient-to-r from-red-500/30 via-purple-500/30 to-pink-500/30 bg-clip-text text-transparent blur-lg -z-10">
+            <div className="absolute inset-0 text-5xl lg:text-6xl font-bold bg-gradient-to-r from-red-500/30 via-purple-500/30 to-pink-500/30 bg-clip-text text-transparent blur-lg -z-10">
               {displayedText}
             </div>
           </h2>
@@ -74,12 +74,12 @@ const HeroSection = () => {
           </div>
           
           {/* Enhanced pricing with animation */}
-          <div className={`flex items-center mb-10 transition-all duration-1000 delay-900 transform ${
+          <div className={`flex items-center mb-8 transition-all duration-1000 delay-900 transform ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}>
             <div className="relative">
-              <span className="text-4xl lg:text-5xl font-bold text-white mr-6 relative z-10">$24.99</span>
-              <div className="absolute inset-0 text-4xl lg:text-5xl font-bold text-red-400/50 blur-sm">$24.99</div>
+              <span className="text-3xl lg:text-4xl font-bold text-white mr-6 relative z-10">$24.99</span>
+              <div className="absolute inset-0 text-3xl lg:text-4xl font-bold text-red-400/50 blur-sm">$24.99</div>
             </div>
             <span className="text-gray-400 text-lg">or 2499 coins</span>
           </div>
@@ -102,7 +102,7 @@ const HeroSection = () => {
           </div>
 
           {/* New floating elements */}
-          <div className={`mt-12 flex items-center space-x-8 transition-all duration-1000 delay-1300 transform ${
+          <div className={`mt-8 flex items-center space-x-8 transition-all duration-1000 delay-1300 transform ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}>
             <div className="flex items-center space-x-2">
