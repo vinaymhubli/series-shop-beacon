@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Menu, X, Search, ShoppingCart, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -24,7 +23,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/b303e6ac-f71f-4969-b8b5-b567e0c9bf95.png" 
               alt="Crossed Hearts" 
-              className="h-16 w-20"
+              className="h-16 w-24"
             />
           </div>
 
