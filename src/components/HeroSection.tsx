@@ -25,6 +25,15 @@ const HeroSection = () => {
       video.addEventListener('error', (e) => {
         console.error('Video error:', e);
       });
+
+      // Force play attempt after a short delay
+      setTimeout(() => {
+        if (video.readyState >= 3) {
+          video.play().catch(err => {
+            console.error('Delayed video play failed:', err);
+          });
+        }
+      }, 1000);
     }
   }, []);
 
@@ -40,8 +49,9 @@ const HeroSection = () => {
         playsInline
         preload="auto"
       >
-        <source src="https://videos.pexels.com/video-files/3773800/3773800-uhd_2560_1440_25fps.mp4" type="video/mp4" />
-        <source src="https://videos.pexels.com/video-files/6985584/6985584-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+        <source src="https://videos.pexels.com/video-files/4622735/4622735-hd_1920_1080_30fps.mp4" type="video/mp4" />
+        <source src="https://videos.pexels.com/video-files/3945008/3945008-hd_1920_1080_30fps.mp4" type="video/mp4" />
+        <source src="https://videos.pexels.com/video-files/6344139/6344139-hd_1920_1080_25fps.mp4" type="video/mp4" />
         {/* Fallback image if video doesn't load */}
         <img 
           src="https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=1200&h=800&fit=crop&crop=center" 
