@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Heart, Star } from 'lucide-react';
 import { useEffect, useRef } from 'react';
@@ -42,7 +43,7 @@ const HeroSection = () => {
       <div 
         className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transform scale-110"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=2048&h=1365&fit=crop&crop=center')`
+          backgroundImage: `url('/lovable-uploads/6fb6d014-0083-4f09-95a2-0416443da769.png')`
         }}
       />
       
