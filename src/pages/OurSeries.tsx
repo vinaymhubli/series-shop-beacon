@@ -4,7 +4,6 @@ import SeriesHero from '@/components/SeriesHero';
 import SeriesFilters from '@/components/SeriesFilters';
 import FeaturedSeries from '@/components/FeaturedSeries';
 import AllSeries from '@/components/AllSeries';
-import SeriesProfile from '@/components/SeriesProfile';
 import SeriesActivity from '@/components/SeriesActivity';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
@@ -17,7 +16,6 @@ const OurSeries = () => {
       <SeriesFilters />
       <FeaturedSeries />
       <AllSeries />
-      <SeriesProfile />
       <SeriesActivity />
       <Newsletter />
       <Footer />
