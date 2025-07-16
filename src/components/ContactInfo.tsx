@@ -1,4 +1,3 @@
-
 import { Mail, Globe, Users, Briefcase } from 'lucide-react';
 
 const ContactInfo = () => {
@@ -60,7 +59,7 @@ const ContactInfo = () => {
       <div className="mb-12">
         <div className="flex items-center mb-6">
           <Mail className="w-6 h-6 text-red-500 mr-3" />
-          <h2 className="text-2xl font-bold text-white">Email Support</h2>
+          <h2 className="text-2xl font-bold text-red-500">Email Support</h2>
         </div>
         
         <div className="space-y-4">
@@ -84,7 +83,7 @@ const ContactInfo = () => {
       <div className="mb-12">
         <div className="flex items-center mb-6">
           <Briefcase className="w-6 h-6 text-red-500 mr-3" />
-          <h2 className="text-2xl font-bold text-white">Business Inquiries</h2>
+          <h2 className="text-2xl font-bold text-red-500">Business Inquiries</h2>
         </div>
         
         <div className="space-y-4">
@@ -108,7 +107,7 @@ const ContactInfo = () => {
       <div className="mb-12">
         <div className="flex items-center mb-6">
           <Users className="w-6 h-6 text-red-500 mr-3" />
-          <h2 className="text-2xl font-bold text-white">For Authors, Creators and Artists</h2>
+          <h2 className="text-2xl font-bold text-red-500">For Authors, Creators and Artists</h2>
         </div>
         
         <p className="text-gray-300 mb-4">
@@ -124,7 +123,7 @@ const ContactInfo = () => {
       <div>
         <div className="flex items-center mb-6">
           <Globe className="w-6 h-6 text-red-500 mr-3" />
-          <h2 className="text-2xl font-bold text-white">Connect With Us</h2>
+          <h2 className="text-2xl font-bold text-red-500">Connect With Us</h2>
         </div>
         
         <div className="flex space-x-4">
