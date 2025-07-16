@@ -1,4 +1,5 @@
 
+
 const ContactHero = () => {
   return (
     <section className="relative py-32 md:py-44 px-4">
@@ -6,7 +7,7 @@ const ContactHero = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center opacity-70"
         style={{
-          backgroundImage: `url('/lovable-uploads/781ea40e-866e-4ee8-9bf7-862a42bb8716.png')`
+          backgroundImage: `url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`
         }}
       />
       <div className="absolute inset-0 bg-black/50" />
@@ -26,3 +27,4 @@ const ContactHero = () => {
 };
 
 export default ContactHero;
+
