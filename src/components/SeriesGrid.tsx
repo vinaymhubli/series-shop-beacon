@@ -116,7 +116,8 @@ const SeriesGrid = () => {
 
   const handleSeriesClick = (seriesId: number) => {
     console.log('🔍 Series clicked:', seriesId);
-    navigate(`/series/${seriesId}`);
+    console.log('🚀 Navigating to pre-order page:', `/pre-order/${seriesId}`);
+    navigate(`/pre-order/${seriesId}`);
   };
 
   return (
