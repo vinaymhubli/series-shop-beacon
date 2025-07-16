@@ -1,9 +1,6 @@
 
 import Header from '@/components/Header';
 import AboutHero from '@/components/AboutHero';
-import HeroSection from '@/components/HeroSection';
-import ProductGrid from '@/components/ProductGrid';
-import RecommendedSection from '@/components/RecommendedSection';
 import AboutTabs from '@/components/AboutTabs';
 import AboutStats from '@/components/AboutStats';
 import AboutTeam from '@/components/AboutTeam';
@@ -15,9 +12,6 @@ const AboutUs = () => {
     <div className="min-h-screen bg-gray-900">
       <Header />
       <AboutHero />
-      <HeroSection />
-      <ProductGrid />
-      <RecommendedSection />
       <AboutTabs />
       <AboutStats />
       <AboutTeam />
