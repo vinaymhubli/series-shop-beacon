@@ -1,6 +1,7 @@
 
 import { Button } from '@/components/ui/button';
-import { Heart, Unlock, Star } from 'lucide-react';
+import { Heart, Unlock, Star, ShoppingCart, Diamond } from 'lucide-react';
+import { useState } from 'react';
 
 interface ProductCardProps {
   title: string;
@@ -10,9 +11,12 @@ interface ProductCardProps {
   originalPrice?: string;
   coins: string;
   imageUrl: string;
+  hoverImageUrl?: string;
   isNew?: boolean;
   isOnSale?: boolean;
   rating?: number;
+  canUnlockWithCoins?: boolean;
+  label?: string;
 }
 
 const ProductCard = ({ 
@@ -22,21 +26,30 @@ const ProductCard = ({
   price, 
   originalPrice, 
   coins, 
-  imageUrl, 
+  imageUrl,
+  hoverImageUrl,
   isNew, 
   isOnSale,
-  rating 
+  rating,
+  canUnlockWithCoins = true,
+  label
 }: ProductCardProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className="group bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden hover:from-gray-750 hover:to-gray-850 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 border border-gray-700/50 hover:border-red-500/30">
+    <div 
+      className="group bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden hover:from-gray-750 hover:to-gray-850 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 border border-gray-700/50 hover:border-red-500/30"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="relative overflow-hidden">
         <img 
-          src={imageUrl} 
+          src={isHovered && hoverImageUrl ? hoverImageUrl : imageUrl} 
           alt={title}
-          className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
+          className="w-full h-80 object-cover group-hover:scale-110 transition-all duration-700"
         />
         
-        {/* Enhanced badges */}
+        {/* Enhanced badges with longer labels */}
         <div className="absolute top-3 left-3 space-y-2">
           {isNew && (
             <span className="bg-gradient-to-r from-red-600 to-red-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-pulse">
@@ -50,11 +63,18 @@ const ProductCard = ({
           )}
         </div>
 
-        {/* Enhanced heart button */}
+        {/* Enhanced label in top right */}
+        {label && (
+          <div className="absolute top-3 right-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg max-w-[120px] text-center">
+            {label}
+          </div>
+        )}
+
+        {/* Heart button */}
         <Button 
           variant="ghost" 
           size="icon" 
-          className="absolute top-3 right-3 text-white hover:bg-black/60 hover:text-red-400 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm"
+          className="absolute bottom-3 right-3 text-white hover:bg-black/60 hover:text-red-400 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm"
         >
           <Heart className="w-4 h-4 transition-transform duration-300 group-hover:animate-pulse" />
         </Button>
@@ -91,7 +111,9 @@ const ProductCard = ({
               <span className="text-gray-500 line-through text-sm">{originalPrice}</span>
             )}
           </div>
-          <span className="text-gray-400 text-xs">{coins}</span>
+          {canUnlockWithCoins && (
+            <span className="text-gray-400 text-xs">{coins}</span>
+          )}
         </div>
         
         <div className="flex space-x-2 pt-2">
@@ -99,15 +121,26 @@ const ProductCard = ({
             size="sm" 
             className="flex-1 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-red-500/25"
           >
+            <ShoppingCart className="w-3 h-3 mr-1" />
             Add to Cart
           </Button>
+          {canUnlockWithCoins && (
+            <Button 
+              size="sm" 
+              variant="outline" 
+              className="border-gray-600 text-black hover:bg-gray-700 hover:text-black text-xs transform hover:scale-105 transition-all duration-300 group/unlock"
+            >
+              <Unlock className="w-3 h-3 mr-1 text-black group-hover/unlock:animate-bounce" />
+              Unlock
+            </Button>
+          )}
           <Button 
             size="sm" 
             variant="outline" 
-            className="border-gray-600 text-black hover:bg-gray-700 hover:text-black text-xs transform hover:scale-105 transition-all duration-300 group/unlock"
+            className="border-gray-600 text-gray-300 hover:bg-purple-600 hover:text-white hover:border-purple-500 text-xs transform hover:scale-105 transition-all duration-300 p-2"
+            title="Add to Wishlist"
           >
-            <Unlock className="w-3 h-3 mr-1 text-black group-hover/unlock:animate-bounce" />
-            Unlock
+            <Diamond className="w-3 h-3" />
           </Button>
         </div>
       </div>

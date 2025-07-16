@@ -15,8 +15,11 @@ const ProductGrid = () => {
       price: "$11.99",
       coins: "1199 coins",
       imageUrl: "https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=400&h=600&fit=crop&crop=center",
+      hoverImageUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&h=600&fit=crop&crop=center",
       isNew: true,
-      rating: 5
+      rating: 5,
+      canUnlockWithCoins: true,
+      label: "Vol 98 out now"
     },
     {
       title: "Attack on Titan Vol. 34",
@@ -25,8 +28,11 @@ const ProductGrid = () => {
       price: "$12.99",
       coins: "1299 coins",
       imageUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&h=600&fit=crop&crop=center",
+      hoverImageUrl: "https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=400&h=600&fit=crop&crop=center",
       isNew: true,
-      rating: 5
+      rating: 5,
+      canUnlockWithCoins: false,
+      label: "Final volume available"
     },
     {
       title: "Jujutsu Kaisen Vol. 15",
@@ -36,8 +42,11 @@ const ProductGrid = () => {
       originalPrice: "$14.99",
       coins: "999 coins",
       imageUrl: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&h=600&fit=crop&crop=center",
+      hoverImageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
       isOnSale: true,
-      rating: 4
+      rating: 4,
+      canUnlockWithCoins: true,
+      label: "Vol 16 coming soon"
     },
     {
       title: "Chainsaw Man Vol. 8",
@@ -46,7 +55,10 @@ const ProductGrid = () => {
       price: "$10.99",
       coins: "1099 coins",
       imageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
-      rating: 5
+      hoverImageUrl: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&h=600&fit=crop&crop=center",
+      rating: 5,
+      canUnlockWithCoins: true,
+      label: "Latest chapter available"
     },
     {
       title: "Spy x Family Vol. 7",
@@ -55,7 +67,10 @@ const ProductGrid = () => {
       price: "$9.99",
       coins: "999 coins",
       imageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
-      rating: 4
+      hoverImageUrl: "https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?w=400&h=600&fit=crop&crop=center",
+      rating: 4,
+      canUnlockWithCoins: true,
+      label: "Weekly chapters updated"
     },
     {
       title: "Tokyo Ghoul Vol. 14",
@@ -64,7 +79,10 @@ const ProductGrid = () => {
       price: "$12.99",
       coins: "1299 coins",
       imageUrl: "https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?w=400&h=600&fit=crop&crop=center",
-      rating: 4
+      hoverImageUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&h=600&fit=crop&crop=center",
+      rating: 4,
+      canUnlockWithCoins: false,
+      label: "Complete series available"
     }
   ];
 
@@ -73,10 +91,12 @@ const ProductGrid = () => {
     console.log(`Switched to ${section} section`);
   };
 
+  const sectionOrder = ['new-releases', 'best-sellers', 'leaving-soon'];
+
   return (
     <section 
       ref={elementRef}
-      className={`relative bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 py-20 overflow-hidden transition-all duration-1000 transform ${
+      className={`relative bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 py-12 overflow-hidden transition-all duration-1000 transform ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
     >
@@ -87,57 +107,36 @@ const ProductGrid = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Enhanced Section Navigation */}
-        <div className={`flex items-center justify-between mb-12 transition-all duration-1000 delay-200 transform ${
+        {/* Section Navigation with proper spacing */}
+        <div className={`flex items-center justify-between mb-8 transition-all duration-1000 delay-200 transform ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}>
-          <div className="flex space-x-8">
-            <button 
-              onClick={() => handleSectionChange('new-releases')}
-              className={`group relative font-semibold pb-3 transform hover:scale-105 transition-all duration-300 ${
-                activeSection === 'new-releases' ? 'text-red-500' : 'text-gray-400 hover:text-white'
-              }`}
-            >
-              <span className="relative z-10">New Releases</span>
-              <div className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-red-500 to-red-600 transform transition-transform duration-300 ${
-                activeSection === 'new-releases' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-              }`}></div>
-              {activeSection === 'new-releases' && (
-                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-red-400 blur-sm"></div>
-              )}
-            </button>
-            <button 
-              onClick={() => handleSectionChange('best-sellers')}
-              className={`group relative font-semibold pb-3 transform hover:scale-105 transition-all duration-300 ${
-                activeSection === 'best-sellers' ? 'text-red-500' : 'text-gray-400 hover:text-white'
-              }`}
-            >
-              <span className="relative z-10">Best Sellers</span>
-              <div className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r transition-transform duration-300 ${
-                activeSection === 'best-sellers' 
-                  ? 'from-red-500 to-red-600 scale-x-100' 
-                  : 'from-white to-gray-300 scale-x-0 group-hover:scale-x-100'
-              }`}></div>
-              {activeSection === 'best-sellers' && (
-                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-red-400 blur-sm"></div>
-              )}
-            </button>
-            <button 
-              onClick={() => handleSectionChange('leaving-soon')}
-              className={`group relative font-semibold pb-3 transform hover:scale-105 transition-all duration-300 ${
-                activeSection === 'leaving-soon' ? 'text-red-500' : 'text-gray-400 hover:text-white'
-              }`}
-            >
-              <span className="relative z-10">Leaving Soon</span>
-              <div className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r transition-transform duration-300 ${
-                activeSection === 'leaving-soon' 
-                  ? 'from-red-500 to-red-600 scale-x-100' 
-                  : 'from-white to-gray-300 scale-x-0 group-hover:scale-x-100'
-              }`}></div>
-              {activeSection === 'leaving-soon' && (
-                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-red-400 blur-sm"></div>
-              )}
-            </button>
+          <div className="flex space-x-6">
+            {sectionOrder.map((section) => {
+              const labels = {
+                'new-releases': 'New Releases',
+                'best-sellers': 'Best Sellers', 
+                'leaving-soon': 'Leaving Soon'
+              };
+              
+              return (
+                <button 
+                  key={section}
+                  onClick={() => handleSectionChange(section)}
+                  className={`group relative font-semibold pb-2 transform hover:scale-105 transition-all duration-300 ${
+                    activeSection === section ? 'text-red-500' : 'text-gray-400 hover:text-white'
+                  }`}
+                >
+                  <span className="relative z-10">{labels[section]}</span>
+                  <div className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-red-500 to-red-600 transform transition-transform duration-300 ${
+                    activeSection === section ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                  }`}></div>
+                  {activeSection === section && (
+                    <div className="absolute bottom-0 left-0 w-full h-0.5 bg-red-400 blur-sm"></div>
+                  )}
+                </button>
+              );
+            })}
           </div>
           <button className="group text-red-500 hover:text-red-400 text-sm font-medium transform hover:scale-105 transition-all duration-300 flex items-center space-x-2">
             <span>View All</span>
@@ -145,8 +144,8 @@ const ProductGrid = () => {
           </button>
         </div>
 
-        {/* Enhanced Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+        {/* Product Grid with improved spacing */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {products.map((product, index) => (
             <div
               key={index}

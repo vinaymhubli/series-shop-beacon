@@ -44,7 +44,7 @@ const RecommendedSection = () => {
   return (
     <section 
       ref={elementRef}
-      className={`relative bg-gradient-to-br from-gray-800 via-gray-850 to-gray-900 py-20 overflow-hidden transition-all duration-1000 transform ${
+      className={`relative bg-gradient-to-br from-gray-800 via-gray-850 to-gray-900 py-12 overflow-hidden transition-all duration-1000 transform ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
     >
@@ -55,7 +55,7 @@ const RecommendedSection = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className={`flex items-center justify-between mb-12 transition-all duration-1000 delay-200 transform ${
+        <div className={`flex items-center justify-between mb-8 transition-all duration-1000 delay-200 transform ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}>
           <div>
@@ -64,7 +64,7 @@ const RecommendedSection = () => {
                 Recommended For You
               </span>
             </h2>
-            <p className="text-gray-400">Curated picks based on your interests</p>
+            <p className="text-gray-400">Curated picks based on your interests and genres</p>
           </div>
           <div className="flex space-x-4">
             <button className="group bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg text-sm font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25">
@@ -77,7 +77,7 @@ const RecommendedSection = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {recommendedItems.map((item, index) => (
             <div 
               key={index} 
