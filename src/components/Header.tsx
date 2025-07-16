@@ -1,5 +1,6 @@
 
 
+
 import { useState } from 'react';
 import { Menu, X, Search, ShoppingCart, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -25,7 +26,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/e894503b-5d22-4a7a-9940-15abeb76e58b.png" 
               alt="Crossed Hearts" 
-              className="h-20 w-32"
+              className="h-16 w-24"
             />
           </div>
 
@@ -99,4 +100,5 @@ const Header = () => {
 };
 
 export default Header;
+
 
