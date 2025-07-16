@@ -37,7 +37,7 @@ const SocialsSection = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Social Media Section */}
-        <div className={`text-center mb-16 transition-all duration-1000 delay-200 transform ${
+        <div className={`text-center transition-all duration-1000 delay-200 transform ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}>
           <h2 className="text-4xl font-bold text-white mb-4">
@@ -70,41 +70,6 @@ const SocialsSection = () => {
                 </a>
               );
             })}
-          </div>
-        </div>
-
-        {/* Recommend Us Section */}
-        <div className={`max-w-md mx-auto transition-all duration-1000 delay-600 transform ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-        }`}>
-          <div className="bg-gradient-to-br from-purple-900 to-pink-900 rounded-xl p-6 border border-purple-500/30">
-            <h3 className="text-2xl font-bold text-white mb-4 flex items-center justify-center">
-              <UserPlus className="w-6 h-6 mr-3 text-pink-400" />
-              Recommend Us
-            </h3>
-            <p className="text-gray-300 text-sm mb-6 leading-relaxed text-center">
-              Love Crossed Hearts? Share it with your friends! When they create an account using your referral code, you'll both earn recommendation points.
-            </p>
-            
-            <div className="space-y-4">
-              <div className="bg-black/30 rounded-lg p-4 border border-pink-500/20">
-                <p className="text-pink-300 text-xs font-semibold mb-2">Your Benefits:</p>
-                <ul className="text-gray-300 text-xs space-y-1">
-                  <li>• 500 points per successful referral</li>
-                  <li>• Exclusive member discounts</li>
-                  <li>• Early access to new releases</li>
-                </ul>
-              </div>
-              
-              <Button className="w-full bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white font-semibold">
-                <UserPlus className="w-4 h-4 mr-2" />
-                Get Referral Code
-              </Button>
-              
-              <p className="text-gray-400 text-xs text-center">
-                Already have an account? <span className="text-pink-400 cursor-pointer hover:underline">Sign in here</span>
-              </p>
-            </div>
           </div>
         </div>
       </div>
