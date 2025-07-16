@@ -9,10 +9,10 @@ const SeriesHero = () => {
       <div className="absolute inset-0">
         <img 
           src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&h=800&fit=crop&crop=center"
-          alt="Explore Series Background"
-          className="w-full h-full object-cover opacity-40"
+          alt="Manga and Anime Series Collection"
+          className="w-full h-full object-cover opacity-50"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/40"></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
