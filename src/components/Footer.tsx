@@ -1,3 +1,4 @@
+
 import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
@@ -52,6 +53,17 @@ const Footer = () => {
       }`}
     >
       <div className="container mx-auto px-4">
+        {/* Logo */}
+        <div className={`flex justify-center mb-8 transition-all duration-700 transform ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}>
+          <img 
+            src="/lovable-uploads/e894503b-5d22-4a7a-9940-15abeb76e58b.png" 
+            alt="Crossed Hearts" 
+            className="h-12 w-28"
+          />
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {footerSections.map((section, index) => (
             <div 
