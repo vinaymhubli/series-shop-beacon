@@ -59,7 +59,7 @@ const ContactInfo = () => {
       <div className="mb-12">
         <div className="flex items-center mb-6">
           <Mail className="w-6 h-6 text-red-500 mr-3" />
-          <h2 className="text-2xl font-bold text-red-500">Email Support</h2>
+          <h2 className="text-2xl font-bold text-white">Email Support</h2>
         </div>
         
         <div className="space-y-4">
