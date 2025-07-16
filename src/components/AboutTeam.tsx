@@ -70,32 +70,6 @@ const AboutTeam = () => {
       <HeroSection />
       <ProductGrid />
       <RecommendedSection />
-      
-      <section className="py-16 bg-black">
-        <div className="container mx-auto px-4">
-          <div className="bg-gray-900 rounded-lg p-8 text-center">
-            <h3 className="text-3xl font-bold text-white mb-4">Join Our Journey</h3>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-6">
-              Whether you're a reader, creator, or industry professional, we'd love to hear from you. 
-              Let's continue building bridges between cultures through the power of storytelling.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="#contact" 
-                className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
-              >
-                Contact Us
-              </a>
-              <a 
-                href="#careers" 
-                className="border border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200"
-              >
-                Join Our Team
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 };
