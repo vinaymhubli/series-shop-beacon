@@ -18,7 +18,7 @@ const AboutHero = () => {
           alt="Library books background" 
           className="w-full h-full object-cover opacity-70"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/40 to-black/60"></div>
+        <div className="absolute inset-0 bg-black/20"></div>
       </div>
 
       <div className="container mx-auto px-4 text-center relative z-10">
