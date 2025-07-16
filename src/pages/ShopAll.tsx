@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Newsletter from '@/components/Newsletter';
@@ -24,7 +23,7 @@ const ShopAll = () => {
             className="w-full h-full object-cover opacity-60"
             loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/70 via-gray-800/60 to-black/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/30 via-gray-800/20 to-black/40"></div>
         </div>
         
         {/* Animated Background Effects */}
