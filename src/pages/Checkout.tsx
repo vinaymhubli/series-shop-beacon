@@ -351,7 +351,7 @@ const Checkout = () => {
                       ) : (
                         <>
                           <Lock className="w-4 h-4 mr-2" />
-                          Complete Pre-Order - ${total.toFixed(2)}
+                          Complete Checkout - ${total.toFixed(2)}
                         </>
                       )}
                     </Button>
