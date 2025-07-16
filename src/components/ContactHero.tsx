@@ -1,7 +1,16 @@
 
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+
 const ContactHero = () => {
+  const { elementRef, isVisible } = useScrollAnimation(0.2);
+
   return (
-    <section className="relative py-32 md:py-44 px-4">
+    <section 
+      ref={elementRef}
+      className={`relative py-32 md:py-44 px-4 transition-all duration-1000 transform ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+    >
       {/* Hero Image Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center opacity-70"
@@ -13,10 +22,14 @@ const ContactHero = () => {
       
       <div className="container mx-auto relative z-10">
         <div className="max-w-2xl">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+          <h1 className={`text-5xl md:text-6xl font-bold text-white mb-6 transition-all duration-700 transform ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}>
             Contact <span className="text-red-500">Us</span>
           </h1>
-          <p className="text-xl text-gray-300 leading-relaxed">
+          <p className={`text-xl text-gray-300 leading-relaxed transition-all duration-700 delay-200 transform ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}>
             We're here to help! Reach out to our team for support, inquiries, or collaboration opportunities.
           </p>
         </div>

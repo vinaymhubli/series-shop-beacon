@@ -1,9 +1,11 @@
 
 import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const ContactFAQ = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+  const { elementRef, isVisible } = useScrollAnimation(0.2);
 
   const faqs = [
     {
@@ -29,9 +31,16 @@ const ContactFAQ = () => {
   };
 
   return (
-    <section className="py-16 px-4 bg-gray-900">
+    <section 
+      ref={elementRef}
+      className={`py-16 px-4 bg-gray-900 transition-all duration-1000 transform ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+    >
       <div className="container mx-auto max-w-4xl">
-        <div className="text-center mb-12">
+        <div className={`text-center mb-12 transition-all duration-700 transform ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+        }`}>
           <h2 className="text-4xl font-bold text-white mb-4">
             Frequently Asked <span className="text-red-500">Questions</span>
           </h2>
@@ -44,7 +53,10 @@ const ContactFAQ = () => {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-gray-800 rounded-lg border border-gray-700 overflow-hidden"
+              className={`bg-gray-800 rounded-lg border border-gray-700 overflow-hidden transition-all duration-700 transform ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
+              style={{ transitionDelay: `${200 + index * 150}ms` }}
             >
               <button
                 onClick={() => toggleFAQ(index)}
