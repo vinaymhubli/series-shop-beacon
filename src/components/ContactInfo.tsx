@@ -107,7 +107,7 @@ const ContactInfo = () => {
       <div className="mb-12">
         <div className="flex items-center mb-6">
           <Users className="w-6 h-6 text-red-500 mr-3" />
-          <h2 className="text-2xl font-bold text-red-500">For Authors, Creators and Artists</h2>
+          <h2 className="text-2xl font-bold text-white">For Authors, Creators and Artists</h2>
         </div>
         
         <p className="text-gray-300 mb-4">
