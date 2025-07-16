@@ -1,10 +1,9 @@
-
 import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
 
 const AllSeries = () => {
   const allSeries = [
-    { title: "Chainsaw Man", rating: 4.7, image: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=300&h=400&fit=crop" },
+    { title: "Chainsaw Man", rating: 4.7, image: "/lovable-uploads/7b8f7dcc-b06f-4c89-b5af-906cd241ae0c.png" },
     { title: "My Hero Academia", rating: 4.6, image: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=300&h=400&fit=crop" },
     { title: "Attack on Titan", rating: 4.9, image: "https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?w=300&h=400&fit=crop" },
     { title: "Spy x Family", rating: 4.8, image: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=300&h=400&fit=crop" },
