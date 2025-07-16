@@ -1,4 +1,5 @@
 
+
 import { useState } from 'react';
 import { Menu, X, Search, ShoppingCart, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -22,7 +23,7 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center">
             <img 
-              src="/lovable-uploads/b303e6ac-f71f-4969-b8b5-b567e0c9bf95.png" 
+              src="/lovable-uploads/e894503b-5d22-4a7a-9940-15abeb76e58b.png" 
               alt="Crossed Hearts" 
               className="h-20 w-32"
             />
@@ -98,3 +99,4 @@ const Header = () => {
 };
 
 export default Header;
+
