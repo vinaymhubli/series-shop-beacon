@@ -2,7 +2,6 @@
 import Header from '@/components/Header';
 import AboutHero from '@/components/AboutHero';
 import AboutTabs from '@/components/AboutTabs';
-import AboutContent from '@/components/AboutContent';
 import AboutStats from '@/components/AboutStats';
 import AboutTeam from '@/components/AboutTeam';
 import Newsletter from '@/components/Newsletter';
@@ -14,7 +13,6 @@ const AboutUs = () => {
       <Header />
       <AboutHero />
       <AboutTabs />
-      <AboutContent />
       <AboutStats />
       <AboutTeam />
       <Newsletter />
