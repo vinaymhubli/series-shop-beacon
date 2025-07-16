@@ -19,15 +19,16 @@ const ShopAll = () => {
         {/* Hero Background Image */}
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80"
-            alt="Manga and anime book collection on shelves"
-            className="w-full h-full object-cover opacity-40"
+            src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80"
+            alt="Library with books and reading atmosphere"
+            className="w-full h-full object-cover opacity-60"
+            loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-800/80 to-black/95"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/70 via-gray-800/60 to-black/80"></div>
         </div>
         
         {/* Animated Background Effects */}
-        <div className="absolute inset-0 opacity-15">
+        <div className="absolute inset-0 opacity-20">
           <div className="absolute top-16 left-1/4 w-80 h-80 bg-gradient-to-r from-red-500 to-orange-500 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-16 right-1/4 w-64 h-64 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1.5s'}}></div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full blur-3xl animate-pulse" style={{animationDelay: '3s'}}></div>
