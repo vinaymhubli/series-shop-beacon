@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -14,9 +13,15 @@ const PreOrder = () => {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
 
+  useEffect(() => {
+    console.log('🎯 PreOrder page loaded');
+    console.log('📦 Product ID from URL:', productId);
+    console.log('📍 Current URL:', window.location.href);
+  }, [productId]);
+
   // Mock product data - in real app, fetch based on productId
   const product = {
-    id: 1,
+    id: parseInt(productId || '1'),
     title: "One Piece Vol. 98",
     author: "Eiichiro Oda",
     category: "Manga",
@@ -51,6 +56,12 @@ const PreOrder = () => {
   };
 
   const handlePreOrder = () => {
+    console.log('🛒 Pre-Order button clicked');
+    console.log('📦 Product:', product);
+    console.log('📊 Quantity:', quantity);
+    console.log('💰 Total Price:', product.price * quantity);
+    console.log('🚀 Navigating to checkout...');
+    
     navigate(`/checkout/${productId}`, { 
       state: { 
         product,

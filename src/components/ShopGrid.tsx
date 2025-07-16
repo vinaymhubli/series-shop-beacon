@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Heart, ShoppingCart, Star, Eye } from 'lucide-react';
@@ -84,6 +83,17 @@ const ShopGrid = () => {
   ];
 
   const handleProductClick = (productId: number) => {
+    console.log('🔍 Product clicked:', productId);
+    console.log('📍 Current location:', window.location.pathname);
+    console.log('🚀 Navigating to:', `/pre-order/${productId}`);
+    navigate(`/pre-order/${productId}`);
+  };
+
+  const handleAddToCart = (e: React.MouseEvent, productId: number) => {
+    e.stopPropagation();
+    console.log('🛒 Add to Cart clicked for product:', productId);
+    console.log('📍 Current location:', window.location.pathname);
+    console.log('🚀 Navigating to pre-order page:', `/pre-order/${productId}`);
     navigate(`/pre-order/${productId}`);
   };
 
@@ -143,7 +153,7 @@ const ShopGrid = () => {
                   className="absolute top-3 right-3 text-white hover:bg-black/60 hover:text-red-400 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm"
                   onClick={(e) => {
                     e.stopPropagation();
-                    console.log('Added to wishlist:', product.title);
+                    console.log('❤️ Added to wishlist:', product.title);
                   }}
                 >
                   <Heart className="w-4 h-4 transition-transform duration-300 group-hover:animate-pulse" />
@@ -157,6 +167,7 @@ const ShopGrid = () => {
                       className="bg-white text-black hover:bg-gray-200 transform hover:scale-105 transition-all duration-300"
                       onClick={(e) => {
                         e.stopPropagation();
+                        console.log('👁️ Quick view clicked for:', product.title);
                         handleProductClick(product.id);
                       }}
                     >
@@ -204,10 +215,7 @@ const ShopGrid = () => {
                   <Button 
                     size="sm" 
                     className="flex-1 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-red-500/25"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleProductClick(product.id);
-                    }}
+                    onClick={(e) => handleAddToCart(e, product.id)}
                   >
                     <ShoppingCart className="w-3 h-3 mr-1" />
                     {product.inStock ? 'Add to Cart' : 'Pre-Order'}
