@@ -5,6 +5,7 @@ import ContactHero from '@/components/ContactHero';
 import ContactForm from '@/components/ContactForm';
 import ContactInfo from '@/components/ContactInfo';
 import ContactFAQ from '@/components/ContactFAQ';
+import Newsletter from '@/components/Newsletter';
 
 const ContactUs = () => {
   return (
@@ -16,6 +17,7 @@ const ContactUs = () => {
         <ContactForm />
       </div>
       <ContactFAQ />
+      <Newsletter />
       <Footer />
     </div>
   );
