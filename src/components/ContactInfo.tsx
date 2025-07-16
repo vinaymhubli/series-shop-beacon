@@ -15,7 +15,7 @@ const ContactInfo = () => {
     {
       region: "Africa customers:",
       email: "support.af@crossedhearts.com",
-      color: "text-green-400"
+      color: "text-red-400"
     },
     {
       region: "Australia and New Zealand customers:",
