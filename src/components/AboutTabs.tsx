@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -60,19 +59,19 @@ const AboutTabs = () => {
           <TabsList className="grid w-full grid-cols-3 mb-12 bg-transparent border-none p-0 h-auto gap-8">
             <TabsTrigger 
               value="story" 
-              className="bg-transparent border-none p-0 h-auto text-2xl font-bold text-gray-300 data-[state=active]:text-red-500 data-[state=active]:bg-transparent relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-[3px] after:bg-red-500 after:scale-x-0 data-[state=active]:after:scale-x-100 after:transition-transform after:duration-300"
+              className="bg-transparent border-none p-0 h-auto text-xl font-bold text-gray-300 data-[state=active]:text-red-500 data-[state=active]:bg-transparent relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-[3px] after:bg-red-500 after:scale-x-0 data-[state=active]:after:scale-x-100 after:transition-transform after:duration-300"
             >
               Our Story
             </TabsTrigger>
             <TabsTrigger 
               value="team"
-              className="bg-transparent border-none p-0 h-auto text-2xl font-bold text-gray-300 data-[state=active]:text-red-500 data-[state=active]:bg-transparent relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-[3px] after:bg-red-500 after:scale-x-0 data-[state=active]:after:scale-x-100 after:transition-transform after:duration-300"
+              className="bg-transparent border-none p-0 h-auto text-xl font-bold text-gray-300 data-[state=active]:text-red-500 data-[state=active]:bg-transparent relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-[3px] after:bg-red-500 after:scale-x-0 data-[state=active]:after:scale-x-100 after:transition-transform after:duration-300"
             >
               Our Team
             </TabsTrigger>
             <TabsTrigger 
               value="mission"
-              className="bg-transparent border-none p-0 h-auto text-2xl font-bold text-gray-300 data-[state=active]:text-red-500 data-[state=active]:bg-transparent relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-[3px] after:bg-red-500 after:scale-x-0 data-[state=active]:after:scale-x-100 after:transition-transform after:duration-300"
+              className="bg-transparent border-none p-0 h-auto text-xl font-bold text-gray-300 data-[state=active]:text-red-500 data-[state=active]:bg-transparent relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-[3px] after:bg-red-500 after:scale-x-0 data-[state=active]:after:scale-x-100 after:transition-transform after:duration-300"
             >
               Our Mission
             </TabsTrigger>
