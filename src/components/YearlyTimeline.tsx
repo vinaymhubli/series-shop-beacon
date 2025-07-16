@@ -1,4 +1,3 @@
-
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Link } from 'react-router-dom';
 
@@ -11,12 +10,12 @@ const YearlyTimeline = () => {
       series: [
         {
           title: "First Light",
-          image: "/lovable-uploads/26efc76c-fa83-4369-8d8d-354eab1433e6.png",
+          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
           link: "/our-series"
         },
         {
           title: "Shadow Chronicles",
-          image: "/lovable-uploads/503cc23b-a28f-4564-86f9-53896fa75f10.png",
+          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
           link: "/our-series"
         }
       ]
@@ -26,17 +25,17 @@ const YearlyTimeline = () => {
       series: [
         {
           title: "Ocean Dreams",
-          image: "/lovable-uploads/6fb6d014-0083-4f09-95a2-0416443da769.png",
+          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
           link: "/our-series"
         },
         {
           title: "Mountain Tales",
-          image: "/lovable-uploads/781ea40e-866e-4ee8-9bf7-862a42bb8716.png",
+          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
           link: "/our-series"
         },
         {
           title: "City Lights",
-          image: "/lovable-uploads/7b8f7dcc-b06f-4c89-b5af-906cd241ae0c.png",
+          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
           link: "/our-series"
         }
       ]
@@ -46,12 +45,12 @@ const YearlyTimeline = () => {
       series: [
         {
           title: "Forest Whispers",
-          image: "/lovable-uploads/907e2c66-ea0e-425d-8b48-a80ffcbd2267.png",
+          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
           link: "/our-series"
         },
         {
           title: "Desert Winds",
-          image: "/lovable-uploads/b303e6ac-f71f-4969-b8b5-b567e0c9bf95.png",
+          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
           link: "/our-series"
         }
       ]
@@ -61,7 +60,7 @@ const YearlyTimeline = () => {
       series: [
         {
           title: "Stellar Journey",
-          image: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
+          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
           link: "/our-series"
         }
       ]
