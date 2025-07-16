@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Calendar, ExternalLink, Star } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
@@ -48,7 +47,7 @@ const AnnouncementsSection = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}>
           <h2 className="text-4xl font-bold text-white mb-4">
-            <span className="bg-gradient-to-r from-red-400 via-orange-400 to-yellow-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-red-600 via-red-500 to-red-400 bg-clip-text text-transparent">
               Latest Announcements
             </span>
           </h2>
