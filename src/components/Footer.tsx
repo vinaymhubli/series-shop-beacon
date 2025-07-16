@@ -9,11 +9,14 @@ const Footer = () => {
     {
       title: "Crossed Hearts",
       links: [
-        "A global publishing house specialising in the English localization of Japanese manga and Korean webtooncomics.",
+        "A global publishing house specialising in the English localization of Japanese manga and Korean webcomics.",
         "FAQ",
         "Shipping Info",
         "Returns & Exchanges",
-        "Customer Support"
+        "Customer Support",
+        "Announcements",
+        "Blogs",
+        "Crossed Hearts Ambassador's Program"
       ]
     },
     {
@@ -39,8 +42,15 @@ const Footer = () => {
       links: [
         "Author Portal",
         "Submission Guidelines",
-        "Affiliate Program",
-        "Partnership Opportunities"
+        "Affiliate Programs",
+        "Partnership Opportunities",
+        "Business Inquiries"
+      ]
+    },
+    {
+      title: "Our Imprints",
+      links: [
+        "K-NOVEL PRESS"
       ]
     }
   ];
@@ -64,7 +74,7 @@ const Footer = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8">
           {footerSections.map((section, index) => (
             <div 
               key={index}
