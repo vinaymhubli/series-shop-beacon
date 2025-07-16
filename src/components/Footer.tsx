@@ -1,4 +1,3 @@
-
 import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
@@ -54,7 +53,7 @@ const Footer = () => {
     >
       <div className="container mx-auto px-4">
         {/* Logo */}
-        <div className={`flex justify-center mb-8 transition-all duration-700 transform ${
+        <div className={`flex justify-start mb-8 transition-all duration-700 transform ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}>
           <img 
