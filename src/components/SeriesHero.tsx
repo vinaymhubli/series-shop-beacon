@@ -8,8 +8,8 @@ const SeriesHero = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img 
-          src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&h=800&fit=crop&crop=center"
-          alt="Manga and Anime Series Collection"
+          src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=1920&h=800&fit=crop&crop=center"
+          alt="Anime and Manga Series Collection"
           className="w-full h-full object-cover opacity-70"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
