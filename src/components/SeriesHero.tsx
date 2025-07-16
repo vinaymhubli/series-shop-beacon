@@ -17,10 +17,10 @@ const SeriesHero = () => {
       
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-2xl">
-          <h1 className="text-5xl md:text-6xl font-bold text-black mb-6 drop-shadow-2xl">
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 drop-shadow-2xl">
             Explore Series
           </h1>
-          <p className="text-xl text-black mb-8 leading-relaxed drop-shadow-lg">
+          <p className="text-xl text-gray-200 mb-8 leading-relaxed drop-shadow-lg">
             Discover your next favorite manga and anime series. From classic masterpieces to the latest hits, dive into worlds of endless imagination.
           </p>
           <div className="flex flex-wrap gap-4">
