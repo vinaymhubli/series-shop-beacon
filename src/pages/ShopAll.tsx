@@ -15,32 +15,49 @@ const ShopAll = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-gray-800 via-gray-900 to-black py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-gray-800 via-gray-900 to-black py-32 md:py-40 lg:py-48 overflow-hidden">
         {/* Hero Background Image */}
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80"
-            alt="Library of books"
-            className="w-full h-full object-cover opacity-20"
+            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80"
+            alt="Japanese manga and books collection"
+            className="w-full h-full object-cover opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-800/70 to-black/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/85 via-gray-800/75 to-black/90"></div>
         </div>
         
         {/* Animated Background Effects */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-1/4 w-64 h-64 bg-gradient-to-r from-red-500 to-purple-500 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-1/4 w-48 h-48 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1.5s'}}></div>
+          <div className="absolute top-16 left-1/4 w-80 h-80 bg-gradient-to-r from-red-500 to-purple-500 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-16 right-1/4 w-64 h-64 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1.5s'}}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full blur-3xl animate-pulse" style={{animationDelay: '3s'}}></div>
         </div>
         
         <div className="container mx-auto px-4 text-center relative z-10">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8">
             <span className="bg-gradient-to-r from-white via-red-200 to-purple-200 bg-clip-text text-transparent">
               Shop All
             </span>
           </h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Discover our complete collection of manga, novels, and exclusive merchandise
+          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
+            Discover our complete collection of manga, novels, and exclusive merchandise from the world's most captivating stories
           </p>
+          
+          {/* Stats Section */}
+          <div className="flex flex-wrap justify-center gap-8 md:gap-12">
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-red-400 mb-2">500+</div>
+              <div className="text-gray-400 text-sm md:text-base">Manga Titles</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-purple-400 mb-2">150+</div>
+              <div className="text-gray-400 text-sm md:text-base">Light Novels</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-blue-400 mb-2">50+</div>
+              <div className="text-gray-400 text-sm md:text-base">Exclusive Series</div>
+            </div>
+          </div>
         </div>
       </section>
 
