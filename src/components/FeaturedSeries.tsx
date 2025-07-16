@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Star, BookOpen, Play } from 'lucide-react';
 
@@ -9,7 +8,7 @@ const FeaturedSeries = () => {
       description: "Follow Tanjiro's quest to cure his sister and battle demons",
       rating: 4.9,
       status: "Ongoing",
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop&crop=center",
+      image: "/lovable-uploads/0e70be33-bdfc-41db-8ae1-5c0dcf1b885c.png",
       tags: ["Action", "Supernatural", "Drama"],
       episodes: "44 Episodes"
     },
