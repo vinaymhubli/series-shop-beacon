@@ -1,15 +1,15 @@
 
 const ContactHero = () => {
   return (
-    <section className="relative py-20 px-4">
+    <section className="relative py-32 md:py-44 px-4">
       {/* Hero Image Background */}
       <div 
-        className="absolute inset-0 bg-cover bg-center opacity-60"
+        className="absolute inset-0 bg-cover bg-center opacity-70"
         style={{
           backgroundImage: `url('/lovable-uploads/781ea40e-866e-4ee8-9bf7-862a42bb8716.png')`
         }}
       />
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-black/50" />
       
       <div className="container mx-auto relative z-10">
         <div className="max-w-2xl">
