@@ -7,7 +7,7 @@ const AboutHero = () => {
   return (
     <section 
       ref={elementRef}
-      className={`relative py-28 md:py-36 bg-gradient-to-b from-gray-900 to-black transition-all duration-1000 transform ${
+      className={`relative py-32 md:py-44 bg-gradient-to-b from-gray-900 to-black transition-all duration-1000 transform ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
     >
