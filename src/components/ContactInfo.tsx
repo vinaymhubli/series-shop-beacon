@@ -123,7 +123,7 @@ const ContactInfo = () => {
       <div>
         <div className="flex items-center mb-6">
           <Globe className="w-6 h-6 text-red-500 mr-3" />
-          <h2 className="text-2xl font-bold text-red-500">Connect With Us</h2>
+          <h2 className="text-2xl font-bold text-white">Connect With Us</h2>
         </div>
         
         <div className="flex space-x-4">
