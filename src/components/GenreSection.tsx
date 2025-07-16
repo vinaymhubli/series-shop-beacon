@@ -58,7 +58,7 @@ const GenreSection = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}>
           <h2 className="text-4xl font-bold text-white mb-4">
-            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-red-500 via-red-400 to-orange-500 bg-clip-text text-transparent">
               Explore by Genres
             </span>
           </h2>
