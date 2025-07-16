@@ -57,22 +57,22 @@ const AboutTabs = () => {
     >
       <div className="container mx-auto px-4">
         <Tabs defaultValue="story" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-12 bg-gray-800 border-gray-700">
+          <TabsList className="grid w-full grid-cols-3 mb-12 bg-transparent border-none p-0 h-auto gap-8">
             <TabsTrigger 
               value="story" 
-              className="data-[state=active]:bg-red-500 data-[state=active]:text-white text-gray-300"
+              className="bg-transparent border-none p-0 h-auto text-2xl font-bold text-gray-300 data-[state=active]:text-red-500 data-[state=active]:bg-transparent relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-[3px] after:bg-red-500 after:scale-x-0 data-[state=active]:after:scale-x-100 after:transition-transform after:duration-300"
             >
               Our Story
             </TabsTrigger>
             <TabsTrigger 
               value="team"
-              className="data-[state=active]:bg-red-500 data-[state=active]:text-white text-gray-300"
+              className="bg-transparent border-none p-0 h-auto text-2xl font-bold text-gray-300 data-[state=active]:text-red-500 data-[state=active]:bg-transparent relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-[3px] after:bg-red-500 after:scale-x-0 data-[state=active]:after:scale-x-100 after:transition-transform after:duration-300"
             >
               Our Team
             </TabsTrigger>
             <TabsTrigger 
               value="mission"
-              className="data-[state=active]:bg-red-500 data-[state=active]:text-white text-gray-300"
+              className="bg-transparent border-none p-0 h-auto text-2xl font-bold text-gray-300 data-[state=active]:text-red-500 data-[state=active]:bg-transparent relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-[3px] after:bg-red-500 after:scale-x-0 data-[state=active]:after:scale-x-100 after:transition-transform after:duration-300"
             >
               Our Mission
             </TabsTrigger>
