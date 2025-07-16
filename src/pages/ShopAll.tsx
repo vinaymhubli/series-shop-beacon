@@ -1,3 +1,4 @@
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Newsletter from '@/components/Newsletter';
@@ -35,8 +36,8 @@ const ShopAll = () => {
         </div>
         
         <div className="container mx-auto px-4 text-center relative z-10">
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8">
-            <span className="bg-gradient-to-r from-white via-red-200 to-purple-200 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8">
+            <span className="text-red-500">
               Shop All
             </span>
           </h1>
