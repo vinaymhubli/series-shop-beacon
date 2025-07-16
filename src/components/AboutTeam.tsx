@@ -1,6 +1,7 @@
 
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Card, CardContent } from '@/components/ui/card';
+import { Star, Globe, BookOpen, Rocket } from 'lucide-react';
 
 const AboutTeam = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.2);
@@ -9,22 +10,22 @@ const AboutTeam = () => {
     {
       title: "Quality First",
       description: "We never compromise on the quality of our translations and localizations. Every panel, every dialogue bubble receives meticulous attention.",
-      icon: "⭐"
+      Icon: Star
     },
     {
       title: "Cultural Respect",
       description: "We honor the original creators' vision while making stories accessible to new audiences, preserving cultural nuances.",
-      icon: "🌍"
+      Icon: Globe
     },
     {
       title: "Reader Focus",
       description: "Everything we do is guided by what will create the best possible reading experience for our global community.",
-      icon: "📚"
+      Icon: BookOpen
     },
     {
       title: "Innovation",
       description: "We continuously explore new technologies and methods to improve our publishing process and reader experience.",
-      icon: "🚀"
+      Icon: Rocket
     }
   ];
 
@@ -49,7 +50,9 @@ const AboutTeam = () => {
               style={{ transitionDelay: `${200 + index * 150}ms` }}
             >
               <CardContent className="p-6">
-                <div className="text-4xl mb-4">{value.icon}</div>
+                <div className="flex items-center justify-center w-16 h-16 bg-red-500/10 rounded-lg mb-4">
+                  <value.Icon className="w-8 h-8 text-red-500" />
+                </div>
                 <h3 className="text-red-500 text-xl font-bold mb-3">{value.title}</h3>
                 <p className="text-gray-300 leading-relaxed">{value.description}</p>
               </CardContent>
