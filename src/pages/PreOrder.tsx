@@ -19,7 +19,29 @@ const PreOrder = () => {
     console.log('📍 Current URL:', window.location.href);
   }, [productId]);
 
-  // Mock product data - in real app, fetch based on productId
+  const handleQuantityChange = (change: number) => {
+    const newQuantity = quantity + change;
+    if (newQuantity >= 1 && newQuantity <= 10) {
+      setQuantity(newQuantity);
+    }
+  };
+
+  const handlePreOrder = () => {
+    console.log('🛒 Check Out button clicked');
+    console.log('📦 Product:', product);
+    console.log('📊 Quantity:', quantity);
+    console.log('💰 Total Price:', product.price * quantity);
+    console.log('🚀 Navigating to checkout...');
+    
+    navigate(`/checkout/${productId}`, { 
+      state: { 
+        product,
+        quantity,
+        totalPrice: product.price * quantity
+      }
+    });
+  };
+
   const product = {
     id: parseInt(productId || '1'),
     title: "One Piece Vol. 98",
@@ -46,29 +68,6 @@ const PreOrder = () => {
       "Digital bonus content included"
     ],
     estimatedShipping: "2-3 weeks after release"
-  };
-
-  const handleQuantityChange = (change: number) => {
-    const newQuantity = quantity + change;
-    if (newQuantity >= 1 && newQuantity <= 10) {
-      setQuantity(newQuantity);
-    }
-  };
-
-  const handlePreOrder = () => {
-    console.log('🛒 Pre-Order button clicked');
-    console.log('📦 Product:', product);
-    console.log('📊 Quantity:', quantity);
-    console.log('💰 Total Price:', product.price * quantity);
-    console.log('🚀 Navigating to checkout...');
-    
-    navigate(`/checkout/${productId}`, { 
-      state: { 
-        product,
-        quantity,
-        totalPrice: product.price * quantity
-      }
-    });
   };
 
   return (
@@ -254,7 +253,7 @@ const PreOrder = () => {
                 className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold py-4 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-red-500/25"
               >
                 <ShoppingCart className="w-5 h-5 mr-2" />
-                Pre-Order Now - ${(product.price * quantity).toFixed(2)}
+                Check Out - ${(product.price * quantity).toFixed(2)}
               </Button>
             </div>
 
