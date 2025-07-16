@@ -7,7 +7,7 @@ const AboutHero = () => {
   return (
     <section 
       ref={elementRef}
-      className={`relative py-32 md:py-44 bg-gradient-to-b from-gray-900 to-black transition-all duration-1000 transform ${
+      className={`relative py-36 md:py-48 bg-gradient-to-b from-gray-900 to-black transition-all duration-1000 transform ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
     >
@@ -18,7 +18,7 @@ const AboutHero = () => {
           alt="Library books background" 
           className="w-full h-full object-cover opacity-70"
         />
-        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
       </div>
 
       <div className="container mx-auto px-4 text-center relative z-10">
