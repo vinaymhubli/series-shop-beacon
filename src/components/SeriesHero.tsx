@@ -28,7 +28,7 @@ const SeriesHero = () => {
               <Play className="w-5 h-5 mr-2" />
               Popular Series
             </Button>
-            <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-3 text-lg backdrop-blur-sm transition-colors">
+            <Button variant="outline" className="border-2 border-white text-black hover:bg-white hover:text-gray-900 px-8 py-3 text-lg backdrop-blur-sm transition-colors">
               <Eye className="w-5 h-5 mr-2" />
               Browse All
             </Button>
