@@ -1,4 +1,3 @@
-
 import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -44,9 +43,9 @@ const PaymentSuccess = () => {
             <div className="inline-flex items-center justify-center w-20 h-20 bg-green-500/10 rounded-full mb-6">
               <CheckCircle className="w-10 h-10 text-green-400" />
             </div>
-            <h1 className="text-4xl font-bold text-white mb-4">Pre-Order Confirmed!</h1>
+            <h1 className="text-4xl font-bold text-white mb-4">Order Confirmed!</h1>
             <p className="text-xl text-gray-300 mb-2">
-              Thank you for your pre-order. We'll notify you when your item ships.
+              Thank you for your order. We'll notify you when your item ships.
             </p>
             <p className="text-lg text-gray-400">
               Order Number: <span className="text-white font-semibold">{orderData.orderNumber}</span>
@@ -61,7 +60,7 @@ const PaymentSuccess = () => {
                 <CardHeader>
                   <CardTitle className="text-white flex items-center">
                     <Package className="w-5 h-5 mr-2 text-green-400" />
-                    Pre-Order Details
+                    Order Details
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -182,7 +181,7 @@ const PaymentSuccess = () => {
                       className="w-full border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white"
                     >
                       <Package className="w-4 h-4 mr-2" />
-                      Track Pre-Order
+                      Track Order
                     </Button>
                     
                     <Button
@@ -211,7 +210,7 @@ const PaymentSuccess = () => {
                 <CardContent className="pt-6">
                   <h4 className="text-white font-semibold mb-2">Need Help?</h4>
                   <p className="text-gray-300 text-sm mb-3">
-                    Contact our support team if you have any questions about your pre-order.
+                    Contact our support team if you have any questions about your order.
                   </p>
                   <Button
                     onClick={() => navigate('/contact-us')}
