@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Heart, ShoppingCart } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
@@ -60,7 +59,7 @@ const RecommendedSection = () => {
         }`}>
           <div>
             <h2 className="text-3xl font-bold text-white mb-2">
-              <span className="bg-gradient-to-r from-white via-red-200 to-purple-200 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-red-600 via-red-500 to-red-400 bg-clip-text text-transparent">
                 Recommended For You
               </span>
             </h2>
