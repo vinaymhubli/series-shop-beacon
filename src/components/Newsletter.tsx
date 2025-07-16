@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
@@ -39,12 +40,12 @@ const Newsletter = () => {
         }`}>
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 relative">
             <span className="bg-gradient-to-r from-white via-red-200 to-purple-200 bg-clip-text text-transparent">
-              Subscribe
+              Join Our
             </span>
-            <span className="text-white"> to Our Newsletter</span>
+            <span className="text-white"> Collector's Circle</span>
             {/* Glow effect */}
             <div className="absolute inset-0 text-4xl lg:text-5xl font-bold bg-gradient-to-r from-red-500/20 via-purple-500/20 to-pink-500/20 bg-clip-text text-transparent blur-lg -z-10">
-              Subscribe to Our Newsletter
+              Join Our Collector's Circle
             </div>
           </h2>
         </div>
@@ -53,7 +54,7 @@ const Newsletter = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}>
           <p className="text-gray-300 mb-10 max-w-2xl mx-auto text-lg leading-relaxed">
-            Join the <span className="text-red-400 font-semibold">Crossed Hearts Collector's Circle</span> and be the first to discover new releases, exclusive content, and special offers
+            <span className="text-red-400 font-semibold">Crossed Hearts Collector's Circle</span> provides you with latest updates on your favourite titles
           </p>
         </div>
         
@@ -70,7 +71,7 @@ const Newsletter = () => {
             </div>
             <Button className="group bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-8 h-14 text-lg font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-red-400/0 via-white/20 to-red-400/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-              <span className="relative z-10">Subscribe</span>
+              <span className="relative z-10">Join Circle</span>
             </Button>
           </div>
           
