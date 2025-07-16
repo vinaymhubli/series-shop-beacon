@@ -39,8 +39,8 @@ const SeriesFilters = () => {
               size="sm"
               className={
                 index === 0 
-                  ? "bg-red-600 hover:bg-red-700 text-white" 
-                  : "border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white"
+                  ? "bg-red-600 hover:bg-red-700 text-black" 
+                  : "border-gray-600 text-black hover:bg-gray-700 hover:text-black"
               }
             >
               {genre}
