@@ -1,4 +1,3 @@
-
 import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
@@ -10,10 +9,6 @@ const Footer = () => {
       title: "Crossed Hearts",
       links: [
         "A global publishing house specialising in the English localization of Japanese manga and Korean webcomics.",
-        "FAQ",
-        "Shipping Info",
-        "Returns & Exchanges",
-        "Customer Support",
         "Announcements",
         "Blogs",
         "Crossed Hearts Ambassador's Program"
