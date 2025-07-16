@@ -3,7 +3,8 @@ import Header from '@/components/Header';
 import AboutHero from '@/components/AboutHero';
 import AboutTabs from '@/components/AboutTabs';
 import AboutStats from '@/components/AboutStats';
-import AboutTeam from '@/components/AboutTeam';
+import YearlyTimeline from '@/components/YearlyTimeline';
+import CreativeCorner from '@/components/CreativeCorner';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
 
@@ -28,8 +29,12 @@ const AboutUs = () => {
           <AboutStats />
         </section>
         
-        <section id="team" className="px-4 sm:px-0">
-          <AboutTeam />
+        <section id="timeline">
+          <YearlyTimeline />
+        </section>
+        
+        <section id="creative-corner">
+          <CreativeCorner />
         </section>
         
         <section id="newsletter">

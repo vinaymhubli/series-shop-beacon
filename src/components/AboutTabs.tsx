@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -19,19 +20,6 @@ const AboutTabs = () => {
       },
       image: "/lovable-uploads/a0c88e05-5aba-4550-8ee0-7644ad456776.png"
     },
-    team: {
-      title: "Our Team",
-      content: {
-        heading: "The People Behind the Magic",
-        text: "Our diverse team of translators, editors, designers, and cultural consultants work tirelessly to ensure every story we publish maintains its authentic voice while being accessible to new audiences. We're united by our love for storytelling and commitment to excellence.",
-        highlights: [
-          "Expert translators and editors",
-          "Diverse cultural backgrounds",
-          "Passionate about storytelling"
-        ]
-      },
-      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-    },
     mission: {
       title: "Our Mission",
       content: {
@@ -44,6 +32,19 @@ const AboutTabs = () => {
         ]
       },
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+    },
+    future: {
+      title: "Our Future",
+      content: {
+        heading: "Looking Ahead",
+        text: "As we continue to grow, our vision expands beyond just publishing. We're building a comprehensive ecosystem where creators and readers can connect, discover new stories, and be part of a global community that celebrates diverse storytelling from every corner of the world.",
+        highlights: [
+          "Expanding creator partnerships globally",
+          "Innovation in digital storytelling",
+          "Building stronger reader communities"
+        ]
+      },
+      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
     }
   };
 
@@ -64,16 +65,16 @@ const AboutTabs = () => {
               Our Story
             </TabsTrigger>
             <TabsTrigger 
-              value="team"
-              className="bg-transparent border-none p-0 h-auto text-xl font-bold text-gray-300 data-[state=active]:text-red-500 data-[state=active]:bg-transparent relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-[3px] after:bg-red-500 after:scale-x-0 data-[state=active]:after:scale-x-100 after:transition-transform after:duration-300"
-            >
-              Our Team
-            </TabsTrigger>
-            <TabsTrigger 
               value="mission"
               className="bg-transparent border-none p-0 h-auto text-xl font-bold text-gray-300 data-[state=active]:text-red-500 data-[state=active]:bg-transparent relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-[3px] after:bg-red-500 after:scale-x-0 data-[state=active]:after:scale-x-100 after:transition-transform after:duration-300"
             >
               Our Mission
+            </TabsTrigger>
+            <TabsTrigger 
+              value="future"
+              className="bg-transparent border-none p-0 h-auto text-xl font-bold text-gray-300 data-[state=active]:text-red-500 data-[state=active]:bg-transparent relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-[3px] after:bg-red-500 after:scale-x-0 data-[state=active]:after:scale-x-100 after:transition-transform after:duration-300"
+            >
+              Our Future
             </TabsTrigger>
           </TabsList>
 
