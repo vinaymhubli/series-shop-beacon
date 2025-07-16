@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Star, Users, BookOpen } from 'lucide-react';
@@ -225,7 +224,7 @@ const SeriesGrid = () => {
                       handleSeriesClick(seriesItem.id);
                     }}
                   >
-                    View Series
+                    Add to Cart
                   </Button>
                 </div>
               </div>
