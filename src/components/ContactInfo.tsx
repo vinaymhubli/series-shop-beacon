@@ -8,9 +8,9 @@ const ContactInfo = () => {
       color: "text-red-400"
     },
     {
-      region: "UK and Europe customers:",
-      email: "support.eu@crossedhearts.com", 
-      color: "text-blue-400"
+      region: "UK and Europe customers:", 
+      email: "support.eu@crossedhearts.com",
+      color: "text-red-400"
     },
     {
       region: "Africa customers:",
