@@ -4,13 +4,18 @@ import Footer from '@/components/Footer';
 import Newsletter from '@/components/Newsletter';
 import ShopGrid from '@/components/ShopGrid';
 import ShopFilters from '@/components/ShopFilters';
+import FeaturedSeriesSlideshow from '@/components/FeaturedSeriesSlideshow';
+import SeriesGrid from '@/components/SeriesGrid';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useState } from 'react';
 
 const ShopAll = () => {
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation(0.1);
   const { elementRef: statsRef, isVisible: statsVisible } = useScrollAnimation(0.2);
   const { elementRef: filtersRef, isVisible: filtersVisible } = useScrollAnimation(0.2);
   const { elementRef: gridRef, isVisible: gridVisible } = useScrollAnimation(0.2);
+  
+  const [viewMode, setViewMode] = useState<'series' | 'volume'>('series');
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -77,6 +82,9 @@ const ShopAll = () => {
         </div>
       </section>
 
+      {/* Featured Series Slideshow */}
+      <FeaturedSeriesSlideshow />
+
       {/* Filters Section */}
       <div 
         ref={filtersRef as any}
@@ -84,17 +92,17 @@ const ShopAll = () => {
           filtersVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
-        <ShopFilters />
+        <ShopFilters viewMode={viewMode} setViewMode={setViewMode} />
       </div>
 
-      {/* Products Grid */}
+      {/* Content Grid - Show SeriesGrid or ShopGrid based on view mode */}
       <div 
         ref={gridRef as any}
         className={`transition-all duration-1000 transform ${
           gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
-        <ShopGrid />
+        {viewMode === 'series' ? <SeriesGrid /> : <ShopGrid />}
       </div>
 
       <Newsletter />
