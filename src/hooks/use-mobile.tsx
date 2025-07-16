@@ -1,3 +1,4 @@
+
 import * as React from "react"
 
 const MOBILE_BREAKPOINT = 768
@@ -16,4 +17,10 @@ export function useIsMobile() {
   }, [])
 
   return !!isMobile
+}
+
+// Additional mobile utility hook
+export function useResponsiveValue<T>(mobile: T, desktop: T): T {
+  const isMobile = useIsMobile()
+  return isMobile ? mobile : desktop
 }

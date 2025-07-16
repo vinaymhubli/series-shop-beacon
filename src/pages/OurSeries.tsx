@@ -22,7 +22,7 @@ const OurSeries = () => {
       
       <div 
         ref={filtersRef as any}
-        className={`transition-all duration-1000 transform ${
+        className={`px-4 sm:px-0 transition-all duration-1000 transform ${
           filtersVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
@@ -31,7 +31,7 @@ const OurSeries = () => {
       
       <div 
         ref={featuredRef as any}
-        className={`transition-all duration-1000 transform ${
+        className={`px-4 sm:px-0 transition-all duration-1000 transform ${
           featuredVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
@@ -40,7 +40,7 @@ const OurSeries = () => {
       
       <div 
         ref={allSeriesRef as any}
-        className={`transition-all duration-1000 transform ${
+        className={`px-4 sm:px-0 transition-all duration-1000 transform ${
           allSeriesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
@@ -49,7 +49,7 @@ const OurSeries = () => {
       
       <div 
         ref={activityRef as any}
-        className={`transition-all duration-1000 transform ${
+        className={`px-4 sm:px-0 transition-all duration-1000 transform ${
           activityVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >

@@ -1,3 +1,4 @@
+
 import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
@@ -47,39 +48,39 @@ const Footer = () => {
   return (
     <footer 
       ref={elementRef}
-      className={`bg-black text-gray-400 py-12 transition-all duration-1000 transform ${
+      className={`bg-black text-gray-400 py-8 sm:py-12 transition-all duration-1000 transform ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
     >
       <div className="container mx-auto px-4">
         {/* Logo */}
-        <div className={`flex justify-start mb-8 transition-all duration-700 transform ${
+        <div className={`flex justify-center sm:justify-start mb-6 sm:mb-8 transition-all duration-700 transform ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}>
           <img 
             src="/lovable-uploads/e894503b-5d22-4a7a-9940-15abeb76e58b.png" 
             alt="Crossed Hearts" 
-            className="h-12 w-28"
+            className="h-10 w-24 sm:h-12 sm:w-28"
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {footerSections.map((section, index) => (
             <div 
               key={index}
-              className={`transition-all duration-700 transform ${
+              className={`text-center sm:text-left transition-all duration-700 transform ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
               style={{ transitionDelay: `${200 + index * 150}ms` }}
             >
-              <h3 className="text-red-500 font-semibold mb-4">{section.title}</h3>
-              <ul className="space-y-2">
+              <h3 className="text-red-500 font-semibold mb-3 sm:mb-4 text-base sm:text-lg">{section.title}</h3>
+              <ul className="space-y-1.5 sm:space-y-2">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
                     {linkIndex === 0 && index === 0 ? (
-                      <p className="text-sm text-gray-500 leading-relaxed">{link}</p>
+                      <p className="text-xs sm:text-sm text-gray-500 leading-relaxed px-2 sm:px-0">{link}</p>
                     ) : (
-                      <a href="#" className="text-sm hover:text-white transition-colors duration-200 transform hover:translate-x-1">
+                      <a href="#" className="text-xs sm:text-sm hover:text-white transition-colors duration-200 transform hover:translate-x-1 block px-2 sm:px-0 py-1">
                         {link}
                       </a>
                     )}
@@ -90,10 +91,10 @@ const Footer = () => {
           ))}
         </div>
         
-        <div className={`border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center transition-all duration-700 delay-800 transform ${
+        <div className={`border-t border-gray-800 mt-6 sm:mt-8 pt-6 sm:pt-8 flex flex-col items-center space-y-4 sm:flex-row sm:justify-between sm:space-y-0 transition-all duration-700 delay-800 transform ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}>
-          <div className="flex space-x-4 mb-4 md:mb-0">
+          <div className="flex space-x-6">
             <a href="#" className="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110">
               <Twitter className="w-5 h-5" />
             </a>
@@ -108,7 +109,7 @@ const Footer = () => {
             </a>
           </div>
           
-          <p className="text-sm text-gray-500">
+          <p className="text-xs sm:text-sm text-gray-500 text-center">
             © 2024 Crossed Hearts. All rights reserved.
           </p>
         </div>

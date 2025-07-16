@@ -20,7 +20,7 @@ const AboutUs = () => {
           <AboutHero />
         </section>
         
-        <section id="tabs">
+        <section id="tabs" className="px-4 sm:px-0">
           <AboutTabs />
         </section>
         
@@ -28,7 +28,7 @@ const AboutUs = () => {
           <AboutStats />
         </section>
         
-        <section id="team">
+        <section id="team" className="px-4 sm:px-0">
           <AboutTeam />
         </section>
         

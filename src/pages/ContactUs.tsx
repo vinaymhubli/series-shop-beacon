@@ -18,7 +18,7 @@ const ContactUs = () => {
       <ContactHero />
       <div 
         ref={contactInfoRef as any}
-        className={`grid lg:grid-cols-2 gap-0 transition-all duration-1000 transform ${
+        className={`grid lg:grid-cols-2 gap-0 px-4 sm:px-0 transition-all duration-1000 transform ${
           contactInfoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
@@ -27,7 +27,7 @@ const ContactUs = () => {
       </div>
       <div
         ref={faqRef as any}
-        className={`transition-all duration-1000 transform ${
+        className={`px-4 sm:px-0 transition-all duration-1000 transform ${
           faqVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
