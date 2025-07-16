@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Heart, Star } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
@@ -50,7 +51,7 @@ const HeroSection = () => {
         }`}>
           {/* Enhanced title with glow effect */}
           <h2 className="text-5xl lg:text-6xl font-bold text-white mb-6 min-h-[1.2em] relative">
-            <span className="bg-gradient-to-r from-white via-red-200 to-purple-200 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-red-600 via-red-800 to-black bg-clip-text text-transparent">
               {displayedText}
             </span>
             {!isComplete && (
