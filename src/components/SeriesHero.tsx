@@ -8,19 +8,19 @@ const SeriesHero = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img 
-          src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=1920&h=800&fit=crop&crop=center"
+          src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=1920&h=800&fit=crop&crop=center"
           alt="Anime and Manga Series Collection"
-          className="w-full h-full object-cover opacity-40"
+          className="w-full h-full object-cover opacity-70"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-2xl">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 drop-shadow-2xl">
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg">
             Explore Series
           </h1>
-          <p className="text-xl text-gray-200 mb-8 leading-relaxed drop-shadow-lg">
+          <p className="text-xl text-gray-100 mb-8 leading-relaxed drop-shadow-md">
             Discover your next favorite manga and anime series. From classic masterpieces to the latest hits, dive into worlds of endless imagination.
           </p>
           <div className="flex flex-wrap gap-4">
