@@ -17,7 +17,7 @@ const ContactUs = () => {
       <Header />
       <ContactHero />
       <div 
-        ref={contactInfoRef}
+        ref={contactInfoRef as any}
         className={`grid lg:grid-cols-2 gap-0 transition-all duration-1000 transform ${
           contactInfoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
@@ -26,7 +26,7 @@ const ContactUs = () => {
         <ContactForm />
       </div>
       <div
-        ref={faqRef}
+        ref={faqRef as any}
         className={`transition-all duration-1000 transform ${
           faqVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
