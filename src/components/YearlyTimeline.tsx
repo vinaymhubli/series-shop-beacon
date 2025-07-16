@@ -17,6 +17,16 @@ const YearlyTimeline = () => {
           title: "Shadow Chronicles",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
           link: "/our-series"
+        },
+        {
+          title: "Midnight Adventures",
+          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
+          link: "/our-series"
+        },
+        {
+          title: "Dawn Warriors",
+          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
+          link: "/our-series"
         }
       ]
     },
@@ -37,6 +47,11 @@ const YearlyTimeline = () => {
           title: "City Lights",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
           link: "/our-series"
+        },
+        {
+          title: "River Legends",
+          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
+          link: "/our-series"
         }
       ]
     },
@@ -52,6 +67,16 @@ const YearlyTimeline = () => {
           title: "Desert Winds",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
           link: "/our-series"
+        },
+        {
+          title: "Arctic Quest",
+          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
+          link: "/our-series"
+        },
+        {
+          title: "Jungle Mysteries",
+          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
+          link: "/our-series"
         }
       ]
     },
@@ -60,6 +85,21 @@ const YearlyTimeline = () => {
       series: [
         {
           title: "Stellar Journey",
+          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
+          link: "/our-series"
+        },
+        {
+          title: "Cosmic Realms",
+          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
+          link: "/our-series"
+        },
+        {
+          title: "Galaxy Heroes",
+          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
+          link: "/our-series"
+        },
+        {
+          title: "Nebula Chronicles",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
           link: "/our-series"
         }
@@ -110,7 +150,7 @@ const YearlyTimeline = () => {
               </div>
               
               {/* Series Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
                 {yearData.series.map((series, seriesIndex) => (
                   <Link
                     key={seriesIndex}
