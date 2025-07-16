@@ -218,7 +218,7 @@ const ShopGrid = () => {
                     onClick={(e) => handleAddToCart(e, product.id)}
                   >
                     <ShoppingCart className="w-3 h-3 mr-1" />
-                    {product.inStock ? 'Add to Cart' : 'Pre-Order'}
+                    Add to Cart
                   </Button>
                 </div>
               </div>
