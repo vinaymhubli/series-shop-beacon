@@ -1,5 +1,4 @@
 
-
 const ContactHero = () => {
   return (
     <section className="relative py-32 md:py-44 px-4">
@@ -15,7 +14,7 @@ const ContactHero = () => {
       <div className="container mx-auto relative z-10">
         <div className="max-w-2xl">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-            Contact<span className="text-red-500">Us</span>
+            Contact <span className="text-red-500">Us</span>
           </h1>
           <p className="text-xl text-gray-300 leading-relaxed">
             We're here to help! Reach out to our team for support, inquiries, or collaboration opportunities.
@@ -27,4 +26,3 @@ const ContactHero = () => {
 };
 
 export default ContactHero;
-
