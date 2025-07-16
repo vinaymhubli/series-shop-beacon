@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -8,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useForm } from 'react-hook-form';
-import { ArrowLeft, CreditCard, Lock, ShoppingCart, MapPin, User, Mail, Phone } from 'lucide-react';
+import { ArrowLeft, CreditCard, Lock, ShoppingCart, MapPin, Mail, Plus, Clock } from 'lucide-react';
 
 interface CheckoutFormData {
   email: string;
@@ -23,6 +22,16 @@ interface CheckoutFormData {
   expiryDate: string;
   cvv: string;
   cardName: string;
+  couponCode: string;
+}
+
+interface RecommendedItem {
+  id: number;
+  title: string;
+  author: string;
+  price: number;
+  imageUrl: string;
+  type: 'ebook' | 'physical' | 'coins';
 }
 
 const Checkout = () => {
@@ -33,6 +42,34 @@ const Checkout = () => {
   
   const { product, quantity, totalPrice } = location.state || {};
   
+  // Mock recommended items
+  const recommendedItems: RecommendedItem[] = [
+    {
+      id: 2,
+      title: "One Piece Vol. 99",
+      author: "Eiichiro Oda",
+      price: 11.99,
+      imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
+      type: 'ebook'
+    },
+    {
+      id: 3,
+      title: "Naruto Vol. 72",
+      author: "Masashi Kishimoto",
+      price: 10.99,
+      imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
+      type: 'physical'
+    },
+    {
+      id: 4,
+      title: "Premium Coins Pack",
+      author: "Digital Currency",
+      price: 19.99,
+      imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
+      type: 'coins'
+    }
+  ];
+
   const form = useForm<CheckoutFormData>({
     defaultValues: {
       email: '',
@@ -46,14 +83,22 @@ const Checkout = () => {
       cardNumber: '',
       expiryDate: '',
       cvv: '',
-      cardName: ''
+      cardName: '',
+      couponCode: ''
     }
   });
 
+  // Detect product type and calculate shipping
+  const productType = product?.type || 'physical'; // ebook, physical, coins
   const subtotal = totalPrice || 0;
-  const shipping = 0; // Free shipping
+  const shipping = productType === 'physical' ? 5.99 : 0; // Only charge shipping for physical items
   const tax = subtotal * 0.08; // 8% tax
   const total = subtotal + shipping + tax;
+
+  const addRecommendedItem = (item: RecommendedItem) => {
+    console.log('Adding recommended item to cart:', item);
+    // In a real implementation, this would add the item to cart state
+  };
 
   const onSubmit = async (data: CheckoutFormData) => {
     setIsProcessing(true);
@@ -257,6 +302,40 @@ const Checkout = () => {
                       </div>
                     </div>
 
+                    {/* Coupon Code */}
+                    <div>
+                      <h3 className="text-lg font-semibold text-white mb-4">Coupon Code</h3>
+                      <FormField
+                        control={form.control}
+                        name="couponCode"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <Input 
+                                {...field} 
+                                className="bg-gray-700 border-gray-600 text-white focus:border-red-500"
+                                placeholder="Enter coupon code"
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      
+                      {/* Leaving Soon Section */}
+                      <div className="mt-4 p-4 bg-orange-900/30 border border-orange-500/30 rounded-lg">
+                        <div className="flex items-center space-x-2 mb-2">
+                          <Clock className="w-4 h-4 text-orange-400" />
+                          <span className="text-orange-300 font-semibold">Leaving Soon</span>
+                        </div>
+                        <div className="space-y-1 text-sm text-gray-300">
+                          <p>• One Piece Complete Collection - 15% off (expires in 2 days)</p>
+                          <p>• Premium Membership - 20% off (expires in 5 days)</p>
+                          <p>• Digital Manga Bundle - 25% off (expires in 1 day)</p>
+                        </div>
+                      </div>
+                    </div>
+
                     {/* Payment Information */}
                     <div>
                       <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
@@ -338,6 +417,15 @@ const Checkout = () => {
                       </div>
                     </div>
 
+                    {/* Terms and Conditions */}
+                    <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-4">
+                      <h4 className="text-red-300 font-semibold mb-2">Important Notice</h4>
+                      <p className="text-gray-300 text-sm">
+                        <strong>All sales are final.</strong> We do not accept returns or provide refunds. 
+                        By proceeding with this purchase, you acknowledge and agree to this policy.
+                      </p>
+                    </div>
+
                     <Button
                       type="submit"
                       disabled={isProcessing}
@@ -368,7 +456,7 @@ const Checkout = () => {
                 <CardTitle className="text-white">Order Summary</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                {/* Product */}
+                {/* Current Product */}
                 <div className="flex space-x-4">
                   <img
                     src={product.images?.[0] || product.imageUrl}
@@ -380,9 +468,45 @@ const Checkout = () => {
                     <p className="text-gray-400 text-xs">by {product.author}</p>
                     <p className="text-gray-400 text-xs">Qty: {quantity}</p>
                     <p className="text-white font-semibold">${product.price}</p>
+                    {productType === 'ebook' && (
+                      <span className="text-blue-400 text-xs">E-book - No Download</span>
+                    )}
+                    {productType === 'coins' && (
+                      <span className="text-yellow-400 text-xs">Digital Currency</span>
+                    )}
                   </div>
                 </div>
 
+                {/* Recommended Items */}
+                <div className="border-t border-gray-700 pt-4">
+                  <h4 className="text-white font-semibold mb-3">Recommended for You</h4>
+                  <div className="space-y-3">
+                    {recommendedItems.map((item) => (
+                      <div key={item.id} className="flex items-center space-x-3 p-2 bg-gray-700/50 rounded-lg">
+                        <img
+                          src={item.imageUrl}
+                          alt={item.title}
+                          className="w-12 h-14 object-cover rounded"
+                        />
+                        <div className="flex-1">
+                          <h5 className="text-white text-xs font-medium">{item.title}</h5>
+                          <p className="text-gray-400 text-xs">{item.author}</p>
+                          <p className="text-white text-sm font-semibold">${item.price}</p>
+                        </div>
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          onClick={() => addRecommendedItem(item)}
+                          className="text-red-400 hover:text-red-300 hover:bg-red-500/20"
+                        >
+                          <Plus className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Price Breakdown */}
                 <div className="border-t border-gray-700 pt-4 space-y-2">
                   <div className="flex justify-between text-gray-300">
                     <span>Subtotal</span>
@@ -390,8 +514,16 @@ const Checkout = () => {
                   </div>
                   <div className="flex justify-between text-gray-300">
                     <span>Shipping</span>
-                    <span className="text-green-400">Free</span>
+                    <span className={shipping === 0 ? "text-green-400" : ""}>
+                      {shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}
+                    </span>
                   </div>
+                  {productType === 'ebook' && (
+                    <p className="text-blue-400 text-xs">E-books are added directly to your library</p>
+                  )}
+                  {productType === 'coins' && (
+                    <p className="text-yellow-400 text-xs">Digital coins - No shipping required</p>
+                  )}
                   <div className="flex justify-between text-gray-300">
                     <span>Tax</span>
                     <span>${tax.toFixed(2)}</span>
@@ -409,6 +541,9 @@ const Checkout = () => {
                   <div className="flex items-center space-x-2 text-gray-400 text-xs">
                     <Lock className="w-3 h-3" />
                     <span>Secure 256-bit SSL encryption</span>
+                  </div>
+                  <div className="mt-2 text-gray-400 text-xs">
+                    <p>Payment gateway supports worldwide transactions</p>
                   </div>
                 </div>
               </CardContent>
