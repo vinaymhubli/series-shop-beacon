@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Menu, X, Search, ShoppingCart, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,11 +9,14 @@ const Header = () => {
   const location = useLocation();
 
   const navItems = [
+    { name: 'Home', href: '/' },
     { name: 'Our Series', href: '/our-series' },
     { name: 'Shop All', href: '/shop-all' },
-    { name: 'Announcements', href: '/announcements' },
     { name: 'About Us', href: '/about-us' },
-    { name: 'Contact', href: '/contact-us' }
+    { name: 'Contact Us', href: '/contact-us' },
+    { name: 'Affiliation Programs', href: '/affiliation-programs' },
+    { name: 'Readers Mode', href: '/readers-mode' },
+    { name: 'Announcements', href: '/announcements' }
   ];
 
   return (
@@ -31,12 +35,12 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+          <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`transition-colors duration-200 text-xs xl:text-sm font-medium ${
+                className={`transition-colors duration-200 text-xs xl:text-sm font-medium whitespace-nowrap ${
                   location.pathname === item.href 
                     ? 'text-red-500' 
                     : 'text-gray-300 hover:text-white'
