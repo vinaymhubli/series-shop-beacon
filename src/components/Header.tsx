@@ -58,9 +58,11 @@ const Header = () => {
             <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white h-8 w-8 sm:h-10 sm:w-10">
               <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white h-8 w-8 sm:h-10 sm:w-10">
-              <User className="h-4 w-4 sm:h-5 sm:w-5" />
-            </Button>
+            <Link to="/profile">
+              <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white h-8 w-8 sm:h-10 sm:w-10">
+                <User className="h-4 w-4 sm:h-5 sm:w-5" />
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -92,15 +94,19 @@ const Header = () => {
                   {item.label}
                 </Link>
               ))}
+              <Link
+                to="/profile"
+                className="text-gray-300 hover:text-white hover:bg-gray-800 text-sm font-medium px-3 py-2 rounded-md"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Profile
+              </Link>
               <div className="flex items-center justify-center space-x-4 px-3 pt-4 border-t border-gray-800">
                 <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white h-10 w-10">
                   <Search className="h-5 w-5" />
                 </Button>
                 <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white h-10 w-10">
                   <ShoppingCart className="h-5 w-5" />
-                </Button>
-                <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white h-10 w-10">
-                  <User className="h-5 w-5" />
                 </Button>
               </div>
             </nav>
