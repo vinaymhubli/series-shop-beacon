@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Menu, X, Search, ShoppingCart, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,14 +7,12 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
-  const navigationItems = [
-    { label: 'Home', path: '/' },
-    { label: 'Our series', path: '/our-series' },
-    { label: 'Shop all', path: '/shop-all' }, 
-    { label: 'About us', path: '/about-us' },
-    { label: 'Contact us', path: '/contact-us' },
-    { label: 'Affiliate programs', path: '/affiliate-programs' },
-    { label: 'Readers mode', path: '/readers-mode' }
+  const navItems = [
+    { name: 'Our Series', href: '/our-series' },
+    { name: 'Shop All', href: '/shop-all' },
+    { name: 'Announcements', href: '/announcements' },
+    { name: 'About Us', href: '/about-us' },
+    { name: 'Contact', href: '/contact-us' }
   ];
 
   return (
@@ -35,17 +32,17 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-            {navigationItems.map((item) => (
+            {navItems.map((item) => (
               <Link
-                key={item.label}
-                to={item.path}
+                key={item.name}
+                to={item.href}
                 className={`transition-colors duration-200 text-xs xl:text-sm font-medium ${
-                  location.pathname === item.path 
+                  location.pathname === item.href 
                     ? 'text-red-500' 
                     : 'text-gray-300 hover:text-white'
                 }`}
               >
-                {item.label}
+                {item.name}
               </Link>
             ))}
           </nav>
@@ -80,18 +77,18 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-800">
             <nav className="flex flex-col space-y-3">
-              {navigationItems.map((item) => (
+              {navItems.map((item) => (
                 <Link
-                  key={item.label}
-                  to={item.path}
+                  key={item.name}
+                  to={item.href}
                   className={`transition-colors duration-200 text-sm font-medium px-3 py-2 rounded-md ${
-                    location.pathname === item.path 
+                    location.pathname === item.href 
                       ? 'text-red-500 bg-gray-800' 
                       : 'text-gray-300 hover:text-white hover:bg-gray-800'
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {item.label}
+                  {item.name}
                 </Link>
               ))}
               <Link
