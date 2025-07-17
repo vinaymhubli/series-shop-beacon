@@ -39,7 +39,6 @@ const App = () => (
           <Route path="/profile" element={<Profile />} />
           <Route path="/affiliation-programs" element={<AffiliationPrograms />} />
           <Route path="/readers-mode" element={<ReadersMode />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
