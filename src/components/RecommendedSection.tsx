@@ -54,15 +54,26 @@ const RecommendedSection = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className={`mb-8 transition-all duration-1000 delay-200 transform ${
+        <div className={`flex items-center justify-between mb-8 transition-all duration-1000 delay-200 transform ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}>
-          <h2 className="text-3xl font-bold text-white mb-2">
-            <span className="bg-gradient-to-r from-red-600 via-red-500 to-red-400 bg-clip-text text-transparent">
-              Recommended For You
-            </span>
-          </h2>
-          <p className="text-gray-400">Curated picks based on your interests and genres</p>
+          <div>
+            <h2 className="text-3xl font-bold text-white mb-2">
+              <span className="bg-gradient-to-r from-red-600 via-red-500 to-red-400 bg-clip-text text-transparent">
+                Recommended For You
+              </span>
+            </h2>
+            <p className="text-gray-400">Curated picks based on your interests and genres</p>
+          </div>
+          <div className="flex space-x-4">
+            <button className="group bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg text-sm font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25">
+              <span className="relative z-10">Digital</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-red-400/0 via-white/20 to-red-400/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 rounded-lg"></div>
+            </button>
+            <button className="group bg-gray-700 text-gray-300 px-6 py-3 rounded-lg text-sm font-semibold hover:bg-gray-600 hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg">
+              Merchandise
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
