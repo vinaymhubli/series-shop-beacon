@@ -36,16 +36,16 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6">
+          {/* Desktop Navigation - Centered */}
+          <nav className="hidden lg:flex items-center justify-center flex-1 space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`transition-colors duration-200 text-sm font-medium whitespace-nowrap ${
+                className={`transition-colors duration-200 text-sm font-medium whitespace-nowrap hover:text-red-400 ${
                   location.pathname === item.href 
                     ? 'text-red-500' 
-                    : 'text-gray-300 hover:text-white'
+                    : 'text-gray-300'
                 }`}
               >
                 {item.name}
