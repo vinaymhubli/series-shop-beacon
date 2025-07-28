@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { Heart, Diamond, Clover, Spade, Calendar, ExternalLink } from 'lucide-react';
+import { Heart, Diamond, Club, Spade, Calendar, ExternalLink } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 interface AnnouncementGridProps {
@@ -19,7 +19,7 @@ const AnnouncementGrid = ({ activeFilter }: AnnouncementGridProps) => {
       date: "Coming March 2024",
       imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
       icon: Heart,
-      iconColor: 'text-red-500',
+      iconColor: 'text-heart',
       badgeColor: 'from-red-600 to-red-700'
     },
     {
@@ -29,8 +29,8 @@ const AnnouncementGrid = ({ activeFilter }: AnnouncementGridProps) => {
       description: "The highly anticipated third volume of Chainsaw Man Part 2 is now available with exclusive cover variants and author commentary.",
       date: "Available Now",
       imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
-      icon: Clover,
-      iconColor: 'text-green-500',
+      icon: Club,
+      iconColor: 'text-club',
       badgeColor: 'from-green-600 to-green-700'
     },
     {
@@ -41,7 +41,7 @@ const AnnouncementGrid = ({ activeFilter }: AnnouncementGridProps) => {
       date: "Pre-Order Open",
       imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
       icon: Diamond,
-      iconColor: 'text-blue-500',
+      iconColor: 'text-diamond',
       badgeColor: 'from-blue-600 to-blue-700'
     },
     {
@@ -52,7 +52,7 @@ const AnnouncementGrid = ({ activeFilter }: AnnouncementGridProps) => {
       date: "April 15-17, 2024",
       imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
       icon: Spade,
-      iconColor: 'text-purple-500',
+      iconColor: 'text-spade',
       badgeColor: 'from-purple-600 to-purple-700'
     },
     {
@@ -63,7 +63,7 @@ const AnnouncementGrid = ({ activeFilter }: AnnouncementGridProps) => {
       date: "Coming Soon",
       imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
       icon: Heart,
-      iconColor: 'text-red-500',
+      iconColor: 'text-heart',
       badgeColor: 'from-red-600 to-red-700'
     },
     {
@@ -73,8 +73,8 @@ const AnnouncementGrid = ({ activeFilter }: AnnouncementGridProps) => {
       description: "The latest volume in the beloved Spy x Family series arrives with bonus family photos and behind-the-scenes content.",
       date: "February 2024",
       imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
-      icon: Clover,
-      iconColor: 'text-green-500',
+      icon: Club,
+      iconColor: 'text-club',
       badgeColor: 'from-green-600 to-green-700'
     }
   ];

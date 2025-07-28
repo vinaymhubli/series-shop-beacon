@@ -61,7 +61,12 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Cross Hearts Symbols
+				heart: 'hsl(var(--heart))',
+				diamond: 'hsl(var(--diamond))',
+				club: 'hsl(var(--club))',
+				spade: 'hsl(var(--spade))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

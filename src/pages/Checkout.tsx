@@ -148,7 +148,45 @@ const Checkout = () => {
         </Button>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Checkout Form */}
+          {/* Recommended Items Section - Left */}
+          <div className="lg:col-span-1">
+            <Card className="bg-gray-800 border-gray-700">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center">
+                  <Plus className="w-5 h-5 mr-2 text-red-500" />
+                  Recommended for You
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {recommendedItems.map((item) => (
+                    <div key={item.id} className="flex items-center space-x-3 p-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors">
+                      <img 
+                        src={item.imageUrl} 
+                        alt={item.title}
+                        className="w-12 h-16 object-cover rounded"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-white text-sm font-medium truncate">{item.title}</h4>
+                        <p className="text-gray-400 text-xs truncate">{item.author}</p>
+                        <p className="text-red-400 text-sm font-semibold">${item.price}</p>
+                      </div>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => addRecommendedItem(item)}
+                        className="border-red-500 text-red-400 hover:bg-red-500 hover:text-white text-xs px-2"
+                      >
+                        Add
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Checkout Form - Right */}
           <div className="lg:col-span-2">
             <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
