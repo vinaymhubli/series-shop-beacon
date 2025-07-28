@@ -104,14 +104,6 @@ const HeroSection = () => {
           <div className={`mt-8 flex items-center space-x-8 transition-all duration-1000 delay-1300 transform ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
           }`}>
-            <div className="flex items-center space-x-2">
-              <div className="flex space-x-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current animate-pulse" style={{animationDelay: `${i * 0.1}s`}} />
-                ))}
-              </div>
-              <span className="text-gray-300 ml-2">4.9/5 Rating</span>
-            </div>
             <div className="h-6 w-px bg-gray-600"></div>
             <div className="text-gray-300">
               <span className="text-white font-bold">10K+</span> Happy Readers
