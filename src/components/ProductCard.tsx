@@ -38,11 +38,11 @@ const ProductCard = ({
 
   return (
     <div 
-      className="group bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden hover:from-gray-750 hover:to-gray-850 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 border border-gray-700/50 hover:border-red-500/30"
+      className="group bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden hover:from-gray-750 hover:to-gray-850 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 border border-gray-700/50 hover:border-red-500/30 min-h-[520px] flex flex-col"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden flex-shrink-0">
         <img 
           src={isHovered && hoverImageUrl ? hoverImageUrl : imageUrl} 
           alt={title}
@@ -83,40 +83,42 @@ const ProductCard = ({
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
       
-      <div className="p-5 space-y-3">
-        <h3 className="text-white font-semibold text-lg truncate group-hover:text-red-300 transition-colors duration-300">{title}</h3>
-        <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">{author}</p>
-        <p className="text-gray-500 text-xs uppercase tracking-wide">{volume}</p>
-        
-        {rating && (
-          <div className="flex items-center space-x-1">
-            {[...Array(5)].map((_, i) => (
-              <Star 
-                key={i} 
-                className={`w-3 h-3 transition-all duration-300 ${
-                  i < rating 
-                    ? 'text-yellow-400 fill-current group-hover:scale-125' 
-                    : 'text-gray-600'
-                }`}
-                style={{ transitionDelay: `${i * 50}ms` }}
-              />
-            ))}
-          </div>
-        )}
-        
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <span className="text-white font-bold text-lg group-hover:text-red-300 transition-colors duration-300">{price}</span>
-            {originalPrice && (
-              <span className="text-gray-500 line-through text-sm">{originalPrice}</span>
+      <div className="p-5 space-y-3 flex-1 flex flex-col">
+        <div className="flex-1 space-y-3">
+          <h3 className="text-white font-semibold text-lg truncate group-hover:text-red-300 transition-colors duration-300">{title}</h3>
+          <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">{author}</p>
+          <p className="text-gray-500 text-xs uppercase tracking-wide">{volume}</p>
+          
+          {rating && (
+            <div className="flex items-center space-x-1">
+              {[...Array(5)].map((_, i) => (
+                <Star 
+                  key={i} 
+                  className={`w-3 h-3 transition-all duration-300 ${
+                    i < rating 
+                      ? 'text-yellow-400 fill-current group-hover:scale-125' 
+                      : 'text-gray-600'
+                  }`}
+                  style={{ transitionDelay: `${i * 50}ms` }}
+                />
+              ))}
+            </div>
+          )}
+          
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <span className="text-white font-bold text-lg group-hover:text-red-300 transition-colors duration-300">{price}</span>
+              {originalPrice && (
+                <span className="text-gray-500 line-through text-sm">{originalPrice}</span>
+              )}
+            </div>
+            {canUnlockWithCoins && (
+              <span className="text-gray-400 text-xs">{coins}</span>
             )}
           </div>
-          {canUnlockWithCoins && (
-            <span className="text-gray-400 text-xs">{coins}</span>
-          )}
         </div>
         
-        <div className="flex space-x-2 pt-2">
+        <div className="flex space-x-2 pt-2 mt-auto">
           <Button 
             size="sm" 
             className="flex-1 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-red-500/25"
