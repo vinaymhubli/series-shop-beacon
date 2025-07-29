@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useForm } from 'react-hook-form';
-import { ArrowLeft, CreditCard, Lock, ShoppingCart, MapPin, Mail, Plus, Clock } from 'lucide-react';
+import { ArrowLeft, CreditCard, Lock, ShoppingCart, MapPin, Mail, Plus, Clock, Star } from 'lucide-react';
 
 interface CheckoutFormData {
   email: string;
@@ -25,15 +25,6 @@ interface CheckoutFormData {
   couponCode: string;
 }
 
-interface RecommendedItem {
-  id: number;
-  title: string;
-  author: string;
-  price: number;
-  imageUrl: string;
-  type: 'ebook' | 'physical' | 'coins';
-}
-
 const Checkout = () => {
   const { productId } = useParams();
   const location = useLocation();
@@ -42,31 +33,65 @@ const Checkout = () => {
   
   const { product, quantity, totalPrice } = location.state || {};
   
-  // Mock recommended items
-  const recommendedItems: RecommendedItem[] = [
+  // Mock upcoming releases data
+  const upcomingReleases = [
+    {
+      id: 1,
+      title: "Attack on Titan",
+      subtitle: "Final Season",
+      price: 29.99,
+      imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
+      releaseDate: "Dec 15, 2024"
+    },
     {
       id: 2,
-      title: "One Piece Vol. 99",
-      author: "Eiichiro Oda",
-      price: 11.99,
+      title: "One Piece",
+      subtitle: "Special Edition", 
+      price: 34.99,
       imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
-      type: 'ebook'
+      releaseDate: "Jan 10, 2025"
     },
     {
       id: 3,
-      title: "Naruto Vol. 72",
-      author: "Masashi Kishimoto",
-      price: 10.99,
+      title: "Demon Slayer",
+      subtitle: "Complete Collection",
+      price: 39.99,
       imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
-      type: 'physical'
+      releaseDate: "Feb 20, 2025"
+    }
+  ];
+
+  // Leaving soon items with images
+  const leavingSoonItems = [
+    {
+      id: 1,
+      title: "My Hero Academia Vol. 30",
+      author: "Kohei Horikoshi",
+      discount: "15%",
+      expiresIn: "1 day",
+      imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
+      originalPrice: 12.99,
+      salePrice: 11.04
     },
     {
-      id: 4,
-      title: "Premium Coins Pack",
-      author: "Digital Currency",
-      price: 19.99,
+      id: 2,
+      title: "Tokyo Ghoul Complete Series", 
+      author: "Sui Ishida",
+      discount: "25%",
+      expiresIn: "2 days",
       imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
-      type: 'coins'
+      originalPrice: 89.99,
+      salePrice: 67.49
+    },
+    {
+      id: 3,
+      title: "Death Note Box Set",
+      author: "Tsugumi Ohba", 
+      discount: "20%",
+      expiresIn: "3 days",
+      imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
+      originalPrice: 59.99,
+      salePrice: 47.99
     }
   ];
 
@@ -89,16 +114,11 @@ const Checkout = () => {
   });
 
   // Detect product type and calculate shipping
-  const productType = product?.type || 'physical'; // ebook, physical, coins
+  const productType = product?.type || 'physical';
   const subtotal = totalPrice || 0;
-  const shipping = productType === 'physical' ? 5.99 : 0; // Only charge shipping for physical items
-  const tax = subtotal * 0.08; // 8% tax
+  const shipping = productType === 'physical' ? 5.99 : 0;
+  const tax = subtotal * 0.08;
   const total = subtotal + shipping + tax;
-
-  const addRecommendedItem = (item: RecommendedItem) => {
-    console.log('Adding recommended item to cart:', item);
-    // In a real implementation, this would add the item to cart state
-  };
 
   const onSubmit = async (data: CheckoutFormData) => {
     setIsProcessing(true);
@@ -147,50 +167,122 @@ const Checkout = () => {
           Back to Product
         </Button>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Recommended Items Section - Left */}
-          <div className="lg:col-span-1">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Left Side - Upcoming Releases and Order Summary */}
+          <div className="lg:col-span-5 space-y-6">
+            {/* Upcoming Releases */}
             <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
-                <CardTitle className="text-white flex items-center">
-                  <Plus className="w-5 h-5 mr-2 text-red-500" />
-                  Recommended for You
-                </CardTitle>
+                <CardTitle className="text-white text-xl">Upcoming Releases</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
-                  {recommendedItems.map((item) => (
-                    <div key={item.id} className="flex items-center space-x-3 p-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors">
-                      <img 
-                        src={item.imageUrl} 
-                        alt={item.title}
-                        className="w-12 h-16 object-cover rounded"
-                      />
-                      <div className="flex-1 min-w-0">
-                        <h4 className="text-white text-sm font-medium truncate">{item.title}</h4>
-                        <p className="text-gray-400 text-xs truncate">{item.author}</p>
-                        <p className="text-red-400 text-sm font-semibold">${item.price}</p>
+                <div className="grid grid-cols-3 gap-4">
+                  {upcomingReleases.map((release) => (
+                    <div key={release.id} className="text-center group cursor-pointer">
+                      <div className="relative mb-3">
+                        <img
+                          src={release.imageUrl}
+                          alt={release.title}
+                          className="w-full h-32 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute top-2 right-2">
+                          <Button
+                            size="sm"
+                            className="bg-red-600 hover:bg-red-700 text-white px-2 py-1 text-xs"
+                          >
+                            PRE-ORDER
+                          </Button>
+                        </div>
                       </div>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => addRecommendedItem(item)}
-                        className="border-red-500 text-red-400 hover:bg-red-500 hover:text-white text-xs px-2"
-                      >
-                        Add
-                      </Button>
+                      <h4 className="text-white text-sm font-semibold mb-1">{release.title}</h4>
+                      <p className="text-gray-400 text-xs mb-1">{release.subtitle}</p>
+                      <p className="text-red-400 text-sm font-bold">${release.price}</p>
                     </div>
                   ))}
                 </div>
               </CardContent>
             </Card>
-          </div>
 
-          {/* Checkout Form - Right */}
-          <div className="lg:col-span-2">
+            {/* Pre-Order Benefits */}
             <Card className="bg-gray-800 border-gray-700">
               <CardHeader>
-                <CardTitle className="text-white flex items-center">
+                <CardTitle className="text-white">Pre-Order Benefits</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                    <span className="text-gray-300 text-sm">Free shipping on all pre-orders</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                    <span className="text-gray-300 text-sm">Early access to exclusive content</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                    <span className="text-gray-300 text-sm">Limited edition covers available</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                    <span className="text-gray-300 text-sm">Priority customer support</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Order Summary */}
+            <Card className="bg-gray-800 border-gray-700">
+              <CardHeader>
+                <CardTitle className="text-white">Order Summary</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {/* Current Product */}
+                <div className="flex space-x-4 p-4 bg-gray-700/50 rounded-lg">
+                  <img
+                    src={product.images?.[0] || product.imageUrl}
+                    alt={product.title}
+                    className="w-16 h-20 object-cover rounded-lg"
+                  />
+                  <div className="flex-1">
+                    <h4 className="text-white font-semibold text-sm">{product.title}</h4>
+                    <p className="text-gray-400 text-xs">by {product.author}</p>
+                    <p className="text-gray-400 text-xs">Qty: {quantity}</p>
+                    <p className="text-white font-semibold">${product.price}</p>
+                  </div>
+                </div>
+
+                {/* Price Breakdown */}
+                <div className="border-t border-gray-700 pt-4 space-y-2">
+                  <div className="flex justify-between text-gray-300">
+                    <span>Subtotal</span>
+                    <span>${subtotal.toFixed(2)}</span>
+                  </div>
+                  <div className="flex justify-between text-gray-300">
+                    <span>Shipping</span>
+                    <span className={shipping === 0 ? "text-green-400" : ""}>
+                      {shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}
+                    </span>
+                  </div>
+                  <div className="flex justify-between text-gray-300">
+                    <span>Tax</span>
+                    <span>${tax.toFixed(2)}</span>
+                  </div>
+                  <div className="border-t border-gray-700 pt-2">
+                    <div className="flex justify-between text-white font-bold text-lg">
+                      <span>Total</span>
+                      <span>${total.toFixed(2)}</span>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Right Side - Checkout Form */}
+          <div className="lg:col-span-7">
+            <Card className="bg-gray-800 border-gray-700">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center text-xl">
                   <ShoppingCart className="w-5 h-5 mr-2 text-red-500" />
                   Checkout
                 </CardTitle>
@@ -361,15 +453,39 @@ const Checkout = () => {
                       />
                       
                       {/* Leaving Soon Section */}
-                      <div className="mt-4 p-4 bg-orange-900/30 border border-orange-500/30 rounded-lg">
-                        <div className="flex items-center space-x-2 mb-2">
-                          <Clock className="w-4 h-4 text-orange-400" />
-                          <span className="text-orange-300 font-semibold">Leaving Soon</span>
+                      <div className="mt-6 p-4 bg-orange-900/30 border border-orange-500/30 rounded-lg">
+                        <div className="flex items-center space-x-2 mb-4">
+                          <Clock className="w-5 h-5 text-orange-400" />
+                          <span className="text-orange-300 font-semibold text-lg">Leaving Soon</span>
                         </div>
-                        <div className="space-y-1 text-sm text-gray-300">
-                          <p>• One Piece Complete Collection - 15% off (expires in 2 days)</p>
-                          <p>• Premium Membership - 20% off (expires in 5 days)</p>
-                          <p>• Digital Manga Bundle - 25% off (expires in 1 day)</p>
+                        <div className="space-y-4">
+                          {leavingSoonItems.map((item) => (
+                            <div key={item.id} className="flex items-center space-x-4 p-3 bg-gray-800/50 rounded-lg">
+                              <img
+                                src={item.imageUrl}
+                                alt={item.title}
+                                className="w-12 h-16 object-cover rounded"
+                              />
+                              <div className="flex-1">
+                                <h4 className="text-white font-medium text-sm">{item.title}</h4>
+                                <p className="text-gray-400 text-xs">{item.author}</p>
+                                <div className="flex items-center space-x-2 mt-1">
+                                  <span className="text-orange-400 font-semibold text-sm">{item.discount} OFF</span>
+                                  <span className="text-gray-400 text-xs">• Expires in {item.expiresIn}</span>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                  <span className="text-gray-400 line-through text-xs">${item.originalPrice}</span>
+                                  <span className="text-red-400 font-semibold text-sm">${item.salePrice}</span>
+                                </div>
+                              </div>
+                              <Button
+                                size="sm"
+                                className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 text-xs"
+                              >
+                                Add
+                              </Button>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </div>
@@ -455,15 +571,6 @@ const Checkout = () => {
                       </div>
                     </div>
 
-                    {/* Terms and Conditions */}
-                    <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-4">
-                      <h4 className="text-red-300 font-semibold mb-2">Important Notice</h4>
-                      <p className="text-gray-300 text-sm">
-                        <strong>All sales are final.</strong> We do not accept returns or provide refunds. 
-                        By proceeding with this purchase, you acknowledge and agree to this policy.
-                      </p>
-                    </div>
-
                     <Button
                       type="submit"
                       disabled={isProcessing}
@@ -483,107 +590,6 @@ const Checkout = () => {
                     </Button>
                   </form>
                 </Form>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Order Summary */}
-          <div>
-            <Card className="bg-gray-800 border-gray-700 sticky top-4">
-              <CardHeader>
-                <CardTitle className="text-white">Order Summary</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {/* Current Product */}
-                <div className="flex space-x-4">
-                  <img
-                    src={product.images?.[0] || product.imageUrl}
-                    alt={product.title}
-                    className="w-16 h-20 object-cover rounded-lg"
-                  />
-                  <div className="flex-1">
-                    <h4 className="text-white font-semibold text-sm">{product.title}</h4>
-                    <p className="text-gray-400 text-xs">by {product.author}</p>
-                    <p className="text-gray-400 text-xs">Qty: {quantity}</p>
-                    <p className="text-white font-semibold">${product.price}</p>
-                    {productType === 'ebook' && (
-                      <span className="text-blue-400 text-xs">E-book - No Download</span>
-                    )}
-                    {productType === 'coins' && (
-                      <span className="text-yellow-400 text-xs">Digital Currency</span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Recommended Items */}
-                <div className="border-t border-gray-700 pt-4">
-                  <h4 className="text-white font-semibold mb-3">Recommended for You</h4>
-                  <div className="space-y-3">
-                    {recommendedItems.map((item) => (
-                      <div key={item.id} className="flex items-center space-x-3 p-2 bg-gray-700/50 rounded-lg">
-                        <img
-                          src={item.imageUrl}
-                          alt={item.title}
-                          className="w-12 h-14 object-cover rounded"
-                        />
-                        <div className="flex-1">
-                          <h5 className="text-white text-xs font-medium">{item.title}</h5>
-                          <p className="text-gray-400 text-xs">{item.author}</p>
-                          <p className="text-white text-sm font-semibold">${item.price}</p>
-                        </div>
-                        <Button
-                          size="icon"
-                          variant="ghost"
-                          onClick={() => addRecommendedItem(item)}
-                          className="text-red-400 hover:text-red-300 hover:bg-red-500/20"
-                        >
-                          <Plus className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Price Breakdown */}
-                <div className="border-t border-gray-700 pt-4 space-y-2">
-                  <div className="flex justify-between text-gray-300">
-                    <span>Subtotal</span>
-                    <span>${subtotal.toFixed(2)}</span>
-                  </div>
-                  <div className="flex justify-between text-gray-300">
-                    <span>Shipping</span>
-                    <span className={shipping === 0 ? "text-green-400" : ""}>
-                      {shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}
-                    </span>
-                  </div>
-                  {productType === 'ebook' && (
-                    <p className="text-blue-400 text-xs">E-books are added directly to your library</p>
-                  )}
-                  {productType === 'coins' && (
-                    <p className="text-yellow-400 text-xs">Digital coins - No shipping required</p>
-                  )}
-                  <div className="flex justify-between text-gray-300">
-                    <span>Tax</span>
-                    <span>${tax.toFixed(2)}</span>
-                  </div>
-                  <div className="border-t border-gray-700 pt-2">
-                    <div className="flex justify-between text-white font-bold text-lg">
-                      <span>Total</span>
-                      <span>${total.toFixed(2)}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Security Badges */}
-                <div className="border-t border-gray-700 pt-4">
-                  <div className="flex items-center space-x-2 text-gray-400 text-xs">
-                    <Lock className="w-3 h-3" />
-                    <span>Secure 256-bit SSL encryption</span>
-                  </div>
-                  <div className="mt-2 text-gray-400 text-xs">
-                    <p>Payment gateway supports worldwide transactions</p>
-                  </div>
-                </div>
               </CardContent>
             </Card>
           </div>
