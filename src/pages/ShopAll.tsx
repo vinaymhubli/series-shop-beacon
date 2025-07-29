@@ -66,6 +66,9 @@ const ShopAll = () => {
         </div>
       </section>
 
+      {/* Featured Series Slideshow */}
+      <FeaturedSeriesSlideshow />
+
       {/* Filters Section */}
       <div 
         ref={filtersRef as any}
@@ -76,121 +79,15 @@ const ShopAll = () => {
         <ShopFilters viewMode={viewMode} setViewMode={setViewMode} />
       </div>
 
-      {/* Featured Series Section */}
-      <section className="bg-gray-900 py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {/* Featured Series Cards */}
-            <div className="bg-gradient-to-br from-red-900/50 to-red-800/30 rounded-xl overflow-hidden border border-red-700/30 hover:border-red-500/50 transition-all duration-300 group">
-              <div className="relative h-48">
-                <img 
-                  src="/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png" 
-                  alt="Demon Slayer" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">
-                  9.0
-                </div>
-              </div>
-              <div className="p-4">
-                <h3 className="text-white font-bold text-lg mb-2">Demon Slayer</h3>
-                <p className="text-gray-400 text-sm mb-4">Follow Tanjiro's journey to save his sister and defeat demons in this epic tale of brotherhood and determination.</p>
-                <button className="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg font-semibold transition-colors duration-200">
-                  Read Now
-                </button>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-blue-900/50 to-blue-800/30 rounded-xl overflow-hidden border border-blue-700/30 hover:border-blue-500/50 transition-all duration-300 group">
-              <div className="relative h-48">
-                <img 
-                  src="/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png" 
-                  alt="Jujutsu Kaisen" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded text-xs font-bold">
-                  8.8
-                </div>
-              </div>
-              <div className="p-4">
-                <h3 className="text-white font-bold text-lg mb-2">Jujutsu Kaisen</h3>
-                <p className="text-gray-400 text-sm mb-4">Enter the world of curses and sorcery with Yuji Itadori as he navigates the dangerous supernatural realm.</p>
-                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition-colors duration-200">
-                  Read Now
-                </button>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-cyan-900/50 to-cyan-800/30 rounded-xl overflow-hidden border border-cyan-700/30 hover:border-cyan-500/50 transition-all duration-300 group">
-              <div className="relative h-48">
-                <img 
-                  src="/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png" 
-                  alt="One Piece" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute top-2 right-2 bg-cyan-600 text-white px-2 py-1 rounded text-xs font-bold">
-                  9.5
-                </div>
-              </div>
-              <div className="p-4">
-                <h3 className="text-white font-bold text-lg mb-2">One Piece</h3>
-                <p className="text-gray-400 text-sm mb-4">Join Monkey D. Luffy on his epic adventure to become the Pirate King in this legendary series.</p>
-                <button className="w-full bg-cyan-600 hover:bg-cyan-700 text-white py-2 rounded-lg font-semibold transition-colors duration-200">
-                  Read Now
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* All Series Section */}
-      <section className="bg-gray-900 py-12">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-white mb-8">All Series</h2>
-          
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-8">
-            {/* Series Grid Items */}
-            {[
-              { title: "Kimetsu Yaiba", rating: "8.5" },
-              { title: "My Hero Academia", rating: "8.9" },
-              { title: "Attack on Titan", rating: "9.2" },
-              { title: "Spy x Family", rating: "8.7" },
-              { title: "Black Clover", rating: "8.3" },
-              { title: "Chainsaw Man", rating: "8.6" },
-              { title: "Naruto", rating: "9.0" },
-              { title: "Dragon Ball Super", rating: "8.8" },
-              { title: "One Punch Man", rating: "8.4" },
-              { title: "Haikyuu!!", rating: "9.1" },
-              { title: "Demon Slayer", rating: "9.0" },
-              { title: "Tokyo Ghoul", rating: "8.2" }
-            ].map((series, index) => (
-              <div key={index} className="bg-gray-800/50 rounded-lg overflow-hidden hover:bg-gray-700/50 transition-all duration-300 cursor-pointer group">
-                <div className="relative aspect-[3/4]">
-                  <img 
-                    src="/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png" 
-                    alt={series.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-2 right-2 bg-black/70 text-white px-1.5 py-0.5 rounded text-xs">
-                    {series.rating}
-                  </div>
-                </div>
-                <div className="p-3">
-                  <h3 className="text-white text-sm font-medium truncate">{series.title}</h3>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Load More Button */}
-          <div className="text-center">
-            <button className="bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200 border border-gray-600">
-              Load more
-            </button>
-          </div>
-        </div>
-      </section>
+      {/* Content Grid - Show SeriesGrid or ShopGrid based on view mode */}
+      <div 
+        ref={gridRef as any}
+        className={`transition-all duration-1000 transform ${
+          gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}
+      >
+        {viewMode === 'series' ? <SeriesGrid /> : <ShopGrid />}
+      </div>
 
       <Newsletter />
       <Footer />
