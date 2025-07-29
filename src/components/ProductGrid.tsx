@@ -6,6 +6,7 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 const ProductGrid = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.1);
   const [activeSection, setActiveSection] = useState('new-releases');
+  const [showAll, setShowAll] = useState(false);
 
   const newReleases = [
     {
@@ -129,6 +130,10 @@ const ProductGrid = () => {
   ];
 
   const getProductsForSection = () => {
+    if (showAll) {
+      return [...newReleases, ...bestSellers, ...leavingSoon];
+    }
+    
     switch (activeSection) {
       case 'best-sellers':
         return bestSellers;
@@ -143,7 +148,13 @@ const ProductGrid = () => {
 
   const handleSectionChange = (section: string) => {
     setActiveSection(section);
+    setShowAll(false);
     console.log(`Switched to ${section} section`);
+  };
+
+  const handleViewAll = () => {
+    setShowAll(true);
+    console.log('Showing all products');
   };
 
   const sectionOrder = ['new-releases', 'best-sellers', 'leaving-soon'];
@@ -193,7 +204,10 @@ const ProductGrid = () => {
               );
             })}
           </div>
-          <button className="group text-red-500 hover:text-red-400 text-sm font-medium transform hover:scale-105 transition-all duration-300 flex items-center space-x-2">
+          <button 
+            onClick={handleViewAll}
+            className="group text-red-500 hover:text-red-400 text-sm font-medium transform hover:scale-105 transition-all duration-300 flex items-center space-x-2"
+          >
             <span>View All</span>
           </button>
         </div>
