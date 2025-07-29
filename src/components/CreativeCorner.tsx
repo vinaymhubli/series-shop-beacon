@@ -27,7 +27,7 @@ const CreativeCorner = () => {
             <h2 className="text-5xl font-bold text-white mb-4">
               CREATIVE <span className="text-red-500">SNIPPETS</span>
             </h2>
-            <div className="h-px bg-gray-500 flex-1 max-w-16"></div>
+            
           </div>
         </div>
         
