@@ -107,7 +107,7 @@ const YearlyTimeline = () => {
             <div className="lg:col-span-1">
               <Carousel
                 opts={{
-                  align: "start",
+                  align: "center",
                   loop: true,
                 }}
                 plugins={[
@@ -119,12 +119,12 @@ const YearlyTimeline = () => {
               >
                 <CarouselContent>
                   {selectedData.book.images.map((image, index) => (
-                    <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/3">
-                      <div className="p-1">
+                    <CarouselItem key={index} className="basis-full">
+                      <div className="flex justify-center">
                         <img 
                           src={image}
                           alt={`${selectedData.book.title} ${index + 1}`}
-                          className="w-full h-64 object-cover rounded-lg shadow-lg border border-gray-800"
+                          className="w-full max-w-sm h-64 object-cover rounded-lg shadow-lg border border-gray-800"
                         />
                       </div>
                     </CarouselItem>
@@ -148,7 +148,7 @@ const YearlyTimeline = () => {
             <div className="lg:col-span-1">
               <Carousel
                 opts={{
-                  align: "start",
+                  align: "center",
                   loop: true,
                 }}
                 plugins={[
@@ -160,21 +160,9 @@ const YearlyTimeline = () => {
               >
                 <CarouselContent>
                   {cardSymbols.map((symbol, index) => (
-                    <CarouselItem key={index} className="basis-1/4">
-                      <div className="p-2">
-                        <div className="bg-white rounded-lg h-24 flex items-center justify-center shadow-lg border border-gray-300">
-                          <span className="text-4xl font-bold text-red-600">
-                            {symbol}
-                          </span>
-                        </div>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                  {/* Duplicate for infinite scroll effect */}
-                  {cardSymbols.map((symbol, index) => (
-                    <CarouselItem key={`dup-${index}`} className="basis-1/4">
-                      <div className="p-2">
-                        <div className="bg-white rounded-lg h-24 flex items-center justify-center shadow-lg border border-gray-300">
+                    <CarouselItem key={index} className="basis-full">
+                      <div className="flex justify-center">
+                        <div className="bg-white rounded-lg h-24 w-24 flex items-center justify-center shadow-lg border border-gray-300">
                           <span className="text-4xl font-bold text-red-600">
                             {symbol}
                           </span>
