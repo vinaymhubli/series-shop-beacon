@@ -1,5 +1,5 @@
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 
@@ -71,7 +71,6 @@ const YearlyTimeline = () => {
   ];
 
   const cardSymbols = ['♠', '♥', '♦', '♣'];
-
   const selectedData = timelineData.find(data => data.year === selectedYear);
 
   return (
