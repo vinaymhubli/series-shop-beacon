@@ -85,7 +85,7 @@ const RecommendedSection = () => {
             </div>
             <button 
               onClick={() => setShowGenres(!showGenres)}
-              className="group bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-lg text-sm font-semibold hover:from-purple-700 hover:to-purple-800 shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+              className="group bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg text-sm font-semibold hover:from-red-700 hover:to-red-800 shadow-lg hover:shadow-red-500/25 transition-all duration-300"
             >
               <span className="relative z-10">Genres</span>
             </button>
