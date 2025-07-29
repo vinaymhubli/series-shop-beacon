@@ -66,11 +66,11 @@ const RecommendedSection = () => {
             <p className="text-gray-400">Curated picks based on your interests and genres</p>
           </div>
           <div className="flex space-x-4">
-            <button className="group bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg text-sm font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25">
+            <button className="group bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg text-sm font-semibold hover:from-red-700 hover:to-red-800 transform hover:scale-105 shadow-lg hover:shadow-red-500/25">
               <span className="relative z-10">Digital</span>
               <div className="absolute inset-0 bg-gradient-to-r from-red-400/0 via-white/20 to-red-400/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 rounded-lg"></div>
             </button>
-            <button className="group bg-gray-700 text-gray-300 px-6 py-3 rounded-lg text-sm font-semibold hover:bg-gray-600 hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg">
+            <button className="group bg-gray-700 text-gray-300 px-6 py-3 rounded-lg text-sm font-semibold hover:bg-gray-600 hover:text-white transform hover:scale-105 shadow-lg">
               Merchandise
             </button>
           </div>
