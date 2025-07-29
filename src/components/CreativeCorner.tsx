@@ -25,7 +25,7 @@ const CreativeCorner = () => {
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-4">
             <h2 className="text-5xl font-bold text-white mb-4">
-              CREATIVE <span className="text-red-500">SNIPPETS</span>
+              Creative <span className="text-red-500">Snippets</span>
             </h2>
             
           </div>
