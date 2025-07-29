@@ -79,15 +79,16 @@ const RecommendedSection = () => {
                 <span className="bg-gradient-to-r from-red-600 via-red-500 to-red-400 bg-clip-text text-transparent">
                   Recommended For You
                 </span>
+                <span className="text-white text-3xl font-bold ml-4">|</span>
+                <span 
+                  onClick={() => setShowGenres(!showGenres)}
+                  className="bg-gradient-to-r from-red-600 via-red-500 to-red-400 bg-clip-text text-transparent ml-4 cursor-pointer hover:from-red-500 hover:via-red-400 hover:to-red-300 transition-all duration-300"
+                >
+                  Genres
+                </span>
               </h2>
               <p className="text-gray-400">Curated picks based on your interests and genres</p>
             </div>
-            <button 
-              onClick={() => setShowGenres(!showGenres)}
-              className="group bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg text-sm font-semibold hover:from-red-700 hover:to-red-800 shadow-lg hover:shadow-red-500/25 transition-all duration-300"
-            >
-              <span className="relative z-10">Genres</span>
-            </button>
           </div>
           <div className="flex space-x-4">
             <button className="group bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg text-sm font-semibold hover:from-red-700 hover:to-red-800 shadow-lg hover:shadow-red-500/25">
