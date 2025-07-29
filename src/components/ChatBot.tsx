@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, User, Bot, Phone, Mail } from 'lucide-react';
+import { MessageCircle, X, Send, User, Bot, Phone, Mail, Hand } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -148,12 +148,24 @@ const ChatBot = () => {
 
   if (!isOpen) {
     return (
-      <button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-gradient-to-r from-red-600 to-red-700 text-white p-4 rounded-full shadow-2xl hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-110 z-50 animate-pulse"
-      >
-        <MessageCircle className="w-6 h-6" />
-      </button>
+      <div className="fixed bottom-6 right-6 z-50">
+        {/* Text with waving hand */}
+        <div className="mb-2 mr-4 bg-white text-gray-800 px-3 py-2 rounded-lg shadow-lg relative animate-bounce">
+          <div className="flex items-center space-x-1">
+            <Hand className="w-4 h-4 animate-[wave_0.5s_ease-in-out_infinite_alternate]" />
+            <span className="text-sm font-medium">Let's discuss with our agent</span>
+          </div>
+          <div className="absolute bottom-0 right-4 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-white transform translate-y-full"></div>
+        </div>
+        
+        {/* Chat button */}
+        <button
+          onClick={() => setIsOpen(true)}
+          className="bg-gradient-to-r from-red-600 to-red-700 text-white p-4 rounded-full shadow-2xl hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-110 animate-[pop_2s_ease-in-out_infinite]"
+        >
+          <MessageCircle className="w-6 h-6" />
+        </button>
+      </div>
     );
   }
 
