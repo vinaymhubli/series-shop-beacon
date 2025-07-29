@@ -568,92 +568,8 @@ const Checkout = () => {
                             </FormItem>
                           )}
                         />
-        </div>
-      </div>
-
-      {/* Recommended for You Section */}
-      <div className="container mx-auto px-4 py-8">
-        <Card className="bg-gray-800 border-gray-700">
-          <CardHeader>
-            <CardTitle className="text-white text-xl flex items-center">
-              <Plus className="w-5 h-5 mr-2 text-red-500" />
-              Recommended for You
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                {
-                  id: 1,
-                  title: "One Piece Vol. 99",
-                  author: "Eiichiro Oda",
-                  price: 11.99,
-                  originalPrice: 14.99,
-                  imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
-                  discount: "20%"
-                },
-                {
-                  id: 2,
-                  title: "Naruto Vol. 72",
-                  author: "Masashi Kishimoto",
-                  price: 10.99,
-                  originalPrice: 12.99,
-                  imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
-                  discount: "15%"
-                },
-                {
-                  id: 3,
-                  title: "Dragon Ball Super Vol. 15",
-                  author: "Akira Toriyama",
-                  price: 9.99,
-                  originalPrice: 11.99,
-                  imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
-                  discount: "17%"
-                },
-                {
-                  id: 4,
-                  title: "Bleach Vol. 74",
-                  author: "Tite Kubo",
-                  price: 12.99,
-                  originalPrice: 15.99,
-                  imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
-                  discount: "19%"
-                }
-              ].map((item) => (
-                <div key={item.id} className="group cursor-pointer">
-                  <div className="relative mb-3 overflow-hidden rounded-lg">
-                    <img
-                      src={item.imageUrl}
-                      alt={item.title}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded text-xs font-semibold">
-                      {item.discount} OFF
+                      </div>
                     </div>
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
-                  </div>
-                  <div className="space-y-1">
-                    <h4 className="text-white font-semibold text-sm group-hover:text-red-300 transition-colors duration-300">
-                      {item.title}
-                    </h4>
-                    <p className="text-gray-400 text-xs">{item.author}</p>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-red-400 font-bold">${item.price}</span>
-                      <span className="text-gray-500 line-through text-sm">${item.originalPrice}</span>
-                    </div>
-                    <Button
-                      size="sm"
-                      className="w-full mt-2 bg-red-600 hover:bg-red-700 text-white text-xs py-1"
-                    >
-                      Add to Cart
-                    </Button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
 
                     <Button
                       type="submit"
@@ -677,6 +593,92 @@ const Checkout = () => {
               </CardContent>
             </Card>
           </div>
+        </div>
+      </div>
+
+      {/* Recommended for You Section - Separate Container */}
+      <div className="bg-gray-900 py-12">
+        <div className="container mx-auto px-4">
+          <Card className="bg-gray-800 border-gray-700">
+            <CardHeader>
+              <CardTitle className="text-white text-xl flex items-center">
+                <Plus className="w-5 h-5 mr-2 text-red-500" />
+                Recommended for You
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  {
+                    id: 1,
+                    title: "One Piece Vol. 99",
+                    author: "Eiichiro Oda",
+                    price: 11.99,
+                    originalPrice: 14.99,
+                    imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
+                    discount: "20%"
+                  },
+                  {
+                    id: 2,
+                    title: "Naruto Vol. 72",
+                    author: "Masashi Kishimoto",
+                    price: 10.99,
+                    originalPrice: 12.99,
+                    imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
+                    discount: "15%"
+                  },
+                  {
+                    id: 3,
+                    title: "Dragon Ball Super Vol. 15",
+                    author: "Akira Toriyama",
+                    price: 9.99,
+                    originalPrice: 11.99,
+                    imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
+                    discount: "17%"
+                  },
+                  {
+                    id: 4,
+                    title: "Bleach Vol. 74",
+                    author: "Tite Kubo",
+                    price: 12.99,
+                    originalPrice: 15.99,
+                    imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
+                    discount: "19%"
+                  }
+                ].map((item) => (
+                  <div key={item.id} className="group cursor-pointer">
+                    <div className="relative mb-3 overflow-hidden rounded-lg">
+                      <img
+                        src={item.imageUrl}
+                        alt={item.title}
+                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                      <div className="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 rounded text-xs font-semibold">
+                        {item.discount} OFF
+                      </div>
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
+                    </div>
+                    <div className="space-y-1">
+                      <h4 className="text-white font-semibold text-sm group-hover:text-red-300 transition-colors duration-300">
+                        {item.title}
+                      </h4>
+                      <p className="text-gray-400 text-xs">{item.author}</p>
+                      <div className="flex items-center space-x-2">
+                        <span className="text-red-400 font-bold">${item.price}</span>
+                        <span className="text-gray-500 line-through text-sm">${item.originalPrice}</span>
+                      </div>
+                      <Button
+                        size="sm"
+                        className="w-full mt-2 bg-red-600 hover:bg-red-700 text-white text-xs py-1"
+                      >
+                        Add to Cart
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
 
