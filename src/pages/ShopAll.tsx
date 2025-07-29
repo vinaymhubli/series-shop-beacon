@@ -67,9 +67,6 @@ const ShopAll = () => {
         </div>
       </section>
 
-      {/* Featured Series Slideshow */}
-      <FeaturedSeriesSlideshow />
-
       {/* Filters Section */}
       <div 
         ref={filtersRef as any}
@@ -79,6 +76,9 @@ const ShopAll = () => {
       >
         <ShopFilters viewMode={viewMode} setViewMode={setViewMode} />
       </div>
+
+      {/* Featured Series Slideshow */}
+      <FeaturedSeriesSlideshow />
 
       {/* Content Grid - Show SeriesGrid or ShopGrid based on view mode */}
       <div 
