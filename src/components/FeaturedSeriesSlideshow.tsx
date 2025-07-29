@@ -57,7 +57,7 @@ const FeaturedSeriesSlideshow = () => {
   };
 
   const handleSeriesClick = (seriesUrl: string) => {
-    navigate(seriesUrl);
+    navigate('/our-series'); // Navigate to the series page
   };
 
   return (
