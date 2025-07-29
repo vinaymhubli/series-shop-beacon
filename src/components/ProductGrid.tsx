@@ -195,7 +195,6 @@ const ProductGrid = () => {
           </div>
           <button className="group text-red-500 hover:text-red-400 text-sm font-medium transform hover:scale-105 transition-all duration-300 flex items-center space-x-2">
             <span>View All</span>
-            <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
           </button>
         </div>
 
