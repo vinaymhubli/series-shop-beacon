@@ -8,6 +8,7 @@ import FeaturedSeriesSlideshow from '@/components/FeaturedSeriesSlideshow';
 import SeriesGrid from '@/components/SeriesGrid';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useState } from 'react';
+import shopHeroBg from '@/assets/shop-hero-bg.jpg';
 
 const ShopAll = () => {
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation(0.1);
@@ -29,7 +30,7 @@ const ShopAll = () => {
         {/* Hero Background Image */}
         <div className="absolute inset-0">
           <img 
-            src="/lovable-uploads/6ce223e4-a7e8-4282-a3a6-0f55f5341a03.png"
+            src={shopHeroBg}
             alt="Explore Series Background"
             className="w-full h-full object-cover opacity-80"
             loading="eager"
