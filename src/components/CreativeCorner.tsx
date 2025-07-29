@@ -1,28 +1,17 @@
 
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Link } from 'react-router-dom';
-import { Card, CardContent } from '@/components/ui/card';
 
 const CreativeCorner = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.2);
 
-  const creativeWorks = [
-    {
-      title: "Moonlit Sakura",
-      description: "A breathtaking tale of love and loss set against the backdrop of cherry blossoms in ancient Japan.",
-      image: "/lovable-uploads/a0c88e05-5aba-4550-8ee0-7644ad456776.png",
-      author: "Akira Tanaka",
-      genre: "Romance, Drama",
-      link: "/our-series"
-    },
-    {
-      title: "Neon Shadows",
-      description: "In a cyberpunk future, a hacker discovers a conspiracy that threatens the very fabric of reality.",
-      image: "/lovable-uploads/26efc76c-fa83-4369-8d8d-354eab1433e6.png", 
-      author: "Kim Min-jun",
-      genre: "Sci-Fi, Thriller",
-      link: "/our-series"
-    }
+  const scrollingImages = [
+    "/lovable-uploads/a0c88e05-5aba-4550-8ee0-7644ad456776.png",
+    "/lovable-uploads/26efc76c-fa83-4369-8d8d-354eab1433e6.png",
+    "/lovable-uploads/97f88fee-e070-4d97-a73a-c747112fa093.png",
+    "/lovable-uploads/dec36eb1-43e4-40dc-9068-88317b09eab2.png",
+    "/lovable-uploads/c329fdd6-be7b-4f27-8670-008a030b5b9e.png",
+    "/lovable-uploads/e5072af9-fcd6-47c6-868c-035382ab9e20.png"
   ];
 
   return (
@@ -34,52 +23,79 @@ const CreativeCorner = () => {
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white mb-4">
-            Creative <span className="text-red-500">Corner</span>
-          </h2>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            Discover handpicked series that showcase the pinnacle of storytelling artistry
-          </p>
+          <div className="flex items-center justify-center mb-4">
+            <div className="h-px bg-gray-500 flex-1 max-w-16"></div>
+            <div className="flex items-center space-x-2 mx-4">
+              <div className="w-2 h-2 bg-gray-500"></div>
+              <div className="w-6 h-px bg-gray-500"></div>
+              <div className="w-2 h-2 bg-gray-500"></div>
+            </div>
+            <h2 className="text-4xl font-bold text-white tracking-wider">
+              CREATIVE SNIPPETS
+            </h2>
+            <div className="flex items-center space-x-2 mx-4">
+              <div className="w-2 h-2 bg-gray-500"></div>
+              <div className="w-6 h-px bg-gray-500"></div>
+              <div className="w-2 h-2 bg-gray-500"></div>
+            </div>
+            <div className="h-px bg-gray-500 flex-1 max-w-16"></div>
+          </div>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {creativeWorks.map((work, index) => (
-            <Link
-              key={index}
-              to={work.link}
-              className="group block"
-            >
-              <Card className="bg-gray-900 border-gray-700 overflow-hidden group-hover:border-red-500 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-red-500/20">
-                <div className="relative">
-                  <img 
-                    src={work.image}
-                    alt={work.title}
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <span className="inline-block bg-red-500 text-white text-xs px-2 py-1 rounded-full mb-2">
-                      {work.genre}
-                    </span>
+        <div className="relative">
+          {/* Main Content Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            {/* Left Side - Large Image */}
+            <div className="relative">
+              <img 
+                src="/lovable-uploads/a0c88e05-5aba-4550-8ee0-7644ad456776.png"
+                alt="Featured Story"
+                className="w-full h-96 object-cover rounded-lg"
+              />
+            </div>
+            
+            {/* Right Side - Title and Description */}
+            <div className="flex flex-col justify-center">
+              <h3 className="text-4xl font-bold text-red-500 mb-4 tracking-wider">
+                AO HARU RIDE
+              </h3>
+              <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                Io Sakisaka wanted to draw a story about growing up, and for Ao Haru Ride, she wanted to focus on the characters' self-journey and discovering who they truly were. Futaba and Kou's accidental kiss was based on a real-life experience Sakisaka had in the past.
+              </p>
+              <div className="text-white">
+                <span className="text-gray-400">VOL 01 - </span>
+                <span className="text-red-500 font-bold">CH 01</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Scrolling Images Container */}
+          <div className="relative overflow-hidden h-32">
+            <div className="absolute inset-0 flex items-center">
+              <div className="flex animate-scroll space-x-4 min-w-max">
+                {/* First set of images */}
+                {scrollingImages.map((image, index) => (
+                  <div key={`first-${index}`} className="flex-shrink-0">
+                    <img
+                      src={image}
+                      alt={`Story ${index + 1}`}
+                      className="w-24 h-24 object-cover rounded-lg border-2 border-gray-700 hover:border-red-500 transition-colors cursor-pointer"
+                    />
                   </div>
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-red-500 transition-colors">
-                    {work.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm mb-3">
-                    by {work.author}
-                  </p>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    {work.description}
-                  </p>
-                  <div className="mt-4 text-red-500 text-sm font-medium group-hover:underline">
-                    Read More →
+                ))}
+                {/* Duplicate set for seamless scrolling */}
+                {scrollingImages.map((image, index) => (
+                  <div key={`second-${index}`} className="flex-shrink-0">
+                    <img
+                      src={image}
+                      alt={`Story ${index + 1}`}
+                      className="w-24 h-24 object-cover rounded-lg border-2 border-gray-700 hover:border-red-500 transition-colors cursor-pointer"
+                    />
                   </div>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
