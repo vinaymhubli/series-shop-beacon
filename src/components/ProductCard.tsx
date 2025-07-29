@@ -36,11 +36,9 @@ const ProductCard = ({
 }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  // Cross Hearts symbols rotation
-  const symbols = [Heart, Diamond, Club, Spade];
-  const symbolColors = ['text-red-500', 'text-blue-500', 'text-green-500', 'text-purple-500'];
-  const SymbolIcon = symbols[cardIndex % 4];
-  const symbolColor = symbolColors[cardIndex % 4];
+  // Use red diamond for all books
+  const SymbolIcon = Diamond;
+  const symbolColor = 'text-red-500';
 
   return (
     <div 
