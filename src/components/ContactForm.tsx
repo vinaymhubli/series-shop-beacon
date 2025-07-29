@@ -140,18 +140,28 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <Label htmlFor="subject" className="text-gray-300 mb-2 block">
+          <Label className="text-gray-300 mb-4 block">
             Select a subject
           </Label>
-          <Input
-            id="subject"
-            name="subject"
-            value={formData.subject}
-            onChange={handleInputChange}
-            className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-red-500"
-            placeholder="What is this about?"
-            required
-          />
+          <div className="space-y-3">
+            {['General Inquiry', 'Technical Support', 'Partnership', 'Press & Media', 'Other'].map((option) => (
+              <div key={option} className="flex items-center space-x-3">
+                <input
+                  type="radio"
+                  id={option}
+                  name="subject"
+                  value={option}
+                  checked={formData.subject === option}
+                  onChange={handleInputChange}
+                  className="w-4 h-4 text-red-500 bg-gray-700 border-gray-600 focus:ring-red-500"
+                  required
+                />
+                <Label htmlFor={option} className="text-gray-300 cursor-pointer">
+                  {option}
+                </Label>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div>
