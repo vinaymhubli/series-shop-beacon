@@ -164,7 +164,7 @@ const ChatBot = () => {
         <div className="flex items-center space-x-2">
           <Bot className="w-5 h-5" />
           <div>
-            <h3 className="font-semibold">AI Support</h3>
+            <h3 className="font-semibold">Crossed Hearts AI Support</h3>
             <p className="text-xs opacity-90">Online now</p>
           </div>
         </div>
