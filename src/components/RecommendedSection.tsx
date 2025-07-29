@@ -121,7 +121,7 @@ const RecommendedSection = () => {
           }`}>
             <div className="bg-black rounded-xl p-8 border border-gray-700/50">
               <h3 className="text-2xl font-bold text-white mb-6 text-center tracking-wider">OUR GENRES</h3>
-              <div className="flex justify-start w-full gap-2 overflow-x-auto">
+              <div className="flex justify-between w-full gap-2 overflow-x-auto">
                 {genres.map((genre, index) => (
                   <div 
                     key={genre.name}
