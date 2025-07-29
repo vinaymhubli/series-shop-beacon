@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { Heart, Unlock, Star, ShoppingCart, Diamond } from 'lucide-react';
+import { Heart, Unlock, ShoppingCart, Diamond } from 'lucide-react';
 import { useState } from 'react';
 
 interface ProductCardProps {
@@ -14,7 +14,7 @@ interface ProductCardProps {
   hoverImageUrl?: string;
   isNew?: boolean;
   isOnSale?: boolean;
-  rating?: number;
+  
   canUnlockWithCoins?: boolean;
   label?: string;
 }
@@ -30,7 +30,7 @@ const ProductCard = ({
   hoverImageUrl,
   isNew, 
   isOnSale,
-  rating,
+  
   canUnlockWithCoins = true,
   label
 }: ProductCardProps) => {
@@ -88,22 +88,6 @@ const ProductCard = ({
           <h3 className="text-white font-semibold text-lg truncate group-hover:text-red-300 transition-colors duration-300">{title}</h3>
           <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">{author}</p>
           <p className="text-gray-500 text-xs uppercase tracking-wide">{volume}</p>
-          
-          {rating && (
-            <div className="flex items-center space-x-1">
-              {[...Array(5)].map((_, i) => (
-                <Star 
-                  key={i} 
-                  className={`w-3 h-3 transition-all duration-300 ${
-                    i < rating 
-                      ? 'text-yellow-400 fill-current group-hover:scale-125' 
-                      : 'text-gray-600'
-                  }`}
-                  style={{ transitionDelay: `${i * 50}ms` }}
-                />
-              ))}
-            </div>
-          )}
           
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
