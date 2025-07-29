@@ -153,7 +153,7 @@ const ChatBot = () => {
         <div className="mb-2 mr-4 bg-white text-gray-800 px-3 py-2 rounded-lg shadow-lg relative animate-bounce">
           <div className="flex items-center space-x-1">
             <Hand className="w-4 h-4 animate-[wave_0.5s_ease-in-out_infinite_alternate]" />
-            <span className="text-sm font-medium">Let's discuss with our agent</span>
+            <span className="text-sm font-medium">Let's chat!</span>
           </div>
           <div className="absolute bottom-0 right-4 w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-white transform translate-y-full"></div>
         </div>
