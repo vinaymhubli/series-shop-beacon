@@ -111,7 +111,7 @@ const RecommendedSection = () => {
                   <div 
                     key={genre.name}
                     onClick={() => handleGenreClick(genre.filter)}
-                    className="group cursor-pointer relative w-[160px] hover:w-[240px] h-[300px] rounded-lg overflow-hidden transition-all duration-500 ease-in-out flex-shrink-0"
+                    className="group cursor-pointer relative w-[160px] hover:w-[320px] h-[300px] rounded-lg overflow-hidden transition-all duration-500 ease-in-out flex-shrink-0"
                   >
                     <img 
                       src={genre.imageUrl} 
