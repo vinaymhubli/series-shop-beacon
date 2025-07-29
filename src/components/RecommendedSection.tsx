@@ -106,12 +106,12 @@ const RecommendedSection = () => {
           }`}>
             <div className="bg-black rounded-xl p-8 border border-gray-700/50">
               <h3 className="text-2xl font-bold text-white mb-6 text-center tracking-wider">OUR GENRES</h3>
-              <div className="flex justify-center gap-4 overflow-x-auto">
+              <div className="flex justify-center gap-2 overflow-x-auto">
                 {genres.map((genre, index) => (
                   <div 
                     key={genre.name}
                     onClick={() => handleGenreClick(genre.filter)}
-                    className="group cursor-pointer relative min-w-[200px] h-[300px] rounded-lg overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+                    className="group cursor-pointer relative w-[160px] hover:w-[240px] h-[300px] rounded-lg overflow-hidden transition-all duration-500 ease-in-out flex-shrink-0"
                   >
                     <img 
                       src={genre.imageUrl} 
