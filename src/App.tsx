@@ -17,6 +17,7 @@ import Profile from "./pages/Profile";
 import AffiliationPrograms from "./pages/AffiliationPrograms";
 import ReadersMode from "./pages/ReadersMode";
 import NotFound from "./pages/NotFound";
+import ChatBot from "./components/ChatBot";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const App = () => (
           <Route path="/readers-mode" element={<ReadersMode />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <ChatBot />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
