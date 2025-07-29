@@ -70,7 +70,12 @@ const YearlyTimeline = () => {
     }
   ];
 
-  const cardSymbols = ['♠', '♥', '♦', '♣'];
+  const cardImages = [
+    "/lovable-uploads/c329fdd6-be7b-4f27-8670-008a030b5b9e.png",
+    "/lovable-uploads/e5072af9-fcd6-47c6-868c-035382ab9e20.png",
+    "/lovable-uploads/97f88fee-e070-4d97-a73a-c747112fa093.png",
+    "/lovable-uploads/dec36eb1-43e4-40dc-9068-88317b09eab2.png"
+  ];
   const selectedData = timelineData.find(data => data.year === selectedYear);
 
   return (
@@ -159,14 +164,14 @@ const YearlyTimeline = () => {
                 className="w-full"
               >
                 <CarouselContent>
-                  {cardSymbols.map((symbol, index) => (
+                  {cardImages.map((cardImage, index) => (
                     <CarouselItem key={index} className="basis-full">
                       <div className="flex justify-center">
-                        <div className="bg-white rounded-lg w-full max-w-sm h-64 flex items-center justify-center shadow-lg border border-gray-300">
-                          <span className="text-4xl font-bold text-red-600">
-                            {symbol}
-                          </span>
-                        </div>
+                        <img 
+                          src={cardImage}
+                          alt={`Playing card ${index + 1}`}
+                          className="w-full max-w-sm h-64 object-contain rounded-lg shadow-lg border border-gray-300"
+                        />
                       </div>
                     </CarouselItem>
                   ))}
