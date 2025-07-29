@@ -30,8 +30,8 @@ const CreativeCorner = () => {
               <div className="w-6 h-px bg-gray-500"></div>
               <div className="w-2 h-2 bg-gray-500"></div>
             </div>
-            <h2 className="text-4xl font-bold text-white tracking-wider">
-              CREATIVE SNIPPETS
+            <h2 className="text-5xl font-bold text-white mb-4">
+              CREATIVE <span className="text-red-500">SNIPPETS</span>
             </h2>
             <div className="flex items-center space-x-2 mx-4">
               <div className="w-2 h-2 bg-gray-500"></div>
