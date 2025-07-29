@@ -76,6 +76,7 @@ const YearlyTimeline = () => {
     "/lovable-uploads/97f88fee-e070-4d97-a73a-c747112fa093.png",
     "/lovable-uploads/dec36eb1-43e4-40dc-9068-88317b09eab2.png"
   ];
+  
   const selectedData = timelineData.find(data => data.year === selectedYear);
 
   return (
@@ -118,6 +119,7 @@ const YearlyTimeline = () => {
                 plugins={[
                   Autoplay({
                     delay: 3000,
+                    stopOnInteraction: false,
                   }),
                 ]}
                 className="w-full"
@@ -159,6 +161,7 @@ const YearlyTimeline = () => {
                 plugins={[
                   Autoplay({
                     delay: 2500,
+                    stopOnInteraction: false,
                   }),
                 ]}
                 className="w-full"
