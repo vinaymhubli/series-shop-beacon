@@ -79,8 +79,10 @@ const RecommendedSection = () => {
                <h2 className="text-3xl font-bold text-white mb-2">
                  <span 
                    onClick={() => setActiveSection('recommended')}
-                   className={`bg-gradient-to-r from-red-600 via-red-500 to-red-400 bg-clip-text text-transparent cursor-pointer hover:from-red-500 hover:via-red-400 hover:to-red-300 transition-all duration-300 relative ${
-                     activeSection === 'recommended' ? 'after:content-[""] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-1 after:bg-gradient-to-r after:from-red-600 after:via-red-500 after:to-red-400 after:rounded-full' : ''
+                   className={`cursor-pointer hover:opacity-80 transition-all duration-300 relative ${
+                     activeSection === 'recommended' 
+                       ? 'bg-gradient-to-r from-red-600 via-red-500 to-red-400 bg-clip-text text-transparent after:content-[""] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-1 after:bg-gradient-to-r after:from-red-600 after:via-red-500 after:to-red-400 after:rounded-full' 
+                       : 'text-white'
                    }`}
                  >
                    Recommended For You
@@ -88,8 +90,10 @@ const RecommendedSection = () => {
                  <span className="text-white text-3xl font-bold ml-4">|</span>
                  <span 
                    onClick={() => setActiveSection('genres')}
-                   className={`bg-gradient-to-r from-red-600 via-red-500 to-red-400 bg-clip-text text-transparent ml-4 cursor-pointer hover:from-red-500 hover:via-red-400 hover:to-red-300 transition-all duration-300 relative ${
-                     activeSection === 'genres' ? 'after:content-[""] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-1 after:bg-gradient-to-r after:from-red-600 after:via-red-500 after:to-red-400 after:rounded-full' : ''
+                   className={`ml-4 cursor-pointer hover:opacity-80 transition-all duration-300 relative ${
+                     activeSection === 'genres' 
+                       ? 'bg-gradient-to-r from-red-600 via-red-500 to-red-400 bg-clip-text text-transparent after:content-[""] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-1 after:bg-gradient-to-r after:from-red-600 after:via-red-500 after:to-red-400 after:rounded-full' 
+                       : 'text-white'
                    }`}
                  >
                    Genres
