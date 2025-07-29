@@ -85,6 +85,45 @@ const CreativeCorner = () => {
               </div>
             </div>
           </div>
+          
+          {/* Video Section */}
+          <div className="mt-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Left Video Container */}
+              <div className="relative group cursor-pointer">
+                <img 
+                  src="/lovable-uploads/26efc76c-fa83-4369-8d8d-354eab1433e6.png"
+                  alt="Video Preview 1"
+                  className="w-full h-64 object-cover rounded-lg"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 rounded-lg group-hover:bg-opacity-30 transition-all duration-300"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <button className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-300 group-hover:scale-110 transform">
+                    <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              
+              {/* Right Video Container */}
+              <div className="relative group cursor-pointer">
+                <img 
+                  src="/lovable-uploads/97f88fee-e070-4d97-a73a-c747112fa093.png"
+                  alt="Video Preview 2"
+                  className="w-full h-64 object-cover rounded-lg"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 rounded-lg group-hover:bg-opacity-30 transition-all duration-300"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <button className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-300 group-hover:scale-110 transform">
+                    <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
