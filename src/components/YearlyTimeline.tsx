@@ -170,7 +170,7 @@ const YearlyTimeline = () => {
                         <img 
                           src={cardImage}
                           alt={`Playing card ${index + 1}`}
-                          className="w-full max-w-sm h-64 object-contain rounded-lg shadow-lg border border-gray-300"
+                          className="w-full h-64 object-contain rounded-lg shadow-lg border border-gray-300"
                         />
                       </div>
                     </CarouselItem>
