@@ -1,9 +1,26 @@
 import { Button } from '@/components/ui/button';
-import { Heart, ShoppingCart } from 'lucide-react';
+import { Heart, ShoppingCart, Sword, Sparkles, Zap, Ghost, Laugh, Crown } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const RecommendedSection = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.1);
+  const navigate = useNavigate();
+  const [showGenres, setShowGenres] = useState(false);
+
+  const genres = [
+    { name: 'Action', icon: Sword, color: 'from-red-500 to-orange-500', filter: 'action' },
+    { name: 'Fantasy', icon: Sparkles, color: 'from-purple-500 to-indigo-500', filter: 'fantasy' },
+    { name: 'Sci-Fi', icon: Zap, color: 'from-blue-500 to-cyan-500', filter: 'sci-fi' },
+    { name: 'Horror', icon: Ghost, color: 'from-gray-600 to-gray-800', filter: 'horror' },
+    { name: 'Comedy', icon: Laugh, color: 'from-yellow-500 to-orange-500', filter: 'comedy' },
+    { name: 'Drama', icon: Crown, color: 'from-purple-600 to-pink-600', filter: 'drama' }
+  ];
+
+  const handleGenreClick = (filter: string) => {
+    navigate(`/shop-all?genre=${filter}`);
+  };
 
   const recommendedItems = [
     {
@@ -57,13 +74,21 @@ const RecommendedSection = () => {
         <div className={`flex items-center justify-between mb-8 transition-all duration-1000 delay-200 transform ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}>
-          <div>
-            <h2 className="text-3xl font-bold text-white mb-2">
-              <span className="bg-gradient-to-r from-red-600 via-red-500 to-red-400 bg-clip-text text-transparent">
-                Recommended For You
-              </span>
-            </h2>
-            <p className="text-gray-400">Curated picks based on your interests and genres</p>
+          <div className="flex items-center space-x-6">
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-2">
+                <span className="bg-gradient-to-r from-red-600 via-red-500 to-red-400 bg-clip-text text-transparent">
+                  Recommended For You
+                </span>
+              </h2>
+              <p className="text-gray-400">Curated picks based on your interests and genres</p>
+            </div>
+            <button 
+              onClick={() => setShowGenres(!showGenres)}
+              className="group bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-lg text-sm font-semibold hover:from-purple-700 hover:to-purple-800 shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+            >
+              <span className="relative z-10">Genres</span>
+            </button>
           </div>
           <div className="flex space-x-4">
             <button className="group bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg text-sm font-semibold hover:from-red-700 hover:to-red-800 shadow-lg hover:shadow-red-500/25">
@@ -74,6 +99,38 @@ const RecommendedSection = () => {
             </button>
           </div>
         </div>
+
+        {/* Genre Selection Panel */}
+        {showGenres && (
+          <div className={`mb-8 transition-all duration-500 transform ${
+            showGenres ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}>
+            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 border border-gray-700/50">
+              <h3 className="text-xl font-semibold text-white mb-4 text-center">Select Your Genre</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                {genres.map((genre, index) => {
+                  const IconComponent = genre.icon;
+                  return (
+                    <div 
+                      key={genre.name}
+                      onClick={() => handleGenreClick(genre.filter)}
+                      className="group cursor-pointer bg-gradient-to-br from-gray-900 to-gray-950 rounded-lg p-4 hover:from-gray-850 hover:to-gray-900 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 hover:shadow-lg border border-gray-700/50 hover:border-purple-500/30"
+                    >
+                      <div className="text-center space-y-2">
+                        <div className={`mx-auto w-12 h-12 rounded-full bg-gradient-to-r ${genre.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                          <IconComponent className="w-6 h-6 text-white" />
+                        </div>
+                        <h4 className="text-white font-medium text-sm group-hover:text-purple-300 transition-colors duration-300">
+                          {genre.name}
+                        </h4>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {recommendedItems.map((item, index) => (
