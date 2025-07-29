@@ -5,12 +5,30 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { BookOpen, Calendar, Share2, Bookmark, ChevronLeft, ChevronRight, Bell } from 'lucide-react';
+import { BookOpen, Calendar, Share2, Bookmark, ChevronLeft, ChevronRight, Bell, Heart, Diamond, Clover, Spade } from 'lucide-react';
 import { useState } from 'react';
 
 const Announcements = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Function to get symbol and color based on category
+  const getCategorySymbol = (category: string) => {
+    switch (category.toLowerCase()) {
+      case 'licensing':
+        return { icon: Heart, color: 'text-red-500', bgColor: 'bg-red-100', label: 'New Series' };
+      case 'reprints':
+      case 'limited':
+        return { icon: Diamond, color: 'text-blue-500', bgColor: 'bg-blue-100', label: 'Limited Edition' };
+      case 'volume':
+        return { icon: Clover, color: 'text-green-500', bgColor: 'bg-green-100', label: 'New Volume' };
+      case 'events':
+      case 'features':
+        return { icon: Spade, color: 'text-purple-500', bgColor: 'bg-purple-100', label: 'Events' };
+      default:
+        return { icon: Heart, color: 'text-red-500', bgColor: 'bg-red-100', label: category };
+    }
+  };
 
   const featuredAnnouncements = [
     {
@@ -119,6 +137,18 @@ const Announcements = () => {
                   </div>
                 </div>
                 <CardContent className="p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    {(() => {
+                      const symbolData = getCategorySymbol(announcement.category);
+                      const IconComponent = symbolData.icon;
+                      return (
+                        <div className={`w-8 h-8 ${symbolData.bgColor} rounded-full flex items-center justify-center`}>
+                          <IconComponent className={`w-4 h-4 ${symbolData.color}`} />
+                        </div>
+                      );
+                    })()}
+                    <Badge variant="secondary">{getCategorySymbol(announcement.category).label}</Badge>
+                  </div>
                   <h3 className="text-xl font-bold text-foreground mb-3">{announcement.title}</h3>
                   <p className="text-muted-foreground mb-4 line-clamp-3">{announcement.description}</p>
                   <Button variant="destructive" size="sm">
@@ -177,7 +207,18 @@ const Announcements = () => {
                         </div>
                       </div>
                       <div className="flex items-center gap-4 mb-3">
-                        <Badge variant="secondary">{announcement.category}</Badge>
+                        <div className="flex items-center gap-2">
+                          {(() => {
+                            const symbolData = getCategorySymbol(announcement.category);
+                            const IconComponent = symbolData.icon;
+                            return (
+                              <div className={`w-6 h-6 ${symbolData.bgColor} rounded-full flex items-center justify-center`}>
+                                <IconComponent className={`w-3 h-3 ${symbolData.color}`} />
+                              </div>
+                            );
+                          })()}
+                          <Badge variant="secondary">{getCategorySymbol(announcement.category).label}</Badge>
+                        </div>
                         <span className="text-sm text-muted-foreground flex items-center gap-1">
                           <Calendar className="w-4 h-4" />
                           {announcement.date}
