@@ -9,6 +9,7 @@ import { BookOpen, Calendar, Share2, Bookmark, ChevronLeft, ChevronRight, Bell, 
 import { useState } from 'react';
 
 const Announcements = () => {
+  const [activeTab, setActiveTab] = useState('announcements');
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -102,6 +103,39 @@ const Announcements = () => {
     }
   ];
 
+  const blogPosts = [
+    {
+      id: 1,
+      title: "The Art of Manga Storytelling: A Deep Dive",
+      description: "Explore the intricate techniques that make manga storytelling so compelling and unique in the world of visual narrative.",
+      image: "/lovable-uploads/97f88fee-e070-4d97-a73a-c747112fa093.png",
+      date: "Jul 10, 2025",
+      category: "Educational",
+      author: "Sarah Chen",
+      readTime: "8 min read"
+    },
+    {
+      id: 2,
+      title: "Top 10 Must-Read Manga Series This Summer",
+      description: "Our curated list of the hottest manga series that should be on every reader's list this summer season.",
+      image: "/lovable-uploads/a0c88e05-5aba-4550-8ee0-7644ad456776.png", 
+      date: "Jul 8, 2025",
+      category: "Reviews",
+      author: "Mike Rodriguez",
+      readTime: "12 min read"
+    },
+    {
+      id: 3,
+      title: "Behind the Scenes: How Manga Gets Translated",
+      description: "Take a look at the complex process of bringing Japanese manga to English-speaking audiences.",
+      image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
+      date: "Jul 5, 2025", 
+      category: "Industry",
+      author: "Emma Watson",
+      readTime: "6 min read"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -109,147 +143,262 @@ const Announcements = () => {
       {/* Page Header */}
       <div className="bg-muted py-8">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-foreground mb-2">Announcements</h1>
-          <p className="text-muted-foreground">New Announcement</p>
+          <h1 className="text-4xl font-bold text-foreground mb-2">
+            {activeTab === 'announcements' ? 'Announcements' : 'Blogs'}
+          </h1>
+          <p className="text-muted-foreground">
+            {activeTab === 'announcements' ? 'New Announcement' : 'Latest Articles & Insights'}
+          </p>
+        </div>
+      </div>
+
+      {/* Tab Navigation */}
+      <div className="bg-background border-b">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center gap-0">
+            <button
+              onClick={() => setActiveTab('blogs')}
+              className={`px-6 py-3 text-sm font-semibold border rounded-l-md transition-colors ${
+                activeTab === 'blogs'
+                  ? 'bg-destructive text-destructive-foreground border-destructive'
+                  : 'bg-muted text-muted-foreground border-border hover:bg-muted/80'
+              }`}
+            >
+              BLOGS
+            </button>
+            <button
+              onClick={() => setActiveTab('announcements')}
+              className={`px-6 py-3 text-sm font-semibold border-l-0 border rounded-r-md transition-colors ${
+                activeTab === 'announcements'
+                  ? 'bg-destructive text-destructive-foreground border-destructive'
+                  : 'bg-muted text-muted-foreground border-border hover:bg-muted/80'
+              }`}
+            >
+              ANNOUNCEMENT
+            </button>
+            <div className="ml-auto flex items-center gap-4 text-sm">
+              <span className="text-destructive font-semibold">ALL</span>
+              <span className="text-muted-foreground">NEWS</span>
+              <span className="text-muted-foreground">ACTIVITIES</span>
+            </div>
+          </div>
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-8">
-        {/* Featured Updates */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-foreground mb-6">Featured Updates</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {featuredAnnouncements.map((announcement) => (
-              <Card key={announcement.id} className="overflow-hidden group hover:shadow-lg transition-shadow">
-                <div className="relative">
-                  <img 
-                    src={announcement.image} 
-                    alt={announcement.title}
-                    className="w-full h-48 object-cover"
-                  />
-                  {announcement.isHot && (
-                    <Badge className="absolute top-3 left-3 bg-destructive text-destructive-foreground">
-                      HOT
-                    </Badge>
-                  )}
-                  <div className="absolute top-3 right-3 text-muted-foreground text-sm">
-                    {announcement.date}
-                  </div>
-                </div>
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    {(() => {
-                      const symbolData = getCategorySymbol(announcement.category);
-                      const IconComponent = symbolData.icon;
-                      return (
-                        <div className={`w-8 h-8 ${symbolData.bgColor} rounded-full flex items-center justify-center`}>
-                          <IconComponent className={`w-4 h-4 ${symbolData.color}`} />
-                        </div>
-                      );
-                    })()}
-                    <Badge variant="secondary">{getCategorySymbol(announcement.category).label}</Badge>
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-3">{announcement.title}</h3>
-                  <p className="text-muted-foreground mb-4 line-clamp-3">{announcement.description}</p>
-                  <Button variant="destructive" size="sm">
-                    Read More →
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* All Announcements */}
-        <section className="mb-12">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-            <h2 className="text-2xl font-bold text-foreground">All Announcements</h2>
-            <div className="flex items-center gap-4">
-              <div className="relative">
-                <Input
-                  type="text"
-                  placeholder="Search announcements..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-64"
-                />
-              </div>
-              <Button variant="outline" size="sm">
-                Sort by Date ↓
-              </Button>
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            {allAnnouncements.map((announcement) => (
-              <Card key={announcement.id} className="overflow-hidden hover:shadow-md transition-shadow">
-                <CardContent className="p-0">
-                  <div className="flex flex-col md:flex-row">
-                    <div className="md:w-48 h-32 md:h-auto">
+        {activeTab === 'announcements' ? (
+          <>
+            {/* Featured Updates */}
+            <section className="mb-12">
+              <h2 className="text-2xl font-bold text-foreground mb-6">Featured Updates</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                {featuredAnnouncements.map((announcement) => (
+                  <Card key={announcement.id} className="overflow-hidden group hover:shadow-lg transition-shadow">
+                    <div className="relative">
                       <img 
                         src={announcement.image} 
                         alt={announcement.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-48 object-cover"
                       />
+                      {announcement.isHot && (
+                        <Badge className="absolute top-3 left-3 bg-destructive text-destructive-foreground">
+                          HOT
+                        </Badge>
+                      )}
+                      <div className="absolute top-3 right-3 text-muted-foreground text-sm">
+                        {announcement.date}
+                      </div>
                     </div>
-                    <div className="flex-1 p-6">
-                      <div className="flex justify-between items-start mb-2">
-                        <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                          {announcement.title}
-                        </h3>
-                        <div className="flex items-center gap-2">
-                          <Button variant="ghost" size="sm">
-                            <Share2 className="w-4 h-4" />
-                          </Button>
-                          <Button variant="ghost" size="sm">
-                            <Bookmark className="w-4 h-4" />
-                          </Button>
-                        </div>
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-2 mb-3">
+                        {(() => {
+                          const symbolData = getCategorySymbol(announcement.category);
+                          const IconComponent = symbolData.icon;
+                          return (
+                            <div className={`w-8 h-8 ${symbolData.bgColor} rounded-full flex items-center justify-center`}>
+                              <IconComponent className={`w-4 h-4 ${symbolData.color}`} />
+                            </div>
+                          );
+                        })()}
+                        <Badge variant="secondary">{getCategorySymbol(announcement.category).label}</Badge>
                       </div>
-                      <div className="flex items-center gap-4 mb-3">
-                        <div className="flex items-center gap-2">
-                          {(() => {
-                            const symbolData = getCategorySymbol(announcement.category);
-                            const IconComponent = symbolData.icon;
-                            return (
-                              <div className={`w-6 h-6 ${symbolData.bgColor} rounded-full flex items-center justify-center`}>
-                                <IconComponent className={`w-3 h-3 ${symbolData.color}`} />
-                              </div>
-                            );
-                          })()}
-                          <Badge variant="secondary">{getCategorySymbol(announcement.category).label}</Badge>
-                        </div>
-                        <span className="text-sm text-muted-foreground flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          {announcement.date}
-                        </span>
-                      </div>
-                      <p className="text-muted-foreground mb-4 line-clamp-2">{announcement.description}</p>
+                      <h3 className="text-xl font-bold text-foreground mb-3">{announcement.title}</h3>
+                      <p className="text-muted-foreground mb-4 line-clamp-3">{announcement.description}</p>
                       <Button variant="destructive" size="sm">
                         Read More →
                       </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </section>
 
-          {/* Pagination */}
-          <div className="flex justify-center items-center gap-2 mt-8">
-            <Button variant="outline" size="sm" disabled>
-              <ChevronLeft className="w-4 h-4" />
-            </Button>
-            <Button variant="destructive" size="sm">1</Button>
-            <Button variant="outline" size="sm">2</Button>
-            <Button variant="outline" size="sm">3</Button>
-            <span className="px-2 text-muted-foreground">...</span>
-            <Button variant="outline" size="sm">15</Button>
-            <Button variant="outline" size="sm">
-              <ChevronRight className="w-4 h-4" />
-            </Button>
-          </div>
-        </section>
+            {/* All Announcements */}
+            <section className="mb-12">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                <h2 className="text-2xl font-bold text-foreground">All Announcements</h2>
+                <div className="flex items-center gap-4">
+                  <div className="relative">
+                    <Input
+                      type="text"
+                      placeholder="Search announcements..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-64"
+                    />
+                  </div>
+                  <Button variant="outline" size="sm">
+                    Sort by Date ↓
+                  </Button>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {allAnnouncements.map((announcement) => (
+                  <Card key={announcement.id} className="overflow-hidden hover:shadow-md transition-shadow">
+                    <CardContent className="p-0">
+                      <div className="flex flex-col md:flex-row">
+                        <div className="md:w-48 h-32 md:h-auto">
+                          <img 
+                            src={announcement.image} 
+                            alt={announcement.title}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div className="flex-1 p-6">
+                          <div className="flex justify-between items-start mb-2">
+                            <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                              {announcement.title}
+                            </h3>
+                            <div className="flex items-center gap-2">
+                              <Button variant="ghost" size="sm">
+                                <Share2 className="w-4 h-4" />
+                              </Button>
+                              <Button variant="ghost" size="sm">
+                                <Bookmark className="w-4 h-4" />
+                              </Button>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-4 mb-3">
+                            <div className="flex items-center gap-2">
+                              {(() => {
+                                const symbolData = getCategorySymbol(announcement.category);
+                                const IconComponent = symbolData.icon;
+                                return (
+                                  <div className={`w-6 h-6 ${symbolData.bgColor} rounded-full flex items-center justify-center`}>
+                                    <IconComponent className={`w-3 h-3 ${symbolData.color}`} />
+                                  </div>
+                                );
+                              })()}
+                              <Badge variant="secondary">{getCategorySymbol(announcement.category).label}</Badge>
+                            </div>
+                            <span className="text-sm text-muted-foreground flex items-center gap-1">
+                              <Calendar className="w-4 h-4" />
+                              {announcement.date}
+                            </span>
+                          </div>
+                          <p className="text-muted-foreground mb-4 line-clamp-2">{announcement.description}</p>
+                          <Button variant="destructive" size="sm">
+                            Read More →
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+              {/* Pagination */}
+              <div className="flex justify-center items-center gap-2 mt-8">
+                <Button variant="outline" size="sm" disabled>
+                  <ChevronLeft className="w-4 h-4" />
+                </Button>
+                <Button variant="destructive" size="sm">1</Button>
+                <Button variant="outline" size="sm">2</Button>
+                <Button variant="outline" size="sm">3</Button>
+                <span className="px-2 text-muted-foreground">...</span>
+                <Button variant="outline" size="sm">15</Button>
+                <Button variant="outline" size="sm">
+                  <ChevronRight className="w-4 h-4" />
+                </Button>
+              </div>
+            </section>
+          </>
+        ) : (
+          <>
+            {/* Blog Posts Grid */}
+            <section className="mb-12">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                <h2 className="text-2xl font-bold text-foreground">Latest Blog Posts</h2>
+                <div className="flex items-center gap-4">
+                  <div className="relative">
+                    <Input
+                      type="text"
+                      placeholder="Search blog posts..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-64"
+                    />
+                  </div>
+                  <Button variant="outline" size="sm">
+                    Sort by Date ↓
+                  </Button>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {blogPosts.map((post) => (
+                  <Card key={post.id} className="overflow-hidden group hover:shadow-lg transition-shadow">
+                    <div className="relative">
+                      <img 
+                        src={post.image} 
+                        alt={post.title}
+                        className="w-full h-48 object-cover"
+                      />
+                      <Badge className="absolute top-3 left-3" variant="secondary">
+                        {post.category}
+                      </Badge>
+                    </div>
+                    <CardContent className="p-6">
+                      <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                        {post.title}
+                      </h3>
+                      <p className="text-muted-foreground mb-4 line-clamp-3">{post.description}</p>
+                      <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                        <span>By {post.author}</span>
+                        <span>{post.readTime}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-muted-foreground flex items-center gap-1">
+                          <Calendar className="w-4 h-4" />
+                          {post.date}
+                        </span>
+                        <Button variant="destructive" size="sm">
+                          Read More →
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+              {/* Pagination for blogs */}
+              <div className="flex justify-center items-center gap-2 mt-8">
+                <Button variant="outline" size="sm" disabled>
+                  <ChevronLeft className="w-4 h-4" />
+                </Button>
+                <Button variant="destructive" size="sm">1</Button>
+                <Button variant="outline" size="sm">2</Button>
+                <Button variant="outline" size="sm">3</Button>
+                <span className="px-2 text-muted-foreground">...</span>
+                <Button variant="outline" size="sm">8</Button>
+                <Button variant="outline" size="sm">
+                  <ChevronRight className="w-4 h-4" />
+                </Button>
+              </div>
+            </section>
+          </>
+        )}
 
         {/* Stay Updated Newsletter */}
         <section className="bg-muted rounded-lg p-8 mb-12">
