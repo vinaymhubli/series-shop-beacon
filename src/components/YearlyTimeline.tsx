@@ -1,8 +1,10 @@
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const YearlyTimeline = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.2);
+  const [selectedYear, setSelectedYear] = useState<number | null>(null);
 
   const timelineData = [
     {
@@ -11,22 +13,26 @@ const YearlyTimeline = () => {
         {
           title: "First Light",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series"
+          link: "/our-series",
+          description: "An epic journey begins with the first rays of dawn, where heroes discover their destiny."
         },
         {
           title: "Shadow Chronicles",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series"
+          link: "/our-series",
+          description: "Dark mysteries unfold in the realm of shadows and ancient secrets."
         },
         {
           title: "Midnight Adventures",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series"
+          link: "/our-series",
+          description: "When the world sleeps, the greatest adventures begin under starlit skies."
         },
         {
           title: "Dawn Warriors",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series"
+          link: "/our-series",
+          description: "Brave warriors unite at the break of dawn to defend their homeland."
         }
       ]
     },
@@ -36,22 +42,26 @@ const YearlyTimeline = () => {
         {
           title: "Ocean Dreams",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series"
+          link: "/our-series",
+          description: "Dive into the depths of the ocean where dreams and reality merge."
         },
         {
           title: "Mountain Tales",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series"
+          link: "/our-series",
+          description: "Ancient stories echo through the mountain peaks and hidden valleys."
         },
         {
           title: "City Lights",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series"
+          link: "/our-series",
+          description: "Urban adventures shine bright in the neon-lit metropolis."
         },
         {
           title: "River Legends",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series"
+          link: "/our-series",
+          description: "Follow the flowing waters to discover legendary tales of old."
         }
       ]
     },
@@ -61,22 +71,26 @@ const YearlyTimeline = () => {
         {
           title: "Forest Whispers",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series"
+          link: "/our-series",
+          description: "The ancient forest holds secrets whispered by the wind through the trees."
         },
         {
           title: "Desert Winds",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series"
+          link: "/our-series",
+          description: "Endless dunes hide treasures and dangers in the scorching desert."
         },
         {
           title: "Arctic Quest",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series"
+          link: "/our-series",
+          description: "Brave the frozen wilderness in search of legendary artifacts."
         },
         {
           title: "Jungle Mysteries",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series"
+          link: "/our-series",
+          description: "Uncover ancient civilizations hidden deep within the jungle canopy."
         }
       ]
     },
@@ -86,26 +100,36 @@ const YearlyTimeline = () => {
         {
           title: "Stellar Journey",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series"
+          link: "/our-series",
+          description: "Embark on an interstellar voyage across the cosmos."
         },
         {
           title: "Cosmic Realms",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series"
+          link: "/our-series",
+          description: "Explore dimensions beyond imagination in the cosmic realms."
         },
         {
           title: "Galaxy Heroes",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series"
+          link: "/our-series",
+          description: "Heroes unite across galaxies to defend the universe from darkness."
         },
         {
           title: "Nebula Chronicles",
           image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series"
+          link: "/our-series",
+          description: "Chronicles of adventure spanning the colorful cosmic nebulae."
         }
       ]
     }
   ];
+
+  const handleYearClick = (year: number) => {
+    setSelectedYear(selectedYear === year ? null : year);
+  };
+
+  const selectedData = timelineData.find(data => data.year === selectedYear);
 
   return (
     <section 
@@ -131,34 +155,56 @@ const YearlyTimeline = () => {
           </p>
         </div>
         
-        <div className="space-y-20">
-          {timelineData.map((yearData, yearIndex) => (
-            <div key={yearData.year} className="relative">
-              {/* Timeline connector */}
-              {yearIndex < timelineData.length - 1 && (
-                <div className="absolute left-1/2 transform -translate-x-1/2 top-32 w-px h-20 bg-gradient-to-b from-red-500 to-transparent z-0"></div>
-              )}
-              
-              {/* Year Header */}
-              <div className="flex items-center justify-center mb-12">
-                <div className="relative">
-                  <div className="bg-gradient-to-r from-red-500 to-red-700 text-white px-8 py-4 rounded-full font-bold text-2xl shadow-2xl border-4 border-white/10 backdrop-blur-sm">
+        {/* Vertical Timeline */}
+        <div className="flex flex-col items-center max-w-md mx-auto mb-16">
+          <div className="relative">
+            {/* Vertical line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-red-500 via-red-600 to-red-700"></div>
+            
+            {/* Year points */}
+            <div className="space-y-12">
+              {timelineData.map((yearData, index) => (
+                <div key={yearData.year} className="relative flex items-center">
+                  {/* Year button */}
+                  <button
+                    onClick={() => handleYearClick(yearData.year)}
+                    className={`relative z-10 w-20 h-20 rounded-full font-bold text-lg transition-all duration-300 transform hover:scale-110 ${
+                      selectedYear === yearData.year
+                        ? 'bg-white text-red-600 shadow-2xl shadow-red-500/50'
+                        : 'bg-gradient-to-r from-red-500 to-red-700 text-white shadow-xl hover:shadow-red-500/30'
+                    }`}
+                  >
                     {yearData.year}
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-red-700 rounded-full blur-xl opacity-30 -z-10"></div>
+                  </button>
+                  
+                  {/* Connection dot */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-red-500 rounded-full border-4 border-black"></div>
                 </div>
-              </div>
-              
-              {/* Series Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
-                {yearData.series.map((series, seriesIndex) => (
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Selected Year Content */}
+        {selectedData && (
+          <div className="transition-all duration-500 animate-fade-in">
+            <div className="text-center mb-12">
+              <h3 className="text-4xl font-bold text-white mb-4">
+                Publications from <span className="text-red-500">{selectedData.year}</span>
+              </h3>
+              <div className="w-16 h-1 bg-red-500 mx-auto"></div>
+            </div>
+            
+            {/* Featured Book Display */}
+            <div className="max-w-5xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                {selectedData.series.map((series, index) => (
                   <Link
-                    key={seriesIndex}
+                    key={index}
                     to={series.link}
-                    className="group block transform transition-all duration-500 hover:scale-110 hover:-translate-y-2"
+                    className="group block transform transition-all duration-500 hover:scale-105 hover:-translate-y-2"
                     style={{
-                      animationDelay: `${seriesIndex * 100}ms`,
-                      animation: isVisible ? 'fade-in 0.8s ease-out forwards' : 'none'
+                      animationDelay: `${index * 100}ms`,
                     }}
                   >
                     <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl overflow-hidden shadow-2xl group-hover:shadow-red-500/30 border border-gray-700 group-hover:border-red-500/50 transition-all duration-500">
@@ -173,6 +219,11 @@ const YearlyTimeline = () => {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                         
+                        {/* Year badge */}
+                        <div className="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+                          {selectedData.year}
+                        </div>
+                        
                         {/* Hover overlay */}
                         <div className="absolute inset-0 bg-red-500/20 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
                           <div className="text-white text-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
@@ -183,10 +234,13 @@ const YearlyTimeline = () => {
                       </div>
                       
                       <div className="p-6 relative">
-                        <h3 className="text-white text-lg font-bold group-hover:text-red-400 transition-colors duration-300 line-clamp-2 leading-tight">
+                        <h3 className="text-white text-lg font-bold group-hover:text-red-400 transition-colors duration-300 mb-2">
                           {series.title}
                         </h3>
-                        <div className="mt-3 flex items-center text-red-500 text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                        <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-3">
+                          {series.description}
+                        </p>
+                        <div className="flex items-center text-red-500 text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
                           <span>Explore Series</span>
                           <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -201,8 +255,17 @@ const YearlyTimeline = () => {
                 ))}
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        )}
+
+        {/* Instruction text */}
+        {!selectedYear && (
+          <div className="text-center mt-12">
+            <p className="text-gray-400 text-lg">
+              Click on any year to explore our publications from that time
+            </p>
+          </div>
+        )}
         
         {/* Bottom decorative element */}
         <div className="mt-20 text-center">
