@@ -93,7 +93,7 @@ const HeroSection = () => {
               <span className="relative z-10">Add to Cart</span>
             </Button>
             
-            <Button variant="outline" className="group border-2 border-gray-400 text-black hover:bg-white hover:text-black px-10 py-4 text-lg font-semibold transform hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-white/25 relative overflow-hidden">
+            <Button variant="outline" className="group bg-white border-2 border-gray-400 text-black hover:bg-gray-100 hover:text-black px-10 py-4 text-lg font-semibold transform hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-white/25 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
               <Star className="w-5 h-5 mr-3 relative z-10 text-black group-hover:text-yellow-500 transition-colors duration-300" />
               <span className="relative z-10">Wishlist</span>
