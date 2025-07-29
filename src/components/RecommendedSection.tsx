@@ -10,12 +10,11 @@ const RecommendedSection = () => {
   const [showGenres, setShowGenres] = useState(false);
 
   const genres = [
-    { name: 'Action', icon: Sword, color: 'from-red-500 to-orange-500', filter: 'action' },
-    { name: 'Fantasy', icon: Sparkles, color: 'from-purple-500 to-indigo-500', filter: 'fantasy' },
-    { name: 'Sci-Fi', icon: Zap, color: 'from-blue-500 to-cyan-500', filter: 'sci-fi' },
-    { name: 'Horror', icon: Ghost, color: 'from-gray-600 to-gray-800', filter: 'horror' },
-    { name: 'Comedy', icon: Laugh, color: 'from-yellow-500 to-orange-500', filter: 'comedy' },
-    { name: 'Drama', icon: Crown, color: 'from-purple-600 to-pink-600', filter: 'drama' }
+    { name: 'SLICE OF LIFE', imageUrl: '/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png', filter: 'slice-of-life' },
+    { name: 'DRAMA', imageUrl: '/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png', filter: 'drama' },
+    { name: 'HIGH SCHOOL ROMANCE', imageUrl: '/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png', filter: 'romance' },
+    { name: 'FANTASY', imageUrl: '/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png', filter: 'fantasy' },
+    { name: 'ACTION TALES', imageUrl: '/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png', filter: 'action' }
   ];
 
   const handleGenreClick = (filter: string) => {
@@ -105,28 +104,29 @@ const RecommendedSection = () => {
           <div className={`mb-8 transition-all duration-500 transform ${
             showGenres ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 border border-gray-700/50">
-              <h3 className="text-xl font-semibold text-white mb-4 text-center">Select Your Genre</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                {genres.map((genre, index) => {
-                  const IconComponent = genre.icon;
-                  return (
-                    <div 
-                      key={genre.name}
-                      onClick={() => handleGenreClick(genre.filter)}
-                      className="group cursor-pointer bg-gradient-to-br from-gray-900 to-gray-950 rounded-lg p-4 hover:from-gray-850 hover:to-gray-900 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 hover:shadow-lg border border-gray-700/50 hover:border-purple-500/30"
-                    >
-                      <div className="text-center space-y-2">
-                        <div className={`mx-auto w-12 h-12 rounded-full bg-gradient-to-r ${genre.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                          <IconComponent className="w-6 h-6 text-white" />
-                        </div>
-                        <h4 className="text-white font-medium text-sm group-hover:text-purple-300 transition-colors duration-300">
-                          {genre.name}
-                        </h4>
-                      </div>
+            <div className="bg-black rounded-xl p-8 border border-gray-700/50">
+              <h3 className="text-2xl font-bold text-white mb-6 text-center tracking-wider">OUR GENRES</h3>
+              <div className="flex justify-center gap-4 overflow-x-auto">
+                {genres.map((genre, index) => (
+                  <div 
+                    key={genre.name}
+                    onClick={() => handleGenreClick(genre.filter)}
+                    className="group cursor-pointer relative min-w-[200px] h-[300px] rounded-lg overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+                  >
+                    <img 
+                      src={genre.imageUrl} 
+                      alt={genre.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                      <h4 className="text-white font-bold text-sm text-center tracking-wider">
+                        {genre.name}
+                      </h4>
                     </div>
-                  );
-                })}
+                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
