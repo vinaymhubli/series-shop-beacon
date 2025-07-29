@@ -72,11 +72,11 @@ const AnnouncementsSection = () => {
                 
                 {/* Card suit symbol */}
                 <div className="absolute top-3 right-3">
-                  <div className="bg-red-500 rounded-full p-2 shadow-lg">
-                    {index === 0 && <Heart className="w-4 h-4 text-white" />}
-                    {index === 1 && <Diamond className="w-4 h-4 text-white" />}
-                    {index === 2 && <Club className="w-4 h-4 text-white" />}
-                    {index > 2 && <Spade className="w-4 h-4 text-white" />}
+                  <div className="bg-white rounded-full p-2 shadow-lg">
+                    {index === 0 && <Heart className="w-4 h-4 text-red-500" />}
+                    {index === 1 && <Diamond className="w-4 h-4 text-red-500" />}
+                    {index === 2 && <Club className="w-4 h-4 text-red-500" />}
+                    {index > 2 && <Spade className="w-4 h-4 text-red-500" />}
                   </div>
                 </div>
                 
