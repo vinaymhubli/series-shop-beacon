@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
 
@@ -140,28 +141,21 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <Label className="text-gray-300 mb-4 block">
+          <Label htmlFor="subject" className="text-gray-300 mb-2 block">
             Select a subject
           </Label>
-          <div className="space-y-3">
-            {['General Inquiry', 'Technical Support', 'Partnership', 'Press & Media', 'Other'].map((option) => (
-              <div key={option} className="flex items-center space-x-3">
-                <input
-                  type="radio"
-                  id={option}
-                  name="subject"
-                  value={option}
-                  checked={formData.subject === option}
-                  onChange={handleInputChange}
-                  className="w-4 h-4 text-red-500 bg-gray-700 border-gray-600 focus:ring-red-500"
-                  required
-                />
-                <Label htmlFor={option} className="text-gray-300 cursor-pointer">
-                  {option}
-                </Label>
-              </div>
-            ))}
-          </div>
+          <Select value={formData.subject} onValueChange={(value) => setFormData(prev => ({ ...prev, subject: value }))}>
+            <SelectTrigger className="bg-gray-700 border-gray-600 text-white focus:border-red-500">
+              <SelectValue placeholder="What is this about?" />
+            </SelectTrigger>
+            <SelectContent className="bg-gray-700 border-gray-600 z-50">
+              <SelectItem value="general" className="text-white hover:bg-gray-600">General Inquiry</SelectItem>
+              <SelectItem value="support" className="text-white hover:bg-gray-600">Technical Support</SelectItem>
+              <SelectItem value="partnership" className="text-white hover:bg-gray-600">Partnership</SelectItem>
+              <SelectItem value="press" className="text-white hover:bg-gray-600">Press & Media</SelectItem>
+              <SelectItem value="other" className="text-white hover:bg-gray-600">Other</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div>
