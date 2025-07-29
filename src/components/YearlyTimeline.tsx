@@ -63,6 +63,16 @@ const YearlyTimeline = () => {
       }`}
     >
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
+        {/* Section Title */}
+        <div className="text-center mb-16">
+          <h2 className="text-5xl font-bold text-white mb-4">
+            Yearly <span className="text-red-500">Timeline</span>
+          </h2>
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+            Journey through our collection across the years and discover the evolution of storytelling
+          </p>
+        </div>
+
         {/* Top Year Selector */}
         <div className="mb-16">
           <div className="flex justify-center items-center space-x-12 mb-8">
