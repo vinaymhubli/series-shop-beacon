@@ -8,6 +8,7 @@ const RecommendedSection = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.1);
   const navigate = useNavigate();
   const [showGenres, setShowGenres] = useState(false);
+  const [activeSection, setActiveSection] = useState<'recommended' | 'genres'>('recommended');
 
   const genres = [
     { name: 'SLICE OF LIFE', imageUrl: '/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png', filter: 'slice-of-life' },
@@ -74,21 +75,30 @@ const RecommendedSection = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}>
           <div className="flex items-center space-x-6">
-            <div>
-              <h2 className="text-3xl font-bold text-white mb-2">
-                <span className="bg-gradient-to-r from-red-600 via-red-500 to-red-400 bg-clip-text text-transparent">
-                  Recommended For You
-                </span>
-                <span className="text-white text-3xl font-bold ml-4">|</span>
-                <span 
-                  onClick={() => setShowGenres(!showGenres)}
-                  className="bg-gradient-to-r from-red-600 via-red-500 to-red-400 bg-clip-text text-transparent ml-4 cursor-pointer hover:from-red-500 hover:via-red-400 hover:to-red-300 transition-all duration-300"
-                >
-                  Genres
-                </span>
-              </h2>
-              <p className="text-gray-400">Curated picks based on your interests and genres</p>
-            </div>
+             <div>
+               <h2 className="text-3xl font-bold text-white mb-2">
+                 <span 
+                   onClick={() => setActiveSection('recommended')}
+                   className={`bg-gradient-to-r from-red-600 via-red-500 to-red-400 bg-clip-text text-transparent cursor-pointer hover:from-red-500 hover:via-red-400 hover:to-red-300 transition-all duration-300 relative ${
+                     activeSection === 'recommended' ? 'after:content-[""] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-1 after:bg-gradient-to-r after:from-red-600 after:via-red-500 after:to-red-400 after:rounded-full' : ''
+                   }`}
+                 >
+                   Recommended For You
+                 </span>
+                 <span className="text-white text-3xl font-bold ml-4">|</span>
+                 <span 
+                   onClick={() => setActiveSection('genres')}
+                   className={`bg-gradient-to-r from-red-600 via-red-500 to-red-400 bg-clip-text text-transparent ml-4 cursor-pointer hover:from-red-500 hover:via-red-400 hover:to-red-300 transition-all duration-300 relative ${
+                     activeSection === 'genres' ? 'after:content-[""] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-1 after:bg-gradient-to-r after:from-red-600 after:via-red-500 after:to-red-400 after:rounded-full' : ''
+                   }`}
+                 >
+                   Genres
+                 </span>
+               </h2>
+               <p className="text-gray-400">
+                 {activeSection === 'recommended' ? 'Curated picks based on your interests and genres' : 'Discover your favorite genres'}
+               </p>
+             </div>
           </div>
           <div className="flex space-x-4">
             <button className="group bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg text-sm font-semibold hover:from-red-700 hover:to-red-800 shadow-lg hover:shadow-red-500/25">
@@ -100,10 +110,10 @@ const RecommendedSection = () => {
           </div>
         </div>
 
-        {/* Genre Selection Panel */}
-        {showGenres && (
+        {/* Conditional Content Based on Active Section */}
+        {activeSection === 'genres' ? (
           <div className={`mb-8 transition-all duration-500 transform ${
-            showGenres ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
             <div className="bg-black rounded-xl p-8 border border-gray-700/50">
               <h3 className="text-2xl font-bold text-white mb-6 text-center tracking-wider">OUR GENRES</h3>
@@ -131,59 +141,59 @@ const RecommendedSection = () => {
               </div>
             </div>
           </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {recommendedItems.map((item, index) => (
+              <div 
+                key={index} 
+                className={`group bg-gradient-to-br from-gray-900 to-gray-950 rounded-xl overflow-hidden hover:from-gray-850 hover:to-gray-900 transition-all duration-700 transform hover:scale-105 hover:-translate-y-4 hover:shadow-2xl hover:shadow-purple-500/20 border border-gray-700/50 hover:border-purple-500/30 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                }`}
+                style={{ transitionDelay: `${400 + index * 200}ms` }}
+              >
+                <div className="relative group/image overflow-hidden">
+                  <img 
+                    src={item.imageUrl} 
+                    alt={item.title}
+                    className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <span className="absolute top-3 right-3 bg-gradient-to-r from-gray-700 to-gray-800 text-white text-xs font-semibold px-3 py-1 rounded-full backdrop-blur-sm transition-all duration-300 group-hover:from-purple-600 group-hover:to-purple-700">
+                    {item.type}
+                  </span>
+                  
+                  {/* Hover overlay with gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                
+                <div className="p-5 space-y-3">
+                  <h3 className="text-white font-semibold text-lg group-hover:text-purple-300 transition-colors duration-300">{item.title}</h3>
+                  <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">{item.author}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-white font-bold text-lg group-hover:text-purple-300 transition-colors duration-300">{item.price}</span>
+                    <span className="text-gray-400 text-xs">{item.coins}</span>
+                  </div>
+                  
+                  <div className="flex items-center space-x-3 pt-2">
+                    <Button 
+                      size="sm" 
+                      className="flex-1 bg-transparent border border-gray-600 text-gray-300 hover:bg-gradient-to-r hover:from-purple-600 hover:to-purple-700 hover:border-purple-500 hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25"
+                    >
+                      <ShoppingCart className="w-3 h-3 mr-2" />
+                      Add to Cart
+                    </Button>
+                    <Button 
+                      size="sm" 
+                      variant="ghost" 
+                      className="text-gray-400 hover:text-red-400 hover:bg-red-500/10 transition-all duration-300 transform hover:scale-110 p-3"
+                    >
+                      <Heart className="w-4 h-4 hover:animate-pulse" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         )}
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {recommendedItems.map((item, index) => (
-            <div 
-              key={index} 
-              className={`group bg-gradient-to-br from-gray-900 to-gray-950 rounded-xl overflow-hidden hover:from-gray-850 hover:to-gray-900 transition-all duration-700 transform hover:scale-105 hover:-translate-y-4 hover:shadow-2xl hover:shadow-purple-500/20 border border-gray-700/50 hover:border-purple-500/30 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-              }`}
-              style={{ transitionDelay: `${400 + index * 200}ms` }}
-            >
-              <div className="relative group/image overflow-hidden">
-                <img 
-                  src={item.imageUrl} 
-                  alt={item.title}
-                  className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <span className="absolute top-3 right-3 bg-gradient-to-r from-gray-700 to-gray-800 text-white text-xs font-semibold px-3 py-1 rounded-full backdrop-blur-sm transition-all duration-300 group-hover:from-purple-600 group-hover:to-purple-700">
-                  {item.type}
-                </span>
-                
-                {/* Hover overlay with gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              </div>
-              
-              <div className="p-5 space-y-3">
-                <h3 className="text-white font-semibold text-lg group-hover:text-purple-300 transition-colors duration-300">{item.title}</h3>
-                <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">{item.author}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-white font-bold text-lg group-hover:text-purple-300 transition-colors duration-300">{item.price}</span>
-                  <span className="text-gray-400 text-xs">{item.coins}</span>
-                </div>
-                
-                <div className="flex items-center space-x-3 pt-2">
-                  <Button 
-                    size="sm" 
-                    className="flex-1 bg-transparent border border-gray-600 text-gray-300 hover:bg-gradient-to-r hover:from-purple-600 hover:to-purple-700 hover:border-purple-500 hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25"
-                  >
-                    <ShoppingCart className="w-3 h-3 mr-2" />
-                    Add to Cart
-                  </Button>
-                  <Button 
-                    size="sm" 
-                    variant="ghost" 
-                    className="text-gray-400 hover:text-red-400 hover:bg-red-500/10 transition-all duration-300 transform hover:scale-110 p-3"
-                  >
-                    <Heart className="w-4 h-4 hover:animate-pulse" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
