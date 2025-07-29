@@ -18,7 +18,6 @@ const ProductGrid = () => {
       imageUrl: "https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=400&h=600&fit=crop&crop=center",
       hoverImageUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&h=600&fit=crop&crop=center",
       isNew: true,
-      rating: 5,
       canUnlockWithCoins: true,
       label: "Vol 98 out now"
     },
@@ -31,7 +30,6 @@ const ProductGrid = () => {
       imageUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&h=600&fit=crop&crop=center",
       hoverImageUrl: "https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=400&h=600&fit=crop&crop=center",
       isNew: true,
-      rating: 5,
       canUnlockWithCoins: false,
       label: "Final volume available"
     },
@@ -45,7 +43,6 @@ const ProductGrid = () => {
       imageUrl: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&h=600&fit=crop&crop=center",
       hoverImageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
       isOnSale: true,
-      rating: 4,
       canUnlockWithCoins: true,
       label: "Vol 16 coming soon"
     }
@@ -60,7 +57,6 @@ const ProductGrid = () => {
       coins: "19999 coins",
       imageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
       hoverImageUrl: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&h=600&fit=crop&crop=center",
-      rating: 5,
       canUnlockWithCoins: true,
       label: "Complete 700+ chapters"
     },
@@ -72,7 +68,6 @@ const ProductGrid = () => {
       coins: "8999 coins",
       imageUrl: "https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?w=400&h=600&fit=crop&crop=center",
       hoverImageUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&h=600&fit=crop&crop=center",
-      rating: 5,
       canUnlockWithCoins: true,
       label: "Legendary series"
     },
@@ -84,7 +79,6 @@ const ProductGrid = () => {
       coins: "14999 coins",
       imageUrl: "https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=400&h=600&fit=crop&crop=center",
       hoverImageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
-      rating: 5,
       canUnlockWithCoins: false,
       label: "Hero academia bundle"
     }
@@ -99,7 +93,7 @@ const ProductGrid = () => {
       coins: "1099 coins",
       imageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
       hoverImageUrl: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&h=600&fit=crop&crop=center",
-      rating: 5,
+      
       canUnlockWithCoins: true,
       label: "Limited time offer"
     },
@@ -111,7 +105,6 @@ const ProductGrid = () => {
       coins: "999 coins",
       imageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
       hoverImageUrl: "https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?w=400&h=600&fit=crop&crop=center",
-      rating: 4,
       canUnlockWithCoins: true,
       label: "Leaving in 7 days"
     },
@@ -123,7 +116,7 @@ const ProductGrid = () => {
       coins: "1299 coins",
       imageUrl: "https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?w=400&h=600&fit=crop&crop=center",
       hoverImageUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&h=600&fit=crop&crop=center",
-      rating: 4,
+      
       canUnlockWithCoins: false,
       label: "Last chance"
     }
@@ -226,7 +219,7 @@ const ProductGrid = () => {
               }}
             >
               <div className="relative">
-                <ProductCard {...product} />
+                <ProductCard {...product} cardIndex={index} />
                 {/* Hover glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-t from-red-500/0 via-red-500/5 to-red-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg pointer-events-none"></div>
               </div>

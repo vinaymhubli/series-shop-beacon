@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { Heart, Unlock, ShoppingCart } from 'lucide-react';
+import { Heart, Unlock, ShoppingCart, Diamond, Club, Spade } from 'lucide-react';
 import { useState } from 'react';
 
 interface ProductCardProps {
@@ -14,9 +14,9 @@ interface ProductCardProps {
   hoverImageUrl?: string;
   isNew?: boolean;
   isOnSale?: boolean;
-  
   canUnlockWithCoins?: boolean;
   label?: string;
+  cardIndex?: number; // Add index to determine which symbol to show
 }
 
 const ProductCard = ({ 
@@ -30,11 +30,17 @@ const ProductCard = ({
   hoverImageUrl,
   isNew, 
   isOnSale,
-  
   canUnlockWithCoins = true,
-  label
+  label,
+  cardIndex = 0
 }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  // Cross Hearts symbols rotation
+  const symbols = [Heart, Diamond, Club, Spade];
+  const symbolColors = ['text-red-500', 'text-blue-500', 'text-green-500', 'text-purple-500'];
+  const SymbolIcon = symbols[cardIndex % 4];
+  const symbolColor = symbolColors[cardIndex % 4];
 
   return (
     <div 
@@ -85,7 +91,10 @@ const ProductCard = ({
       
       <div className="p-5 space-y-3 flex-1 flex flex-col">
         <div className="flex-1 space-y-3">
-          <h3 className="text-white font-semibold text-lg truncate group-hover:text-red-300 transition-colors duration-300">{title}</h3>
+          <div className="flex items-center justify-between">
+            <h3 className="text-white font-semibold text-lg truncate group-hover:text-red-300 transition-colors duration-300 flex-1 mr-2">{title}</h3>
+            <SymbolIcon className={`w-5 h-5 ${symbolColor} transition-colors duration-300 flex-shrink-0`} />
+          </div>
           <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">{author}</p>
           <p className="text-gray-500 text-xs uppercase tracking-wide">{volume}</p>
           
