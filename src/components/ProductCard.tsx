@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { Heart, Unlock, ShoppingCart, Diamond } from 'lucide-react';
+import { Heart, Unlock, ShoppingCart } from 'lucide-react';
 import { useState } from 'react';
 
 interface ProductCardProps {
@@ -120,14 +120,6 @@ const ProductCard = ({
               Unlock
             </Button>
           )}
-          <Button 
-            size="sm" 
-            variant="outline" 
-            className="border-gray-600 text-gray-300 hover:bg-purple-600 hover:text-white hover:border-purple-500 text-xs transform hover:scale-105 transition-all duration-300 p-2"
-            title="Add to Wishlist"
-          >
-            <Diamond className="w-3 h-3" />
-          </Button>
         </div>
       </div>
     </div>
