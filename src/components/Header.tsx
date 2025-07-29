@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Menu, X, Search, ShoppingCart, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
-import { ThemeToggle } from '@/components/ThemeToggle';
 import { CoinDisplay } from '@/components/CoinDisplay';
 
 const Header = () => {
@@ -62,7 +61,6 @@ const Header = () => {
             <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
               <ShoppingCart className="h-5 w-5" />
             </Button>
-            <ThemeToggle />
             <Link to="/profile">
               <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
                 <User className="h-5 w-5" />
@@ -114,7 +112,6 @@ const Header = () => {
                 <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
                   <ShoppingCart className="h-5 w-5" />
                 </Button>
-                <ThemeToggle />
               </div>
             </nav>
           </div>
