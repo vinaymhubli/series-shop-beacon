@@ -105,13 +105,13 @@ const RecommendedSection = () => {
              </div>
           </div>
           <div className="flex space-x-4">
-            <button className="group bg-gradient-to-r from-red-600 to-red-700 text-black px-6 py-3 rounded-lg text-sm font-semibold hover:from-red-700 hover:to-red-800 shadow-lg hover:shadow-red-500/25">
+            <button className="group bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg text-sm font-semibold hover:from-red-700 hover:to-red-800 shadow-lg hover:shadow-red-500/25">
               <span className="relative z-10">Digital</span>
             </button>
-            <button className="group bg-gray-700 text-black px-6 py-3 rounded-lg text-sm font-semibold hover:bg-gray-600 hover:text-black shadow-lg">
+            <button className="group bg-gray-700 text-gray-300 px-6 py-3 rounded-lg text-sm font-semibold hover:bg-gray-600 hover:text-white shadow-lg">
               Print
             </button>
-            <button className="group bg-gray-700 text-black px-6 py-3 rounded-lg text-sm font-semibold hover:bg-gray-600 hover:text-black shadow-lg">
+            <button className="group bg-gray-700 text-gray-300 px-6 py-3 rounded-lg text-sm font-semibold hover:bg-gray-600 hover:text-white shadow-lg">
               Merchandise
             </button>
           </div>
