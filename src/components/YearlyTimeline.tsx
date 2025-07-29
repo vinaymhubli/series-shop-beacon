@@ -1,133 +1,76 @@
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+import Autoplay from 'embla-carousel-autoplay';
 
 const YearlyTimeline = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.2);
-  const [selectedYear, setSelectedYear] = useState<number | null>(null);
+  const [selectedYear, setSelectedYear] = useState<number>(2025);
 
   const timelineData = [
     {
-      year: 2016,
-      series: [
-        {
-          title: "First Light",
-          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series",
-          description: "An epic journey begins with the first rays of dawn, where heroes discover their destiny."
-        },
-        {
-          title: "Shadow Chronicles",
-          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series",
-          description: "Dark mysteries unfold in the realm of shadows and ancient secrets."
-        },
-        {
-          title: "Midnight Adventures",
-          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series",
-          description: "When the world sleeps, the greatest adventures begin under starlit skies."
-        },
-        {
-          title: "Dawn Warriors",
-          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series",
-          description: "Brave warriors unite at the break of dawn to defend their homeland."
-        }
-      ]
+      year: 2022,
+      book: {
+        title: "Chronicles of Dawn",
+        description: "A mystical journey through ancient realms where heroes discover their true destiny in the first light.",
+        images: [
+          "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
+          "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
+          "/lovable-uploads/e894503b-5d22-4a7a-9940-15abeb76e58b.png"
+        ]
+      }
     },
     {
-      year: 2017,
-      series: [
-        {
-          title: "Ocean Dreams",
-          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series",
-          description: "Dive into the depths of the ocean where dreams and reality merge."
-        },
-        {
-          title: "Mountain Tales",
-          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series",
-          description: "Ancient stories echo through the mountain peaks and hidden valleys."
-        },
-        {
-          title: "City Lights",
-          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series",
-          description: "Urban adventures shine bright in the neon-lit metropolis."
-        },
-        {
-          title: "River Legends",
-          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series",
-          description: "Follow the flowing waters to discover legendary tales of old."
-        }
-      ]
+      year: 2023,
+      book: {
+        title: "Shadow Legends",
+        description: "Dark mysteries unfold in the realm of shadows where ancient secrets await brave souls.",
+        images: [
+          "/lovable-uploads/a0c88e05-5aba-4550-8ee0-7644ad456776.png",
+          "/lovable-uploads/b303e6ac-f71f-4969-b8b5-b567e0c9bf95.png",
+          "/lovable-uploads/781ea40e-866e-4ee8-9bf7-862a42bb8716.png"
+        ]
+      }
     },
     {
-      year: 2018,
-      series: [
-        {
-          title: "Forest Whispers",
-          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series",
-          description: "The ancient forest holds secrets whispered by the wind through the trees."
-        },
-        {
-          title: "Desert Winds",
-          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series",
-          description: "Endless dunes hide treasures and dangers in the scorching desert."
-        },
-        {
-          title: "Arctic Quest",
-          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series",
-          description: "Brave the frozen wilderness in search of legendary artifacts."
-        },
-        {
-          title: "Jungle Mysteries",
-          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series",
-          description: "Uncover ancient civilizations hidden deep within the jungle canopy."
-        }
-      ]
+      year: 2024,
+      book: {
+        title: "Midnight Adventures",
+        description: "When the world sleeps, the greatest adventures begin under the starlit cosmic canvas.",
+        images: [
+          "/lovable-uploads/7b8f7dcc-b06f-4c89-b5af-906cd241ae0c.png",
+          "/lovable-uploads/907e2c66-ea0e-425d-8b48-a80ffcbd2267.png",
+          "/lovable-uploads/6fb6d014-0083-4f09-95a2-0416443da769.png"
+        ]
+      }
     },
     {
-      year: 2019,
-      series: [
-        {
-          title: "Stellar Journey",
-          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series",
-          description: "Embark on an interstellar voyage across the cosmos."
-        },
-        {
-          title: "Cosmic Realms",
-          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series",
-          description: "Explore dimensions beyond imagination in the cosmic realms."
-        },
-        {
-          title: "Galaxy Heroes",
-          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series",
-          description: "Heroes unite across galaxies to defend the universe from darkness."
-        },
-        {
-          title: "Nebula Chronicles",
-          image: "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
-          link: "/our-series",
-          description: "Chronicles of adventure spanning the colorful cosmic nebulae."
-        }
-      ]
+      year: 2025,
+      book: {
+        title: "Eternal Light Saga",
+        description: "The ultimate quest begins as warriors unite to defend their realm against eternal darkness.",
+        images: [
+          "/lovable-uploads/503cc23b-a28f-4564-86f9-53896fa75f10.png",
+          "/lovable-uploads/26efc76c-fa83-4369-8d8d-354eab1433e6.png",
+          "/lovable-uploads/0e70be33-bdfc-41db-8ae1-5c0dcf1b885c.png"
+        ]
+      }
+    },
+    {
+      year: 2026,
+      book: {
+        title: "Future Realms",
+        description: "Explore dimensions beyond imagination in the cosmic realms of tomorrow's adventures.",
+        images: [
+          "/lovable-uploads/b228d232-065b-464f-9ed7-c6fc2545dc27.png",
+          "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
+          "/lovable-uploads/e894503b-5d22-4a7a-9940-15abeb76e58b.png"
+        ]
+      }
     }
   ];
 
-  const handleYearClick = (year: number) => {
-    setSelectedYear(selectedYear === year ? null : year);
-  };
+  const cardSymbols = ['♠', '♥', '♦', '♣'];
 
   const selectedData = timelineData.find(data => data.year === selectedYear);
 
@@ -139,101 +82,112 @@ const YearlyTimeline = () => {
       }`}
     >
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
-            Our Publishing <span className="bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">Timeline</span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-red-700 mx-auto mb-6"></div>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Journey through the years of exceptional storytelling and discover the incredible series we've brought to life
-          </p>
-        </div>
-        
-        <div className="flex max-w-7xl mx-auto min-h-[600px]">
-          {/* Left Timeline */}
-          <div className="w-1/3 relative">
-            {/* Vertical line */}
-            <div className="absolute left-16 top-0 bottom-0 w-1 bg-red-500"></div>
-            
-            {/* Year points */}
-            <div className="relative space-y-16 pt-8">
-              {timelineData.map((yearData, index) => (
-                <div key={yearData.year} className="relative flex items-center">
-                  {/* Year button */}
-                  <button
-                    onClick={() => handleYearClick(yearData.year)}
-                    className={`relative z-10 w-16 h-16 rounded-full font-bold text-lg transition-all duration-300 flex items-center justify-center ${
-                      selectedYear === yearData.year
-                        ? 'bg-white text-red-600 shadow-lg'
-                        : 'bg-red-500 text-white hover:bg-red-400'
-                    }`}
-                  >
-                    {yearData.year}
-                  </button>
-                  
-                  {/* Connection dot to line */}
-                  <div className="absolute left-16 transform -translate-x-1/2 w-3 h-3 bg-red-500 rounded-full"></div>
-                </div>
-              ))}
-            </div>
+        {/* Top Year Selector */}
+        <div className="mb-16">
+          <div className="flex justify-center items-center space-x-12 mb-8">
+            {timelineData.map((yearData) => (
+              <button
+                key={yearData.year}
+                onClick={() => setSelectedYear(yearData.year)}
+                className={`text-2xl font-bold transition-all duration-300 hover:scale-110 ${
+                  selectedYear === yearData.year
+                    ? 'text-white'
+                    : 'text-red-500 hover:text-red-400'
+                }`}
+              >
+                {yearData.year}
+              </button>
+            ))}
           </div>
+        </div>
 
-          {/* Right Content Area */}
-          <div className="w-2/3 pl-12">
-            {selectedData ? (
-              <div className="transition-all duration-500 animate-fade-in">
-                {/* Header */}
-                <div className="mb-8">
-                  <div className="text-gray-400 text-sm mb-2">24-11-{selectedData.year}</div>
-                  <h3 className="text-3xl font-bold text-white mb-4">
-                    Publications from {selectedData.year}
-                  </h3>
-                </div>
-                
-                {/* Books Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                  {selectedData.series.map((series, index) => (
-                    <Link
-                      key={index}
-                      to={series.link}
-                      className="group block transform transition-all duration-300 hover:scale-105"
-                    >
-                      <div className="relative bg-gray-900 rounded-lg overflow-hidden shadow-lg group-hover:shadow-red-500/20 border border-gray-800 group-hover:border-red-500/30 transition-all duration-300">
-                        <div className="relative">
-                          <img 
-                            src={series.image}
-                            alt={series.title}
-                            className="w-full h-48 object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                          
-                          {/* Hover overlay */}
-                          <div className="absolute inset-0 bg-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        </div>
-                        
-                        <div className="p-4">
-                          <h4 className="text-white text-sm font-semibold group-hover:text-red-400 transition-colors duration-300 line-clamp-2">
-                            {series.title}
-                          </h4>
-                          <p className="text-gray-400 text-xs mt-2 line-clamp-2">
-                            {series.description}
-                          </p>
+        {/* Middle Content Section */}
+        {selectedData && (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+            {/* Left Section - Book Image Carousel */}
+            <div className="lg:col-span-1">
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                plugins={[
+                  Autoplay({
+                    delay: 3000,
+                  }),
+                ]}
+                className="w-full"
+              >
+                <CarouselContent>
+                  {selectedData.book.images.map((image, index) => (
+                    <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/3">
+                      <div className="p-1">
+                        <img 
+                          src={image}
+                          alt={`${selectedData.book.title} ${index + 1}`}
+                          className="w-full h-64 object-cover rounded-lg shadow-lg border border-gray-800"
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </div>
+
+            {/* Center Section - Book Info */}
+            <div className="lg:col-span-1 text-center space-y-6">
+              <div className="text-gray-400 text-sm">24-11-{selectedData.year}</div>
+              <h3 className="text-4xl font-bold text-white mb-4">
+                {selectedData.book.title}
+              </h3>
+              <p className="text-gray-300 text-lg leading-relaxed max-w-md mx-auto">
+                {selectedData.book.description}
+              </p>
+            </div>
+
+            {/* Right Section - Speed Cards Carousel */}
+            <div className="lg:col-span-1">
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                plugins={[
+                  Autoplay({
+                    delay: 2500,
+                  }),
+                ]}
+                className="w-full"
+              >
+                <CarouselContent>
+                  {cardSymbols.map((symbol, index) => (
+                    <CarouselItem key={index} className="basis-1/4">
+                      <div className="p-2">
+                        <div className="bg-white rounded-lg h-24 flex items-center justify-center shadow-lg border border-gray-300">
+                          <span className="text-4xl font-bold text-red-600">
+                            {symbol}
+                          </span>
                         </div>
                       </div>
-                    </Link>
+                    </CarouselItem>
                   ))}
-                </div>
-              </div>
-            ) : (
-              <div className="flex items-center justify-center h-full">
-                <div className="text-center">
-                  <div className="text-gray-500 text-lg mb-4">Select a year to view publications</div>
-                  <div className="text-gray-600 text-sm">Click on any year from the timeline</div>
-                </div>
-              </div>
-            )}
+                  {/* Duplicate for infinite scroll effect */}
+                  {cardSymbols.map((symbol, index) => (
+                    <CarouselItem key={`dup-${index}`} className="basis-1/4">
+                      <div className="p-2">
+                        <div className="bg-white rounded-lg h-24 flex items-center justify-center shadow-lg border border-gray-300">
+                          <span className="text-4xl font-bold text-red-600">
+                            {symbol}
+                          </span>
+                        </div>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );
