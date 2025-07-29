@@ -25,11 +25,6 @@ const CreativeCorner = () => {
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-4">
             <div className="h-px bg-gray-500 flex-1 max-w-16"></div>
-            <div className="flex items-center space-x-2 mx-4">
-              <div className="w-2 h-2 bg-gray-500"></div>
-              <div className="w-6 h-px bg-gray-500"></div>
-              <div className="w-2 h-2 bg-gray-500"></div>
-            </div>
             <h2 className="text-5xl font-bold text-white mb-4">
               CREATIVE <span className="text-red-500">SNIPPETS</span>
             </h2>
