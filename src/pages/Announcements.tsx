@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { BookOpen, Calendar, Share2, Bookmark, ChevronLeft, ChevronRight } from 'lucide-react';
+import { BookOpen, Calendar, Share2, Bookmark, ChevronLeft, ChevronRight, Bell } from 'lucide-react';
 import { useState } from 'react';
 
 const Announcements = () => {
@@ -213,6 +213,9 @@ const Announcements = () => {
         {/* Stay Updated Newsletter */}
         <section className="bg-muted rounded-lg p-8 mb-12">
           <div className="text-center max-w-2xl mx-auto">
+            <div className="w-16 h-16 bg-destructive rounded-full flex items-center justify-center mx-auto mb-6">
+              <Bell className="w-8 h-8 text-destructive-foreground" />
+            </div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Stay Updated</h2>
             <p className="text-muted-foreground mb-6">
               Download some exclusive content and get new update straight from online!
