@@ -121,7 +121,7 @@ const ProductCard = ({
             <Button 
               size="sm" 
               variant="outline" 
-              className="border-gray-600 text-black hover:bg-gray-700 hover:text-black text-xs transform hover:scale-105 transition-all duration-300 group/unlock"
+              className="bg-white border-gray-600 text-black hover:bg-gray-100 hover:text-black text-xs transform hover:scale-105 transition-all duration-300 group/unlock"
             >
               <Unlock className="w-3 h-3 mr-1 text-black group-hover/unlock:animate-bounce" />
               Unlock
