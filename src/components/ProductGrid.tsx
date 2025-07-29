@@ -7,7 +7,7 @@ const ProductGrid = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.1);
   const [activeSection, setActiveSection] = useState('new-releases');
 
-  const products = [
+  const newReleases = [
     {
       title: "One Piece Vol. 98",
       author: "Eiichiro Oda",
@@ -47,7 +47,49 @@ const ProductGrid = () => {
       rating: 4,
       canUnlockWithCoins: true,
       label: "Vol 16 coming soon"
+    }
+  ];
+
+  const bestSellers = [
+    {
+      title: "Naruto Complete Series",
+      author: "Masashi Kishimoto",
+      volume: "Adventure",
+      price: "$199.99",
+      coins: "19999 coins",
+      imageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
+      hoverImageUrl: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&h=600&fit=crop&crop=center",
+      rating: 5,
+      canUnlockWithCoins: true,
+      label: "Complete 700+ chapters"
     },
+    {
+      title: "Dragon Ball Z Ultimate",
+      author: "Akira Toriyama",
+      volume: "Action",
+      price: "$89.99",
+      coins: "8999 coins",
+      imageUrl: "https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?w=400&h=600&fit=crop&crop=center",
+      hoverImageUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&h=600&fit=crop&crop=center",
+      rating: 5,
+      canUnlockWithCoins: true,
+      label: "Legendary series"
+    },
+    {
+      title: "My Hero Academia Set",
+      author: "Kohei Horikoshi",
+      volume: "Superhero",
+      price: "$149.99",
+      coins: "14999 coins",
+      imageUrl: "https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=400&h=600&fit=crop&crop=center",
+      hoverImageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
+      rating: 5,
+      canUnlockWithCoins: false,
+      label: "Hero academia bundle"
+    }
+  ];
+
+  const leavingSoon = [
     {
       title: "Chainsaw Man Vol. 8",
       author: "Tatsuki Fujimoto",
@@ -58,7 +100,7 @@ const ProductGrid = () => {
       hoverImageUrl: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&h=600&fit=crop&crop=center",
       rating: 5,
       canUnlockWithCoins: true,
-      label: "Latest chapter available"
+      label: "Limited time offer"
     },
     {
       title: "Spy x Family Vol. 7",
@@ -70,7 +112,7 @@ const ProductGrid = () => {
       hoverImageUrl: "https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?w=400&h=600&fit=crop&crop=center",
       rating: 4,
       canUnlockWithCoins: true,
-      label: "Weekly chapters updated"
+      label: "Leaving in 7 days"
     },
     {
       title: "Tokyo Ghoul Vol. 14",
@@ -82,9 +124,22 @@ const ProductGrid = () => {
       hoverImageUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&h=600&fit=crop&crop=center",
       rating: 4,
       canUnlockWithCoins: false,
-      label: "Complete series available"
+      label: "Last chance"
     }
   ];
+
+  const getProductsForSection = () => {
+    switch (activeSection) {
+      case 'best-sellers':
+        return bestSellers;
+      case 'leaving-soon':
+        return leavingSoon;
+      default:
+        return newReleases;
+    }
+  };
+
+  const products = getProductsForSection();
 
   const handleSectionChange = (section: string) => {
     setActiveSection(section);
