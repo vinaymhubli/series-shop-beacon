@@ -109,6 +109,9 @@ const RecommendedSection = () => {
               <span className="relative z-10">Digital</span>
             </button>
             <button className="group bg-gray-700 text-gray-300 px-6 py-3 rounded-lg text-sm font-semibold hover:bg-gray-600 hover:text-white shadow-lg">
+              Print
+            </button>
+            <button className="group bg-gray-700 text-gray-300 px-6 py-3 rounded-lg text-sm font-semibold hover:bg-gray-600 hover:text-white shadow-lg">
               Merchandise
             </button>
           </div>
