@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { X } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -19,9 +20,9 @@ const CreatorApplicationForm = ({ onClose }: CreatorApplicationFormProps) => {
     country: '',
     socialMedia: '',
     portfolio: '',
-    experience: '',
     genre: '',
-    projectDescription: '',
+    seriesLength: '',
+    synopsis: '',
     timeline: '',
     additionalInfo: ''
   });
@@ -45,6 +46,13 @@ const CreatorApplicationForm = ({ onClose }: CreatorApplicationFormProps) => {
     }));
   };
 
+  const handleSelectChange = (name: string) => (value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
   const resetForm = () => {
     setIsSubmitted(false);
     setFormData({
@@ -54,9 +62,9 @@ const CreatorApplicationForm = ({ onClose }: CreatorApplicationFormProps) => {
       country: '',
       socialMedia: '',
       portfolio: '',
-      experience: '',
       genre: '',
-      projectDescription: '',
+      seriesLength: '',
+      synopsis: '',
       timeline: '',
       additionalInfo: ''
     });
@@ -210,54 +218,67 @@ const CreatorApplicationForm = ({ onClose }: CreatorApplicationFormProps) => {
             />
           </div>
 
-          <div>
-            <Label htmlFor="experience" className="text-gray-300 mb-2 block">
-              Experience Level *
-            </Label>
-            <Textarea
-              id="experience"
-              name="experience"
-              value={formData.experience}
-              onChange={handleInputChange}
-              className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-red-500 min-h-[80px]"
-              placeholder="Describe your experience in creating content..."
-              required
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <Label htmlFor="genre" className="text-gray-300 mb-2 block">
+                Genre *
+              </Label>
+              <Select value={formData.genre} onValueChange={handleSelectChange('genre')}>
+                <SelectTrigger className="bg-gray-700 border-gray-600 text-white focus:border-red-500">
+                  <SelectValue placeholder="Select genre" />
+                </SelectTrigger>
+                <SelectContent className="bg-gray-700 border-gray-600 z-50">
+                  <SelectItem value="romance" className="text-white hover:bg-gray-600">Romance</SelectItem>
+                  <SelectItem value="fantasy" className="text-white hover:bg-gray-600">Fantasy</SelectItem>
+                  <SelectItem value="mystery" className="text-white hover:bg-gray-600">Mystery</SelectItem>
+                  <SelectItem value="thriller" className="text-white hover:bg-gray-600">Thriller</SelectItem>
+                  <SelectItem value="drama" className="text-white hover:bg-gray-600">Drama</SelectItem>
+                  <SelectItem value="comedy" className="text-white hover:bg-gray-600">Comedy</SelectItem>
+                  <SelectItem value="action" className="text-white hover:bg-gray-600">Action</SelectItem>
+                  <SelectItem value="sci-fi" className="text-white hover:bg-gray-600">Science Fiction</SelectItem>
+                  <SelectItem value="horror" className="text-white hover:bg-gray-600">Horror</SelectItem>
+                  <SelectItem value="historical" className="text-white hover:bg-gray-600">Historical Fiction</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label htmlFor="seriesLength" className="text-gray-300 mb-2 block">
+                Series Length *
+              </Label>
+              <Select value={formData.seriesLength} onValueChange={handleSelectChange('seriesLength')}>
+                <SelectTrigger className="bg-gray-700 border-gray-600 text-white focus:border-red-500">
+                  <SelectValue placeholder="Select series length" />
+                </SelectTrigger>
+                <SelectContent className="bg-gray-700 border-gray-600 z-50">
+                  <SelectItem value="novella" className="text-white hover:bg-gray-600">Novella (20,000-50,000 words)</SelectItem>
+                  <SelectItem value="novel" className="text-white hover:bg-gray-600">Novel (50,000-100,000 words)</SelectItem>
+                  <SelectItem value="series-3" className="text-white hover:bg-gray-600">Trilogy (3 books)</SelectItem>
+                  <SelectItem value="series-5" className="text-white hover:bg-gray-600">Pentalogy (5 books)</SelectItem>
+                  <SelectItem value="series-ongoing" className="text-white hover:bg-gray-600">Ongoing Series (6+ books)</SelectItem>
+                  <SelectItem value="anthology" className="text-white hover:bg-gray-600">Anthology Collection</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
           <div>
-            <Label htmlFor="genre" className="text-gray-300 mb-2 block">
-              Preferred Genre/Style *
-            </Label>
-            <Input
-              id="genre"
-              name="genre"
-              value={formData.genre}
-              onChange={handleInputChange}
-              className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-red-500"
-              placeholder="Romance, Action, Fantasy, etc."
-              required
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="projectDescription" className="text-gray-300 mb-2 block">
-              Project Description *
+            <Label htmlFor="synopsis" className="text-gray-300 mb-2 block">
+              Book Synopsis *
             </Label>
             <Textarea
-              id="projectDescription"
-              name="projectDescription"
-              value={formData.projectDescription}
+              id="synopsis"
+              name="synopsis"
+              value={formData.synopsis}
               onChange={handleInputChange}
               className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-red-500 min-h-[120px]"
-              placeholder="Tell us about your project idea..."
+              placeholder="Provide a compelling synopsis of your book, including main characters, central conflict, and what makes your story unique..."
               required
             />
           </div>
 
           <div>
             <Label htmlFor="timeline" className="text-gray-300 mb-2 block">
-              Expected Timeline
+              Manuscript Completion Timeline
             </Label>
             <Input
               id="timeline"
@@ -265,13 +286,13 @@ const CreatorApplicationForm = ({ onClose }: CreatorApplicationFormProps) => {
               value={formData.timeline}
               onChange={handleInputChange}
               className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-red-500"
-              placeholder="When do you plan to complete your project?"
+              placeholder="When do you plan to complete your manuscript?"
             />
           </div>
 
           <div>
             <Label htmlFor="additionalInfo" className="text-gray-300 mb-2 block">
-              Additional Information
+              Author Bio & Additional Information
             </Label>
             <Textarea
               id="additionalInfo"
@@ -279,7 +300,7 @@ const CreatorApplicationForm = ({ onClose }: CreatorApplicationFormProps) => {
               value={formData.additionalInfo}
               onChange={handleInputChange}
               className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-red-500 min-h-[80px]"
-              placeholder="Anything else you'd like us to know..."
+              placeholder="Tell us about yourself as an author, your writing style, target audience, and any previous publications..."
             />
           </div>
 
