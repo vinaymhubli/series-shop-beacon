@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Calendar, ExternalLink, Star } from 'lucide-react';
+import { Calendar, ExternalLink, Star, Heart, Diamond, Club, Spade } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const AnnouncementsSection = () => {
@@ -69,6 +69,16 @@ const AnnouncementsSection = () => {
                   alt={announcement.title}
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
                 />
+                
+                {/* Card suit symbol */}
+                <div className="absolute top-3 right-3">
+                  <div className="bg-red-500 rounded-full p-2 shadow-lg">
+                    {index === 0 && <Heart className="w-4 h-4 text-white" />}
+                    {index === 1 && <Diamond className="w-4 h-4 text-white" />}
+                    {index === 2 && <Club className="w-4 h-4 text-white" />}
+                    {index > 2 && <Spade className="w-4 h-4 text-white" />}
+                  </div>
+                </div>
                 
                 {/* Badges */}
                 <div className="absolute top-3 left-3 space-y-2">
