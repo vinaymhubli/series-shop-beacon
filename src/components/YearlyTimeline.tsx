@@ -162,7 +162,7 @@ const YearlyTimeline = () => {
                   {cardSymbols.map((symbol, index) => (
                     <CarouselItem key={index} className="basis-full">
                       <div className="flex justify-center">
-                        <div className="bg-white rounded-lg h-24 w-24 flex items-center justify-center shadow-lg border border-gray-300">
+                        <div className="bg-white rounded-lg w-full max-w-sm h-64 flex items-center justify-center shadow-lg border border-gray-300">
                           <span className="text-4xl font-bold text-red-600">
                             {symbol}
                           </span>
