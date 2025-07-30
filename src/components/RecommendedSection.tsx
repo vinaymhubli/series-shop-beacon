@@ -128,8 +128,7 @@ const RecommendedSection = () => {
                   <h3 className="text-2xl font-bold text-white tracking-wider">{genre.name}</h3>
                   <Button 
                     onClick={() => handleGenreClick(genre.filter)}
-                    variant="outline"
-                    className="text-black border-gray-600 hover:bg-white hover:text-black transition-all duration-300"
+                    className="bg-white text-black hover:bg-gray-100 hover:text-black transition-all duration-300"
                   >
                     View All
                   </Button>
