@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Heart, ShoppingCart, Star, Eye } from 'lucide-react';
+import { Diamond, ShoppingCart, Star, Eye } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const ShopGrid = () => {
@@ -146,18 +146,6 @@ const ShopGrid = () => {
                   )}
                 </div>
 
-                {/* Heart button */}
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
-                  className="absolute top-3 right-3 text-white hover:bg-black/60 hover:text-red-400 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    console.log('❤️ Added to wishlist:', product.title);
-                  }}
-                >
-                  <Heart className="w-4 h-4 transition-transform duration-300 group-hover:animate-pulse" />
-                </Button>
 
                 {/* Quick view button - appears on hover */}
                 {hoveredProduct === product.id && (
@@ -198,7 +186,20 @@ const ShopGrid = () => {
                   )}
                 </div>
                 
-                <h3 className="text-white font-semibold text-lg truncate group-hover:text-red-300 transition-colors duration-300">{product.title}</h3>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-white font-semibold text-lg truncate group-hover:text-red-300 transition-colors duration-300 flex-1 mr-2">{product.title}</h3>
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    className="text-red-500 hover:text-red-400 hover:bg-red-500/10 transition-all duration-300 transform hover:scale-110 w-8 h-8 flex-shrink-0"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      console.log('💎 Added to wishlist:', product.title);
+                    }}
+                  >
+                    <Diamond className="w-4 h-4 transition-transform duration-300 group-hover:animate-pulse" />
+                  </Button>
+                </div>
                 <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">{product.author}</p>
                 
                 <div className="flex items-center justify-between">

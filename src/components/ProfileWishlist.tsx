@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { Heart, ShoppingCart } from 'lucide-react';
+import { Diamond, ShoppingCart } from 'lucide-react';
 
 const ProfileWishlist = () => {
   const wishlistItems = [
@@ -25,7 +25,7 @@ const ProfileWishlist = () => {
     <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-xl font-semibold text-white flex items-center gap-2">
-          <Heart className="w-5 h-5 text-red-400" />
+          <Diamond className="w-5 h-5 text-red-400" />
           Wishlist
         </h3>
         <button className="text-red-400 hover:text-red-300 text-sm font-medium">

@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Heart, Star, ShoppingCart, Plus, Minus, ArrowLeft, Truck, Shield, RotateCcw } from 'lucide-react';
+import { Diamond, Star, ShoppingCart, Plus, Minus, ArrowLeft, Truck, Shield, RotateCcw } from 'lucide-react';
 
 const PreOrder = () => {
   const { productId } = useParams();
@@ -114,14 +114,6 @@ const PreOrder = () => {
                 )}
               </div>
 
-              {/* Wishlist Button */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="absolute top-4 right-4 text-white hover:bg-black/60 hover:text-red-400 backdrop-blur-sm"
-              >
-                <Heart className="w-5 h-5" />
-              </Button>
             </div>
 
             {/* Thumbnail Images */}

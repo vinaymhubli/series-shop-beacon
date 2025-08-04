@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { Heart, Unlock, ShoppingCart, Diamond, Club, Spade } from 'lucide-react';
+import { Unlock, ShoppingCart, Diamond } from 'lucide-react';
 import { useState } from 'react';
 
 interface ProductCardProps {
@@ -74,14 +74,6 @@ const ProductCard = ({
           </div>
         )}
 
-        {/* Heart button */}
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          className="absolute bottom-3 right-3 text-white hover:bg-black/60 hover:text-red-400 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm"
-        >
-          <Heart className="w-4 h-4 transition-transform duration-300 group-hover:animate-pulse" />
-        </Button>
 
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -91,7 +83,17 @@ const ProductCard = ({
         <div className="flex-1 space-y-3">
           <div className="flex items-center justify-between">
             <h3 className="text-white font-semibold text-lg truncate group-hover:text-red-300 transition-colors duration-300 flex-1 mr-2">{title}</h3>
-            <SymbolIcon className={`w-5 h-5 ${symbolColor} transition-colors duration-300 flex-shrink-0`} />
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="text-red-500 hover:text-red-400 hover:bg-red-500/10 transition-all duration-300 transform hover:scale-110 w-8 h-8 flex-shrink-0"
+              onClick={(e) => {
+                e.stopPropagation();
+                // Add to favorites functionality
+              }}
+            >
+              <Diamond className="w-4 h-4 transition-transform duration-300 group-hover:animate-pulse" />
+            </Button>
           </div>
           <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">{author}</p>
           <p className="text-gray-500 text-xs uppercase tracking-wide">{volume}</p>
