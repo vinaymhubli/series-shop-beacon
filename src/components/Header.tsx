@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Menu, X, Search, ShoppingCart, User } from 'lucide-react';
+import { Menu, X, Search, ShoppingCart, User, Heart, Library } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
 import { CoinDisplay } from '@/components/CoinDisplay';
@@ -61,6 +61,20 @@ const Header = () => {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className="text-gray-300 hover:text-red-400 hover:bg-red-500/10 transition-all duration-300"
+            >
+              <Heart className="w-5 h-5" />
+            </Button>
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className="text-gray-300 hover:text-blue-400 hover:bg-blue-500/10 transition-all duration-300"
+            >
+              <Library className="w-5 h-5" />
+            </Button>
             <CoinDisplay />
             <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
               <Search className="h-5 w-5" />
