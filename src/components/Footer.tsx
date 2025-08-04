@@ -44,9 +44,7 @@ const Footer = () => {
     },
     {
       title: "Our Imprints",
-      links: [
-        "K-NOVEL PRESS"
-      ]
+      links: []
     }
   ];
 
@@ -86,19 +84,44 @@ const Footer = () => {
               style={{ transitionDelay: `${200 + index * 150}ms` }}
             >
               <h3 className="text-red-500 font-semibold mb-3 sm:mb-4 text-base sm:text-lg">{section.title}</h3>
-              <ul className="space-y-1.5 sm:space-y-2">
-                {section.links.map((link, linkIndex) => (
-                  <li key={linkIndex}>
-                    {linkIndex === 0 && index === 0 ? (
-                      <p className="text-xs sm:text-sm text-gray-500 leading-relaxed px-2 sm:px-0">{link}</p>
-                    ) : (
-                      <a href="#" className="text-xs sm:text-sm hover:text-white transition-colors duration-200 transform hover:translate-x-1 block px-2 sm:px-0 py-1">
-                        {link}
-                      </a>
-                    )}
-                  </li>
-                ))}
-              </ul>
+              {index === 4 ? (
+                <div className="flex flex-col space-y-3 items-center sm:items-start">
+                  <img 
+                    src="/lovable-uploads/c63bffdb-4754-4d64-8063-6ac8bba72106.png" 
+                    alt="GL Ami Pop" 
+                    className="h-8 w-auto"
+                  />
+                  <img 
+                    src="/lovable-uploads/298cc90c-2dff-4daf-b31b-2ebe77649735.png" 
+                    alt="UE" 
+                    className="h-8 w-auto"
+                  />
+                  <img 
+                    src="/lovable-uploads/0eb9fe03-348b-4a44-a643-6c8dfbba66a9.png" 
+                    alt="BL Club" 
+                    className="h-8 w-auto"
+                  />
+                  <img 
+                    src="/lovable-uploads/9c2bfe8c-6585-45b0-bc73-7b72048725ee.png" 
+                    alt="Novel" 
+                    className="h-8 w-auto"
+                  />
+                </div>
+              ) : (
+                <ul className="space-y-1.5 sm:space-y-2">
+                  {section.links.map((link, linkIndex) => (
+                    <li key={linkIndex}>
+                      {linkIndex === 0 && index === 0 ? (
+                        <p className="text-xs sm:text-sm text-gray-500 leading-relaxed px-2 sm:px-0">{link}</p>
+                      ) : (
+                        <a href="#" className="text-xs sm:text-sm hover:text-white transition-colors duration-200 transform hover:translate-x-1 block px-2 sm:px-0 py-1">
+                          {link}
+                        </a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))}
         </div>
