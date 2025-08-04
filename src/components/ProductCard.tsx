@@ -16,7 +16,8 @@ interface ProductCardProps {
   isOnSale?: boolean;
   canUnlockWithCoins?: boolean;
   label?: string;
-  cardIndex?: number; // Add index to determine which symbol to show
+  tagIcon?: 'heart' | 'hot' | 'new' | 'limited' | 'bestseller';
+  tagText?: string;
 }
 
 const ProductCard = ({ 
@@ -32,13 +33,20 @@ const ProductCard = ({
   isOnSale,
   canUnlockWithCoins = true,
   label,
-  cardIndex = 0
+  tagIcon,
+  tagText
 }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  // Use red diamond for all books
-  const SymbolIcon = Diamond;
-  const symbolColor = 'text-red-500';
+  // Function to get tag icon (will be customizable based on tagIcon prop)
+  const getTagIcon = () => {
+    if (!tagIcon) return null;
+    
+    // For now using Diamond as placeholder - will be replaced with client's icons
+    return Diamond;
+  };
+
+  const TagIcon = getTagIcon();
 
   return (
     <div 
@@ -95,7 +103,15 @@ const ProductCard = ({
               <Diamond className="w-4 h-4 transition-transform duration-300 group-hover:animate-pulse" />
             </Button>
           </div>
-          <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">{author}</p>
+          <div className="flex items-center justify-between">
+            <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300 flex-1">{author}</p>
+            {tagIcon && tagText && TagIcon && (
+              <div className="flex items-center space-x-1 bg-gradient-to-r from-red-600/20 to-red-700/20 border border-red-500/30 text-red-400 text-xs font-semibold px-2 py-1 rounded-full shadow-sm">
+                <TagIcon className="w-3 h-3" />
+                <span>{tagText}</span>
+              </div>
+            )}
+          </div>
           <p className="text-gray-500 text-xs uppercase tracking-wide">{volume}</p>
           
           <div className="flex items-center justify-between">

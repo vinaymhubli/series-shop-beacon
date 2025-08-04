@@ -219,7 +219,7 @@ const ProductGrid = () => {
               }}
             >
               <div className="relative">
-                <ProductCard {...product} cardIndex={index} />
+                <ProductCard {...product} />
                 {/* Hover glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-t from-red-500/0 via-red-500/5 to-red-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg pointer-events-none"></div>
               </div>
