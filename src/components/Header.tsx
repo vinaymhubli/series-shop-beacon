@@ -27,10 +27,17 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/">
+              {/* Mobile logo */}
+              <img 
+                src="/lovable-uploads/fdd0cb0d-369d-4e2c-b325-fd7bac14abc3.png" 
+                alt="Hearts"
+                className="h-12 w-auto block sm:hidden"
+              />
+              {/* Desktop logo */}
               <img 
                 src="/lovable-uploads/d2efe27c-7713-4015-9de8-ea1ddfbe2830.png" 
                 alt="Crossed Hearts"
-                className="h-16 w-auto"
+                className="h-16 w-auto hidden sm:block"
               />
             </Link>
           </div>

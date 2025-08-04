@@ -62,10 +62,17 @@ const Footer = () => {
         <div className={`flex justify-center sm:justify-start mb-6 sm:mb-8 transition-all duration-700 transform ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}>
+          {/* Mobile logo */}
+          <img 
+            src="/lovable-uploads/fdd0cb0d-369d-4e2c-b325-fd7bac14abc3.png" 
+            alt="Hearts"
+            className="h-14 w-auto block sm:hidden"
+          />
+          {/* Desktop logo */}
           <img 
             src="/lovable-uploads/d2efe27c-7713-4015-9de8-ea1ddfbe2830.png" 
             alt="Crossed Hearts"
-            className="h-16 w-auto sm:h-20 sm:w-auto"
+            className="h-16 w-auto sm:h-20 sm:w-auto hidden sm:block"
           />
         </div>
 
