@@ -63,9 +63,9 @@ const Footer = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}>
           <img 
-            src="/lovable-uploads/e894503b-5d22-4a7a-9940-15abeb76e58b.png" 
+            src="/lovable-uploads/464d8ea7-d84c-4d59-a0dc-01715d6ce881.png" 
             alt="Crossed Hearts" 
-            className="h-10 w-24 sm:h-12 sm:w-28"
+            className="h-10 w-auto sm:h-12 sm:w-auto"
           />
         </div>
 
