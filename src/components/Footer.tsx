@@ -65,7 +65,7 @@ const Footer = () => {
           <img 
             src="/lovable-uploads/d2efe27c-7713-4015-9de8-ea1ddfbe2830.png" 
             alt="Crossed Hearts"
-            className="h-10 w-auto sm:h-12 sm:w-auto"
+            className="h-16 w-auto sm:h-20 sm:w-auto"
           />
         </div>
 
