@@ -28,8 +28,8 @@ const Header = () => {
           <div className="flex items-center">
             <Link to="/">
               <img 
-                src="/lovable-uploads/464d8ea7-d84c-4d59-a0dc-01715d6ce881.png" 
-                alt="Crossed Hearts" 
+                src="/lovable-uploads/d2efe27c-7713-4015-9de8-ea1ddfbe2830.png" 
+                alt="Crossed Hearts"
                 className="h-10 w-auto"
               />
             </Link>
