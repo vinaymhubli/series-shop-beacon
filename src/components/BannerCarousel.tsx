@@ -75,7 +75,7 @@ const BannerCarousel = ({
     }, autoPlayInterval);
 
     return () => clearInterval(interval);
-  }, [autoPlay, autoPlayInterval, activeBanners.length]);
+  }, [autoPlay, autoPlayInterval, activeBanners.length, currentIndex]);
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
