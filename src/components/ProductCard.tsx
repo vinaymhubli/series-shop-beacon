@@ -50,7 +50,7 @@ const ProductCard = ({
 
   return (
     <div 
-      className="group bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden hover:from-gray-750 hover:to-gray-850 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 border border-gray-700/50 hover:border-red-500/30 min-h-[520px] flex flex-col"
+      className="group bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden hover:from-gray-750 hover:to-gray-850 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20 border border-gray-700/50 hover:border-red-500/30 min-h-[560px] max-w-[280px] flex flex-col"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -58,7 +58,7 @@ const ProductCard = ({
         <img 
           src={isHovered && hoverImageUrl ? hoverImageUrl : imageUrl} 
           alt={title}
-          className="w-full h-80 object-cover group-hover:scale-110 transition-all duration-700"
+          className="w-full h-96 object-cover group-hover:scale-110 transition-all duration-700"
         />
         
         {/* Enhanced badges with longer labels */}
@@ -127,22 +127,29 @@ const ProductCard = ({
           </div>
         </div>
         
-        <div className="flex space-x-2 pt-2 mt-auto">
+        <div className="flex flex-col space-y-2 pt-2 mt-auto">
           <Button 
             size="sm" 
-            className="flex-1 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-red-500/25"
+            className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-red-500/25"
           >
             <ShoppingCart className="w-3 h-3 mr-1" />
             Add to Cart
           </Button>
+          <Button 
+            size="sm" 
+            variant="outline"
+            className="w-full bg-white border-gray-600 text-black hover:bg-gray-100 hover:text-black text-xs transform hover:scale-105 transition-all duration-300"
+          >
+            Buy Now
+          </Button>
           {canUnlockWithCoins && (
             <Button 
               size="sm" 
-              variant="outline" 
-              className="bg-white border-gray-600 text-black hover:bg-gray-100 hover:text-black text-xs transform hover:scale-105 transition-all duration-300 group/unlock"
+              variant="ghost" 
+              className="w-full text-gray-400 hover:text-white text-xs border border-gray-600 hover:border-gray-500"
             >
-              <Unlock className="w-3 h-3 mr-1 text-black group-hover/unlock:animate-bounce" />
-              Unlock
+              <Unlock className="w-3 h-3 mr-1" />
+              Unlock with {coins}
             </Button>
           )}
         </div>

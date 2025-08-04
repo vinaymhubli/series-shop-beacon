@@ -212,14 +212,25 @@ const ShopGrid = () => {
                   <span className="text-gray-400 text-xs">{product.coins}</span>
                 </div>
                 
-                <div className="flex space-x-2 pt-2">
+                <div className="flex flex-col space-y-2 pt-2">
                   <Button 
                     size="sm" 
-                    className="flex-1 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-red-500/25"
+                    className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-red-500/25"
                     onClick={(e) => handleAddToCart(e, product.id)}
                   >
                     <ShoppingCart className="w-3 h-3 mr-1" />
                     Add to Cart
+                  </Button>
+                  <Button 
+                    size="sm" 
+                    variant="outline"
+                    className="w-full bg-white border-gray-600 text-black hover:bg-gray-100 hover:text-black text-xs transform hover:scale-105 transition-all duration-300"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/checkout/${product.id}`);
+                    }}
+                  >
+                    Buy Now
                   </Button>
                 </div>
               </div>
