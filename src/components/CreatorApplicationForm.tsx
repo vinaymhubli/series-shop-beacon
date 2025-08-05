@@ -319,8 +319,8 @@ const CreatorApplicationForm = ({ onClose }: CreatorApplicationFormProps) => {
           {/* File Upload Fields */}
           <div className="space-y-4">
             <div>
-              <Label className="text-white mb-2 block text-lg font-bold">
-                YOUR QUERY LETTER
+              <Label htmlFor="queryLetter" className="text-gray-300 mb-2 block">
+                Query Letter *
               </Label>
               <div className="relative">
                 <input
@@ -330,17 +330,20 @@ const CreatorApplicationForm = ({ onClose }: CreatorApplicationFormProps) => {
                   onChange={handleFileChange('queryLetter')}
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                 />
-                <div className="bg-red-600 border border-red-500 rounded-lg p-4 flex items-center justify-between cursor-pointer hover:bg-red-700 transition-colors">
-                  <span className="text-white font-medium">
-                    {formData.queryLetter ? formData.queryLetter.name : 'ATTACH YOUR QUERY LETTER*'}
+                <div className="bg-gray-700 border border-gray-600 rounded-md p-3 flex items-center justify-between cursor-pointer hover:border-red-500 transition-colors">
+                  <span className="text-white">
+                    {formData.queryLetter ? formData.queryLetter.name : 'Attach your query letter'}
                   </span>
-                  <Paperclip className="w-6 h-6 text-white" />
+                  <Paperclip className="w-5 h-5 text-gray-400" />
                 </div>
               </div>
-              <p className="text-gray-400 text-sm mt-1">PDFs, Words, PPT are Preferable</p>
+              <p className="text-gray-400 text-sm mt-1">PDFs, Word docs, PPT are preferable</p>
             </div>
 
             <div>
+              <Label htmlFor="firstChapters" className="text-gray-300 mb-2 block">
+                First Three Chapters *
+              </Label>
               <div className="relative">
                 <input
                   type="file"
@@ -349,13 +352,14 @@ const CreatorApplicationForm = ({ onClose }: CreatorApplicationFormProps) => {
                   onChange={handleFileChange('firstChapters')}
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                 />
-                <div className="bg-red-600 border border-red-500 rounded-lg p-4 flex items-center justify-between cursor-pointer hover:bg-red-700 transition-colors">
-                  <span className="text-white font-medium">
-                    {formData.firstChapters ? formData.firstChapters.name : 'ATTACH YOUR FIRST THREE CHAPTERS HERE*'}
+                <div className="bg-gray-700 border border-gray-600 rounded-md p-3 flex items-center justify-between cursor-pointer hover:border-red-500 transition-colors">
+                  <span className="text-white">
+                    {formData.firstChapters ? formData.firstChapters.name : 'Attach your first three chapters'}
                   </span>
-                  <Paperclip className="w-6 h-6 text-white" />
+                  <Paperclip className="w-5 h-5 text-gray-400" />
                 </div>
               </div>
+              <p className="text-gray-400 text-sm mt-1">PDFs, Word docs, PPT are preferable</p>
             </div>
           </div>
 
