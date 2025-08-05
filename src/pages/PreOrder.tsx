@@ -137,7 +137,7 @@ const PreOrder = () => {
             </div>
 
             {/* Right Side - Product Details */}
-            <div className="space-y-4 min-h-96 py-8 w-full flex-1 pl-12">
+            <div className="space-y-4 min-h-96 py-8 w-full flex-1 pl-12 pr-8">
               {/* Genre Tags */}
               <div className="flex flex-wrap gap-2">
                 {product.genres.slice(0, 4).map((genre, index) => (
