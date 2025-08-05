@@ -23,23 +23,39 @@ export function ScreenshotProtection({ children, isProtected = true }: Screensho
       const screenshotCombos = [
         // Windows/Linux: Print Screen, Alt+Print Screen, Windows+Print Screen
         e.key === 'PrintScreen',
+        e.code === 'PrintScreen',
         // macOS: Cmd+Shift+3, Cmd+Shift+4, Cmd+Shift+5
         (e.metaKey && e.shiftKey && ['3', '4', '5'].includes(e.key)),
+        (e.metaKey && e.shiftKey && ['Digit3', 'Digit4', 'Digit5'].includes(e.code)),
+        // Windows key + Print Screen
+        (e.metaKey && e.key === 'PrintScreen'),
+        (e.metaKey && e.code === 'PrintScreen'),
         // Some apps: Ctrl+Shift+S
         (e.ctrlKey && e.shiftKey && e.key === 'S'),
+        (e.ctrlKey && e.shiftKey && e.code === 'KeyS'),
         // Additional shortcuts
         (e.ctrlKey && e.key === 'p'), // Print
         (e.metaKey && e.key === 'p'), // Print on Mac
+        (e.ctrlKey && e.code === 'KeyP'),
+        (e.metaKey && e.code === 'KeyP'),
+        // Alt + Print Screen
+        (e.altKey && e.key === 'PrintScreen'),
+        (e.altKey && e.code === 'PrintScreen'),
+        // Snipping tool shortcuts
+        (e.metaKey && e.shiftKey && e.key === 's'),
+        (e.metaKey && e.shiftKey && e.code === 'KeyS'),
       ];
 
       if (screenshotCombos.some(combo => combo)) {
         e.preventDefault();
         e.stopPropagation();
+        e.stopImmediatePropagation();
         handleScreenshotAttempt();
         // Clear clipboard
         if (navigator.clipboard) {
-          navigator.clipboard.writeText('Screenshot disabled for protected content');
+          navigator.clipboard.writeText('Screenshot disabled for protected content').catch(() => {});
         }
+        return false;
       }
     };
 
@@ -88,24 +104,68 @@ export function ScreenshotProtection({ children, isProtected = true }: Screensho
       }, 5000);
     };
 
-    // Add event listeners
-    document.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('keydown', handleDevTools);
+    // Disable image dragging globally
+    const handleDragStart = (e: DragEvent) => {
+      e.preventDefault();
+      return false;
+    };
+
+    const handleSelectStart = (e: Event) => {
+      e.preventDefault();
+      return false;
+    };
+
+    // Additional keyboard protection
+    const handleKeyUp = (e: KeyboardEvent) => {
+      if (e.key === 'PrintScreen' || e.code === 'PrintScreen') {
+        e.preventDefault();
+        handleScreenshotAttempt();
+        return false;
+      }
+    };
+
+    // Detect window focus changes (potential screenshot tools)
+    const handleWindowBlur = () => {
+      if (!isDetecting) {
+        isDetecting = true;
+        setTimeout(() => {
+          isDetecting = false;
+        }, 200);
+        handleScreenshotAttempt();
+      }
+    };
+
+    // Add event listeners with capture phase
+    document.addEventListener('keydown', handleKeyDown, true);
+    document.addEventListener('keyup', handleKeyUp, true);
+    document.addEventListener('keydown', handleDevTools, true);
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    document.addEventListener('contextmenu', handleContextMenu);
+    document.addEventListener('contextmenu', handleContextMenu, true);
+    document.addEventListener('dragstart', handleDragStart, true);
+    document.addEventListener('selectstart', handleSelectStart, true);
+    window.addEventListener('blur', handleWindowBlur);
 
     // Disable text selection and drag
     if (contentRef.current) {
-      contentRef.current.style.userSelect = 'none';
-      contentRef.current.style.webkitUserSelect = 'none';
-      contentRef.current.style.pointerEvents = 'auto';
+      const element = contentRef.current as any;
+      element.style.userSelect = 'none';
+      element.style.webkitUserSelect = 'none';
+      element.style.mozUserSelect = 'none';
+      element.style.msUserSelect = 'none';
+      element.style.webkitTouchCallout = 'none';
+      element.style.webkitUserDrag = 'none';
+      element.style.pointerEvents = 'auto';
     }
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('keydown', handleDevTools);
+      document.removeEventListener('keydown', handleKeyDown, true);
+      document.removeEventListener('keyup', handleKeyUp, true);
+      document.removeEventListener('keydown', handleDevTools, true);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
-      document.removeEventListener('contextmenu', handleContextMenu);
+      document.removeEventListener('contextmenu', handleContextMenu, true);
+      document.removeEventListener('dragstart', handleDragStart, true);
+      document.removeEventListener('selectstart', handleSelectStart, true);
+      window.removeEventListener('blur', handleWindowBlur);
     };
   }, [isProtected]);
 
@@ -137,7 +197,9 @@ export function ScreenshotProtection({ children, isProtected = true }: Screensho
           WebkitUserSelect: 'none',
           MozUserSelect: 'none',
           msUserSelect: 'none'
-        }}
+        } as React.CSSProperties}
+        onDragStart={(e) => e.preventDefault()}
+        onContextMenu={(e) => e.preventDefault()}
       >
         {children}
         
