@@ -115,7 +115,7 @@ const PreOrder = () => {
       {/* Large Hero Background Image */}
       <div 
         className="relative h-96 bg-cover bg-center"
-        style={{ backgroundImage: `url(${product.heroImage})` }}
+        style={{ backgroundImage: `url(/lovable-uploads/d522b69b-374c-4e60-8a32-3d03d6f05828.png)` }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-30"></div>
       </div>
