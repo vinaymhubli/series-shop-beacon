@@ -109,177 +109,145 @@ const PreOrder = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-black">
       <Header />
       
-      {/* Hero Section with Background Image */}
+      {/* Large Hero Background Image */}
       <div 
-        className="relative h-80 bg-cover bg-center"
+        className="relative h-96 bg-cover bg-center"
         style={{ backgroundImage: `url(${product.heroImage})` }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div className="relative z-10 h-full flex items-end">
-          <div className="container mx-auto px-4 pb-8">
-            <Button
-              variant="ghost"
-              onClick={() => navigate(-1)}
-              className="text-white hover:text-gray-300 mb-4"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Shop
-            </Button>
-          </div>
-        </div>
+        <div className="absolute inset-0 bg-black bg-opacity-30"></div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
-        {/* Product Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-          {/* Book Cover */}
-          <div className="lg:col-span-1">
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <img
-                src={product.coverImage}
-                alt={product.title}
-                className="w-full max-w-64 mx-auto rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-
-          {/* Product Details */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Genre Tags */}
-            <div className="flex flex-wrap gap-2">
-              {product.genres.map((genre, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded uppercase tracking-wide"
-                >
-                  {genre}
-                </span>
-              ))}
+      {/* Main Content Container */}
+      <div className="bg-black">
+        <div className="container mx-auto px-4 py-8">
+          {/* Product Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            {/* Left Side - Book Cover */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="w-80">
+                <img
+                  src={product.coverImage}
+                  alt={product.title}
+                  className="w-full rounded-lg shadow-2xl"
+                />
+              </div>
             </div>
 
-            {/* Series Title (Clickable) */}
-            <div>
-              <button
-                onClick={handleSeriesClick}
-                className="text-3xl lg:text-4xl font-bold text-white hover:text-red-400 transition-colors duration-200 text-left"
-              >
-                {product.title}, {product.subtitle}
-              </button>
-              <p className="text-gray-400 text-sm mt-1">ORIGINAL TITLE: SUKIPPU TU RŌFĀ</p>
-            </div>
-
-            {/* Rating */}
-            <div className="flex items-center space-x-2">
-              <span className="text-white font-semibold">Rating</span>
-              <div className="flex items-center">
-                {[...Array(5)].map((_, i) => (
-                  <Star 
-                    key={i} 
-                    className={`w-5 h-5 ${
-                      i < Math.floor(product.rating) 
-                        ? 'text-yellow-400 fill-current' 
-                        : 'text-gray-600'
-                    }`}
-                  />
+            {/* Right Side - Product Details */}
+            <div className="space-y-4">
+              {/* Genre Tags */}
+              <div className="flex flex-wrap gap-2">
+                {product.genres.slice(0, 4).map((genre, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 bg-red-600 text-white text-xs font-bold rounded uppercase tracking-wide"
+                  >
+                    {genre}
+                  </span>
                 ))}
-                <span className="text-gray-400 ml-2">★★★★★</span>
               </div>
-            </div>
 
-            {/* Action Buttons */}
-            <div className="flex space-x-4">
-              <Button
-                onClick={handlePreOrder}
-                className="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3"
-              >
-                ADD TO CART
-              </Button>
-              <Button
-                variant="outline"
-                className="border-gray-600 text-gray-300 hover:bg-gray-700 px-8 py-3"
-              >
-                WISH TO BUY
-              </Button>
-            </div>
+              {/* Series Title (Clickable) */}
+              <div>
+                <button
+                  onClick={handleSeriesClick}
+                  className="text-2xl lg:text-3xl font-bold text-white hover:text-red-400 transition-colors duration-200 text-left block"
+                >
+                  {product.title}, {product.subtitle}
+                </button>
+                <p className="text-gray-400 text-sm mt-1">ORIGINAL TITLE: SUKIPPU TU RŌFĀ</p>
+              </div>
 
-            {/* Preview Section */}
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <h3 className="text-white font-semibold mb-4 text-lg">PREVIEW THE KIT</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <h4 className="text-red-400 font-semibold mb-2">Chapter 1 Preview</h4>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    {product.description}
-                  </p>
-                </div>
-                <div className="bg-gray-700 p-4 rounded">
-                  <img
-                    src={product.coverImage}
-                    alt="Chapter 1 Preview"
-                    className="w-full h-32 object-cover rounded"
-                  />
+              {/* Rating */}
+              <div className="flex items-center space-x-2">
+                <span className="text-white font-semibold">Rating</span>
+                <div className="flex items-center">
+                  {[...Array(5)].map((_, i) => (
+                    <Star 
+                      key={i} 
+                      className={`w-4 h-4 ${
+                        i < Math.floor(product.rating) 
+                          ? 'text-red-500 fill-current' 
+                          : 'text-gray-600'
+                      }`}
+                    />
+                  ))}
+                  <span className="text-white ml-2 font-bold">★★★★★</span>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
 
-        {/* Characters Section */}
-        <div className="mb-12">
-          <h2 className="text-white text-2xl font-bold mb-6 uppercase tracking-wide">Characters</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {product.characters.map((character) => (
-              <div key={character.id} className="text-center">
-                <div className="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden bg-gray-800">
-                  <img
-                    src={character.image}
-                    alt={character.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <p className="text-white font-semibold text-sm uppercase tracking-wide">
-                  {character.name}
+              {/* Action Buttons */}
+              <div className="flex space-x-4 pt-4">
+                <Button
+                  onClick={handlePreOrder}
+                  className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 font-bold uppercase"
+                >
+                  ADD TO CART
+                </Button>
+                <Button
+                  variant="outline"
+                  className="border-gray-500 text-gray-300 hover:bg-gray-700 px-8 py-3 font-bold uppercase"
+                >
+                  WISH TO BUY
+                </Button>
+              </div>
+
+              {/* Preview Chapter Section */}
+              <div className="bg-gray-900 p-6 rounded-lg mt-6">
+                <h3 className="text-white font-bold mb-4 text-lg uppercase">Preview Chapter 1</h3>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  {product.description}
                 </p>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Details Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h3 className="text-red-400 font-bold text-lg mb-4 uppercase">Creator</h3>
-            <p className="text-white text-lg font-semibold">{product.creator}</p>
-            {product.artist && (
-              <p className="text-gray-400">Artist: {product.artist}</p>
-            )}
-          </div>
-          
-          <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div>
-                <span className="text-gray-400 block">RELEASE</span>
-                <span className="text-white font-semibold">{product.releaseDate2}</span>
-              </div>
-              <div>
-                <span className="text-gray-400 block">CATEGORY</span>
-                <span className="text-white font-semibold">{product.category2}</span>
-              </div>
-              <div>
-                <span className="text-gray-400 block">AGE RATING</span>
-                <span className="text-white font-semibold">{product.ageRating}</span>
-              </div>
-              <div>
-                <span className="text-gray-400 block">GENRE</span>
-                <span className="text-white font-semibold">{product.genre2}</span>
-              </div>
             </div>
+          </div>
+
+          {/* Characters Section */}
+          <div className="mb-12">
+            <h2 className="text-white text-xl font-bold mb-6 uppercase tracking-wide bg-gray-900 p-3 rounded">Characters</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {product.characters.map((character) => (
+                <div key={character.id} className="text-center bg-gray-900 p-4 rounded-lg">
+                  <div className="w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden bg-gray-800">
+                    <img
+                      src={character.image}
+                      alt={character.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <p className="text-white font-semibold text-xs uppercase tracking-wide">
+                    {character.name}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom Details Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 bg-gray-900 p-6 rounded-lg">
             <div>
-              <span className="text-gray-400 block text-sm">LENGTH</span>
-              <span className="text-white font-semibold">{product.length}</span>
+              <h3 className="text-red-400 font-bold text-sm mb-2 uppercase">Creator</h3>
+              <p className="text-white text-lg font-bold">{product.creator}</p>
+              {product.artist && (
+                <p className="text-gray-400 text-sm">Artist: {product.artist}</p>
+              )}
+            </div>
+            
+            <div>
+              <h3 className="text-red-400 font-bold text-sm mb-2 uppercase">Release</h3>
+              <p className="text-white font-bold">{product.releaseDate2}</p>
+              <h3 className="text-red-400 font-bold text-sm mb-2 mt-4 uppercase">Category</h3>
+              <p className="text-white font-bold">{product.category2}</p>
+            </div>
+
+            <div>
+              <h3 className="text-red-400 font-bold text-sm mb-2 uppercase">Age Rating</h3>
+              <p className="text-white font-bold">{product.genre2}</p>
+              <h3 className="text-red-400 font-bold text-sm mb-2 mt-4 uppercase">Length</h3>
+              <p className="text-white font-bold">{product.length}</p>
             </div>
           </div>
         </div>
