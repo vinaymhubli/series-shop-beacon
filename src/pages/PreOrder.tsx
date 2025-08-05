@@ -221,26 +221,48 @@ const PreOrder = () => {
 
           {/* Bottom Details Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 bg-gray-900 p-6 rounded-lg">
-            <div>
-              <h3 className="text-red-400 font-bold text-sm mb-2 uppercase">Creator</h3>
-              <p className="text-white text-lg font-bold">{product.creator}</p>
-              {product.artist && (
-                <p className="text-gray-400 text-sm">Artist: {product.artist}</p>
-              )}
+            {/* Left Container - Book Description (Wider) */}
+            <div className="md:col-span-2">
+              <h3 className="text-red-400 font-bold text-lg mb-4 uppercase">About the Series</h3>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                {product.description}
+              </p>
             </div>
             
-            <div>
-              <h3 className="text-red-400 font-bold text-sm mb-2 uppercase">Release</h3>
-              <p className="text-white font-bold">{product.releaseDate2}</p>
-              <h3 className="text-red-400 font-bold text-sm mb-2 mt-4 uppercase">Category</h3>
-              <p className="text-white font-bold">{product.category2}</p>
-            </div>
-
-            <div>
-              <h3 className="text-red-400 font-bold text-sm mb-2 uppercase">Age Rating</h3>
-              <p className="text-white font-bold">{product.genre2}</p>
-              <h3 className="text-red-400 font-bold text-sm mb-2 mt-4 uppercase">Length</h3>
-              <p className="text-white font-bold">{product.length}</p>
+            {/* Right Container - Details (Narrower) */}
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-red-400 font-bold text-sm mb-2 uppercase">Creator</h4>
+                <p className="text-white font-bold">{product.creator}</p>
+                {product.artist && (
+                  <p className="text-gray-400 text-sm">Artist: {product.artist}</p>
+                )}
+              </div>
+              
+              <div>
+                <h4 className="text-red-400 font-bold text-sm mb-2 uppercase">Release</h4>
+                <p className="text-white font-bold">{product.releaseDate2}</p>
+              </div>
+              
+              <div>
+                <h4 className="text-red-400 font-bold text-sm mb-2 uppercase">Category</h4>
+                <p className="text-white font-bold">{product.category2}</p>
+              </div>
+              
+              <div>
+                <h4 className="text-red-400 font-bold text-sm mb-2 uppercase">Age Rating</h4>
+                <p className="text-white font-bold">{product.ageRating}</p>
+              </div>
+              
+              <div>
+                <h4 className="text-red-400 font-bold text-sm mb-2 uppercase">Genre</h4>
+                <p className="text-white font-bold">{product.genre2}</p>
+              </div>
+              
+              <div>
+                <h4 className="text-red-400 font-bold text-sm mb-2 uppercase">Length</h4>
+                <p className="text-white font-bold">{product.length}</p>
+              </div>
             </div>
           </div>
         </div>
