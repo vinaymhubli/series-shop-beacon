@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { Unlock, ShoppingCart, Diamond } from 'lucide-react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface ProductCardProps {
   title: string;
@@ -37,6 +38,32 @@ const ProductCard = ({
   tagText
 }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
+
+  const handleAddToCart = () => {
+    // Create a unique product ID from the title and author
+    const productId = `${title.replace(/\s+/g, '-').toLowerCase()}-${author.replace(/\s+/g, '-').toLowerCase()}`;
+    
+    // Navigate to checkout page with product data
+    navigate(`/checkout/${productId}`, {
+      state: {
+        title,
+        author,
+        volume,
+        price,
+        originalPrice,
+        coins,
+        imageUrl,
+        hoverImageUrl,
+        isNew,
+        isOnSale,
+        canUnlockWithCoins,
+        label,
+        tagIcon,
+        tagText
+      }
+    });
+  };
 
   // Function to get tag icon (will be customizable based on tagIcon prop)
   const getTagIcon = () => {
@@ -131,6 +158,7 @@ const ProductCard = ({
           <Button 
             size="sm" 
             className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-red-500/25"
+            onClick={handleAddToCart}
           >
             <ShoppingCart className="w-3 h-3 mr-1" />
             Add to Cart
