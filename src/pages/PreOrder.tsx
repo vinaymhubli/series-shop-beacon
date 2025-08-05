@@ -204,12 +204,12 @@ const PreOrder = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {product.characters.map((character) => (
                 <div key={character.id} className="text-center bg-gray-900 p-4 rounded-lg">
-                  <div className="w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden bg-gray-800">
-                    <img
-                      src={character.image}
-                      alt={character.name}
-                      className="w-full h-full object-cover"
-                    />
+                <div className="w-20 h-20 mx-auto mb-3 overflow-hidden bg-gray-800">
+                  <img
+                    src={character.image}
+                    alt={character.name}
+                    className="w-full h-full object-cover"
+                  />
                   </div>
                   <p className="text-white font-semibold text-xs uppercase tracking-wide">
                     {character.name}
