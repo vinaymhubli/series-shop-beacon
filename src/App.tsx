@@ -49,7 +49,7 @@ const App = () => (
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/affiliation-programs" element={<AffiliationPrograms />} />
-          <Route path="/readers/:seriesTitle" element={<ReadersMode />} />
+          <Route path="/readers-mode/:seriesTitle" element={<ReadersMode />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <ChatBot />
