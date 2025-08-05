@@ -216,10 +216,10 @@ const SeriesGrid = () => {
           <div className="flex items-center gap-8">
             <button
               onClick={() => setActiveTab('books')}
-              className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold transition-all duration-300 ${
+              className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold transition-all duration-300 border ${
                 activeTab === 'books'
-                  ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg'
-                  : 'text-gray-400 hover:text-white hover:bg-gray-700'
+                  ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg border-red-500'
+                  : 'text-gray-400 hover:text-white hover:bg-gray-700 border-gray-600 hover:border-gray-500'
               }`}
             >
               <BookOpen className="w-4 h-4" />
@@ -228,10 +228,10 @@ const SeriesGrid = () => {
             </button>
             <button
               onClick={() => setActiveTab('merchandise')}
-              className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold transition-all duration-300 ${
+              className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold transition-all duration-300 border ${
                 activeTab === 'merchandise'
-                  ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg'
-                  : 'text-gray-400 hover:text-white hover:bg-gray-700'
+                  ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg border-red-500'
+                  : 'text-gray-400 hover:text-white hover:bg-gray-700 border-gray-600 hover:border-gray-500'
               }`}
             >
               <Package className="w-4 h-4" />
