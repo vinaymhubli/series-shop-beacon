@@ -59,7 +59,7 @@ const CreativeCorner = () => {
           </div>
 
           {/* Scrolling Images Container */}
-          <div className="relative overflow-hidden h-32">
+          <div className="relative overflow-hidden h-48">
             <div className="absolute inset-0 flex items-center">
               <div className="flex animate-scroll space-x-4 min-w-max">
                 {/* First set of images */}
@@ -68,7 +68,7 @@ const CreativeCorner = () => {
                     <img
                       src={image}
                       alt={`Story ${index + 1}`}
-                      className="w-24 h-24 object-cover rounded-lg border-2 border-gray-700 hover:border-red-500 transition-colors cursor-pointer"
+                      className="w-40 h-40 object-cover rounded-lg border-2 border-gray-700 hover:border-red-500 transition-colors cursor-pointer"
                     />
                   </div>
                 ))}
@@ -78,7 +78,7 @@ const CreativeCorner = () => {
                     <img
                       src={image}
                       alt={`Story ${index + 1}`}
-                      className="w-24 h-24 object-cover rounded-lg border-2 border-gray-700 hover:border-red-500 transition-colors cursor-pointer"
+                      className="w-40 h-40 object-cover rounded-lg border-2 border-gray-700 hover:border-red-500 transition-colors cursor-pointer"
                     />
                   </div>
                 ))}
