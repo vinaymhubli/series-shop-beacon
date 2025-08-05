@@ -122,6 +122,44 @@ const ProductCard = ({
     });
   };
 
+  const handleUnlockWithCoins = () => {
+    // Create a unique product ID from the title and author
+    const productId = `${title.replace(/\s+/g, '-').toLowerCase()}-${author.replace(/\s+/g, '-').toLowerCase()}`;
+    
+    console.log('🪙 Unlock with Coins clicked!');
+    console.log('📦 Product title:', title);
+    console.log('👤 Author:', author);
+    console.log('🆔 Generated productId:', productId);
+    console.log('🪙 Coins required:', coins);
+    
+    // Create product object for coin unlock
+    const productData = {
+      title,
+      author,
+      volume,
+      price: parseFloat(price.replace('$', '')),
+      originalPrice: originalPrice ? parseFloat(originalPrice.replace('$', '')) : undefined,
+      coins,
+      imageUrl,
+      hoverImageUrl,
+      isNew,
+      isOnSale,
+      canUnlockWithCoins,
+      label,
+      tagIcon,
+      tagText
+    };
+    
+    // Navigate to coin unlock page
+    navigate(`/coin-unlock/${productId}`, {
+      state: {
+        product: productData,
+        quantity: 1,
+        coinPrice: parseInt(coins.replace(' coins', ''))
+      }
+    });
+  };
+
   // Function to get tag icon (will be customizable based on tagIcon prop)
   const getTagIcon = () => {
     if (!tagIcon) return null;
@@ -233,6 +271,7 @@ const ProductCard = ({
               size="sm" 
               variant="ghost" 
               className="w-full text-gray-400 hover:text-white text-xs border border-gray-600 hover:border-gray-500"
+              onClick={handleUnlockWithCoins}
             >
               <Unlock className="w-3 h-3 mr-1" />
               Unlock with {coins}
