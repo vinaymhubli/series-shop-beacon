@@ -5,6 +5,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import ComicsHome from "./pages/ComicsHome";
+import ComicDetail from "./pages/ComicDetail";
+import EpisodePreview from "./pages/EpisodePreview";
+import EpisodeReader from "./pages/EpisodeReader";
+import BuyCoins from "./pages/BuyCoins";
 import OurSeries from "./pages/OurSeries";
 import ShopAll from "./pages/ShopAll";
 import Announcements from "./pages/Announcements";
@@ -34,6 +39,11 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/comics" element={<ComicsHome />} />
+          <Route path="/comic/:id" element={<ComicDetail />} />
+          <Route path="/episode/:id/preview" element={<EpisodePreview />} />
+          <Route path="/episode/:id/read" element={<EpisodeReader />} />
+          <Route path="/buy-coins" element={<BuyCoins />} />
           <Route path="/our-series" element={<OurSeries />} />
           <Route path="/shop-all" element={<ShopAll />} />
           <Route path="/announcements" element={<Announcements />} />
