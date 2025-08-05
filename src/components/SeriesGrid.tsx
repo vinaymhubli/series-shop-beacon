@@ -213,7 +213,7 @@ const SeriesGrid = () => {
       <div className="container mx-auto px-4">
         {/* Tab Navigation */}
         <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center space-x-4 bg-gray-800 rounded-lg p-1">
+          <div className="flex items-center space-x-8 bg-gray-800 rounded-lg p-1">
             <button
               onClick={() => setActiveTab('books')}
               className={`flex items-center gap-2 px-6 py-3 rounded-md font-semibold transition-all duration-300 ${
