@@ -278,7 +278,7 @@ const PreOrder = () => {
                 <div className="relative bg-gray-800 rounded-lg overflow-hidden aspect-video">
                   <video
                     src="/path-to-trailer-video.mp4"
-                    poster={product.coverImage}
+                    poster="/lovable-uploads/787454a4-0883-433c-9325-ded8a4d8293e.png"
                     controls
                     className="w-full h-full object-cover"
                     preload="metadata"
