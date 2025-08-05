@@ -124,7 +124,7 @@ const PreOrder = () => {
       <div className="bg-black relative">
         <div className="container mx-auto px-4">
           {/* Product Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 mb-8">
             {/* Left Side - Book Cover (Overlapping Hero) */}
             <div className="flex justify-start lg:justify-start relative -mt-24 z-10 w-80">
               <div className="w-80">
