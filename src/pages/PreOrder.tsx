@@ -121,17 +121,17 @@ const PreOrder = () => {
       </div>
 
       {/* Main Content Container */}
-      <div className="bg-black">
-        <div className="container mx-auto px-4 py-8">
+      <div className="bg-black relative">
+        <div className="container mx-auto px-4">
           {/* Product Section */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-            {/* Left Side - Book Cover */}
-            <div className="flex justify-center lg:justify-end">
+            {/* Left Side - Book Cover (Overlapping Hero) */}
+            <div className="flex justify-center lg:justify-end relative -mt-24 z-10">
               <div className="w-80">
                 <img
                   src={product.coverImage}
                   alt={product.title}
-                  className="w-full rounded-lg shadow-2xl"
+                  className="w-full rounded-lg shadow-2xl animate-fade-in"
                 />
               </div>
             </div>
