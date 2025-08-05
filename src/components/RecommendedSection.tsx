@@ -45,6 +45,14 @@ const RecommendedSection = () => {
     navigate('/shop-all?recommended=true');
   };
 
+  const handleAddToCart = (e: React.MouseEvent, item: any) => {
+    e.stopPropagation();
+    console.log('🛒 Add to Cart clicked for product:', item.id);
+    console.log('📍 Current location:', window.location.pathname);
+    console.log('🚀 Navigating to pre-order page:', `/pre-order/${item.id}`);
+    navigate(`/pre-order/${item.id}`);
+  };
+
   return (
     <section 
       ref={elementRef}
@@ -254,6 +262,7 @@ const RecommendedSection = () => {
                         <Button 
                           size="sm" 
                           className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-semibold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-red-500/25"
+                          onClick={(e) => handleAddToCart(e, item)}
                         >
                           <ShoppingCart className="w-3 h-3 mr-2" />
                           Add to Cart
