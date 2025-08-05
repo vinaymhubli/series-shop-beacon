@@ -53,6 +53,20 @@ const RecommendedSection = () => {
     navigate(`/pre-order/${item.id}`);
   };
 
+  const handleBuyNow = (e: React.MouseEvent, item: any) => {
+    e.stopPropagation();
+    console.log('🚀 Buy Now clicked for product:', item.id);
+    console.log('📍 Current location:', window.location.pathname);
+    console.log('🚀 Navigating to direct-checkout page:', `/direct-checkout/${item.id}`);
+    navigate(`/direct-checkout/${item.id}`, {
+      state: {
+        product: item,
+        quantity: 1,
+        totalPrice: parseFloat(item.price.replace('$', ''))
+      }
+    });
+  };
+
   return (
     <section 
       ref={elementRef}
@@ -271,6 +285,7 @@ const RecommendedSection = () => {
                           size="sm" 
                           variant="outline"
                           className="w-full bg-white border-gray-600 text-black hover:bg-gray-100 hover:text-black text-xs transform hover:scale-105 transition-all duration-300"
+                          onClick={(e) => handleBuyNow(e, item)}
                         >
                           Buy Now
                         </Button>
