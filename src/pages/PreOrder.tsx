@@ -195,13 +195,6 @@ const PreOrder = () => {
                 </Button>
               </div>
 
-              {/* Preview Chapter Section */}
-              <div className="bg-gray-900 p-6 rounded-lg mt-6">
-                <h3 className="text-white font-bold mb-4 text-lg uppercase">Preview Chapter 1</h3>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  {product.description}
-                </p>
-              </div>
             </div>
           </div>
 
