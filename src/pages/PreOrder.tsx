@@ -112,6 +112,18 @@ const PreOrder = () => {
     <div className="min-h-screen bg-black">
       <Header />
       
+      {/* Back Button */}
+      <div className="container mx-auto px-4 py-4">
+        <Button
+          variant="ghost"
+          onClick={() => navigate(-1)}
+          className="text-gray-300 hover:text-white p-0"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back
+        </Button>
+      </div>
+      
       {/* Large Hero Background Image */}
       <div 
         className="relative h-96 bg-cover bg-center"
