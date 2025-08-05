@@ -48,13 +48,6 @@ const SeriesHero = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 px-4 sm:px-0">
             <Button 
-              className="bg-red-600 hover:bg-red-700 text-white px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg font-semibold shadow-lg w-full sm:w-auto"
-              onClick={scrollToFeaturedSeries}
-            >
-              <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-              Popular Series
-            </Button>
-            <Button 
               variant="outline" 
               className="bg-white border-2 border-white text-black hover:bg-gray-100 hover:text-gray-900 px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg backdrop-blur-sm transition-colors w-full sm:w-auto"
               onClick={scrollToAllSeries}
