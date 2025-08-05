@@ -55,16 +55,30 @@ const RecommendedSection = () => {
 
   const handleBuyNow = (e: React.MouseEvent, item: any) => {
     e.stopPropagation();
-    console.log('🚀 Buy Now clicked for product:', item.id);
+    console.log('🚀 BUY NOW CLICKED!');
+    console.log('📦 Item:', item);
+    console.log('🆔 Item ID:', item.id);
+    console.log('💰 Item price:', item.price);
     console.log('📍 Current location:', window.location.pathname);
-    console.log('🚀 Navigating to direct-checkout page:', `/direct-checkout/${item.id}`);
-    navigate(`/direct-checkout/${item.id}`, {
-      state: {
-        product: item,
-        quantity: 1,
-        totalPrice: parseFloat(item.price.replace('$', ''))
-      }
-    });
+    
+    const productId = item.id;
+    const targetUrl = `/direct-checkout/${productId}`;
+    
+    console.log('🔗 Target URL:', targetUrl);
+    console.log('🚀 About to navigate...');
+    
+    try {
+      navigate(targetUrl, {
+        state: {
+          product: item,
+          quantity: 1,
+          totalPrice: parseFloat(item.price.replace('$', ''))
+        }
+      });
+      console.log('✅ Navigation successful');
+    } catch (error) {
+      console.error('❌ Navigation error:', error);
+    }
   };
 
   return (
