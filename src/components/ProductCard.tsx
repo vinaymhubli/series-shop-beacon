@@ -123,41 +123,53 @@ const ProductCard = ({
   };
 
   const handleUnlockWithCoins = () => {
-    // Create a unique product ID from the title and author
-    const productId = `${title.replace(/\s+/g, '-').toLowerCase()}-${author.replace(/\s+/g, '-').toLowerCase()}`;
+    console.log('🪙 UNLOCK WITH COINS CLICKED!');
     
-    console.log('🪙 Unlock with Coins clicked!');
-    console.log('📦 Product title:', title);
-    console.log('👤 Author:', author);
-    console.log('🆔 Generated productId:', productId);
-    console.log('🪙 Coins required:', coins);
-    
-    // Create product object for coin unlock
-    const productData = {
-      title,
-      author,
-      volume,
-      price: parseFloat(price.replace('$', '')),
-      originalPrice: originalPrice ? parseFloat(originalPrice.replace('$', '')) : undefined,
-      coins,
-      imageUrl,
-      hoverImageUrl,
-      isNew,
-      isOnSale,
-      canUnlockWithCoins,
-      label,
-      tagIcon,
-      tagText
-    };
-    
-    // Navigate to coin unlock page
-    navigate(`/coin-unlock/${productId}`, {
-      state: {
-        product: productData,
-        quantity: 1,
-        coinPrice: parseInt(coins.replace(' coins', ''))
-      }
-    });
+    try {
+      // Create a unique product ID from the title and author
+      const productId = `${title.replace(/\s+/g, '-').toLowerCase()}-${author.replace(/\s+/g, '-').toLowerCase()}`;
+      
+      console.log('📦 Product title:', title);
+      console.log('👤 Author:', author);
+      console.log('🆔 Generated productId:', productId);
+      console.log('🪙 Coins required:', coins);
+      
+      // Create product object for coin unlock
+      const productData = {
+        title,
+        author,
+        volume,
+        price: parseFloat(price.replace('$', '')),
+        originalPrice: originalPrice ? parseFloat(originalPrice.replace('$', '')) : undefined,
+        coins,
+        imageUrl,
+        hoverImageUrl,
+        isNew,
+        isOnSale,
+        canUnlockWithCoins,
+        label,
+        tagIcon,
+        tagText
+      };
+      
+      console.log('📋 Product data for coin unlock:', productData);
+      
+      const targetUrl = `/coin-unlock/${productId}`;
+      console.log('🔗 Navigating to:', targetUrl);
+      
+      // Navigate to coin unlock page
+      navigate(targetUrl, {
+        state: {
+          product: productData,
+          quantity: 1,
+          coinPrice: parseInt(coins.replace(' coins', ''))
+        }
+      });
+      
+      console.log('✅ Navigation successful to coin unlock page');
+    } catch (error) {
+      console.error('❌ Error in handleUnlockWithCoins:', error);
+    }
   };
 
   // Function to get tag icon (will be customizable based on tagIcon prop)
