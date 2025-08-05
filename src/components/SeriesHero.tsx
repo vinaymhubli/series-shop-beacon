@@ -16,20 +16,16 @@ const SeriesHero = () => {
   };
 
   const scrollToAllSeries = () => {
-    console.log('Scrolling to all series...');
-    const element = document.getElementById('all-series');
-    console.log('Found element:', element);
-    if (element) {
-      const headerHeight = 20; // Reduced header offset
-      const elementPosition = Math.max(0, element.offsetTop - headerHeight); // Prevent negative values
-      console.log('Scrolling to position:', elementPosition);
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
-      });
-    } else {
-      console.log('All series element not found');
-    }
+    // Add a small delay to ensure the page is fully loaded
+    setTimeout(() => {
+      const element = document.getElementById('all-series');
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }, 100);
   };
   return (
     <section className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-16 sm:py-20 lg:py-24 overflow-hidden min-h-[500px] sm:min-h-[600px]">
