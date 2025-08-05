@@ -205,7 +205,11 @@ const SeriesGrid = () => {
   const handleMerchandiseClick = (merchandiseId: number) => {
     console.log('🛍️ Merchandise clicked:', merchandiseId);
     console.log('🚀 Navigating to product page:', `/product/${merchandiseId}`);
-    navigate(`/product/${merchandiseId}`);
+    
+    const product = merchandise.find(item => item.id === merchandiseId);
+    navigate(`/product/${merchandiseId}`, {
+      state: { product }
+    });
   };
 
   return (

@@ -20,6 +20,7 @@ import ContactUs from "./pages/ContactUs";
 import Profile from "./pages/Profile";
 import AffiliationPrograms from "./pages/AffiliationPrograms";
 import ReadersMode from "./pages/ReadersMode";
+import MerchandiseDetail from "./pages/MerchandiseDetail";
 import NotFound from "./pages/NotFound";
 import ChatBot from "./components/ChatBot";
 
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/announcements" element={<Announcements />} />
           <Route path="/pre-order/:productId" element={<PreOrder />} />
           <Route path="/series/:seriesId" element={<SeriesPage />} />
+          <Route path="/product/:productId" element={<MerchandiseDetail />} />
           <Route path="/checkout/:productId" element={<Checkout />} />
           <Route path="/direct-checkout/:productId" element={<DirectCheckout />} />
           <Route path="/coin-unlock/:productId" element={<CoinUnlock />} />
