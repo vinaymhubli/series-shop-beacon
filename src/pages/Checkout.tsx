@@ -65,6 +65,14 @@ const Checkout = () => {
       price: 39.99,
       imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
       releaseDate: "Feb 20, 2025"
+    },
+    {
+      id: 4,
+      title: "Jujutsu Kaisen",
+      subtitle: "Limited Edition",
+      price: 32.99,
+      imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
+      releaseDate: "Mar 15, 2025"
     }
   ];
 
