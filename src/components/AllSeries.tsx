@@ -25,7 +25,7 @@ const AllSeries = () => {
   ];
 
   return (
-    <section className="bg-gray-850 py-16">
+    <section id="all-series" className="bg-gray-850 py-16">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-3xl font-bold text-white">All Series</h2>

@@ -9,6 +9,13 @@ const SeriesHero = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const scrollToAllSeries = () => {
+    const element = document.getElementById('all-series');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <section className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-16 sm:py-20 lg:py-24 overflow-hidden min-h-[500px] sm:min-h-[600px]">
       {/* Background Image */}
@@ -37,7 +44,11 @@ const SeriesHero = () => {
               <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               Popular Series
             </Button>
-            <Button variant="outline" className="bg-white border-2 border-white text-black hover:bg-gray-100 hover:text-gray-900 px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg backdrop-blur-sm transition-colors w-full sm:w-auto">
+            <Button 
+              variant="outline" 
+              className="bg-white border-2 border-white text-black hover:bg-gray-100 hover:text-gray-900 px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg backdrop-blur-sm transition-colors w-full sm:w-auto"
+              onClick={scrollToAllSeries}
+            >
               <Eye className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               Browse All
             </Button>
