@@ -45,7 +45,7 @@ const AllSeries = () => {
                   <Button 
                     size="sm" 
                     className="bg-red-600 hover:bg-red-700 text-white text-xs"
-                    onClick={() => navigate(`/readers/${series.title.toLowerCase().replace(/\s+/g, '-')}`)}
+                    onClick={() => navigate(`/readers-mode/${encodeURIComponent(series.title.toLowerCase().replace(/\s+/g, '-'))}`)}
                   >
                     Read
                   </Button>
