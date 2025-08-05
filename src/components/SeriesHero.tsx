@@ -3,6 +3,12 @@ import { Button } from '@/components/ui/button';
 import { Play, Eye } from 'lucide-react';
 
 const SeriesHero = () => {
+  const scrollToFeaturedSeries = () => {
+    const element = document.getElementById('featured-series');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <section className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-16 sm:py-20 lg:py-24 overflow-hidden min-h-[500px] sm:min-h-[600px]">
       {/* Background Image */}
@@ -24,7 +30,10 @@ const SeriesHero = () => {
             Discover your next favorite manga and anime series. From classic masterpieces to the latest hits, dive into worlds of endless imagination.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 px-4 sm:px-0">
-            <Button className="bg-red-600 hover:bg-red-700 text-white px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg font-semibold shadow-lg w-full sm:w-auto">
+            <Button 
+              className="bg-red-600 hover:bg-red-700 text-white px-6 sm:px-8 py-2.5 sm:py-3 text-base sm:text-lg font-semibold shadow-lg w-full sm:w-auto"
+              onClick={scrollToFeaturedSeries}
+            >
               <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
               Popular Series
             </Button>

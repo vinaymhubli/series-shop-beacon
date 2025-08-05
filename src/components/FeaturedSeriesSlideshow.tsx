@@ -52,7 +52,7 @@ const FeaturedSeriesSlideshow = () => {
   };
 
   return (
-    <section className="relative bg-gray-900 py-8 border-b border-gray-700/50">
+    <section id="featured-series" className="relative bg-gray-900 py-8 border-b border-gray-700/50">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl font-bold text-white mb-6">Featured Series</h2>
         
