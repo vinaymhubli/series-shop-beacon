@@ -203,8 +203,8 @@ const PreOrder = () => {
             <h2 className="text-white text-xl font-bold mb-6 uppercase tracking-wide bg-gray-900 p-3 rounded">Characters</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {product.characters.map((character) => (
-                <div key={character.id} className="text-center bg-gray-900 p-4 rounded-lg">
-                <div className="w-20 h-20 mx-auto mb-3 overflow-hidden bg-gray-800">
+              <div key={character.id} className="text-center bg-gray-900 p-4 rounded-lg">
+                <div className="w-full h-32 mb-3 overflow-hidden bg-gray-800 rounded">
                   <img
                     src={character.image}
                     alt={character.name}
