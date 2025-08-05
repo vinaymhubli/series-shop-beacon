@@ -80,7 +80,7 @@ const FeaturedSeries = () => {
                 
                 <Button 
                   className="w-full bg-red-600 hover:bg-red-700 text-white"
-                  onClick={() => navigate(`/readers/${series.title.toLowerCase().replace(/\s+/g, '-')}`)}
+                  onClick={() => navigate(`/readers-mode/${encodeURIComponent(series.title.toLowerCase().replace(/\s+/g, '-'))}`)}
                 >
                   <BookOpen className="w-4 h-4 mr-2" />
                   Read Now
