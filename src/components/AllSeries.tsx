@@ -1,7 +1,10 @@
 import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const AllSeries = () => {
+  const navigate = useNavigate();
+  
   const allSeries = [
     { title: "Chainsaw Man", rating: 4.7, image: "/lovable-uploads/7b8f7dcc-b06f-4c89-b5af-906cd241ae0c.png" },
     { title: "My Hero Academia", rating: 4.6, image: "/lovable-uploads/7b8f7dcc-b06f-4c89-b5af-906cd241ae0c.png" },
@@ -39,7 +42,11 @@ const AllSeries = () => {
                   <span className="text-white text-xs font-semibold">{series.rating}</span>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                  <Button size="sm" className="bg-red-600 hover:bg-red-700 text-white text-xs">
+                  <Button 
+                    size="sm" 
+                    className="bg-red-600 hover:bg-red-700 text-white text-xs"
+                    onClick={() => navigate(`/readers/${series.title.toLowerCase().replace(/\s+/g, '-')}`)}
+                  >
                     Read
                   </Button>
                 </div>
