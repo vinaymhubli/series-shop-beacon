@@ -269,6 +269,77 @@ const PreOrder = () => {
               </div>
             </div>
           </div>
+
+          {/* Trailer and Preview Section - For Print + E-book Rights */}
+          <div className="mt-8 bg-gray-900 p-6 rounded-lg">
+            <div className="flex flex-col lg:flex-row gap-6">
+              {/* Left Side - Trailer Video */}
+              <div className="lg:w-[60%]">
+                <div className="relative bg-gray-800 rounded-lg overflow-hidden aspect-video">
+                  <img
+                    src={product.heroImage}
+                    alt="Volume Trailer"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                    <button className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors">
+                      <div className="w-0 h-0 border-l-[20px] border-l-white border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side - Chapter Preview List */}
+              <div className="lg:w-[40%]">
+                <div className="bg-white rounded-lg p-4">
+                  <h3 className="text-black font-bold text-lg mb-4 uppercase">Preview</h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between py-2 border-b border-gray-200">
+                      <span className="text-black font-bold">CH. 1</span>
+                      <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded text-sm font-bold">
+                        📖 READ NOW
+                      </button>
+                    </div>
+                    <div className="flex items-center justify-between py-2 border-b border-gray-200">
+                      <span className="text-black font-bold">CH. 2</span>
+                      <button className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-1 rounded text-sm font-bold">
+                        🔒 JOIN TO CONTINUE
+                      </button>
+                    </div>
+                    <div className="flex items-center justify-between py-2 border-b border-gray-200">
+                      <span className="text-black font-bold">CH. 3</span>
+                      <button className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-1 rounded text-sm font-bold">
+                        🔒 JOIN TO CONTINUE
+                      </button>
+                    </div>
+                    <div className="flex items-center justify-between py-2 border-b border-gray-200">
+                      <span className="text-black font-bold">CH. 4</span>
+                      <button className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-1 rounded text-sm font-bold">
+                        🔒 JOIN TO CONTINUE
+                      </button>
+                    </div>
+                    <div className="flex items-center justify-between py-2 border-b border-gray-200">
+                      <span className="text-black font-bold">CH. 5</span>
+                      <button className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-1 rounded text-sm font-bold">
+                        🔒 JOIN TO CONTINUE
+                      </button>
+                    </div>
+                    <div className="flex items-center justify-between py-2">
+                      <span className="text-black font-bold">CH. 6</span>
+                      <button className="bg-gray-800 hover:bg-gray-900 text-white px-4 py-1 rounded text-sm font-bold">
+                        🔒 JOIN TO CONTINUE
+                      </button>
+                    </div>
+                    <div className="text-center pt-2">
+                      <button className="text-gray-600 hover:text-gray-800">
+                        ▼
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
