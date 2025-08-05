@@ -340,6 +340,16 @@ const PreOrder = () => {
               </div>
           </div>
 
+          {/* Checkout Button */}
+          <div className="mt-8 text-center">
+            <Button
+              onClick={handlePreOrder}
+              className="bg-red-600 hover:bg-red-700 text-white px-12 py-4 text-lg font-bold uppercase"
+            >
+              CHECKOUT
+            </Button>
+          </div>
+
           {/* Where to Buy Section */}
           <div className="mt-8 bg-gray-900 p-6 rounded-lg">
             <h2 className="text-white text-xl font-bold mb-6 uppercase">Where to Buy</h2>
