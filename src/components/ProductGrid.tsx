@@ -45,6 +45,18 @@ const ProductGrid = () => {
       isOnSale: true,
       canUnlockWithCoins: true,
       label: "Vol 16 coming soon"
+    },
+    {
+      title: "Demon Slayer Vol. 23",
+      author: "Koyoharu Gotouge",
+      volume: "Action",
+      price: "$10.99",
+      coins: "1099 coins",
+      imageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
+      hoverImageUrl: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&h=600&fit=crop&crop=center",
+      isNew: true,
+      canUnlockWithCoins: true,
+      label: "Final arc complete"
     }
   ];
 
@@ -81,6 +93,17 @@ const ProductGrid = () => {
       hoverImageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
       canUnlockWithCoins: false,
       label: "Hero academia bundle"
+    },
+    {
+      title: "Hunter x Hunter Collection",
+      author: "Yoshihiro Togashi",
+      volume: "Adventure",
+      price: "$129.99",
+      coins: "12999 coins",
+      imageUrl: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&h=600&fit=crop&crop=center",
+      hoverImageUrl: "https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?w=400&h=600&fit=crop&crop=center",
+      canUnlockWithCoins: true,
+      label: "Complete collection"
     }
   ];
 
@@ -119,6 +142,17 @@ const ProductGrid = () => {
       
       canUnlockWithCoins: false,
       label: "Last chance"
+    },
+    {
+      title: "Mob Psycho 100 Vol. 16",
+      author: "ONE",
+      volume: "Supernatural",
+      price: "$11.99",
+      coins: "1199 coins",
+      imageUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&h=600&fit=crop&crop=center",
+      hoverImageUrl: "https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=400&h=600&fit=crop&crop=center",
+      canUnlockWithCoins: true,
+      label: "Final volume"
     }
   ];
 
