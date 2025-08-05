@@ -1,7 +1,10 @@
 import { Button } from '@/components/ui/button';
 import { Star, BookOpen, Play } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const FeaturedSeries = () => {
+  const navigate = useNavigate();
+  
   const featuredSeries = [
     {
       title: "Demon Slayer",
@@ -75,7 +78,10 @@ const FeaturedSeries = () => {
                   <span>{series.status}</span>
                 </div>
                 
-                <Button className="w-full bg-red-600 hover:bg-red-700 text-white">
+                <Button 
+                  className="w-full bg-red-600 hover:bg-red-700 text-white"
+                  onClick={() => navigate(`/readers/${series.title.toLowerCase().replace(/\s+/g, '-')}`)}
+                >
                   <BookOpen className="w-4 h-4 mr-2" />
                   Read Now
                 </Button>
