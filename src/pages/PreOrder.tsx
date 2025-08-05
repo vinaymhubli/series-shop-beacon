@@ -338,7 +338,108 @@ const PreOrder = () => {
                   </div>
                 </div>
               </div>
+          </div>
+
+          {/* Where to Buy Section */}
+          <div className="mt-8 bg-gray-900 p-6 rounded-lg">
+            <h2 className="text-white text-xl font-bold mb-6 uppercase">Where to Buy</h2>
+            
+            {/* Format Tabs */}
+            <div className="flex space-x-1 mb-6">
+              <button className="bg-white text-black px-6 py-2 font-bold text-sm uppercase">
+                Digital
+              </button>
+              <button className="bg-transparent text-red-400 px-6 py-2 font-bold text-sm uppercase border-b-2 border-red-400">
+                Paperback
+              </button>
+              <button className="bg-transparent text-red-400 px-6 py-2 font-bold text-sm uppercase border-b-2 border-red-400">
+                Hardcover
+              </button>
             </div>
+
+            {/* Retailer Buttons */}
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+              <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded font-bold text-sm uppercase">
+                Flipkart
+              </button>
+              <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded font-bold text-sm uppercase">
+                Amazon
+              </button>
+              <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded font-bold text-sm uppercase">
+                Amazon
+              </button>
+              <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded font-bold text-sm uppercase">
+                Flipkart
+              </button>
+              <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded font-bold text-sm uppercase">
+                Amazon
+              </button>
+              <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded font-bold text-sm uppercase">
+                Flipkart
+              </button>
+              <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded font-bold text-sm uppercase">
+                Flipkart
+              </button>
+              <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded font-bold text-sm uppercase">
+                Amazon
+              </button>
+              <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded font-bold text-sm uppercase">
+                Amazon
+              </button>
+            </div>
+          </div>
+
+          {/* All The Volume Section */}
+          <div className="mt-8">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-white text-xl font-bold uppercase">All The Volume</h2>
+              <button className="text-red-400 hover:text-red-300 font-bold text-sm uppercase">
+                See All
+              </button>
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((volume) => (
+                <div key={volume} className="bg-gray-900 rounded-lg overflow-hidden">
+                  {/* Pre-order Banner */}
+                  {volume > 4 && (
+                    <div className="bg-orange-600 text-white text-center py-1 text-xs font-bold uppercase">
+                      Pre-orders now open
+                    </div>
+                  )}
+                  
+                  <div className="p-4">
+                    <img
+                      src={product.coverImage}
+                      alt={`Skip and Loafer Vol.${volume}`}
+                      className="w-full h-40 object-cover rounded mb-3"
+                    />
+                    
+                    <div className="text-center">
+                      <h3 className="text-red-400 text-xs font-bold mb-1 uppercase">
+                        Skip and Loafer, Vol.{volume}
+                      </h3>
+                      <p className="text-white text-xs font-bold mb-3">₹{volume}99</p>
+                      
+                      <div className="space-y-2">
+                        <button className="w-full bg-red-600 hover:bg-red-700 text-white py-1 px-2 rounded text-xs font-bold uppercase">
+                          {volume > 4 ? 'Pre-Order Now' : 'Order Now'}
+                        </button>
+                        <div className="flex space-x-1">
+                          <button className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-1 px-2 rounded text-xs font-bold">
+                            Cart
+                          </button>
+                          <button className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-1 px-2 rounded text-xs font-bold">
+                            ♡
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
           </div>
         </div>
       </div>
