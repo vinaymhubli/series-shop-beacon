@@ -46,6 +46,11 @@ const FeaturedSeriesSlideshow = () => {
     navigate('/our-series');
   };
 
+  const handleReadClick = (title: string) => {
+    const seriesSlug = title.toLowerCase().replace(/\s+/g, '-');
+    navigate(`/readers-mode/${encodeURIComponent(seriesSlug)}`);
+  };
+
   return (
     <section className="relative bg-gray-900 py-8 border-b border-gray-700/50">
       <div className="container mx-auto px-4">
@@ -99,7 +104,13 @@ const FeaturedSeriesSlideshow = () => {
                 </div>
 
                 {/* Read Now Button */}
-                <Button className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2">
+                <Button 
+                  className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleReadClick(series.title);
+                  }}
+                >
                   Read Now
                 </Button>
               </div>
