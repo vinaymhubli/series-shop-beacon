@@ -33,6 +33,13 @@ const Checkout = () => {
   
   const { product, quantity, totalPrice } = location.state || {};
   
+  console.log('🔍 Checkout page loaded');
+  console.log('📍 Current productId from params:', productId);
+  console.log('📦 Location state:', location.state);
+  console.log('🛒 Product data:', product);
+  console.log('📊 Quantity:', quantity);
+  console.log('💰 Total price:', totalPrice);
+  
   // Mock upcoming releases data
   const upcomingReleases = [
     {

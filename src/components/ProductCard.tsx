@@ -44,6 +44,12 @@ const ProductCard = ({
     // Create a unique product ID from the title and author
     const productId = `${title.replace(/\s+/g, '-').toLowerCase()}-${author.replace(/\s+/g, '-').toLowerCase()}`;
     
+    console.log('🛒 Add to Cart clicked!');
+    console.log('📦 Product title:', title);
+    console.log('👤 Author:', author);
+    console.log('🆔 Generated productId:', productId);
+    console.log('💰 Price:', price);
+    
     // Create product object that matches what Checkout expects
     const productData = {
       title,
@@ -62,13 +68,20 @@ const ProductCard = ({
       tagText
     };
     
+    console.log('📋 Product data being passed:', productData);
+    
+    const stateData = {
+      product: productData,
+      quantity: 1,
+      totalPrice: parseFloat(price.replace('$', ''))
+    };
+    
+    console.log('🚀 Navigation state:', stateData);
+    console.log('🔗 Navigating to:', `/checkout/${productId}`);
+    
     // Navigate to checkout page with product data in the format Checkout expects
     navigate(`/checkout/${productId}`, {
-      state: {
-        product: productData,
-        quantity: 1,
-        totalPrice: parseFloat(price.replace('$', ''))
-      }
+      state: stateData
     });
   };
 
