@@ -224,38 +224,6 @@ const Checkout = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Side - Upcoming Releases and Order Summary */}
           <div className="lg:col-span-5 space-y-6">
-            {/* Upcoming Releases */}
-            <Card className="bg-gray-800 border-gray-700">
-              <CardHeader>
-                <CardTitle className="text-white text-xl">Upcoming Releases</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-3 gap-4">
-                  {upcomingReleases.map((release) => (
-                    <div key={release.id} className="text-center group cursor-pointer">
-                      <div className="relative mb-3">
-                        <img
-                          src={release.imageUrl}
-                          alt={release.title}
-                          className="w-full h-32 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
-                        />
-                        <div className="absolute top-2 right-2">
-                          <Button
-                            size="sm"
-                            className="bg-red-600 hover:bg-red-700 text-white px-2 py-1 text-xs"
-                          >
-                            PRE-ORDER
-                          </Button>
-                        </div>
-                      </div>
-                      <h4 className="text-white text-sm font-semibold mb-1">{release.title}</h4>
-                      <p className="text-gray-400 text-xs mb-1">{release.subtitle}</p>
-                      <p className="text-red-400 text-sm font-bold">${release.price}</p>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
 
             {/* Pre-Order Benefits */}
             <Card className="bg-gray-800 border-gray-700">
