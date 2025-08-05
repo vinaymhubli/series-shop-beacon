@@ -275,7 +275,7 @@ const PreOrder = () => {
             <div className="flex flex-col lg:flex-row gap-6">
               {/* Left Side - Trailer Video */}
               <div className="lg:w-[60%]">
-                <div className="relative bg-gray-800 rounded-lg overflow-hidden aspect-video">
+                <div className="relative bg-gray-800 rounded-lg overflow-hidden h-80 lg:h-96">
                   <img
                     src="/lovable-uploads/787454a4-0883-433c-9325-ded8a4d8293e.png"
                     alt="Video Thumbnail"
