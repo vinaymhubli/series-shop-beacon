@@ -145,7 +145,7 @@ const Footer = () => {
           </div>
           
           <p className="text-xs sm:text-sm text-gray-500 text-center">
-            © 2024 Crossed Hearts. All rights reserved.
+            © 2025 Crossed Hearts. All rights reserved.
           </p>
         </div>
       </div>
