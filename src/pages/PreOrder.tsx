@@ -222,7 +222,7 @@ const PreOrder = () => {
           {/* Bottom Details Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 bg-gray-900 p-6 rounded-lg">
             {/* Left Container - Book Description (Wider) */}
-            <div className="md:col-span-2">
+            <div className="md:col-span-2 border border-gray-700 p-4 rounded-lg">
               <h3 className="text-red-400 font-bold text-lg mb-4 uppercase">About the Series</h3>
               <p className="text-gray-300 text-sm leading-relaxed">
                 {product.description}
@@ -230,7 +230,7 @@ const PreOrder = () => {
             </div>
             
             {/* Right Container - Details (Narrower) */}
-            <div className="space-y-4">
+            <div className="space-y-4 border border-gray-700 p-4 rounded-lg">
               <div>
                 <h4 className="text-red-400 font-bold text-sm mb-2 uppercase">Creator</h4>
                 <p className="text-white font-bold">{product.creator}</p>
