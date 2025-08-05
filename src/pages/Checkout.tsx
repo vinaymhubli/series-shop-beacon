@@ -213,6 +213,47 @@ const Checkout = () => {
           </Card>
         </div>
 
+        {/* Recommended for You Section */}
+        <div className="mb-8">
+          <Card className="bg-gray-800 border-gray-700">
+            <CardHeader>
+              <CardTitle className="text-white text-2xl">Recommended for You</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                {leavingSoonItems.map((item) => (
+                  <div key={item.id} className="text-center group cursor-pointer">
+                    <div className="relative mb-3">
+                      <img
+                        src={item.imageUrl}
+                        alt={item.title}
+                        className="w-full h-32 object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute top-2 right-2">
+                        <div className="bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">
+                          {item.discount} OFF
+                        </div>
+                      </div>
+                    </div>
+                    <h4 className="text-white text-sm font-semibold mb-1">{item.title}</h4>
+                    <p className="text-gray-400 text-xs mb-1">by {item.author}</p>
+                    <div className="flex flex-col items-center">
+                      <div className="flex items-center space-x-2">
+                        <span className="text-gray-400 text-xs line-through">${item.originalPrice}</span>
+                        <span className="text-red-400 text-sm font-bold">${item.salePrice}</span>
+                      </div>
+                      <p className="text-gray-400 text-xs flex items-center justify-center mt-1">
+                        <Clock className="w-3 h-3 mr-1" />
+                        {item.expiresIn} left
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Side - Upcoming Releases and Order Summary */}
           <div className="lg:col-span-5 space-y-6">
