@@ -1,9 +1,11 @@
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const YearlyTimeline = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.2);
   const [selectedYear, setSelectedYear] = useState<number>(2025);
+  const [currentIndex, setCurrentIndex] = useState(3); // Start with 2025 (index 3)
 
   const timelineData = [
     {
@@ -53,6 +55,37 @@ const YearlyTimeline = () => {
     }
   ];
   
+  // Auto-scroll functionality
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => {
+        const nextIndex = (prevIndex + 1) % timelineData.length;
+        setSelectedYear(timelineData[nextIndex].year);
+        return nextIndex;
+      });
+    }, 4000); // Change every 4 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Navigation functions
+  const goToPrevious = () => {
+    const prevIndex = currentIndex === 0 ? timelineData.length - 1 : currentIndex - 1;
+    setCurrentIndex(prevIndex);
+    setSelectedYear(timelineData[prevIndex].year);
+  };
+
+  const goToNext = () => {
+    const nextIndex = (currentIndex + 1) % timelineData.length;
+    setCurrentIndex(nextIndex);
+    setSelectedYear(timelineData[nextIndex].year);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+    setSelectedYear(timelineData[index].year);
+  };
+  
   const selectedData = timelineData.find(data => data.year === selectedYear);
 
   return (
@@ -92,45 +125,77 @@ const YearlyTimeline = () => {
           </div>
         </div>
 
-        {/* Middle Content Section */}
+        {/* Middle Content Section with Navigation */}
         {selectedData && (
-          <div 
-            key={selectedData.year}
-            className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center animate-fade-in"
-          >
-            {/* Left Section - Book Image */}
-            <div className="lg:col-span-1">
-              <div className="transform transition-all duration-500 hover:scale-105">
-                <img 
-                  src={selectedData.book.leftImage}
-                  alt={`${selectedData.book.title} cover`}
-                  className="w-full h-64 object-cover rounded-lg shadow-lg border border-gray-800 transition-all duration-300"
-                />
+          <div className="relative">
+            {/* Navigation Arrows */}
+            <button
+              onClick={goToPrevious}
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 bg-red-600 hover:bg-red-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            
+            <button
+              onClick={goToNext}
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 bg-red-600 hover:bg-red-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            <div 
+              key={selectedData.year}
+              className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center animate-fade-in"
+            >
+              {/* Left Section - Book Image */}
+              <div className="lg:col-span-1">
+                <div className="transform transition-all duration-500 hover:scale-105">
+                  <img 
+                    src={selectedData.book.leftImage}
+                    alt={`${selectedData.book.title} cover`}
+                    className="w-full h-64 object-cover rounded-lg shadow-lg border border-gray-800 transition-all duration-300"
+                  />
+                </div>
+              </div>
+
+              {/* Center Section - Book Info */}
+              <div className="lg:col-span-1 text-center space-y-6">
+                <div className="text-gray-400 text-sm transform transition-all duration-300 delay-100">
+                  24-11-{selectedData.year}
+                </div>
+                <h3 className="text-4xl font-bold text-white mb-4 transform transition-all duration-300 delay-200">
+                  {selectedData.book.title}
+                </h3>
+                <p className="text-gray-300 text-lg leading-relaxed max-w-md mx-auto transform transition-all duration-300 delay-300">
+                  {selectedData.book.description}
+                </p>
+              </div>
+
+              {/* Right Section - Playing Card */}
+              <div className="lg:col-span-1">
+                <div className="transform transition-all duration-500 hover:scale-105">
+                  <img 
+                    src={selectedData.book.rightImage}
+                    alt={`Playing card for ${selectedData.year}`}
+                    className="w-full h-64 object-cover rounded-lg shadow-lg border border-gray-300 transition-all duration-300"
+                  />
+                </div>
               </div>
             </div>
 
-            {/* Center Section - Book Info */}
-            <div className="lg:col-span-1 text-center space-y-6">
-              <div className="text-gray-400 text-sm transform transition-all duration-300 delay-100">
-                24-11-{selectedData.year}
-              </div>
-              <h3 className="text-4xl font-bold text-white mb-4 transform transition-all duration-300 delay-200">
-                {selectedData.book.title}
-              </h3>
-              <p className="text-gray-300 text-lg leading-relaxed max-w-md mx-auto transform transition-all duration-300 delay-300">
-                {selectedData.book.description}
-              </p>
-            </div>
-
-            {/* Right Section - Playing Card */}
-            <div className="lg:col-span-1">
-              <div className="transform transition-all duration-500 hover:scale-105">
-                <img 
-                  src={selectedData.book.rightImage}
-                  alt={`Playing card for ${selectedData.year}`}
-                  className="w-full h-64 object-cover rounded-lg shadow-lg border border-gray-300 transition-all duration-300"
+            {/* Pagination Dots */}
+            <div className="flex justify-center space-x-3 mt-8">
+              {timelineData.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    currentIndex === index
+                      ? 'bg-red-600 scale-125'
+                      : 'bg-gray-600 hover:bg-gray-500'
+                  }`}
                 />
-              </div>
+              ))}
             </div>
           </div>
         )}
