@@ -20,12 +20,67 @@ const ReadersMode = () => {
     "jujutsu-kaisen": {
       title: "Jujutsu Kaisen", 
       totalPages: 20,
-      pages: Array.from({ length: 20 }, (_, i) => `https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=800&h=1200&fit=crop&crop=center`)
+      pages: Array.from({ length: 20 }, (_, i) => `/lovable-uploads/0e70be33-bdfc-41db-8ae1-5c0dcf1b885c.png`)
     },
     "one-piece": {
       title: "One Piece",
       totalPages: 30,
-      pages: Array.from({ length: 30 }, (_, i) => `https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=800&h=1200&fit=crop&crop=center`)
+      pages: Array.from({ length: 30 }, (_, i) => `/lovable-uploads/0e70be33-bdfc-41db-8ae1-5c0dcf1b885c.png`)
+    },
+    "chainsaw-man": {
+      title: "Chainsaw Man",
+      totalPages: 22,
+      pages: Array.from({ length: 22 }, (_, i) => `/lovable-uploads/0e70be33-bdfc-41db-8ae1-5c0dcf1b885c.png`)
+    },
+    "my-hero-academia": {
+      title: "My Hero Academia",
+      totalPages: 20,
+      pages: Array.from({ length: 20 }, (_, i) => `/lovable-uploads/0e70be33-bdfc-41db-8ae1-5c0dcf1b885c.png`)
+    },
+    "attack-on-titan": {
+      title: "Attack on Titan",
+      totalPages: 26,
+      pages: Array.from({ length: 26 }, (_, i) => `/lovable-uploads/0e70be33-bdfc-41db-8ae1-5c0dcf1b885c.png`)
+    },
+    "spy-x-family": {
+      title: "Spy x Family",
+      totalPages: 18,
+      pages: Array.from({ length: 18 }, (_, i) => `/lovable-uploads/0e70be33-bdfc-41db-8ae1-5c0dcf1b885c.png`)
+    },
+    "tokyo-revengers": {
+      title: "Tokyo Revengers",
+      totalPages: 21,
+      pages: Array.from({ length: 21 }, (_, i) => `/lovable-uploads/0e70be33-bdfc-41db-8ae1-5c0dcf1b885c.png`)
+    },
+    "black-clover": {
+      title: "Black Clover",
+      totalPages: 19,
+      pages: Array.from({ length: 19 }, (_, i) => `/lovable-uploads/0e70be33-bdfc-41db-8ae1-5c0dcf1b885c.png`)
+    },
+    "bleach": {
+      title: "Bleach",
+      totalPages: 25,
+      pages: Array.from({ length: 25 }, (_, i) => `/lovable-uploads/0e70be33-bdfc-41db-8ae1-5c0dcf1b885c.png`)
+    },
+    "naruto": {
+      title: "Naruto",
+      totalPages: 28,
+      pages: Array.from({ length: 28 }, (_, i) => `/lovable-uploads/0e70be33-bdfc-41db-8ae1-5c0dcf1b885c.png`)
+    },
+    "dragon-ball-super": {
+      title: "Dragon Ball Super",
+      totalPages: 23,
+      pages: Array.from({ length: 23 }, (_, i) => `/lovable-uploads/0e70be33-bdfc-41db-8ae1-5c0dcf1b885c.png`)
+    },
+    "one-punch-man": {
+      title: "One Punch Man",
+      totalPages: 17,
+      pages: Array.from({ length: 17 }, (_, i) => `/lovable-uploads/0e70be33-bdfc-41db-8ae1-5c0dcf1b885c.png`)
+    },
+    "haikyuu!": {
+      title: "Haikyuu!",
+      totalPages: 20,
+      pages: Array.from({ length: 20 }, (_, i) => `/lovable-uploads/0e70be33-bdfc-41db-8ae1-5c0dcf1b885c.png`)
     }
   };
 
