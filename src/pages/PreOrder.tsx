@@ -278,9 +278,10 @@ const PreOrder = () => {
                 <div className="relative bg-gray-800 rounded-lg overflow-hidden aspect-video">
                   <video
                     src="/path-to-trailer-video.mp4"
-                    poster={product.heroImage}
+                    poster={product.coverImage}
                     controls
                     className="w-full h-full object-cover"
+                    preload="metadata"
                   >
                     Your browser does not support the video tag.
                   </video>
