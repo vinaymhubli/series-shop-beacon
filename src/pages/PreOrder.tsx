@@ -276,16 +276,14 @@ const PreOrder = () => {
               {/* Left Side - Trailer Video */}
               <div className="lg:w-[60%]">
                 <div className="relative bg-gray-800 rounded-lg overflow-hidden aspect-video">
-                  <img
-                    src={product.heroImage}
-                    alt="Volume Trailer"
+                  <video
+                    src="/path-to-trailer-video.mp4"
+                    poster={product.heroImage}
+                    controls
                     className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
-                    <button className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors">
-                      <div className="w-0 h-0 border-l-[20px] border-l-white border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
-                    </button>
-                  </div>
+                  >
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
               </div>
 
