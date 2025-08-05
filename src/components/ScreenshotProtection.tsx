@@ -26,12 +26,20 @@ export function ScreenshotProtection({ children, isProtected = true }: Screensho
         // macOS: Cmd+Shift+3, Cmd+Shift+4, Cmd+Shift+5
         (e.metaKey && e.shiftKey && ['3', '4', '5'].includes(e.key)),
         // Some apps: Ctrl+Shift+S
-        (e.ctrlKey && e.shiftKey && e.key === 'S')
+        (e.ctrlKey && e.shiftKey && e.key === 'S'),
+        // Additional shortcuts
+        (e.ctrlKey && e.key === 'p'), // Print
+        (e.metaKey && e.key === 'p'), // Print on Mac
       ];
 
       if (screenshotCombos.some(combo => combo)) {
         e.preventDefault();
+        e.stopPropagation();
         handleScreenshotAttempt();
+        // Clear clipboard
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText('Screenshot disabled for protected content');
+        }
       }
     };
 
@@ -145,13 +153,50 @@ export function ScreenshotProtection({ children, isProtected = true }: Screensho
         )}
       </div>
       
-      {/* Watermark overlay */}
-      <div className="absolute inset-0 pointer-events-none z-20">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-45 opacity-10">
-          <div className="text-6xl font-bold text-white whitespace-nowrap">
+      {/* Multiple watermark overlays */}
+      <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
+        {/* Main centered watermark */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-45 opacity-8">
+          <div className="text-4xl font-bold text-white/30 whitespace-nowrap">
             CROSS HEARTS • PROTECTED CONTENT
           </div>
         </div>
+        {/* Corner watermarks */}
+        <div className="absolute top-4 left-4 opacity-20">
+          <div className="text-xs font-medium text-white/40">
+            © Cross Hearts Comics
+          </div>
+        </div>
+        <div className="absolute top-4 right-4 opacity-20">
+          <div className="text-xs font-medium text-white/40">
+            {new Date().toLocaleString()}
+          </div>
+        </div>
+        <div className="absolute bottom-4 left-4 opacity-20">
+          <div className="text-xs font-medium text-white/40">
+            Protected Content
+          </div>
+        </div>
+        <div className="absolute bottom-4 right-4 opacity-20">
+          <div className="text-xs font-medium text-white/40">
+            No Screenshots
+          </div>
+        </div>
+        {/* Diagonal pattern watermarks */}
+        {Array.from({ length: 9 }, (_, i) => (
+          <div
+            key={i}
+            className="absolute transform rotate-45 opacity-5"
+            style={{
+              top: `${(i % 3) * 33.33}%`,
+              left: `${Math.floor(i / 3) * 33.33}%`,
+            }}
+          >
+            <div className="text-lg font-medium text-white/20 whitespace-nowrap">
+              PROTECTED
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ import Index from "./pages/Index";
 import ComicsHome from "./pages/ComicsHome";
 import ComicDetail from "./pages/ComicDetail";
 import EpisodePreview from "./pages/EpisodePreview";
-import EpisodeReader from "./pages/EpisodeReader";
+import { EpisodeReader } from "./pages/EpisodeReader";
 import BuyCoins from "./pages/BuyCoins";
 import OurSeries from "./pages/OurSeries";
 import ShopAll from "./pages/ShopAll";

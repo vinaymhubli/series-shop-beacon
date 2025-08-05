@@ -1,380 +1,352 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, ZoomIn, ZoomOut, RotateCcw, Share2, Heart, ChevronUp, ChevronDown, Settings, BookOpen, Lock } from 'lucide-react';
+import { ArrowLeft, ZoomIn, ZoomOut, Maximize, Heart, Share2, Download, ChevronLeft, ChevronRight, Coins, X, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { Slider } from '@/components/ui/slider';
+import { ScreenshotProtection } from '@/components/ScreenshotProtection';
+import { useToast } from '@/hooks/use-toast';
 
-const EpisodeReader = () => {
-  const { id } = useParams();
+export function EpisodeReader() {
+  const { episodeId } = useParams();
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [currentPage, setCurrentPage] = useState(1);
   const [zoomLevel, setZoomLevel] = useState(100);
-  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(true);
   const [showControls, setShowControls] = useState(true);
   const [readingProgress, setReadingProgress] = useState(0);
+  const [brightness, setBrightness] = useState(100);
+  const [showSettings, setShowSettings] = useState(false);
+  const [userCoins, setUserCoins] = useState(150);
+  const controlsTimeoutRef = useRef<NodeJS.Timeout>();
+  const readerRef = useRef<HTMLDivElement>(null);
 
   // Mock episode data
   const episode = {
-    id: 1,
-    title: "The Awakening",
-    comicTitle: "Shadow Hunter Chronicles",
-    comicId: 1,
-    totalPages: 24,
-    pages: [
-      "/lovable-uploads/4e6b2521-dc40-43e9-aed0-53fef670570b.png",
-      "/lovable-uploads/6ce223e4-a7e8-4282-a3a6-0f55f5341a03.png",
-      "/lovable-uploads/781ea40e-866e-4ee8-9bf7-862a42bb8716.png",
-      "/lovable-uploads/97f88fee-e070-4d97-a73a-c747112fa093.png",
-      "/lovable-uploads/9c2bfe8c-6585-45b0-bc73-7b72048725ee.png",
-      "/lovable-uploads/a0c88e05-5aba-4550-8ee0-7644ad456776.png"
-    ]
+    id: episodeId || '1',
+    title: 'Episode 1: The Beginning',
+    comicTitle: 'Mystic Adventures',
+    totalPages: 25,
+    pages: Array.from({ length: 25 }, (_, i) => `/lovable-uploads/${
+      ['464d8ea7-d84c-4d59-a0dc-01715d6ce881.png', 
+       '907e2c66-ea0e-425d-8b48-a80ffcbd2267.png',
+       '781ea40e-866e-4ee8-9bf7-862a42bb8716.png'][i % 3]
+    }`),
+    nextEpisode: { id: '2', title: 'Episode 2: The Journey Continues', locked: true, price: 10 }
   };
 
-  const nextEpisode = {
-    id: 2,
-    title: "First Hunt",
-    isLocked: false
-  };
-
-  useEffect(() => {
-    const progress = (currentPage / episode.totalPages) * 100;
-    setReadingProgress(progress);
-  }, [currentPage, episode.totalPages]);
-
-  // Auto-hide controls
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (isFullscreen) {
-      timer = setTimeout(() => setShowControls(false), 3000);
+  // Auto-hide controls after inactivity
+  const resetControlsTimeout = useCallback(() => {
+    if (controlsTimeoutRef.current) {
+      clearTimeout(controlsTimeoutRef.current);
     }
-    return () => clearTimeout(timer);
-  }, [isFullscreen, showControls]);
+    setShowControls(true);
+    controlsTimeoutRef.current = setTimeout(() => {
+      setShowControls(false);
+    }, 3000);
+  }, []);
+
+  // Mouse/touch activity detection
+  useEffect(() => {
+    const handleActivity = () => resetControlsTimeout();
+    
+    document.addEventListener('mousemove', handleActivity);
+    document.addEventListener('touchstart', handleActivity);
+    document.addEventListener('click', handleActivity);
+    
+    resetControlsTimeout();
+    
+    return () => {
+      document.removeEventListener('mousemove', handleActivity);
+      document.removeEventListener('touchstart', handleActivity);
+      document.removeEventListener('click', handleActivity);
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
+    };
+  }, [resetControlsTimeout]);
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
+      resetControlsTimeout();
     }
   };
 
   const handleNextPage = () => {
     if (currentPage < episode.totalPages) {
       setCurrentPage(currentPage + 1);
+      resetControlsTimeout();
     }
   };
 
   const handleZoomIn = () => {
-    if (zoomLevel < 200) {
-      setZoomLevel(zoomLevel + 25);
-    }
+    setZoomLevel(Math.min(zoomLevel + 25, 200));
+    resetControlsTimeout();
   };
 
   const handleZoomOut = () => {
-    if (zoomLevel > 50) {
-      setZoomLevel(zoomLevel - 25);
-    }
+    setZoomLevel(Math.max(zoomLevel - 25, 50));
+    resetControlsTimeout();
   };
 
   const resetZoom = () => {
     setZoomLevel(100);
+    resetControlsTimeout();
   };
 
-  const toggleFullscreen = () => {
-    setIsFullscreen(!isFullscreen);
-    setShowControls(true);
+  const handleExitReader = () => {
+    navigate(-1);
   };
 
-  const handleKeyPress = (e: KeyboardEvent) => {
-    switch (e.key) {
-      case 'ArrowLeft':
-        handlePreviousPage();
-        break;
-      case 'ArrowRight':
-        handleNextPage();
-        break;
-      case 'Escape':
-        if (isFullscreen) setIsFullscreen(false);
-        break;
-      case 'f':
-        toggleFullscreen();
-        break;
+  const handleUnlockNext = () => {
+    if (userCoins >= episode.nextEpisode.price) {
+      setUserCoins(userCoins - episode.nextEpisode.price);
+      toast({
+        title: "Episode Unlocked!",
+        description: `${episode.nextEpisode.title} is now available to read.`,
+      });
+      navigate(`/episode/${episode.nextEpisode.id}/read`);
+    } else {
+      navigate('/buy-coins');
     }
   };
 
+  // Keyboard navigation
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  });
+    const handleKeyDown = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case 'ArrowLeft':
+          handlePreviousPage();
+          break;
+        case 'ArrowRight':
+          handleNextPage();
+          break;
+        case 'Escape':
+          handleExitReader();
+          break;
+        case ' ':
+          e.preventDefault();
+          resetControlsTimeout();
+          break;
+      }
+    };
 
-  const currentPageIndex = Math.min(currentPage - 1, episode.pages.length - 1);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentPage, episode.totalPages, handlePreviousPage, handleNextPage, handleExitReader, resetControlsTimeout]);
 
-  if (isFullscreen) {
-    return (
-      <div 
-        className="fixed inset-0 bg-black z-50 flex flex-col"
-        onMouseMove={() => setShowControls(true)}
-      >
-        {/* Top Controls */}
-        <div className={`absolute top-0 left-0 right-0 bg-gradient-to-b from-black/80 to-transparent p-4 transition-opacity duration-300 z-10 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="flex justify-between items-center text-white">
-            <div className="flex items-center gap-4">
-              <Button variant="ghost" size="sm" onClick={() => setIsFullscreen(false)}>
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Exit Fullscreen
-              </Button>
-              <span className="text-sm">{episode.comicTitle} - {episode.title}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Button variant="ghost" size="sm" onClick={handleZoomOut} disabled={zoomLevel <= 50}>
-                <ZoomOut className="w-4 h-4" />
-              </Button>
-              <span className="text-sm">{zoomLevel}%</span>
-              <Button variant="ghost" size="sm" onClick={handleZoomIn} disabled={zoomLevel >= 200}>
-                <ZoomIn className="w-4 h-4" />
-              </Button>
-              <Button variant="ghost" size="sm" onClick={resetZoom}>
-                <RotateCcw className="w-4 h-4" />
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Reading Area */}
-        <div className="flex-1 flex items-center justify-center p-4">
-          <img 
-            src={episode.pages[currentPageIndex]} 
-            alt={`Page ${currentPage}`}
-            className="max-w-full max-h-full object-contain"
-            style={{ transform: `scale(${zoomLevel / 100})` }}
-          />
-        </div>
-
-        {/* Bottom Controls */}
-        <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transition-opacity duration-300 z-10 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="flex justify-between items-center text-white mb-2">
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              onClick={handlePreviousPage}
-              disabled={currentPage === 1}
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Previous
-            </Button>
-            
-            <span className="text-sm">
-              Page {currentPage} of {episode.totalPages}
-            </span>
-            
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              onClick={handleNextPage}
-              disabled={currentPage === episode.totalPages}
-            >
-              Next
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </div>
-          <Progress value={readingProgress} className="h-1" />
-        </div>
-      </div>
-    );
-  }
+  // Update reading progress
+  useEffect(() => {
+    const progress = (currentPage / episode.totalPages) * 100;
+    setReadingProgress(progress);
+  }, [currentPage, episode.totalPages]);
 
   return (
-    <div className="min-h-screen bg-gray-950">
-      {/* Header */}
-      <header className="bg-gray-900 border-b border-gray-800 sticky top-0 z-40">
-        <div className="container mx-auto px-4 py-3">
-          <div className="flex justify-between items-center">
+    <ScreenshotProtection isProtected={true}>
+      <div 
+        ref={readerRef}
+        className="fixed inset-0 z-50 bg-black overflow-hidden"
+        style={{ filter: `brightness(${brightness}%)` }}
+      >
+        {/* Top Control Bar */}
+        <div className={`absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/90 to-transparent transition-all duration-500 ${
+          showControls ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+        }`}>
+          <div className="flex items-center justify-between p-4">
             <div className="flex items-center gap-4">
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => navigate(`/comic/${episode.comicId}`)}
-                className="text-gray-400 hover:text-white"
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleExitReader}
+                className="text-white hover:bg-white/20"
               >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Comic
+                <X className="h-5 w-5" />
               </Button>
               <div>
-                <h1 className="text-white font-semibold">{episode.title}</h1>
-                <p className="text-gray-400 text-sm">{episode.comicTitle}</p>
+                <h2 className="text-lg font-semibold text-white">{episode.comicTitle}</h2>
+                <p className="text-sm text-gray-300">{episode.title}</p>
               </div>
             </div>
-            
-            <div className="flex items-center gap-2">
-              <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
-                <Heart className="w-4 h-4" />
-              </Button>
-              <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
-                <Share2 className="w-4 h-4" />
-              </Button>
-              <Button variant="ghost" size="sm" onClick={toggleFullscreen} className="text-gray-400 hover:text-white">
-                <BookOpen className="w-4 h-4" />
-                Fullscreen
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 text-white">
+                <Coins className="h-4 w-4" />
+                <span className="text-sm font-medium">{userCoins}</span>
+              </div>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setShowSettings(!showSettings)}
+                className="text-white hover:bg-white/20"
+              >
+                <Settings className="h-5 w-5" />
               </Button>
             </div>
-          </div>
-          
-          <div className="mt-3">
-            <div className="flex justify-between items-center text-sm text-gray-400 mb-2">
-              <span>Page {currentPage} of {episode.totalPages}</span>
-              <span>{Math.round(readingProgress)}% complete</span>
-            </div>
-            <Progress value={readingProgress} className="h-1" />
           </div>
         </div>
-      </header>
 
-      <div className="container mx-auto px-4 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Reading Controls Sidebar */}
-          <div className="lg:col-span-1 order-2 lg:order-1">
-            <Card className="bg-gray-800 border-gray-700 sticky top-24">
-              <CardContent className="p-4">
-                <h3 className="text-white font-semibold mb-4">Reading Controls</h3>
-                
-                <div className="space-y-4">
-                  <div>
-                    <label className="text-gray-400 text-sm block mb-2">Zoom Level</label>
-                    <div className="flex items-center gap-2">
-                      <Button variant="outline" size="sm" onClick={handleZoomOut} disabled={zoomLevel <= 50}>
-                        <ZoomOut className="w-3 h-3" />
-                      </Button>
-                      <span className="text-white text-sm flex-1 text-center">{zoomLevel}%</span>
-                      <Button variant="outline" size="sm" onClick={handleZoomIn} disabled={zoomLevel >= 200}>
-                        <ZoomIn className="w-3 h-3" />
-                      </Button>
-                    </div>
-                    <Button variant="ghost" size="sm" onClick={resetZoom} className="w-full mt-2 text-gray-400">
-                      <RotateCcw className="w-3 h-3 mr-2" />
-                      Reset
-                    </Button>
-                  </div>
-
-                  <div>
-                    <label className="text-gray-400 text-sm block mb-2">Quick Navigation</label>
-                    <div className="grid grid-cols-2 gap-2">
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        onClick={handlePreviousPage}
-                        disabled={currentPage === 1}
-                      >
-                        <ChevronUp className="w-3 h-3 mr-1" />
-                        Prev
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        onClick={handleNextPage}
-                        disabled={currentPage === episode.totalPages}
-                      >
-                        Next
-                        <ChevronDown className="w-3 h-3 ml-1" />
-                      </Button>
-                    </div>
-                  </div>
-
-                  <Button 
-                    onClick={toggleFullscreen}
-                    className="w-full bg-red-600 hover:bg-red-700"
+        {/* Settings Panel */}
+        {showSettings && (
+          <div className="absolute top-16 right-4 z-20 bg-black/90 border border-gray-600 rounded-lg p-4 min-w-64">
+            <div className="space-y-4">
+              <div>
+                <label className="text-white text-sm mb-2 block">Brightness</label>
+                <Slider
+                  value={[brightness]}
+                  onValueChange={(value) => setBrightness(value[0])}
+                  max={150}
+                  min={50}
+                  step={10}
+                  className="w-full"
+                />
+              </div>
+              <div>
+                <label className="text-white text-sm mb-2 block">Zoom</label>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleZoomOut}
+                    className="text-white hover:bg-white/20"
                   >
-                    <BookOpen className="w-4 h-4 mr-2" />
-                    Fullscreen Mode
+                    <ZoomOut className="h-4 w-4" />
+                  </Button>
+                  <span className="text-white text-sm min-w-[3rem] text-center">{zoomLevel}%</span>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleZoomIn}
+                    className="text-white hover:bg-white/20"
+                  >
+                    <ZoomIn className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={resetZoom}
+                    className="text-white hover:bg-white/20 text-xs"
+                  >
+                    Reset
                   </Button>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Main Reading Area */}
-          <div className="lg:col-span-3 order-1 lg:order-2">
-            <div className="bg-gray-900 rounded-lg p-4 min-h-[600px] flex items-center justify-center">
-              <img 
-                src={episode.pages[currentPageIndex]} 
-                alt={`Page ${currentPage}`}
-                className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-lg"
-                style={{ transform: `scale(${zoomLevel / 100})` }}
-              />
-            </div>
-
-            {/* Page Navigation */}
-            <div className="flex justify-between items-center mt-6">
-              <Button 
-                variant="outline" 
-                onClick={handlePreviousPage}
-                disabled={currentPage === 1}
-                className="border-gray-700 text-gray-300"
-              >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Previous Page
-              </Button>
-              
-              <div className="text-center">
-                <div className="text-white font-semibold">Page {currentPage}</div>
-                <div className="text-gray-400 text-sm">of {episode.totalPages}</div>
               </div>
-              
-              <Button 
-                variant="outline" 
-                onClick={handleNextPage}
-                disabled={currentPage === episode.totalPages}
-                className="border-gray-700 text-gray-300"
-              >
-                Next Page
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
             </div>
+          </div>
+        )}
 
-            {/* Next Episode Prompt */}
-            {currentPage === episode.totalPages && (
-              <Card className="bg-gray-800 border-gray-700 mt-6">
-                <CardContent className="p-6 text-center">
-                  <h3 className="text-white text-xl font-semibold mb-4">
-                    🎉 Episode Complete!
-                  </h3>
-                  <p className="text-gray-300 mb-6">
-                    You've finished reading "{episode.title}". Ready for the next episode?
-                  </p>
-                  
-                  {nextEpisode.isLocked ? (
-                    <div className="space-y-3">
-                      <Button 
-                        onClick={() => navigate(`/episode/${nextEpisode.id}/preview`)}
-                        className="bg-yellow-600 hover:bg-yellow-700"
-                      >
-                        <Lock className="w-4 h-4 mr-2" />
-                        Unlock Next Episode
-                      </Button>
-                      <p className="text-gray-400 text-sm">
-                        Next: {nextEpisode.title}
-                      </p>
-                    </div>
-                  ) : (
-                    <div className="space-y-3">
-                      <Button 
-                        onClick={() => navigate(`/episode/${nextEpisode.id}/read`)}
-                        className="bg-red-600 hover:bg-red-700"
-                      >
-                        <BookOpen className="w-4 h-4 mr-2" />
-                        Read Next Episode
-                      </Button>
-                      <p className="text-gray-400 text-sm">
-                        Next: {nextEpisode.title}
-                      </p>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            )}
+        {/* Main Reading Area */}
+        <div className="flex-1 flex items-center justify-center overflow-auto">
+          <div className="relative w-full max-w-4xl">
+            <img
+              src={episode.pages[currentPage - 1]}
+              alt={`Page ${currentPage}`}
+              className="w-full h-auto object-contain select-none"
+              style={{ 
+                transform: `scale(${zoomLevel / 100})`,
+                transformOrigin: 'center top'
+              }}
+              draggable={false}
+              onContextMenu={(e) => e.preventDefault()}
+            />
           </div>
         </div>
-      </div>
-    </div>
-  );
-};
 
-export default EpisodeReader;
+        {/* Side Progress Indicator */}
+        <div className="absolute right-2 top-1/2 -translate-y-1/2 z-10">
+          <div className="h-32 w-1 bg-gray-600 rounded-full overflow-hidden">
+            <div 
+              className="w-full bg-white transition-all duration-300"
+              style={{ height: `${readingProgress}%` }}
+            />
+          </div>
+        </div>
+
+        {/* Navigation Areas */}
+        <div 
+          className="absolute left-0 top-0 bottom-0 w-1/3 z-5 cursor-pointer"
+          onClick={handlePreviousPage}
+        />
+        <div 
+          className="absolute right-0 top-0 bottom-0 w-1/3 z-5 cursor-pointer"
+          onClick={handleNextPage}
+        />
+
+        {/* Bottom Control Bar */}
+        <div className={`absolute bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-black/90 to-transparent transition-all duration-500 ${
+          showControls ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+        }`}>
+          <div className="flex items-center justify-between p-4">
+            <Button
+              variant="ghost"
+              onClick={handlePreviousPage}
+              disabled={currentPage === 1}
+              className="text-white hover:bg-white/20 disabled:opacity-50"
+            >
+              <ChevronLeft className="h-5 w-5 mr-1" />
+              Previous
+            </Button>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-white">{currentPage} / {episode.totalPages}</span>
+              <Progress value={readingProgress} className="w-32" />
+            </div>
+            <Button
+              variant="ghost"
+              onClick={handleNextPage}
+              disabled={currentPage === episode.totalPages}
+              className="text-white hover:bg-white/20 disabled:opacity-50"
+            >
+              Next
+              <ChevronRight className="h-5 w-5 ml-1" />
+            </Button>
+          </div>
+        </div>
+
+        {/* Next Episode Prompt */}
+        {currentPage === episode.totalPages && (
+          <div className="absolute inset-0 z-30 bg-black/80 flex items-center justify-center">
+            <Card className="p-6 max-w-md mx-4 bg-gray-900 border-gray-700">
+              <div className="text-center space-y-4">
+                <h3 className="text-xl font-bold text-white">Episode Complete!</h3>
+                <p className="text-gray-300">Continue with the next episode?</p>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between text-sm text-gray-300">
+                    <span>{episode.nextEpisode.title}</span>
+                    {episode.nextEpisode.locked && (
+                      <Badge variant="secondary" className="flex items-center gap-1">
+                        <Coins className="h-3 w-3" />
+                        {episode.nextEpisode.price}
+                      </Badge>
+                    )}
+                  </div>
+                  <div className="flex gap-2">
+                    <Button 
+                      variant="outline" 
+                      onClick={handleExitReader}
+                      className="flex-1"
+                    >
+                      Back to List
+                    </Button>
+                    <Button 
+                      onClick={handleUnlockNext}
+                      className="flex-1"
+                    >
+                      {episode.nextEpisode.locked ? 'Unlock & Read' : 'Continue Reading'}
+                    </Button>
+                  </div>
+                  {episode.nextEpisode.locked && userCoins < episode.nextEpisode.price && (
+                    <p className="text-xs text-red-400">
+                      Insufficient coins. You need {episode.nextEpisode.price - userCoins} more coins.
+                    </p>
+                  )}
+                </div>
+              </div>
+            </Card>
+          </div>
+        )}
+      </div>
+    </ScreenshotProtection>
+  );
+}

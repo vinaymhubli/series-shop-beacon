@@ -84,7 +84,7 @@ const ComicDetail = () => {
                 </Link>
               ) : (
                 <Link to={`/episode/${episode.id}/read`}>
-                  <Button size="sm" className="bg-red-600 hover:bg-red-700">
+                  <Button size="sm" className="bg-green-600 hover:bg-green-700">
                     <BookOpen className="w-4 h-4 mr-2" />
                     Read
                   </Button>
