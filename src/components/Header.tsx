@@ -16,7 +16,7 @@ const Header = () => {
     { name: 'About Us', href: '/about-us' },
     { name: 'Contact Us', href: '/contact-us' },
     { name: 'Affiliation Programs', href: '/affiliation-programs' },
-    { name: 'Readers Mode', href: '/readers-mode' },
+    { name: 'Readers Mode', href: '/comics' },
     { name: 'Announcements', href: '/announcements' }
   ];
 
