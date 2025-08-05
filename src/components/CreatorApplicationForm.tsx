@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { X } from 'lucide-react';
+import { X, Paperclip } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface CreatorApplicationFormProps {
@@ -24,7 +24,9 @@ const CreatorApplicationForm = ({ onClose }: CreatorApplicationFormProps) => {
     seriesLength: '',
     synopsis: '',
     timeline: '',
-    additionalInfo: ''
+    additionalInfo: '',
+    queryLetter: null as File | null,
+    firstChapters: null as File | null
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { toast } = useToast();
@@ -53,6 +55,14 @@ const CreatorApplicationForm = ({ onClose }: CreatorApplicationFormProps) => {
     }));
   };
 
+  const handleFileChange = (name: 'queryLetter' | 'firstChapters') => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setFormData(prev => ({
+      ...prev,
+      [name]: file
+    }));
+  };
+
   const resetForm = () => {
     setIsSubmitted(false);
     setFormData({
@@ -66,7 +76,9 @@ const CreatorApplicationForm = ({ onClose }: CreatorApplicationFormProps) => {
       seriesLength: '',
       synopsis: '',
       timeline: '',
-      additionalInfo: ''
+      additionalInfo: '',
+      queryLetter: null,
+      firstChapters: null
     });
   };
 
@@ -302,6 +314,49 @@ const CreatorApplicationForm = ({ onClose }: CreatorApplicationFormProps) => {
               className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 focus:border-red-500 min-h-[80px]"
               placeholder="Tell us about yourself as an author, your writing style, target audience, and any previous publications..."
             />
+          </div>
+
+          {/* File Upload Fields */}
+          <div className="space-y-4">
+            <div>
+              <Label className="text-white mb-2 block text-lg font-bold">
+                YOUR QUERY LETTER
+              </Label>
+              <div className="relative">
+                <input
+                  type="file"
+                  id="queryLetter"
+                  accept=".pdf,.doc,.docx,.ppt,.pptx"
+                  onChange={handleFileChange('queryLetter')}
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                />
+                <div className="bg-red-600 border border-red-500 rounded-lg p-4 flex items-center justify-between cursor-pointer hover:bg-red-700 transition-colors">
+                  <span className="text-white font-medium">
+                    {formData.queryLetter ? formData.queryLetter.name : 'ATTACH YOUR QUERY LETTER*'}
+                  </span>
+                  <Paperclip className="w-6 h-6 text-white" />
+                </div>
+              </div>
+              <p className="text-gray-400 text-sm mt-1">PDFs, Words, PPT are Preferable</p>
+            </div>
+
+            <div>
+              <div className="relative">
+                <input
+                  type="file"
+                  id="firstChapters"
+                  accept=".pdf,.doc,.docx,.ppt,.pptx"
+                  onChange={handleFileChange('firstChapters')}
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                />
+                <div className="bg-red-600 border border-red-500 rounded-lg p-4 flex items-center justify-between cursor-pointer hover:bg-red-700 transition-colors">
+                  <span className="text-white font-medium">
+                    {formData.firstChapters ? formData.firstChapters.name : 'ATTACH YOUR FIRST THREE CHAPTERS HERE*'}
+                  </span>
+                  <Paperclip className="w-6 h-6 text-white" />
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="flex gap-4">
