@@ -20,8 +20,8 @@ const SeriesHero = () => {
     const element = document.getElementById('all-series');
     console.log('Found element:', element);
     if (element) {
-      const headerHeight = 80; // Account for any fixed header
-      const elementPosition = element.offsetTop - headerHeight;
+      const headerHeight = 20; // Reduced header offset
+      const elementPosition = Math.max(0, element.offsetTop - headerHeight); // Prevent negative values
       console.log('Scrolling to position:', elementPosition);
       window.scrollTo({
         top: elementPosition,
