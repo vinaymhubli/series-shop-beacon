@@ -5,6 +5,10 @@ import { useNavigate } from 'react-router-dom';
 const AllSeries = () => {
   const navigate = useNavigate();
   
+  const handleReadClick = (title: string) => {
+    const seriesSlug = title.toLowerCase().replace(/\s+/g, '-');
+    navigate(`/readers-mode/${encodeURIComponent(seriesSlug)}`);
+  };
   const allSeries = [
     { title: "Chainsaw Man", rating: 4.7, image: "/lovable-uploads/7b8f7dcc-b06f-4c89-b5af-906cd241ae0c.png" },
     { title: "My Hero Academia", rating: 4.6, image: "/lovable-uploads/7b8f7dcc-b06f-4c89-b5af-906cd241ae0c.png" },
@@ -45,7 +49,10 @@ const AllSeries = () => {
                   <Button 
                     size="sm" 
                     className="bg-red-600 hover:bg-red-700 text-white text-xs"
-                    onClick={() => navigate(`/readers-mode/${encodeURIComponent(series.title.toLowerCase().replace(/\s+/g, '-'))}`)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleReadClick(series.title);
+                    }}
                   >
                     Read
                   </Button>
