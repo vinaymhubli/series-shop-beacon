@@ -181,7 +181,7 @@ const Checkout = () => {
               <CardTitle className="text-white text-2xl">Upcoming Releases</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
                 {upcomingReleases.map((release) => (
                   <div key={release.id} className="text-center group cursor-pointer">
                     <div className="relative mb-3">
