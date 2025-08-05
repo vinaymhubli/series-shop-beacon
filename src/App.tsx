@@ -9,6 +9,7 @@ import OurSeries from "./pages/OurSeries";
 import ShopAll from "./pages/ShopAll";
 import Announcements from "./pages/Announcements";
 import PreOrder from "./pages/PreOrder";
+import SeriesPage from "./pages/SeriesPage";
 import Checkout from "./pages/Checkout";
 import DirectCheckout from "./pages/DirectCheckout";
 import CoinUnlock from "./pages/CoinUnlock";
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/shop-all" element={<ShopAll />} />
           <Route path="/announcements" element={<Announcements />} />
           <Route path="/pre-order/:productId" element={<PreOrder />} />
+          <Route path="/series/:seriesId" element={<SeriesPage />} />
           <Route path="/checkout/:productId" element={<Checkout />} />
           <Route path="/direct-checkout/:productId" element={<DirectCheckout />} />
           <Route path="/coin-unlock/:productId" element={<CoinUnlock />} />
