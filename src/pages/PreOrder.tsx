@@ -116,7 +116,7 @@ const PreOrder = () => {
       <div className="container mx-auto px-4 py-4">
         <Button
           variant="ghost"
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('/shop-all')}
           className="text-gray-300 hover:text-white p-0"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
