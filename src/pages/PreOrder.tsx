@@ -220,52 +220,48 @@ const PreOrder = () => {
           </div>
 
           {/* Bottom Details Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 bg-gray-900 p-6 rounded-lg">
-            {/* Left Container - Book Description (Wider) */}
-            <div className="md:col-span-2 border border-gray-700 p-4 rounded-lg">
+          <div className="flex flex-col md:flex-row gap-6 bg-gray-900 p-6 rounded-lg">
+            {/* Left Container - Book Description (70% width) */}
+            <div className="md:w-[70%] border border-gray-700 p-4 rounded-lg">
               <h3 className="text-red-400 font-bold text-lg mb-4 uppercase">About the Series</h3>
               <p className="text-gray-300 text-sm leading-relaxed">
                 {product.description}
               </p>
             </div>
             
-            {/* Right Container - Details (Narrower) */}
-            <div className="md:col-span-3 space-y-3 border border-gray-700 p-4 rounded-lg">
-              <div className="flex justify-between items-center">
-                <span className="text-red-400 font-bold text-sm uppercase">Creator:</span>
-                <span className="text-white font-bold">{product.creator}</span>
+            {/* Right Container - Details (30% width) */}
+            <div className="md:w-[30%] space-y-4 border border-gray-700 p-4 rounded-lg">
+              <div>
+                <h4 className="text-red-400 font-bold text-sm mb-2 uppercase">Creator</h4>
+                <p className="text-white font-bold">{product.creator}</p>
+                {product.artist && (
+                  <p className="text-gray-400 text-sm">Artist: {product.artist}</p>
+                )}
               </div>
               
-              {product.artist && (
-                <div className="flex justify-between items-center">
-                  <span className="text-red-400 font-bold text-sm uppercase">Artist:</span>
-                  <span className="text-white font-bold">{product.artist}</span>
-                </div>
-              )}
-              
-              <div className="flex justify-between items-center">
-                <span className="text-red-400 font-bold text-sm uppercase">Release:</span>
-                <span className="text-white font-bold">{product.releaseDate2}</span>
+              <div>
+                <h4 className="text-red-400 font-bold text-sm mb-2 uppercase">Release</h4>
+                <p className="text-white font-bold">{product.releaseDate2}</p>
               </div>
               
-              <div className="flex justify-between items-center">
-                <span className="text-red-400 font-bold text-sm uppercase">Category:</span>
-                <span className="text-white font-bold">{product.category2}</span>
+              <div>
+                <h4 className="text-red-400 font-bold text-sm mb-2 uppercase">Category</h4>
+                <p className="text-white font-bold">{product.category2}</p>
               </div>
               
-              <div className="flex justify-between items-center">
-                <span className="text-red-400 font-bold text-sm uppercase">Age Rating:</span>
-                <span className="text-white font-bold">{product.ageRating}</span>
+              <div>
+                <h4 className="text-red-400 font-bold text-sm mb-2 uppercase">Age Rating</h4>
+                <p className="text-white font-bold">{product.ageRating}</p>
               </div>
               
-              <div className="flex justify-between items-center">
-                <span className="text-red-400 font-bold text-sm uppercase">Genre:</span>
-                <span className="text-white font-bold">{product.genre2}</span>
+              <div>
+                <h4 className="text-red-400 font-bold text-sm mb-2 uppercase">Genre</h4>
+                <p className="text-white font-bold">{product.genre2}</p>
               </div>
               
-              <div className="flex justify-between items-center">
-                <span className="text-red-400 font-bold text-sm uppercase">Length:</span>
-                <span className="text-white font-bold">{product.length}</span>
+              <div>
+                <h4 className="text-red-400 font-bold text-sm mb-2 uppercase">Length</h4>
+                <p className="text-white font-bold">{product.length}</p>
               </div>
             </div>
           </div>
