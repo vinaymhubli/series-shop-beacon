@@ -85,6 +85,43 @@ const ProductCard = ({
     });
   };
 
+  const handleBuyNow = () => {
+    // Create a unique product ID from the title and author
+    const productId = `${title.replace(/\s+/g, '-').toLowerCase()}-${author.replace(/\s+/g, '-').toLowerCase()}`;
+    
+    console.log('🚀 Buy Now clicked!');
+    console.log('📦 Product title:', title);
+    console.log('👤 Author:', author);
+    console.log('🆔 Generated productId:', productId);
+    
+    // Create product object for direct checkout
+    const productData = {
+      title,
+      author,
+      volume,
+      price: parseFloat(price.replace('$', '')),
+      originalPrice: originalPrice ? parseFloat(originalPrice.replace('$', '')) : undefined,
+      coins,
+      imageUrl,
+      hoverImageUrl,
+      isNew,
+      isOnSale,
+      canUnlockWithCoins,
+      label,
+      tagIcon,
+      tagText
+    };
+    
+    // Navigate to direct checkout page
+    navigate(`/direct-checkout/${productId}`, {
+      state: {
+        product: productData,
+        quantity: 1,
+        totalPrice: parseFloat(price.replace('$', ''))
+      }
+    });
+  };
+
   // Function to get tag icon (will be customizable based on tagIcon prop)
   const getTagIcon = () => {
     if (!tagIcon) return null;
@@ -187,6 +224,7 @@ const ProductCard = ({
             size="sm" 
             variant="outline"
             className="w-full bg-white border-gray-600 text-black hover:bg-gray-100 hover:text-black text-xs transform hover:scale-105 transition-all duration-300"
+            onClick={handleBuyNow}
           >
             Buy Now
           </Button>

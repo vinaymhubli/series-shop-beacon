@@ -10,6 +10,7 @@ import ShopAll from "./pages/ShopAll";
 import Announcements from "./pages/Announcements";
 import PreOrder from "./pages/PreOrder";
 import Checkout from "./pages/Checkout";
+import DirectCheckout from "./pages/DirectCheckout";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/announcements" element={<Announcements />} />
           <Route path="/pre-order/:productId" element={<PreOrder />} />
           <Route path="/checkout/:productId" element={<Checkout />} />
+          <Route path="/direct-checkout/:productId" element={<DirectCheckout />} />
           <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact-us" element={<ContactUs />} />
