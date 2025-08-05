@@ -44,23 +44,30 @@ const ProductCard = ({
     // Create a unique product ID from the title and author
     const productId = `${title.replace(/\s+/g, '-').toLowerCase()}-${author.replace(/\s+/g, '-').toLowerCase()}`;
     
-    // Navigate to checkout page with product data
+    // Create product object that matches what Checkout expects
+    const productData = {
+      title,
+      author,
+      volume,
+      price: parseFloat(price.replace('$', '')),
+      originalPrice: originalPrice ? parseFloat(originalPrice.replace('$', '')) : undefined,
+      coins,
+      imageUrl,
+      hoverImageUrl,
+      isNew,
+      isOnSale,
+      canUnlockWithCoins,
+      label,
+      tagIcon,
+      tagText
+    };
+    
+    // Navigate to checkout page with product data in the format Checkout expects
     navigate(`/checkout/${productId}`, {
       state: {
-        title,
-        author,
-        volume,
-        price,
-        originalPrice,
-        coins,
-        imageUrl,
-        hoverImageUrl,
-        isNew,
-        isOnSale,
-        canUnlockWithCoins,
-        label,
-        tagIcon,
-        tagText
+        product: productData,
+        quantity: 1,
+        totalPrice: parseFloat(price.replace('$', ''))
       }
     });
   };
