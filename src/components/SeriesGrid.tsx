@@ -125,7 +125,7 @@ const SeriesGrid = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-3xl font-bold text-white">
-            All Series <span className="text-gray-400 text-lg font-normal">({series.length} series)</span>
+            Books <span className="text-gray-400 text-lg font-normal">({series.length} books)</span>
           </h2>
         </div>
 
