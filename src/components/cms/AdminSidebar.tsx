@@ -86,37 +86,59 @@ export function AdminSidebar({ selectedPage, onPageSelect }: AdminSidebarProps) 
       : "hover:bg-muted/80 text-muted-foreground hover:text-foreground";
 
   return (
-    <Sidebar className={collapsed ? "w-14" : "w-64"} collapsible="icon">
-      <SidebarTrigger className="m-2 self-end" />
+    <Sidebar className={`${collapsed ? "w-16" : "w-72"} border-r bg-gradient-to-b from-background to-muted/20 transition-all duration-300`} collapsible="icon">
+      <SidebarTrigger className="m-3 hover:bg-accent/50 transition-colors duration-200" />
       
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel className="text-sm font-medium text-muted-foreground px-2">
-            {!collapsed && "CMS Navigation"}
+      <SidebarContent className="px-2">
+        <SidebarGroup className="py-4">
+          <SidebarGroupLabel className="text-xs font-semibold text-muted-foreground px-4 mb-3 uppercase tracking-wide">
+            {!collapsed && "Pages"}
           </SidebarGroupLabel>
           
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="space-y-1">
               {adminPages.map((page) => (
                 <SidebarMenuItem key={page.id}>
                   <SidebarMenuButton 
                     asChild 
-                    className={`${getNavClass(page.id)} transition-colors duration-200`}
+                    className={`
+                      ${getNavClass(page.id)} 
+                      transition-all duration-200 ease-in-out
+                      hover:shadow-sm hover:bg-accent/80
+                      ${isActive(page.id) ? 'shadow-md bg-primary text-primary-foreground hover:bg-primary/90' : ''}
+                      rounded-lg mx-2 mb-1 border border-transparent
+                      ${isActive(page.id) ? 'border-primary/20' : 'hover:border-accent'}
+                    `}
                   >
                     <button
                       onClick={() => onPageSelect(page.id)}
-                      className="w-full flex items-center gap-3 px-3 py-2 text-left"
+                      className="w-full flex items-center gap-3 px-3 py-3 text-left group"
                     >
-                      <page.icon className="h-4 w-4 flex-shrink-0" />
+                      <page.icon className={`
+                        h-5 w-5 flex-shrink-0 transition-transform duration-200
+                        ${isActive(page.id) ? 'text-primary-foreground' : 'text-muted-foreground group-hover:text-foreground'}
+                        group-hover:scale-110
+                      `} />
                       {!collapsed && (
-                        <div className="flex-1">
-                          <div className="font-medium">{page.title}</div>
+                        <div className="flex-1 min-w-0">
+                          <div className={`
+                            font-medium text-sm truncate
+                            ${isActive(page.id) ? 'text-primary-foreground' : 'text-foreground'}
+                          `}>
+                            {page.title}
+                          </div>
                           {page.description && (
-                            <div className="text-xs text-muted-foreground mt-0.5">
+                            <div className={`
+                              text-xs mt-0.5 truncate
+                              ${isActive(page.id) ? 'text-primary-foreground/80' : 'text-muted-foreground'}
+                            `}>
                               {page.description}
                             </div>
                           )}
                         </div>
+                      )}
+                      {!collapsed && isActive(page.id) && (
+                        <div className="w-2 h-2 rounded-full bg-primary-foreground animate-pulse" />
                       )}
                     </button>
                   </SidebarMenuButton>
@@ -126,31 +148,53 @@ export function AdminSidebar({ selectedPage, onPageSelect }: AdminSidebarProps) 
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* Special Section for Hero Banners */}
-        <SidebarGroup>
-          <SidebarGroupLabel className="text-sm font-medium text-muted-foreground px-2">
+        {/* Enhanced Quick Actions Section */}
+        <SidebarGroup className="py-4 border-t border-border/50">
+          <SidebarGroupLabel className="text-xs font-semibold text-muted-foreground px-4 mb-3 uppercase tracking-wide">
             {!collapsed && "Quick Actions"}
           </SidebarGroupLabel>
           
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="space-y-1">
               <SidebarMenuItem>
                 <SidebarMenuButton 
                   asChild 
-                  className={`${getNavClass('hero-banners')} transition-colors duration-200`}
+                  className={`
+                    ${getNavClass('hero-banners')} 
+                    transition-all duration-200 ease-in-out
+                    hover:shadow-sm hover:bg-accent/80
+                    ${isActive('hero-banners') ? 'shadow-md bg-primary text-primary-foreground hover:bg-primary/90' : ''}
+                    rounded-lg mx-2 mb-1 border border-transparent
+                    ${isActive('hero-banners') ? 'border-primary/20' : 'hover:border-accent'}
+                  `}
                 >
                   <button
                     onClick={() => onPageSelect('hero-banners')}
-                    className="w-full flex items-center gap-3 px-3 py-2 text-left"
+                    className="w-full flex items-center gap-3 px-3 py-3 text-left group"
                   >
-                    <Image className="h-4 w-4 flex-shrink-0" />
+                    <Image className={`
+                      h-5 w-5 flex-shrink-0 transition-transform duration-200
+                      ${isActive('hero-banners') ? 'text-primary-foreground' : 'text-muted-foreground group-hover:text-foreground'}
+                      group-hover:scale-110
+                    `} />
                     {!collapsed && (
-                      <div className="flex-1">
-                        <div className="font-medium">Hero Banners</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">
+                      <div className="flex-1 min-w-0">
+                        <div className={`
+                          font-medium text-sm truncate
+                          ${isActive('hero-banners') ? 'text-primary-foreground' : 'text-foreground'}
+                        `}>
+                          Hero Banners
+                        </div>
+                        <div className={`
+                          text-xs mt-0.5 truncate
+                          ${isActive('hero-banners') ? 'text-primary-foreground/80' : 'text-muted-foreground'}
+                        `}>
                           Manage carousel banners
                         </div>
                       </div>
+                    )}
+                    {!collapsed && isActive('hero-banners') && (
+                      <div className="w-2 h-2 rounded-full bg-primary-foreground animate-pulse" />
                     )}
                   </button>
                 </SidebarMenuButton>
@@ -158,6 +202,23 @@ export function AdminSidebar({ selectedPage, onPageSelect }: AdminSidebarProps) 
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
+        {/* Brand/Logo Area */}
+        {!collapsed && (
+          <div className="mt-auto mb-4 px-4">
+            <div className="rounded-lg bg-gradient-to-r from-primary/10 to-primary/5 p-3 border border-primary/10">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
+                  <Settings className="h-4 w-4 text-primary" />
+                </div>
+                <div>
+                  <div className="text-sm font-medium">CMS Dashboard</div>
+                  <div className="text-xs text-muted-foreground">v1.0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </SidebarContent>
     </Sidebar>
   );
