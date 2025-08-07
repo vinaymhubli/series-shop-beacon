@@ -29,84 +29,21 @@ export function PageEditor({ selectedPage }: PageEditorProps) {
 
   const renderHomePage = () => (
     <div className="space-y-6">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold mb-2">Home Page Management</h2>
-        <p className="text-muted-foreground">
-          Configure your homepage content, layout, and featured elements.
-        </p>
+      <div>
+        <h2 className="text-xl font-semibold mb-4">Home Page</h2>
       </div>
 
       {/* Hero Section */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Image className="h-5 w-5" />
-            Hero Section
-          </CardTitle>
+          <CardTitle>Hero Section</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground mb-4">
-            Manage the main hero banner carousel that appears at the top of your homepage.
+            Manage the main hero content for your homepage.
           </p>
-          <div className="bg-muted/50 p-4 rounded-lg">
-            <p className="text-sm text-muted-foreground mb-2">
-              This section will contain hero content management tools.
-            </p>
-            <div className="text-xs text-muted-foreground">
-              • Configure hero images and backgrounds<br/>
-              • Set hero titles and descriptions<br/>
-              • Manage call-to-action buttons
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Banner Changes */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Settings className="h-5 w-5" />
-            Banner Changes
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-muted-foreground mb-4">
-            Control promotional banners and announcement strips.
-          </p>
-          <div className="bg-muted/50 p-4 rounded-lg">
-            <p className="text-sm text-muted-foreground mb-2">
-              This section will contain banner management tools.
-            </p>
-            <div className="text-xs text-muted-foreground">
-              • Create seasonal promotional banners<br/>
-              • Set announcement messages<br/>
-              • Schedule banner display periods
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Making Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Construction className="h-5 w-5" />
-            Making Section
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-muted-foreground mb-4">
-            Configure dynamic content creation and featured sections.
-          </p>
-          <div className="bg-muted/50 p-4 rounded-lg">
-            <p className="text-sm text-muted-foreground mb-2">
-              This section will contain content creation tools.
-            </p>
-            <div className="text-xs text-muted-foreground">
-              • Manage featured content sections<br/>
-              • Configure dynamic content blocks<br/>
-              • Set up content recommendations
-            </div>
+          <div className="p-4 bg-muted/30 rounded">
+            <p className="text-sm">Hero section editing tools will be available here.</p>
           </div>
         </CardContent>
       </Card>
@@ -115,7 +52,7 @@ export function PageEditor({ selectedPage }: PageEditorProps) {
       {getPageSections('home-page').length > 0 && (
         <Card>
           <CardHeader>
-            <CardTitle>Additional Homepage Sections</CardTitle>
+            <CardTitle>Additional Sections</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             {getPageSections('home-page').map(section => (
