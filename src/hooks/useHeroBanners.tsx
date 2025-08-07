@@ -55,6 +55,7 @@ export const useHeroBanners = () => {
 
   const loadHeroBanners = async () => {
     try {
+      console.log('Loading hero banners...');
       setIsLoading(true);
       const { data, error } = await (supabase as any)
         .from('hero_banners')
@@ -62,8 +63,11 @@ export const useHeroBanners = () => {
         .eq('is_active', true)
         .order('display_order', { ascending: true });
 
+      console.log('Hero banners query result:', { data, error });
+      
       if (error) throw error;
       setBanners(data || []);
+      console.log('Hero banners loaded:', data?.length || 0);
     } catch (err) {
       console.error('Error loading hero banners:', err);
       setError(err instanceof Error ? err.message : 'Unknown error');

@@ -47,6 +47,17 @@ const BannerCarousel = ({
   // Use custom banners if provided, otherwise use CMS banners
   const activeBanners = banners.length > 0 ? banners : transformedBanners;
 
+  // Debug logging
+  useEffect(() => {
+    console.log('BannerCarousel Debug:', {
+      isLoading,
+      heroBannersCount: heroBanners.length,
+      transformedBannersCount: transformedBanners.length,
+      activeBannersCount: activeBanners.length,
+      customBannersCount: banners.length
+    });
+  }, [isLoading, heroBanners, transformedBanners, activeBanners, banners]);
+
   // Auto-play functionality
   useEffect(() => {
     if (!autoPlay || activeBanners.length <= 1) return;
