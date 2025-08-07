@@ -44,20 +44,9 @@ const BannerCarousel = ({
     overlayText: undefined
   }));
 
-  // Use custom banners if provided, otherwise use CMS banners
-  const activeBanners = banners.length > 0 ? banners : transformedBanners;
+  // Use CMS banners if available, otherwise use custom banners
+  const activeBanners = transformedBanners.length > 0 ? transformedBanners : banners;
 
-  // Temporary debug logging
-  console.log('BannerCarousel Debug:', {
-    isLoading,
-    heroBannersCount: heroBanners.length,
-    transformedBannersCount: transformedBanners.length,
-    activeBannersCount: activeBanners.length,
-    customBannersCount: banners.length,
-    heroBanners,
-    transformedBanners,
-    activeBanners
-  });
 
   // Auto-play functionality
   useEffect(() => {
@@ -120,12 +109,6 @@ const BannerCarousel = ({
   const safeCurrentIndex = Math.min(currentIndex, activeBanners.length - 1);
   const currentBanner = activeBanners[safeCurrentIndex];
 
-  // Debug current banner
-  console.log('Current Banner Debug:', {
-    safeCurrentIndex,
-    currentBanner,
-    activeBannersLength: activeBanners.length
-  });
 
   // Don't render if no current banner
   if (!currentBanner) {
@@ -202,14 +185,14 @@ const BannerCarousel = ({
               className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
               style={{ transitionDelay: '400ms' }}
             >
-              {currentBanner?.title || 'No Title'}
+              {currentBanner.title}
             </h1>
             
             <p
               className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl leading-relaxed"
               style={{ transitionDelay: '600ms' }}
             >
-              {currentBanner?.subtitle || 'No Subtitle'}
+              {currentBanner.subtitle}
             </p>
             
             <div
