@@ -79,6 +79,9 @@ export const useHeroBanners = () => {
         .insert(banner);
 
       if (error) throw error;
+      
+      // Reload data after successful creation
+      setTimeout(() => loadHeroBanners(), 100);
     } catch (err) {
       console.error('Error creating banner:', err);
       throw err;
@@ -93,6 +96,9 @@ export const useHeroBanners = () => {
         .eq('id', id);
 
       if (error) throw error;
+      
+      // Reload data after successful update  
+      setTimeout(() => loadHeroBanners(), 100);
     } catch (err) {
       console.error('Error updating banner:', err);
       throw err;
@@ -107,6 +113,9 @@ export const useHeroBanners = () => {
         .eq('id', id);
 
       if (error) throw error;
+      
+      // Reload data after successful deletion
+      setTimeout(() => loadHeroBanners(), 100);
     } catch (err) {
       console.error('Error deleting banner:', err);
       throw err;

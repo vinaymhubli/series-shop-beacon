@@ -18,7 +18,7 @@ interface BannerForm {
 }
 
 export const HeroBannerManager = () => {
-  const { banners, isLoading, createBanner, updateBanner, deleteBanner } = useHeroBanners();
+  const { banners, isLoading, createBanner, updateBanner, deleteBanner, loadHeroBanners } = useHeroBanners();
   const { toast } = useToast();
   const [editingId, setEditingId] = useState<string | null>(null);
   const [showAddForm, setShowAddForm] = useState(false);
@@ -59,6 +59,8 @@ export const HeroBannerManager = () => {
         });
       }
       resetForm();
+      // Force reload to ensure data is fresh
+      await loadHeroBanners();
     } catch (error) {
       toast({
         title: "Error",
@@ -88,6 +90,8 @@ export const HeroBannerManager = () => {
           title: "Success",
           description: "Banner deleted successfully",
         });
+        // Force reload to ensure data is fresh
+        await loadHeroBanners();
       } catch (error) {
         toast({
           title: "Error",
