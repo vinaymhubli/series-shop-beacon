@@ -161,7 +161,7 @@ const BannerCarousel = ({
                 </Button>
               </div>
             )}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
           </div>
         ))}
       </div>
@@ -188,22 +188,24 @@ const BannerCarousel = ({
             )}
             
             <h1
-              className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight relative z-30 drop-shadow-lg"
+              className="text-6xl md:text-8xl font-black mb-6 leading-tight relative z-50"
               style={{ 
                 transitionDelay: '400ms',
-                textShadow: '3px 3px 6px rgba(0,0,0,0.9)',
-                color: 'white'
+                color: '#FFFFFF',
+                textShadow: '4px 4px 8px rgba(0,0,0,1), 2px 2px 4px rgba(0,0,0,0.8)',
+                fontWeight: '900'
               }}
             >
               {currentBanner?.title || 'No Title Available'}
             </h1>
             
             <p
-              className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl leading-relaxed relative z-30 drop-shadow-lg"
+              className="text-2xl md:text-3xl mb-8 max-w-2xl leading-relaxed relative z-50"
               style={{ 
                 transitionDelay: '600ms',
-                textShadow: '2px 2px 4px rgba(0,0,0,0.9)',
-                color: 'rgba(255,255,255,0.9)'
+                color: '#FFFFFF',
+                textShadow: '3px 3px 6px rgba(0,0,0,1), 1px 1px 2px rgba(0,0,0,0.8)',
+                fontWeight: '600'
               }}
             >
               {currentBanner?.subtitle || 'No Subtitle Available'}
