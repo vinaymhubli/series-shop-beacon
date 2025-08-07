@@ -41,16 +41,6 @@ const Footer = () => {
       ]
     },
     {
-      title: "For Creators",
-      links: [
-        "Author Portal",
-        "Submission Guidelines",
-        "Affiliate Programs",
-        "Partnership Opportunities",
-        "Business Inquiries"
-      ]
-    },
-    {
       title: "Our Imprints",
       links: []
     }
@@ -86,7 +76,7 @@ const Footer = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {footerSections.map((section, index) => (
             <div 
               key={index}
@@ -96,7 +86,7 @@ const Footer = () => {
               style={{ transitionDelay: `${200 + index * 150}ms` }}
             >
               <h3 className="text-red-500 font-semibold mb-3 sm:mb-4 text-base sm:text-lg">{section.title}</h3>
-              {index === 4 ? (
+              {index === 3 ? (
                 <div className="flex flex-col space-y-3 items-center sm:items-start">
                   <img 
                     src="/lovable-uploads/c63bffdb-4754-4d64-8063-6ac8bba72106.png" 
