@@ -42,6 +42,10 @@ const AnnouncementsSection = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
+        {/* Test visibility */}
+        <div className="text-green-500 text-xl mb-4 font-bold text-center">
+          ANNOUNCEMENTS SECTION VISIBLE - Count: {announcements.length}
+        </div>
         <div className={`text-center mb-12 transition-all duration-1000 delay-200 transform ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}>

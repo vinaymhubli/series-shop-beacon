@@ -10,6 +10,9 @@ export default function PrivacyPolicy() {
       <Header />
       <main className="pt-16 pb-12">
         <div className="container mx-auto px-4 max-w-4xl">
+          <div className="text-green-500 text-xl mb-4 font-bold text-center">
+            PRIVACY POLICY PAGE VISIBLE
+          </div>
           <div className="prose prose-lg dark:prose-invert max-w-none">
             <h1 className="text-4xl font-bold mb-8 text-center">Privacy Policy</h1>
             

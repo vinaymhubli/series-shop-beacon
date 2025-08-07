@@ -173,10 +173,10 @@ const BannerCarousel = ({
             className={`transform transition-all duration-1000 ${
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}
-          >
-            {/* Debug info - remove this after testing */}
-            <div className="fixed top-4 left-4 bg-black/80 text-white p-2 text-xs z-50 rounded">
-              Banner {currentIndex + 1}: {currentBanner?.title || 'No title'} | {currentBanner?.subtitle || 'No subtitle'}
+            >
+            {/* Test visibility */}
+            <div className="text-red-500 text-xl mb-4 font-bold">
+              HERO SECTION VISIBLE - Banner: {currentBanner?.title}
             </div>
             {currentBanner.overlayText && (
               <div
