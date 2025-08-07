@@ -1,10 +1,15 @@
 import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useCMS } from '@/hooks/useCMS';
 
 const Footer = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.2);
+  const { getSectionContent } = useCMS();
 
-  const footerSections = [
+  // Get footer content from CMS or use defaults
+  const footerContent = getSectionContent('footer', 'main_content');
+  
+  const defaultSections = [
     {
       title: "Crossed Hearts",
       links: [
@@ -47,6 +52,10 @@ const Footer = () => {
       links: []
     }
   ];
+
+  const footerSections = footerContent?.sections || defaultSections;
+  const copyrightText = footerContent?.copyright || "© 2025 Crossed Hearts. All rights reserved.";
+  const companyDescription = footerContent?.description || "A global publishing house specialising in the English localization of Japanese manga and Korean webcomics.";
 
   return (
     <footer 
@@ -111,8 +120,8 @@ const Footer = () => {
                 <ul className="space-y-1.5 sm:space-y-2">
                   {section.links.map((link, linkIndex) => (
                     <li key={linkIndex}>
-                      {linkIndex === 0 && index === 0 ? (
-                        <p className="text-xs sm:text-sm text-gray-500 leading-relaxed px-2 sm:px-0">{link}</p>
+                     {linkIndex === 0 && index === 0 ? (
+                        <p className="text-xs sm:text-sm text-gray-500 leading-relaxed px-2 sm:px-0">{companyDescription}</p>
                       ) : (
                         <a href="#" className="text-xs sm:text-sm hover:text-white transition-colors duration-200 transform hover:translate-x-1 block px-2 sm:px-0 py-1">
                           {link}
@@ -145,7 +154,7 @@ const Footer = () => {
           </div>
           
           <p className="text-xs sm:text-sm text-gray-500 text-center">
-            © 2025 Crossed Hearts. All rights reserved.
+            {copyrightText}
           </p>
         </div>
       </div>

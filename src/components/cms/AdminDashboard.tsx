@@ -32,6 +32,7 @@ export const AdminDashboard = () => {
     { id: 'about_us', name: 'About Us', icon: FileText },
     { id: 'readers_mode', name: 'Readers Mode', icon: FileText },
     { id: 'announcements', name: 'Announcements', icon: FileText },
+    { id: 'footer', name: 'Footer', icon: Layout },
   ];
 
   const getPageSections = (pageId: string) => {
@@ -61,7 +62,7 @@ export const AdminDashboard = () => {
       </div>
 
       <Tabs value={selectedPage} onValueChange={setSelectedPage} className="space-y-6">
-        <TabsList className="grid grid-cols-3 lg:grid-cols-6 w-full">
+        <TabsList className="grid grid-cols-3 lg:grid-cols-7 w-full">
           {pages.map(page => {
             const Icon = page.icon;
             return (
