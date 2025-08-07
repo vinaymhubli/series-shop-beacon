@@ -148,16 +148,16 @@ const Footer = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}>
           <div className="flex space-x-6 items-center">
-            <a href="#" className="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110">
+            <a href="https://x.com/crossedheartsus" className="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110">
               <Twitter className="w-5 h-5" />
             </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110">
+            <a href="https://www.instagram.com/crossedheartsglobal?igsh=NWt4NGFiY214d3Np" className="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110">
               <Instagram className="w-5 h-5" />
             </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110">
+            <a href="https://www.facebook.com/share/1Ao3eMJana/" className="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110">
               <Facebook className="w-5 h-5" />
             </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110">
+            <a href="https://www.youtube.com/channel/UCml272d_SV3kHboiO_taiaQ" className="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110">
               <Youtube className="w-5 h-5" />
             </a>
             {isAdmin && (

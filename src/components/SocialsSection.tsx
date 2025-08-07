@@ -14,12 +14,10 @@ const SocialsSection = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.1);
 
   const socialLinks = [
-    { name: 'Instagram', icon: Instagram, url: '#', color: 'from-pink-500 to-purple-500' },
-    { name: 'YouTube', icon: Youtube, url: '#', color: 'from-red-500 to-red-600' },
-    { name: 'Twitter/X', icon: Twitter, url: '#', color: 'from-gray-800 to-black' },
-    { name: 'TikTok', icon: MessageCircle, url: '#', color: 'from-black to-gray-900' },
-    { name: 'Facebook', icon: Facebook, url: '#', color: 'from-blue-600 to-blue-700' },
-    { name: 'Discord', icon: MessageCircle, url: '#', color: 'from-indigo-500 to-purple-600' }
+    { name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/crossedheartsglobal?igsh=NWt4NGFiY214d3Np', color: 'from-pink-500 to-purple-500' },
+    { name: 'YouTube', icon: Youtube, url: 'https://www.youtube.com/channel/UCml272d_SV3kHboiO_taiaQ', color: 'from-red-500 to-red-600' },
+    { name: 'Twitter/X', icon: Twitter, url: 'https://x.com/crossedheartsus', color: 'from-gray-800 to-black' },
+    { name: 'Facebook', icon: Facebook, url: 'https://www.facebook.com/share/1Ao3eMJana/', color: 'from-blue-600 to-blue-700' }
   ];
 
   return (
@@ -47,7 +45,7 @@ const SocialsSection = () => {
           </h2>
           <p className="text-gray-400 text-lg mb-8">Follow us for the latest updates and announcements</p>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
             {socialLinks.map((social, index) => {
               const IconComponent = social.icon;
               return (
