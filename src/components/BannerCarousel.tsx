@@ -44,15 +44,10 @@ const BannerCarousel = ({
     overlayText: undefined
   }));
 
-  // Debug logging
-  console.log('Hero banners from CMS:', heroBanners);
-  console.log('Transformed banners:', transformedBanners);
-  console.log('Custom banners prop:', banners);
-
   // Use CMS banners if available, otherwise use custom banners
   const activeBanners = transformedBanners.length > 0 ? transformedBanners : banners;
   
-  console.log('Active banners being used:', activeBanners);
+  console.log('Current banner data for display:', activeBanners[currentIndex]);
 
 
   // Auto-play functionality
