@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -18,9 +18,21 @@ const Auth = () => {
     fullName: '',
   });
   
-  const { signUp, signIn } = useSupabaseAuth();
+  const { signUp, signIn, user, isAdmin, isLoading: authLoading } = useSupabaseAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
+
+  // Redirect logged in users
+  useEffect(() => {
+    if (user && !authLoading) {
+      console.log('User logged in, redirecting...', { user: user.id, isAdmin });
+      if (isAdmin) {
+        navigate('/admin');
+      } else {
+        navigate('/');
+      }
+    }
+  }, [user, isAdmin, authLoading, navigate]);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));

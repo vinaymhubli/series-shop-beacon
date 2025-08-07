@@ -40,8 +40,30 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    // Get initial session
+    // Set up auth state listener FIRST
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        console.log('Auth state change:', event, session?.user?.id);
+        setSession(session);
+        setUser(session?.user ?? null);
+        
+        if (session?.user) {
+          // Use setTimeout to prevent deadlock
+          setTimeout(() => {
+            loadUserProfile(session.user.id);
+            checkAdminRole(session.user.id);
+          }, 0);
+        } else {
+          setProfile(null);
+          setIsAdmin(false);
+          setIsLoading(false);
+        }
+      }
+    );
+
+    // THEN check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
+      console.log('Initial session:', session?.user?.id);
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
@@ -52,28 +74,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       }
     });
 
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        setSession(session);
-        setUser(session?.user ?? null);
-        
-        if (session?.user) {
-          await loadUserProfile(session.user.id);
-          await checkAdminRole(session.user.id);
-        } else {
-          setProfile(null);
-          setIsAdmin(false);
-        }
-        setIsLoading(false);
-      }
-    );
-
     return () => subscription.unsubscribe();
   }, []);
 
   const loadUserProfile = async (userId: string) => {
     try {
+      console.log('Loading profile for user:', userId);
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
@@ -82,10 +88,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
       if (error && error.code !== 'PGRST116') {
         console.error('Error loading profile:', error);
+        setIsLoading(false);
         return;
       }
 
       if (data) {
+        console.log('Profile loaded:', data);
         setProfile(data);
       } else {
         // Create profile if it doesn't exist
@@ -104,16 +112,20 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         if (createError) {
           console.error('Error creating profile:', createError);
         } else {
+          console.log('Profile created:', createdProfile);
           setProfile(createdProfile);
         }
       }
     } catch (error) {
       console.error('Error in loadUserProfile:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const checkAdminRole = async (userId: string) => {
     try {
+      console.log('Checking admin role for user:', userId);
       const { data, error } = await supabase
         .from('user_roles')
         .select('role')
@@ -123,12 +135,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
       if (error && error.code !== 'PGRST116') {
         console.error('Error checking admin role:', error);
+        setIsAdmin(false);
         return;
       }
 
-      setIsAdmin(!!data);
+      const adminStatus = !!data;
+      console.log('Admin status:', adminStatus, data);
+      setIsAdmin(adminStatus);
     } catch (error) {
       console.error('Error in checkAdminRole:', error);
+      setIsAdmin(false);
     }
   };
 
