@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useAuth } from './useAuth';
+import { useSupabaseAuth } from './useSupabaseAuth';
 
 interface RecommendedProduct {
   id: string;
@@ -15,7 +15,7 @@ interface RecommendedProduct {
 }
 
 export const useRecommendations = () => {
-  const { user, isLoggedIn } = useAuth();
+  const { user } = useSupabaseAuth();
   const [recommendations, setRecommendations] = useState<RecommendedProduct[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -115,54 +115,12 @@ export const useRecommendations = () => {
   const generatePersonalizedRecommendations = (): RecommendedProduct[] => {
     if (!user) return defaultRecommendations;
 
-    const personalizedItems = defaultRecommendations.map(item => ({
+    // For now, just return default recommendations with personalized flag
+    // In a real app, this would use user data from Supabase to personalize
+    return defaultRecommendations.map(item => ({
       ...item,
       isPersonalized: true
     }));
-
-    // Score items based on user preferences
-    const scoredItems = personalizedItems.map(item => {
-      let score = 0;
-      
-      // Genre preference matching
-      const genreMatches = item.genre.filter(genre => 
-        user.preferences.genres.some(userGenre => 
-          genre.toLowerCase().includes(userGenre.toLowerCase())
-        )
-      ).length;
-      score += genreMatches * 3;
-
-      // Author preference matching
-      if (user.preferences.authors.some(author => 
-        item.author.toLowerCase().includes(author.toLowerCase())
-      )) {
-        score += 5;
-      }
-
-      // Search history relevance
-      const searchRelevance = user.searchHistory.some(search =>
-        item.title.toLowerCase().includes(search.toLowerCase()) ||
-        item.author.toLowerCase().includes(search.toLowerCase())
-      );
-      if (searchRelevance) score += 4;
-
-      // Not in wishlist (avoid recommending already wishlisted items)
-      if (!user.wishlist.includes(item.id)) {
-        score += 1;
-      }
-
-      // Recently browsed similar items
-      if (user.browsingHistory.includes(item.id)) {
-        score += 2;
-      }
-
-      return { ...item, score };
-    });
-
-    // Sort by score and return top items
-    return scoredItems
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 8);
   };
 
   useEffect(() => {
@@ -170,7 +128,7 @@ export const useRecommendations = () => {
     
     // Simulate API call delay
     const timer = setTimeout(() => {
-      if (isLoggedIn && user) {
+      if (user) {
         setRecommendations(generatePersonalizedRecommendations());
       } else {
         setRecommendations(defaultRecommendations);
@@ -179,11 +137,11 @@ export const useRecommendations = () => {
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [isLoggedIn, user]);
+  }, [user]);
 
   return {
     recommendations,
     loading,
-    isPersonalized: isLoggedIn && !!user
+    isPersonalized: !!user
   };
 };
