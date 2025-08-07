@@ -120,6 +120,13 @@ const BannerCarousel = ({
   const safeCurrentIndex = Math.min(currentIndex, activeBanners.length - 1);
   const currentBanner = activeBanners[safeCurrentIndex];
 
+  // Debug current banner
+  console.log('Current Banner Debug:', {
+    safeCurrentIndex,
+    currentBanner,
+    activeBannersLength: activeBanners.length
+  });
+
   // Don't render if no current banner
   if (!currentBanner) {
     return null;
@@ -195,14 +202,14 @@ const BannerCarousel = ({
               className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
               style={{ transitionDelay: '400ms' }}
             >
-              {currentBanner.title}
+              {currentBanner?.title || 'No Title'}
             </h1>
             
             <p
               className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl leading-relaxed"
               style={{ transitionDelay: '600ms' }}
             >
-              {currentBanner.subtitle}
+              {currentBanner?.subtitle || 'No Subtitle'}
             </p>
             
             <div
