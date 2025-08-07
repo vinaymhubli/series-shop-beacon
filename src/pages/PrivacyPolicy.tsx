@@ -10,11 +10,8 @@ export default function PrivacyPolicy() {
       <Header />
       <main className="pt-16 pb-12">
         <div className="container mx-auto px-4 max-w-4xl">
-          <div className="text-green-500 text-xl mb-4 font-bold text-center">
-            PRIVACY POLICY PAGE VISIBLE
-          </div>
           <div className="prose prose-lg dark:prose-invert max-w-none">
-            <h1 className="text-4xl font-bold mb-8 text-center">Privacy Policy</h1>
+            <h1 className="text-4xl font-bold mb-8 text-center">Privacy Policy for Crossed Hearts</h1>
             
             <div className="space-y-6 text-muted-foreground leading-relaxed">
               <p>
@@ -39,32 +36,32 @@ export default function PrivacyPolicy() {
                 When you register for an account, we may request certain personal details such as your name, company name, age, address, email, telephone number and payment information (where applicable).
               </p>
               <p>
-                We, and the partners we work with, may automatically collect personal information through Cookies when you use our Services. For more details about what personal information we and certain partners may collect from or about you through Cookies, please refer to our Cookie Policy, which is subject to and part of this Privacy Policy.
+                We, and the partners we work with, may automatically collect personal information through cookies when you use our services. For more details about what personal information we and certain partners may collect from or about you through Cookies, please refer to our Cookie Policy, which is subject to and part of this Privacy Policy.
               </p>
 
               <h2 className="text-2xl font-semibold text-foreground mt-8 mb-4">How We Use Your Information</h2>
               <p>We use the information we collect to:</p>
               <ul className="list-disc pl-6 space-y-2">
-                <li>Deliver, manage, and keep our Services operational.</li>
+                <li>Deliver, manage, and keep our services operational.</li>
                 <li>Enhance, customize and broaden our services.</li>
                 <li>Recognise and examine your usage of our services.</li>
                 <li>Create, develop, and promote our products, services, features, and their capabilities.</li>
-                <li>Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the Services, and for marketing and promotional purposes</li>
+                <li>Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the services, and for marketing and promotional purposes</li>
                 <li>Help detect and prevent fraud</li>
               </ul>
 
               <h2 className="text-2xl font-semibold text-foreground mt-8 mb-4">With Whom We May Share Your Information</h2>
               <p>We value your privacy. When needed, we may share your information with the following:</p>
               <ul className="list-disc pl-6 space-y-2">
-                <li><strong>Service Providers:</strong> who may use your information to provide us services related to billing, payment processing and collections, auditing and accounting, consulting, analytics, security, website hosting, conducting surveys and promotions, customer service, email newsletter delivery services, anti-fraud monitoring and information technology.</li>
+                <li><strong>Service Providers:</strong> who may use your information to provide us services related to billing, payment processing and collections, auditing and accounting, consulting, analytics, security, website hosting, conducting surveys and promotions, customer service, email newsletter delivery services, anti-fraud monitoring, and information technology.</li>
                 <li><strong>Social Media Platforms:</strong> When interacting with us through social media platforms, several programs may collect your personal information via cookies.</li>
-                <li><strong>Advertising Partners:</strong> Our advertising partners help us promote our products and services, and they may use cookies to gather or obtain your personal data via our services and other websites online to deliver targeted advertising.</li>
+                <li><strong>Advertising Partners:</strong> Our advertising partners help us promote our products and services and they may use cookies to gather or obtain your personal data via our services and other websites online to deliver targeted advertising.</li>
                 <li><strong>Government & Law Enforcement:</strong> Government and law enforcement agencies will receive personal information when we are legally permitted to share it or when it's necessary to safeguard our interests or the safety of individuals.</li>
                 <li>We may transfer information to other businesses in a commercial transaction, such as a change in ownership or corporate structure, or to any other third party with your consent or at your direction.</li>
               </ul>
 
               <p>
-                Crossed Hearts may also share potentially identifiable and personally identifiable information with its staff, subcontractors, and associated organisations that require access to this data to handle it on Crossed Hearts' behalf or to offer the Services. Employees, contractors, and affiliated organisations which are located abroad may be handling your data, by using our services, you agree to transfer this information to them.
+                Crossed Hearts may also share potentially identifiable and personally identifiable information with its staff, subcontractors and associated organisations that require access to this data to handle it on Crossed Hearts' behalf or to offer the services. Employees, contractors and affiliated organisations which are located abroad may be handling your data, by using our services, you agree to transfer this information to them.
               </p>
 
               <p>
@@ -108,7 +105,7 @@ export default function PrivacyPolicy() {
               <h2 className="text-2xl font-semibold text-foreground mt-8 mb-4">GDPR Data Protection Rights and US State Privacy Laws</h2>
               <p>Users in jurisdictions governed by the General Data Protection Regulations and some federal or U.S. state jurisdiction are entitled to the following:</p>
               <ul className="list-disc pl-6 space-y-2">
-                <li>You have the right to request copies of your personal data. A small fee may be charged for this service.</li>
+                <li>You have the right to request copies of your personal data. A small fee may be charged for this service. We may charge you a small fee for this service.</li>
                 <li>You have the right to request that we correct any information you believe is inaccurate. You also have the right to ask us to fill in any information that you think is missing.</li>
                 <li>You have the right to request that we delete your personal data under specific circumstances.</li>
                 <li>You have the right to ask us to limit the processing of your personal information under specific circumstances.</li>
@@ -135,12 +132,12 @@ export default function PrivacyPolicy() {
 
               <h2 className="text-2xl font-semibold text-foreground mt-8 mb-4">Privacy Policy Changes</h2>
               <p>
-                This Privacy Policy may be updated from time to time. By continuing to use our Services after any updates to the Privacy Policy, you are agreeing to those changes.
+                This Privacy Policy may be updated from time to time. By continuing to use our services after any updates to the Privacy Policy, you are agreeing to those changes.
               </p>
 
               <h2 className="text-2xl font-semibold text-foreground mt-8 mb-4">Choice of Law</h2>
               <p>
-                This Privacy Policy and its interpretations will be interpreted and governed by the laws of New York State, disregarding its conflict of laws principles. By using our Services, you agree that any legal proceedings arising directly or indirectly from the Services, their use, access, or this Privacy Policy will be heard in the relevant state or federal courts based in New York, N.Y. You hereby consent and agree to the exclusive personal jurisdiction and venue of the relevant federal and state courts in New York, for any such legal proceedings. You acknowledge that any potential lawsuit or claim related to the Services must be initiated within one year of its occurrence or else you will be deemed to have forfeited the right to pursue such a claim.
+                This Privacy Policy and its interpretations will be interpreted and governed by the laws of New York State, disregarding its conflict of laws principles. By using our services, you agree that any legal proceedings arising directly or indirectly from the services, their use, access, or this Privacy Policy will be heard in the relevant state or federal courts based in New York, N.Y. You hereby consent and agree to the exclusive personal jurisdiction and venue of the relevant federal and state courts in New York, for any such legal proceedings. You acknowledge that any potential lawsuit or claim related to the services must be initiated within one year of its occurrence or else you will be deemed to have forfeited the right to pursue such a claim.
               </p>
 
               <h2 className="text-2xl font-semibold text-foreground mt-8 mb-4">Contact Us</h2>
@@ -148,26 +145,26 @@ export default function PrivacyPolicy() {
               
               <div className="bg-muted p-6 rounded-lg space-y-4">
                 <div>
-                  <strong>Crossed Hearts, LLP.</strong><br />
+                  <strong>Crossed Hearts, Inc.</strong><br />
                   5551, Hollywood Boulevard,<br />
-                  Hollywood, California, USA - 90028
+                  Hollywood, California, USA-90028
                 </div>
                 
                 <div>
-                  <strong>Crossed Hearts, LLP.</strong><br />
+                  <strong>Crossed Hearts, Inc.</strong><br />
                   349, 15th Cross, 17th Main,<br />
                   Sector 4, HSR Layout, Bangalore,<br />
-                  Karnataka, India - 560102
+                  Karnataka, India-560102
                 </div>
                 
                 <div>
-                  <strong>Phone:</strong> +91 97405 59134<br />
-                  <strong>Email:</strong> proposals@thecrossedhearts.com
+                  <strong>Ph:</strong> +91 9740715563<br />
+                  <strong>E-mail:</strong> general@crossedhearts.com
                 </div>
               </div>
 
               <p className="text-sm">
-                To unsubscribe from our mailing list, please click on the unsubscribe icon from this list link, on the footer of our weekly newsletters or send a request to proposals@thecrossedhearts.com
+                To unsubscribe from our mailing list, please click on the unsubscribe icon from this list link, on the footer of our weekly newsletters or send a request to general@crossedhearts.com.
               </p>
             </div>
           </div>
