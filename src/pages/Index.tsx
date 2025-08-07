@@ -10,6 +10,7 @@ import Footer from '@/components/Footer';
 const Index = () => {
   return (
     <div className="min-h-screen bg-gray-900">
+      {/* TEST: If you see this comment, the deployment is working */}
       <Header />
       <HeroSection />
       <SimpleProductGrid />
