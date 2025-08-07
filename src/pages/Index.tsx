@@ -1,24 +1,21 @@
 
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
-import CompanySnapshot from '@/components/CompanySnapshot';
-import SolutionsGrid from '@/components/SolutionsGrid';
-import OneRoofSection from '@/components/OneRoofSection';
-import SustainabilitySection from '@/components/SustainabilitySection';
-import JeevamSection from '@/components/JeevamSection';
+import ProductGrid from '@/components/ProductGrid';
+import RecommendedSection from '@/components/RecommendedSection';
+import AnnouncementsSection from '@/components/AnnouncementsSection';
+import SocialsSection from '@/components/SocialsSection';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
-
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-900">
       <Header />
       <HeroSection />
-      <CompanySnapshot />
-      <SolutionsGrid />
-      <OneRoofSection />
-      <SustainabilitySection />
-      <JeevamSection />
+      <ProductGrid />
+      <RecommendedSection />
+      <AnnouncementsSection />
+      <SocialsSection />
       <Newsletter />
       <Footer />
     </div>
