@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ContentEditor } from './ContentEditor';
 import { HeroBannerManager } from './HeroBannerManager';
 import { BooksManager } from './BooksManager';
+import AnnouncementsManager from './AnnouncementsManager';
 import { useCMS } from '@/hooks/useCMS';
 import { AdminPage } from './AdminSidebar';
 import { Construction, Settings, Image } from 'lucide-react';
@@ -131,6 +132,18 @@ export function PageEditor({ selectedPage }: PageEditorProps) {
       return renderGenericPage('readers-mode', "Reader's Mode");
     case 'announcement-page':
       return renderGenericPage('announcement-page', 'Announcement Page');
+    case 'announcements-management':
+      return (
+        <div className="space-y-6">
+          <div>
+            <h2 className="text-xl font-semibold mb-4">Announcements Management</h2>
+            <p className="text-muted-foreground mb-6">
+              Manage announcements that appear on the announcements section
+            </p>
+          </div>
+          <AnnouncementsManager />
+        </div>
+      );
     default:
       return (
         <Card>

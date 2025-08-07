@@ -1,44 +1,32 @@
-import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Calendar, ExternalLink, Star, Heart, Diamond, Club, Spade, X } from 'lucide-react';
+import { Calendar, ExternalLink, Star, Heart, Diamond, Club, Spade } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useAnnouncements } from '@/hooks/useAnnouncements';
 
 const AnnouncementsSection = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.1);
+  const { announcements, isLoading } = useAnnouncements();
 
-  const announcements = [
-    {
-      title: "Jujutsu Kaisen: Shibuya Incident Arc",
-      description: "We're excited to announce the licensing of the complete Shibuya Incident arc with exclusive artwork and bonus content.",
-      date: "Coming March 2024",
-      imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
-      isHot: true,
-      fullDescription: "Get ready for the most intense arc in Jujutsu Kaisen history! The Shibuya Incident arc brings unprecedented action, emotional depth, and character development. This exclusive release includes never-before-seen artwork from MAPPA studios, commentary from Gege Akutami, and special behind-the-scenes content from the anime production.",
-      features: ["Exclusive MAPPA artwork", "Author commentary", "Behind-the-scenes content", "Limited edition covers"],
-      status: "Pre-order starting soon"
-    },
-    {
-      title: "Chainsaw Man Part 2: School Arc",
-      description: "The highly anticipated continuation of Chainsaw Man is now available with same-day translation releases.",
-      date: "Available Now",
-      imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
-      isNew: true,
-      fullDescription: "Denji returns in an all-new adventure! Part 2 introduces new devils, new characters, and even more chaos. Follow Denji as he navigates high school life while dealing with his devil powers. This release features high-quality translations available the same day as the Japanese release.",
-      features: ["Same-day translations", "High-resolution pages", "Mobile-optimized reading", "Exclusive translator notes"],
-      status: "Reading available now"
-    },
-    {
-      title: "Attack on Titan: Final Exhibition",
-      description: "Limited edition box sets with exclusive artwork from the final exhibition, including never-before-seen concept art.",
-      date: "Pre-Order Open",
-      imageUrl: "/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png",
-      isLimited: true,
-      fullDescription: "Commemorate the epic conclusion of Attack on Titan with this special exhibition collection. Features rare concept art, character design sheets, and exclusive interviews with Hajime Isayama. This limited edition release includes physical and digital content celebrating the series' incredible journey.",
-      features: ["Rare concept art collection", "Character design sheets", "Creator interviews", "Physical collectors box"],
-      status: "Limited quantity - Pre-order now"
-    }
-  ];
+  if (isLoading) {
+    return (
+      <section className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-16">
+        <div className="container mx-auto px-4 text-center">
+          <div className="text-white text-lg">Loading announcements...</div>
+        </div>
+      </section>
+    );
+  }
+
+  if (announcements.length === 0) {
+    return (
+      <section className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-16">
+        <div className="container mx-auto px-4 text-center">
+          <div className="text-gray-400 text-lg">No announcements available</div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section 
@@ -76,7 +64,7 @@ const AnnouncementsSection = () => {
             >
               <div className="relative overflow-hidden">
                 <img 
-                  src={announcement.imageUrl} 
+                  src={announcement.image_url} 
                   alt={announcement.title}
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
                 />
@@ -93,17 +81,17 @@ const AnnouncementsSection = () => {
                 
                 {/* Badges */}
                 <div className="absolute top-3 left-3 space-y-2">
-                  {announcement.isHot && (
+                  {announcement.badge_type === 'hot' && (
                     <span className="bg-gradient-to-r from-red-600 to-red-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-pulse">
                       🔥 HOT
                     </span>
                   )}
-                  {announcement.isNew && (
+                  {announcement.badge_type === 'new' && (
                     <span className="bg-gradient-to-r from-green-600 to-green-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-pulse">
                       ✨ NEW
                     </span>
                   )}
-                  {announcement.isLimited && (
+                  {announcement.badge_type === 'limited' && (
                     <span className="bg-gradient-to-r from-purple-600 to-purple-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-pulse">
                       ⚡ LIMITED
                     </span>
@@ -124,7 +112,7 @@ const AnnouncementsSection = () => {
                 
                 <div className="flex items-center space-x-2 text-orange-400">
                   <Calendar className="w-4 h-4" />
-                  <span className="text-sm font-semibold">{announcement.date}</span>
+                  <span className="text-sm font-semibold">{announcement.date_info}</span>
                 </div>
                 
                 <Dialog>
@@ -151,22 +139,22 @@ const AnnouncementsSection = () => {
                       {/* Image */}
                       <div className="relative rounded-lg overflow-hidden">
                         <img 
-                          src={announcement.imageUrl} 
+                          src={announcement.image_url} 
                           alt={announcement.title}
                           className="w-full h-64 object-cover"
                         />
                         <div className="absolute top-3 left-3">
-                          {announcement.isHot && (
+                          {announcement.badge_type === 'hot' && (
                             <span className="bg-gradient-to-r from-red-600 to-red-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                               🔥 HOT
                             </span>
                           )}
-                          {announcement.isNew && (
+                          {announcement.badge_type === 'new' && (
                             <span className="bg-gradient-to-r from-green-600 to-green-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                               ✨ NEW
                             </span>
                           )}
-                          {announcement.isLimited && (
+                          {announcement.badge_type === 'limited' && (
                             <span className="bg-gradient-to-r from-purple-600 to-purple-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                               ⚡ LIMITED
                             </span>
@@ -178,7 +166,7 @@ const AnnouncementsSection = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2 text-orange-400">
                           <Calendar className="w-5 h-5" />
-                          <span className="font-semibold">{announcement.date}</span>
+                          <span className="font-semibold">{announcement.date_info}</span>
                         </div>
                         <span className="bg-gradient-to-r from-orange-600 to-red-600 text-white text-sm font-semibold px-4 py-2 rounded-full">
                           {announcement.status}
@@ -189,7 +177,7 @@ const AnnouncementsSection = () => {
                       <div>
                         <h4 className="font-semibold text-lg mb-3 text-orange-300">About This Release</h4>
                         <p className="text-gray-300 leading-relaxed">
-                          {announcement.fullDescription}
+                          {announcement.full_description}
                         </p>
                       </div>
 
@@ -209,7 +197,7 @@ const AnnouncementsSection = () => {
                       {/* Action Button */}
                       <div className="pt-4">
                         <Button className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-semibold py-3">
-                          {announcement.isLimited ? 'Pre-Order Now' : announcement.isNew ? 'Start Reading' : 'Get Notified'}
+                          {announcement.badge_type === 'limited' ? 'Pre-Order Now' : announcement.badge_type === 'new' ? 'Start Reading' : 'Get Notified'}
                         </Button>
                       </div>
                     </div>

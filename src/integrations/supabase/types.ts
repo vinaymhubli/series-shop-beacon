@@ -14,6 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
+      announcements: {
+        Row: {
+          badge_type: string | null
+          created_at: string
+          date_info: string
+          description: string
+          display_order: number
+          features: string[]
+          full_description: string
+          id: string
+          image_url: string
+          is_active: boolean
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          badge_type?: string | null
+          created_at?: string
+          date_info: string
+          description: string
+          display_order?: number
+          features?: string[]
+          full_description: string
+          id?: string
+          image_url: string
+          is_active?: boolean
+          status: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          badge_type?: string | null
+          created_at?: string
+          date_info?: string
+          description?: string
+          display_order?: number
+          features?: string[]
+          full_description?: string
+          id?: string
+          image_url?: string
+          is_active?: boolean
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       books: {
         Row: {
           author: string
