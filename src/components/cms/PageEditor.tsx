@@ -43,6 +43,16 @@ export function PageEditor({ selectedPage }: PageEditorProps) {
           <HeroBannerManager />
         </CardContent>
       </Card>
+
+      {/* Books Management Section */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Books Below Home Banner</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <BooksManager />
+        </CardContent>
+      </Card>
     </div>
   );
 
