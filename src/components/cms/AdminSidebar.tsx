@@ -5,7 +5,7 @@ import {
   BookOpen, 
   ShoppingBag, 
   Info, 
-  Book, 
+  Settings as SettingsIcon, 
   Megaphone,
   Image,
   Settings
@@ -58,7 +58,7 @@ const adminPages: AdminPage[] = [
   { 
     id: 'readers-mode', 
     title: "Reader's Mode", 
-    icon: Book,
+    icon: SettingsIcon,
     description: 'Manage reading experience settings'
   },
   { 
