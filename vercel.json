@@ -15,6 +15,7 @@
     { "source": "/readers-mode", "destination": "/index.html" },
     { "source": "/privacy-policy", "destination": "/index.html" },
     { "source": "/copyright", "destination": "/index.html" },
+    { "source": "/order-shipping", "destination": "/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
