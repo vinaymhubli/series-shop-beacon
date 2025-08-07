@@ -67,12 +67,6 @@ const adminPages: AdminPage[] = [
     icon: BookOpen,
     description: 'Manage book catalog and metadata'
   },
-  { 
-    id: 'announcement-page', 
-    title: 'Announcement Page', 
-    icon: Megaphone,
-    description: 'Manage announcements and news'
-  },
 ];
 
 interface AdminSidebarProps {
