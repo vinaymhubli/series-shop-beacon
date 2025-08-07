@@ -76,7 +76,7 @@ const SimpleProductGrid = () => {
                   <img 
                     src={book.image_url} 
                     alt={book.title}
-                    className="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-110"
+                    className="w-full h-96 object-cover"
                   />
                   
                   {/* Hover Overlay */}
