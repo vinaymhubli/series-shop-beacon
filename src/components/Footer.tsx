@@ -1,10 +1,13 @@
-import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Youtube, Settings } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useCMS } from '@/hooks/useCMS';
+import { useSupabaseAuth } from '@/hooks/useSupabaseAuth';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.2);
   const { getSectionContent } = useCMS();
+  const { isAdmin } = useSupabaseAuth();
 
   // Get footer content from CMS or use defaults
   const footerContent = getSectionContent('footer', 'main_content');
@@ -138,7 +141,7 @@ const Footer = () => {
         <div className={`border-t border-gray-800 mt-6 sm:mt-8 pt-6 sm:pt-8 flex flex-col items-center space-y-4 sm:flex-row sm:justify-between sm:space-y-0 transition-all duration-700 delay-800 transform ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}>
-          <div className="flex space-x-6">
+          <div className="flex space-x-6 items-center">
             <a href="#" className="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110">
               <Twitter className="w-5 h-5" />
             </a>
@@ -151,6 +154,16 @@ const Footer = () => {
             <a href="#" className="text-gray-400 hover:text-white transition-all duration-200 transform hover:scale-110">
               <Youtube className="w-5 h-5" />
             </a>
+            {isAdmin && (
+              <Link 
+                to="/admin" 
+                className="text-gray-400 hover:text-red-500 transition-all duration-200 transform hover:scale-110 flex items-center gap-1 text-xs"
+                title="CMS Admin Panel"
+              >
+                <Settings className="w-4 h-4" />
+                <span className="hidden sm:inline">CMS</span>
+              </Link>
+            )}
           </div>
           
           <p className="text-xs sm:text-sm text-gray-500 text-center">
