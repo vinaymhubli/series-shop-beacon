@@ -38,6 +38,16 @@ const ProductGrid = () => {
   };
 
   const products = getProductsForSection();
+  
+  // Debug logging
+  console.log('ProductGrid Debug:', {
+    totalBooks: books.length,
+    activeSection,
+    showAll,
+    booksInActiveSection: getBooksBySection(activeSection).length,
+    allBooks: books,
+    products: products
+  });
 
   const handleSectionChange = (section: string) => {
     setActiveSection(section);
