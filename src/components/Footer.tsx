@@ -123,8 +123,12 @@ const Footer = () => {
                 <ul className="space-y-1.5 sm:space-y-2">
                   {section.links.map((link, linkIndex) => (
                     <li key={linkIndex}>
-                     {linkIndex === 0 && index === 0 ? (
+                      {linkIndex === 0 && index === 0 ? (
                         <p className="text-xs sm:text-sm text-gray-500 leading-relaxed px-2 sm:px-0">{companyDescription}</p>
+                      ) : link === "Privacy Policy" ? (
+                        <Link to="/privacy-policy" className="text-xs sm:text-sm hover:text-white transition-colors duration-200 transform hover:translate-x-1 block px-2 sm:px-0 py-1">
+                          {link}
+                        </Link>
                       ) : (
                         <a href="#" className="text-xs sm:text-sm hover:text-white transition-colors duration-200 transform hover:translate-x-1 block px-2 sm:px-0 py-1">
                           {link}

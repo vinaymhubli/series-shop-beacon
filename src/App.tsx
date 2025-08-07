@@ -28,6 +28,7 @@ import ReadersMode from "./pages/ReadersMode";
 import MerchandiseDetail from "./pages/MerchandiseDetail";
 import AdminPanel from "./pages/AdminPanel";
 import NotFound from "./pages/NotFound";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Auth from "./pages/Auth";
 import ChatBot from "./components/ChatBot";
 import { AuthProvider } from "./hooks/useSupabaseAuth";
@@ -65,6 +66,7 @@ const App = () => (
             <Route path="/affiliation-programs" element={<AffiliationPrograms />} />
             <Route path="/readers/:seriesTitle" element={<ReadersMode />} />
             <Route path="/readers-mode/:seriesTitle" element={<ReadersMode />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="*" element={<NotFound />} />

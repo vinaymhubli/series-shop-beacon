@@ -13,6 +13,7 @@
     { "source": "/profile", "destination": "/index.html" },
     { "source": "/affiliation-programs", "destination": "/index.html" },
     { "source": "/readers-mode", "destination": "/index.html" },
+    { "source": "/privacy-policy", "destination": "/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
