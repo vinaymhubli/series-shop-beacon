@@ -47,28 +47,6 @@ const BannerCarousel = ({
   // Use custom banners if provided, otherwise use CMS banners
   const activeBanners = banners.length > 0 ? banners : transformedBanners;
 
-  // Show loading or return early if no banners
-  if (isLoading && transformedBanners.length === 0) {
-    return (
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
-        <div className="text-white text-lg">Loading...</div>
-      </section>
-    );
-  }
-
-  // Ensure we have at least one banner and currentIndex is valid
-  if (activeBanners.length === 0) {
-    return (
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
-        <div className="text-white text-lg">No banners available</div>
-      </section>
-    );
-  }
-
-  // Ensure currentIndex is within bounds
-  const safeCurrentIndex = Math.min(currentIndex, activeBanners.length - 1);
-  const currentBanner = activeBanners[safeCurrentIndex];
-
   // Auto-play functionality
   useEffect(() => {
     if (!autoPlay || activeBanners.length <= 1) return;
@@ -107,6 +85,28 @@ const BannerCarousel = ({
       [bannerId]: !prev[bannerId]
     }));
   };
+
+  // Show loading state
+  if (isLoading && transformedBanners.length === 0) {
+    return (
+      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+        <div className="text-white text-lg">Loading...</div>
+      </section>
+    );
+  }
+
+  // Show no banners state
+  if (activeBanners.length === 0) {
+    return (
+      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+        <div className="text-white text-lg">No banners available</div>
+      </section>
+    );
+  }
+
+  // Ensure currentIndex is within bounds
+  const safeCurrentIndex = Math.min(currentIndex, activeBanners.length - 1);
+  const currentBanner = activeBanners[safeCurrentIndex];
 
   // Don't render if no current banner
   if (!currentBanner) {
