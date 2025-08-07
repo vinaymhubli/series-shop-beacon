@@ -46,14 +46,17 @@ export const HeroBannerManager = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Submitting banner data:', formData);
     try {
       if (editingId) {
+        console.log('Updating banner with ID:', editingId);
         await updateBanner(editingId, formData);
         toast({
           title: "Success",
           description: "Banner updated successfully",
         });
       } else {
+        console.log('Creating new banner');
         await createBanner(formData);
         toast({
           title: "Success",
@@ -64,6 +67,7 @@ export const HeroBannerManager = () => {
       // Force reload to ensure data is fresh
       await loadHeroBanners();
     } catch (error) {
+      console.error('Error saving banner:', error);
       toast({
         title: "Error",
         description: "Failed to save banner",

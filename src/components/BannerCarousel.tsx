@@ -44,8 +44,15 @@ const BannerCarousel = ({
     overlayText: undefined
   }));
 
+  // Debug logging
+  console.log('Hero banners from CMS:', heroBanners);
+  console.log('Transformed banners:', transformedBanners);
+  console.log('Custom banners prop:', banners);
+
   // Use CMS banners if available, otherwise use custom banners
   const activeBanners = transformedBanners.length > 0 ? transformedBanners : banners;
+  
+  console.log('Active banners being used:', activeBanners);
 
 
   // Auto-play functionality
@@ -185,14 +192,14 @@ const BannerCarousel = ({
               className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
               style={{ transitionDelay: '400ms' }}
             >
-              {currentBanner.title}
+              {currentBanner.title || 'No Title'}
             </h1>
             
             <p
               className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl leading-relaxed"
               style={{ transitionDelay: '600ms' }}
             >
-              {currentBanner.subtitle}
+              {currentBanner.subtitle || 'No Subtitle'}
             </p>
             
             <div
