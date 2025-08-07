@@ -10,6 +10,14 @@ const ProductGrid = () => {
   const [activeSection, setActiveSection] = useState('best-sellers');
   const [showAll, setShowAll] = useState(false);
 
+  // Always render something visible - this ensures the component shows up
+  console.log('ProductGrid rendering with:', { 
+    booksCount: books?.length || 0, 
+    isLoading, 
+    activeSection,
+    showAll 
+  });
+
   // Transform books data to match ProductCard interface
   const transformBooksToProducts = (booksList: any[]) => {
     return booksList.map(book => ({
@@ -29,6 +37,8 @@ const ProductGrid = () => {
   };
 
   const getProductsForSection = () => {
+    if (!books || books.length === 0) return [];
+    
     if (showAll) {
       return transformBooksToProducts(books);
     }
@@ -41,10 +51,10 @@ const ProductGrid = () => {
   
   // Debug logging
   console.log('ProductGrid Debug:', {
-    totalBooks: books.length,
+    totalBooks: books?.length || 0,
     activeSection,
     showAll,
-    booksInActiveSection: getBooksBySection(activeSection).length,
+    booksInActiveSection: books ? getBooksBySection(activeSection).length : 0,
     allBooks: books,
     products: products
   });
@@ -74,7 +84,7 @@ const ProductGrid = () => {
   }
 
   // Show empty state if no books
-  if (books.length === 0) {
+  if (!books || books.length === 0) {
     return (
       <section className="relative bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 py-12 overflow-hidden">
         <div className="container mx-auto px-4 text-center">
