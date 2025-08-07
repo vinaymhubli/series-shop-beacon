@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useBooks } from '@/hooks/useBooks';
+import { Heart, ShoppingCart, Eye } from 'lucide-react';
 
 const SimpleProductGrid = () => {
   const { books, isLoading } = useBooks();
   const [activeSection, setActiveSection] = useState('best-sellers');
+  const [hoveredBook, setHoveredBook] = useState<string | null>(null);
 
   // Filter books based on selected section
   const getFilteredBooks = () => {
@@ -64,23 +66,45 @@ const SimpleProductGrid = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {filteredBooks.length > 0 ? (
             filteredBooks.map((book, index) => (
-              <div key={book.id} className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden border border-gray-700/50 min-h-[560px]">
+              <div 
+                key={book.id} 
+                className="group bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden border border-gray-700/50 min-h-[560px] transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/10 hover:scale-105"
+                onMouseEnter={() => setHoveredBook(book.id)}
+                onMouseLeave={() => setHoveredBook(null)}
+              >
                 <div className="relative overflow-hidden">
                   <img 
                     src={book.image_url} 
                     alt={book.title}
-                    className="w-full h-96 object-cover"
+                    className="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                   
+                  {/* Hover Overlay */}
+                  <div className={`absolute inset-0 bg-black/60 transition-opacity duration-300 ${
+                    hoveredBook === book.id ? 'opacity-100' : 'opacity-0'
+                  }`}>
+                    <div className="absolute inset-0 flex items-center justify-center space-x-4">
+                      <button className="bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-200 hover:scale-110">
+                        <Heart size={20} />
+                      </button>
+                      <button className="bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-all duration-200 hover:scale-110">
+                        <Eye size={20} />
+                      </button>
+                      <button className="bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-200 hover:scale-110">
+                        <ShoppingCart size={20} />
+                      </button>
+                    </div>
+                  </div>
+                  
                   {/* Badges */}
-                  <div className="absolute top-3 left-3 space-y-2">
+                  <div className="absolute top-3 left-3 space-y-2 z-10">
                     {book.is_new && (
-                      <span className="bg-gradient-to-r from-red-600 to-red-700 text-white text-xs font-bold px-3 py-1 rounded-full">
+                      <span className="bg-gradient-to-r from-red-600 to-red-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                         NEW
                       </span>
                     )}
                     {book.is_on_sale && (
-                      <span className="bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                      <span className="bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                         SALE
                       </span>
                     )}
@@ -88,7 +112,7 @@ const SimpleProductGrid = () => {
 
                   {/* Label */}
                   {book.label && (
-                    <div className="absolute top-3 right-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white text-xs font-bold px-3 py-1 rounded-full">
+                    <div className="absolute top-3 right-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10">
                       {book.label}
                     </div>
                   )}
@@ -114,14 +138,14 @@ const SimpleProductGrid = () => {
                   </div>
                   
                   <div className="flex flex-col space-y-2 pt-2 mt-auto">
-                    <button className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-semibold py-2 rounded">
+                    <button className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-semibold py-2 rounded transition-all duration-300 hover:shadow-lg hover:shadow-red-500/30">
                       Add to Cart
                     </button>
-                    <button className="w-full bg-white text-black text-xs py-2 rounded">
+                    <button className="w-full bg-white hover:bg-gray-100 text-black text-xs py-2 rounded transition-all duration-300 hover:shadow-lg">
                       Buy Now
                     </button>
                     {book.can_unlock_with_coins && (
-                      <button className="w-full text-gray-400 hover:text-white text-xs border border-gray-600 py-2 rounded">
+                      <button className="w-full text-gray-400 hover:text-white text-xs border border-gray-600 hover:border-gray-400 py-2 rounded transition-all duration-300">
                         Unlock with {book.coins || `${Math.round(book.price * 100)} coins`}
                       </button>
                     )}
