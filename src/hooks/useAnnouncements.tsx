@@ -38,14 +38,21 @@ export const useAnnouncements = () => {
           table: 'announcements'
         },
         (payload) => {
-          if (payload.eventType === 'INSERT') {
-            setAnnouncements(prev => [...prev, payload.new as Announcement]);
+          if (payload.eventType === 'INSERT' && payload.new.is_active) {
+            setAnnouncements(prev => [...prev, payload.new as Announcement].sort((a, b) => a.display_order - b.display_order));
           } else if (payload.eventType === 'UPDATE') {
-            setAnnouncements(prev => 
-              prev.map(announcement => 
-                announcement.id === payload.new.id ? payload.new as Announcement : announcement
-              )
-            );
+            if (payload.new.is_active) {
+              setAnnouncements(prev => 
+                prev.map(announcement => 
+                  announcement.id === payload.new.id ? payload.new as Announcement : announcement
+                ).sort((a, b) => a.display_order - b.display_order)
+              );
+            } else {
+              // If announcement becomes inactive, remove it
+              setAnnouncements(prev => 
+                prev.filter(announcement => announcement.id !== payload.new.id)
+              );
+            }
           } else if (payload.eventType === 'DELETE') {
             setAnnouncements(prev => 
               prev.filter(announcement => announcement.id !== payload.old.id)
