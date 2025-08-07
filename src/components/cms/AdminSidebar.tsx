@@ -103,43 +103,14 @@ export function AdminSidebar({ selectedPage, onPageSelect }: AdminSidebarProps) 
                     asChild 
                     className={`
                       ${getNavClass(page.id)} 
-                      transition-all duration-200 ease-in-out
-                      hover:shadow-sm hover:bg-accent/80
-                      ${isActive(page.id) ? 'shadow-md bg-primary text-primary-foreground hover:bg-primary/90' : ''}
-                      rounded-lg mx-2 mb-1 border border-transparent
-                      ${isActive(page.id) ? 'border-primary/20' : 'hover:border-accent'}
+                      rounded px-3 py-2
                     `}
                   >
                     <button
                       onClick={() => onPageSelect(page.id)}
-                      className="w-full flex items-center gap-3 px-3 py-3 text-left group"
+                      className="w-full text-left"
                     >
-                      <page.icon className={`
-                        h-5 w-5 flex-shrink-0 transition-transform duration-200
-                        ${isActive(page.id) ? 'text-primary-foreground' : 'text-muted-foreground group-hover:text-foreground'}
-                        group-hover:scale-110
-                      `} />
-                      {!collapsed && (
-                        <div className="flex-1 min-w-0">
-                          <div className={`
-                            font-medium text-sm truncate
-                            ${isActive(page.id) ? 'text-primary-foreground' : 'text-foreground'}
-                          `}>
-                            {page.title}
-                          </div>
-                          {page.description && (
-                            <div className={`
-                              text-xs mt-0.5 truncate
-                              ${isActive(page.id) ? 'text-primary-foreground/80' : 'text-muted-foreground'}
-                            `}>
-                              {page.description}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                      {!collapsed && isActive(page.id) && (
-                        <div className="w-2 h-2 rounded-full bg-primary-foreground animate-pulse" />
-                      )}
+                      {page.title}
                     </button>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
