@@ -174,6 +174,10 @@ const BannerCarousel = ({
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}
           >
+            {/* Debug info - remove this after testing */}
+            <div className="fixed top-4 left-4 bg-black/80 text-white p-2 text-xs z-50 rounded">
+              Banner {currentIndex + 1}: {currentBanner?.title || 'No title'} | {currentBanner?.subtitle || 'No subtitle'}
+            </div>
             {currentBanner.overlayText && (
               <div
                 className="inline-block bg-gradient-to-r from-red-600 to-red-700 text-white text-sm font-bold px-4 py-2 rounded-full mb-6 animate-pulse shadow-lg"
@@ -184,17 +188,23 @@ const BannerCarousel = ({
             )}
             
             <h1
-              className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
-              style={{ transitionDelay: '400ms' }}
+              className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight relative z-20"
+              style={{ 
+                transitionDelay: '400ms',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
+              }}
             >
-              {currentBanner.title || 'No Title'}
+              {currentBanner?.title || 'No Title Available'}
             </h1>
             
             <p
-              className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl leading-relaxed"
-              style={{ transitionDelay: '600ms' }}
+              className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl leading-relaxed relative z-20"
+              style={{ 
+                transitionDelay: '600ms',
+                textShadow: '1px 1px 2px rgba(0,0,0,0.8)'
+              }}
             >
-              {currentBanner.subtitle || 'No Subtitle'}
+              {currentBanner?.subtitle || 'No Subtitle Available'}
             </p>
             
             <div
