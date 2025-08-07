@@ -14,6 +14,7 @@
     { "source": "/affiliation-programs", "destination": "/index.html" },
     { "source": "/readers-mode", "destination": "/index.html" },
     { "source": "/privacy-policy", "destination": "/index.html" },
+    { "source": "/copyright", "destination": "/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
