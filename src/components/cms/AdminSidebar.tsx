@@ -38,12 +38,6 @@ const adminPages: AdminPage[] = [
     description: 'Manage homepage content and layout'
   },
   { 
-    id: 'books-management', 
-    title: 'Books Management', 
-    icon: BookOpen,
-    description: 'Add books below home banner'
-  },
-  { 
     id: 'our-series', 
     title: 'Our Series', 
     icon: BookOpen,
@@ -171,6 +165,50 @@ export function AdminSidebar({ selectedPage, onPageSelect }: AdminSidebarProps) 
                       </div>
                     )}
                     {!collapsed && isActive('hero-banners') && (
+                      <div className="w-2 h-2 rounded-full bg-primary-foreground animate-pulse" />
+                    )}
+                  </button>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              
+              <SidebarMenuItem>
+                <SidebarMenuButton 
+                  asChild 
+                  className={`
+                    ${getNavClass('books-management')} 
+                    transition-all duration-200 ease-in-out
+                    hover:shadow-sm hover:bg-accent/80
+                    ${isActive('books-management') ? 'shadow-md bg-primary text-primary-foreground hover:bg-primary/90' : ''}
+                    rounded-lg mx-2 mb-1 border border-transparent
+                    ${isActive('books-management') ? 'border-primary/20' : 'hover:border-accent'}
+                  `}
+                >
+                  <button
+                    onClick={() => onPageSelect('books-management')}
+                    className="w-full flex items-center gap-3 px-3 py-3 text-left group"
+                  >
+                    <BookOpen className={`
+                      h-5 w-5 flex-shrink-0 transition-transform duration-200
+                      ${isActive('books-management') ? 'text-primary-foreground' : 'text-muted-foreground group-hover:text-foreground'}
+                      group-hover:scale-110
+                    `} />
+                    {!collapsed && (
+                      <div className="flex-1 min-w-0">
+                        <div className={`
+                          font-medium text-sm truncate
+                          ${isActive('books-management') ? 'text-primary-foreground' : 'text-foreground'}
+                        `}>
+                          Books Management
+                        </div>
+                        <div className={`
+                          text-xs mt-0.5 truncate
+                          ${isActive('books-management') ? 'text-primary-foreground/80' : 'text-muted-foreground'}
+                        `}>
+                          Add books below home banner
+                        </div>
+                      </div>
+                    )}
+                    {!collapsed && isActive('books-management') && (
                       <div className="w-2 h-2 rounded-full bg-primary-foreground animate-pulse" />
                     )}
                   </button>
