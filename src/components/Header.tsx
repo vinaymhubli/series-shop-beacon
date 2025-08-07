@@ -116,18 +116,7 @@ const Header = () => {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-            ) : (
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => setIsAuthModalOpen(true)}
-                className="text-gray-300 hover:text-white"
-                disabled={isLoading}
-              >
-                <LogIn className="h-4 w-4 mr-2" />
-                Sign In
-              </Button>
-            )}
+            ) : null}
           </div>
 
           {/* Mobile menu button */}
@@ -185,16 +174,7 @@ const Header = () => {
                     Sign Out
                   </Button>
                 </>
-              ) : (
-                <Button
-                  variant="ghost"
-                  onClick={() => setIsAuthModalOpen(true)}
-                  className="text-gray-300 hover:text-white hover:bg-gray-800 text-sm font-medium px-3 py-2 rounded-md w-full justify-start"
-                  disabled={isLoading}
-                >
-                  Sign In
-                </Button>
-              )}
+              ) : null}
               <div className="flex items-center justify-center space-x-4 px-3 pt-4 border-t border-gray-800">
                 <CoinDisplay />
                 <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
@@ -208,11 +188,6 @@ const Header = () => {
           </div>
         )}
       </div>
-      
-      <AuthModal 
-        isOpen={isAuthModalOpen}
-        onOpenChange={setIsAuthModalOpen}
-      />
     </header>
   );
 };

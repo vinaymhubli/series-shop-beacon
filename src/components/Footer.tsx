@@ -1,13 +1,16 @@
-import { Facebook, Instagram, Twitter, Youtube, Settings } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Youtube, Settings, LogIn } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useCMS } from '@/hooks/useCMS';
 import { useSupabaseAuth } from '@/hooks/useSupabaseAuth';
 import { Link } from 'react-router-dom';
+import { AuthModal } from '@/components/auth/AuthModal';
+import { useState } from 'react';
 
 const Footer = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.2);
   const { getSectionContent } = useCMS();
-  const { isAdmin } = useSupabaseAuth();
+  const { isAdmin, user } = useSupabaseAuth();
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   // Get footer content from CMS or use defaults
   const footerContent = getSectionContent('footer', 'main_content');
@@ -164,6 +167,16 @@ const Footer = () => {
                 <span className="hidden sm:inline">CMS</span>
               </Link>
             )}
+            {!user && (
+              <button
+                onClick={() => setIsAuthModalOpen(true)}
+                className="text-gray-400 hover:text-red-500 transition-all duration-200 transform hover:scale-110 flex items-center gap-1 text-xs"
+                title="Admin Login"
+              >
+                <LogIn className="w-4 h-4" />
+                <span className="hidden sm:inline">Admin Login</span>
+              </button>
+            )}
           </div>
           
           <p className="text-xs sm:text-sm text-gray-500 text-center">
@@ -171,6 +184,11 @@ const Footer = () => {
           </p>
         </div>
       </div>
+      
+      <AuthModal 
+        isOpen={isAuthModalOpen}
+        onOpenChange={setIsAuthModalOpen}
+      />
     </footer>
   );
 };
