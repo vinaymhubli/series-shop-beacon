@@ -101,7 +101,7 @@ const SimpleProductGrid = () => {
                   )}
                 </div>
                 
-                <div className="p-5 space-y-3 flex-1 flex flex-col">
+                <div className="p-3 space-y-3 flex-1 flex flex-col">
                   <h3 className="text-white font-semibold text-lg">{book.title}</h3>
                   <p className="text-gray-400 text-sm">{book.author}</p>
                   <p className="text-gray-500 text-xs uppercase tracking-wide">{book.category}</p>
