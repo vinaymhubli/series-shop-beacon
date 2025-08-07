@@ -1,13 +1,18 @@
 
 import { useState } from 'react';
-import { Menu, X, Search, ShoppingCart, User, Heart, Library } from 'lucide-react';
+import { Menu, X, Search, ShoppingCart, User, Heart, Library, Settings, LogOut, LogIn } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
 import { CoinDisplay } from '@/components/CoinDisplay';
+import { useSupabaseAuth } from '@/hooks/useSupabaseAuth';
+import { AuthModal } from '@/components/auth/AuthModal';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const location = useLocation();
+  const { user, isAdmin, signOut, isLoading } = useSupabaseAuth();
 
   const navItems = [
     { name: 'Home', href: '/' },
@@ -82,11 +87,47 @@ const Header = () => {
             <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
               <ShoppingCart className="h-5 w-5" />
             </Button>
-            <Link to="/profile">
-              <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
-                <User className="h-5 w-5" />
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
+                    <User className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuItem asChild>
+                    <Link to="/profile" className="flex items-center gap-2">
+                      <User className="h-4 w-4" />
+                      Profile
+                    </Link>
+                  </DropdownMenuItem>
+                  {isAdmin && (
+                    <DropdownMenuItem asChild>
+                      <Link to="/admin" className="flex items-center gap-2">
+                        <Settings className="h-4 w-4" />
+                        Admin Panel
+                      </Link>
+                    </DropdownMenuItem>
+                  )}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={signOut} className="flex items-center gap-2">
+                    <LogOut className="h-4 w-4" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={() => setIsAuthModalOpen(true)}
+                className="text-gray-300 hover:text-white"
+                disabled={isLoading}
+              >
+                <LogIn className="h-4 w-4 mr-2" />
+                Sign In
               </Button>
-            </Link>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -118,13 +159,42 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
-              <Link
-                to="/profile"
-                className="text-gray-300 hover:text-white hover:bg-gray-800 text-sm font-medium px-3 py-2 rounded-md"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Profile
-              </Link>
+              {user ? (
+                <>
+                  <Link
+                    to="/profile"
+                    className="text-gray-300 hover:text-white hover:bg-gray-800 text-sm font-medium px-3 py-2 rounded-md"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Profile
+                  </Link>
+                  {isAdmin && (
+                    <Link
+                      to="/admin"
+                      className="text-gray-300 hover:text-white hover:bg-gray-800 text-sm font-medium px-3 py-2 rounded-md"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Admin Panel
+                    </Link>
+                  )}
+                  <Button
+                    variant="ghost"
+                    onClick={signOut}
+                    className="text-gray-300 hover:text-white hover:bg-gray-800 text-sm font-medium px-3 py-2 rounded-md w-full justify-start"
+                  >
+                    Sign Out
+                  </Button>
+                </>
+              ) : (
+                <Button
+                  variant="ghost"
+                  onClick={() => setIsAuthModalOpen(true)}
+                  className="text-gray-300 hover:text-white hover:bg-gray-800 text-sm font-medium px-3 py-2 rounded-md w-full justify-start"
+                  disabled={isLoading}
+                >
+                  Sign In
+                </Button>
+              )}
               <div className="flex items-center justify-center space-x-4 px-3 pt-4 border-t border-gray-800">
                 <CoinDisplay />
                 <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
@@ -138,6 +208,11 @@ const Header = () => {
           </div>
         )}
       </div>
+      
+      <AuthModal 
+        isOpen={isAuthModalOpen}
+        onOpenChange={setIsAuthModalOpen}
+      />
     </header>
   );
 };

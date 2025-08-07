@@ -3,7 +3,8 @@ import Header from '@/components/Header';
 import AboutHero from '@/components/AboutHero';
 import AboutTabs from '@/components/AboutTabs';
 
-import YearlyTimeline from '@/components/YearlyTimeline';
+import { DynamicHeroSection } from '@/components/cms/DynamicHeroSection';
+import { DynamicTimelineSection } from '@/components/cms/DynamicTimelineSection';
 import CreativeCorner from '@/components/CreativeCorner';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
@@ -18,7 +19,14 @@ const AboutUs = () => {
         <Header />
         
         <section id="hero">
-          <AboutHero />
+          <DynamicHeroSection 
+            pageName="about_us" 
+            sectionName="hero"
+            defaultContent={{
+              title: "About Crossed Hearts",
+              subtitle: "A global publishing house specialising in the English localization of Japanese manga and Korean webtoon comics, bringing incredible stories to readers worldwide."
+            }}
+          />
         </section>
         
         <section id="tabs" className="px-4 sm:px-0">
@@ -26,7 +34,7 @@ const AboutUs = () => {
         </section>
         
         <section id="timeline">
-          <YearlyTimeline />
+          <DynamicTimelineSection pageName="about_us" sectionName="yearly_timeline" />
         </section>
         
         <section id="creative-corner">

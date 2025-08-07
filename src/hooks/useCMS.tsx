@@ -1,0 +1,118 @@
+import { useState, useEffect } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { useSupabaseAuth } from './useSupabaseAuth';
+
+interface PageSection {
+  id: string;
+  page_name: string;
+  section_name: string;
+  content: any;
+  created_at: string;
+  updated_at: string;
+}
+
+export const useCMS = () => {
+  const [sections, setSections] = useState<PageSection[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { isAdmin } = useSupabaseAuth();
+
+  useEffect(() => {
+    loadAllSections();
+    
+    // Set up real-time subscription
+    const channel = supabase
+      .channel('page_sections_changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'page_sections'
+        },
+        (payload) => {
+          if (payload.eventType === 'INSERT') {
+            setSections(prev => [...prev, payload.new as PageSection]);
+          } else if (payload.eventType === 'UPDATE') {
+            setSections(prev => 
+              prev.map(section => 
+                section.id === payload.new.id ? payload.new as PageSection : section
+              )
+            );
+          } else if (payload.eventType === 'DELETE') {
+            setSections(prev => 
+              prev.filter(section => section.id !== payload.old.id)
+            );
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
+  const loadAllSections = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('page_sections')
+        .select('*')
+        .order('page_name', { ascending: true })
+        .order('section_name', { ascending: true });
+
+      if (error) throw error;
+      setSections(data || []);
+    } catch (error) {
+      console.error('Error loading sections:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const getSectionContent = (pageName: string, sectionName: string) => {
+    const section = sections.find(
+      s => s.page_name === pageName && s.section_name === sectionName
+    );
+    return section?.content || {};
+  };
+
+  const updateSectionContent = async (
+    pageName: string, 
+    sectionName: string, 
+    content: any
+  ) => {
+    if (!isAdmin) {
+      throw new Error('Only admins can update content');
+    }
+
+    try {
+      const { error } = await supabase
+        .from('page_sections')
+        .upsert({
+          page_name: pageName,
+          section_name: sectionName,
+          content
+        }, {
+          onConflict: 'page_name,section_name'
+        });
+
+      if (error) throw error;
+    } catch (error) {
+      console.error('Error updating section:', error);
+      throw error;
+    }
+  };
+
+  const getSectionsByPage = (pageName: string) => {
+    return sections.filter(s => s.page_name === pageName);
+  };
+
+  return {
+    sections,
+    isLoading,
+    getSectionContent,
+    updateSectionContent,
+    getSectionsByPage,
+    loadAllSections,
+  };
+};
