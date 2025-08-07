@@ -5,45 +5,42 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useAnnouncements } from '@/hooks/useAnnouncements';
 
 const AnnouncementsSection = () => {
-  console.log('=== AnnouncementsSection component starting ===');
-  
-  try {
-    const { elementRef, isVisible } = useScrollAnimation(0.1);
-    console.log('useScrollAnimation hook worked:', { isVisible });
-    
-    const { announcements, isLoading } = useAnnouncements();
-    console.log('useAnnouncements hook result:', { 
-      announcementsCount: announcements?.length || 0, 
-      isLoading, 
-      announcements: announcements 
-    });
+  const { elementRef, isVisible } = useScrollAnimation(0.1);
+  const { announcements, isLoading } = useAnnouncements();
 
-    if (isLoading) {
-      console.log('AnnouncementsSection: Showing loading state');
-      return (
-        <section className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-16">
-          <div className="container mx-auto px-4 text-center">
-            <div className="text-white text-lg">Loading announcements...</div>
-            <div className="text-green-500 text-xl mt-4 font-bold">LOADING STATE VISIBLE</div>
-          </div>
-        </section>
-      );
-    }
+  // Debug logging
+  console.log('AnnouncementsSection rendering:', { 
+    announcementsCount: announcements?.length || 0, 
+    isLoading, 
+    announcements: announcements 
+  });
 
-    if (!announcements || announcements.length === 0) {
-      console.log('AnnouncementsSection: Showing no announcements state');
-      return (
-        <section className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-16">
-          <div className="container mx-auto px-4 text-center">
-            <div className="text-gray-400 text-lg">No announcements available</div>
-            <div className="text-red-500 text-xl mt-4 font-bold">NO ANNOUNCEMENTS STATE VISIBLE</div>
-          </div>
-        </section>
-      );
-    }
-
-    console.log('AnnouncementsSection: Showing announcements list');
+  if (isLoading) {
+    console.log('AnnouncementsSection: Showing loading state');
     return (
+      <section className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-16">
+        <div className="container mx-auto px-4 text-center">
+          <div className="text-white text-lg">Loading announcements...</div>
+          <div className="text-green-500 text-xl mt-4 font-bold">LOADING STATE VISIBLE</div>
+        </div>
+      </section>
+    );
+  }
+
+  if (announcements.length === 0) {
+    console.log('AnnouncementsSection: Showing no announcements state');
+    return (
+      <section className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-16">
+        <div className="container mx-auto px-4 text-center">
+          <div className="text-gray-400 text-lg">No announcements available</div>
+          <div className="text-red-500 text-xl mt-4 font-bold">NO ANNOUNCEMENTS STATE VISIBLE</div>
+        </div>
+      </section>
+    );
+  }
+
+  console.log('AnnouncementsSection: Showing announcements list');
+  return (
     <section 
       ref={elementRef}
       className={`relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-16 overflow-hidden transition-all duration-1000 transform ${
@@ -229,17 +226,6 @@ const AnnouncementsSection = () => {
       </div>
     </section>
   );
-  } catch (error) {
-    console.error('AnnouncementsSection crashed:', error);
-    return (
-      <section className="relative bg-red-900 py-16">
-        <div className="container mx-auto px-4 text-center">
-          <div className="text-white text-xl font-bold">ANNOUNCEMENTS SECTION CRASHED</div>
-          <div className="text-red-300 mt-2">Error: {String(error)}</div>
-        </div>
-      </section>
-    );
-  }
 };
 
 export default AnnouncementsSection;
