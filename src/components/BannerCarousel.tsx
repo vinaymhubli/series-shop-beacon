@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useHeroBanners } from '@/hooks/useHeroBanners';
 
 interface BannerItem {
   id: string;
@@ -26,45 +27,25 @@ const BannerCarousel = ({
   autoPlayInterval = 5000 
 }: BannerCarouselProps) => {
   const { elementRef, isVisible } = useScrollAnimation(0.2);
+  const { banners: heroBanners, isLoading } = useHeroBanners();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [videoPlaying, setVideoPlaying] = useState<{ [key: string]: boolean }>({});
 
-  // Default banners if none provided (will be replaced with admin panel data)
-  const defaultBanners: BannerItem[] = [
-    {
-      id: '1',
-      type: 'image',
-      url: '/src/assets/shop-hero-bg.jpg',
-      title: 'Crossed Hearts: Exclusive Edition',
-      subtitle: 'Discover premium manga collections and exclusive content',
-      buttonText: 'Shop Now',
-      buttonLink: '/shop-all',
-      overlayText: 'NEW RELEASE'
-    },
-    {
-      id: '2',
-      type: 'image',
-      url: '/src/assets/shop-hero-bg.jpg',
-      title: 'Limited Edition Collection',
-      subtitle: 'Rare finds and collector items available now',
-      buttonText: 'Explore Collection',
-      buttonLink: '/shop-all?filter=limited',
-      overlayText: 'LIMITED TIME'
-    },
-    {
-      id: '3',
-      type: 'image',
-      url: '/src/assets/shop-hero-bg.jpg',
-      title: 'Weekly Bestsellers',
-      subtitle: 'Most popular titles this week',
-      buttonText: 'View Bestsellers',
-      buttonLink: '/shop-all?sort=popular',
-      overlayText: 'HOT'
-    }
-  ];
+  // Transform hero banners to banner items format
+  const transformedBanners: BannerItem[] = heroBanners.map((banner) => ({
+    id: banner.id,
+    type: 'image' as const,
+    url: banner.image_url,
+    title: banner.title,
+    subtitle: banner.subtitle,
+    buttonText: 'Shop Now',
+    buttonLink: '/shop-all',
+    overlayText: undefined
+  }));
 
-  const activeBanners = banners.length > 0 ? banners : defaultBanners;
+  // Use custom banners if provided, otherwise use CMS banners
+  const activeBanners = banners.length > 0 ? banners : transformedBanners;
 
   // Auto-play functionality
   useEffect(() => {

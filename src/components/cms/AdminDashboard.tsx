@@ -4,12 +4,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useCMS } from '@/hooks/useCMS';
 import { useSupabaseAuth } from '@/hooks/useSupabaseAuth';
 import { ContentEditor } from './ContentEditor';
-import { Settings, FileText, Layout, Users } from 'lucide-react';
+import { HeroBannerManager } from './HeroBannerManager';
+import { Settings, FileText, Layout, Users, Image } from 'lucide-react';
 
 export const AdminDashboard = () => {
   const { sections, isLoading } = useCMS();
   const { isAdmin, user } = useSupabaseAuth();
-  const [selectedPage, setSelectedPage] = useState('homepage');
+  const [selectedPage, setSelectedPage] = useState('hero-banners');
 
   if (!isAdmin || !user) {
     return (
@@ -26,6 +27,7 @@ export const AdminDashboard = () => {
   }
 
   const pages = [
+    { id: 'hero-banners', name: 'Hero Banners', icon: Image },
     { id: 'homepage', name: 'Homepage', icon: Layout },
     { id: 'our_series', name: 'Our Series', icon: FileText },
     { id: 'shop_all', name: 'Shop All', icon: FileText },
@@ -62,7 +64,7 @@ export const AdminDashboard = () => {
       </div>
 
       <Tabs value={selectedPage} onValueChange={setSelectedPage} className="space-y-6">
-        <TabsList className="grid grid-cols-3 lg:grid-cols-7 w-full">
+        <TabsList className="grid grid-cols-3 lg:grid-cols-8 w-full">
           {pages.map(page => {
             const Icon = page.icon;
             return (
@@ -74,7 +76,11 @@ export const AdminDashboard = () => {
           })}
         </TabsList>
 
-        {pages.map(page => (
+        <TabsContent value="hero-banners">
+          <HeroBannerManager />
+        </TabsContent>
+
+        {pages.slice(1).map(page => (
           <TabsContent key={page.id} value={page.id}>
             <Card>
               <CardHeader>
