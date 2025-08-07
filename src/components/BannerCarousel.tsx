@@ -188,20 +188,22 @@ const BannerCarousel = ({
             )}
             
             <h1
-              className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight relative z-20"
+              className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight relative z-30 drop-shadow-lg"
               style={{ 
                 transitionDelay: '400ms',
-                textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
+                textShadow: '3px 3px 6px rgba(0,0,0,0.9)',
+                color: 'white'
               }}
             >
               {currentBanner?.title || 'No Title Available'}
             </h1>
             
             <p
-              className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl leading-relaxed relative z-20"
+              className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl leading-relaxed relative z-30 drop-shadow-lg"
               style={{ 
                 transitionDelay: '600ms',
-                textShadow: '1px 1px 2px rgba(0,0,0,0.8)'
+                textShadow: '2px 2px 4px rgba(0,0,0,0.9)',
+                color: 'rgba(255,255,255,0.9)'
               }}
             >
               {currentBanner?.subtitle || 'No Subtitle Available'}
