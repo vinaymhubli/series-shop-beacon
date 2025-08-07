@@ -16,6 +16,7 @@
     { "source": "/privacy-policy", "destination": "/index.html" },
     { "source": "/copyright", "destination": "/index.html" },
     { "source": "/order-shipping", "destination": "/index.html" },
+    { "source": "/terms-conditions", "destination": "/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

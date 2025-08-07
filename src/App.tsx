@@ -31,6 +31,7 @@ import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Copyright from "./pages/Copyright";
 import OrderShipping from "./pages/OrderShipping";
+import TermsConditions from "./pages/TermsConditions";
 import Auth from "./pages/Auth";
 import ChatBot from "./components/ChatBot";
 import { AuthProvider } from "./hooks/useSupabaseAuth";
@@ -71,6 +72,7 @@ const App = () => (
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/copyright" element={<Copyright />} />
             <Route path="/order-shipping" element={<OrderShipping />} />
+            <Route path="/terms-conditions" element={<TermsConditions />} />
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="*" element={<NotFound />} />
