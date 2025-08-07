@@ -1,22 +1,23 @@
 import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useCMS } from '@/hooks/useCMS';
 import { useSupabaseAuth } from '@/hooks/useSupabaseAuth';
-import { ContentEditor } from './ContentEditor';
-import { HeroBannerManager } from './HeroBannerManager';
-import { Settings, FileText, Layout, Users, Image } from 'lucide-react';
+import { useCMS } from '@/hooks/useCMS';
+import { AdminSidebar } from './AdminSidebar';
+import { PageEditor } from './PageEditor';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { Card, CardContent } from '@/components/ui/card';
+import { Shield } from 'lucide-react';
 
 export const AdminDashboard = () => {
-  const { sections, isLoading } = useCMS();
+  const { isLoading } = useCMS();
   const { isAdmin, user } = useSupabaseAuth();
-  const [selectedPage, setSelectedPage] = useState('hero-banners');
+  const [selectedPage, setSelectedPage] = useState('home-page');
 
   if (!isAdmin || !user) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <Card>
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Card className="w-full max-w-md">
           <CardContent className="p-8 text-center">
+            <Shield className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
             <p className="text-lg text-muted-foreground">
               Access denied. Admin privileges required.
             </p>
@@ -26,24 +27,9 @@ export const AdminDashboard = () => {
     );
   }
 
-  const pages = [
-    { id: 'hero-banners', name: 'Hero Banners', icon: Image },
-    { id: 'homepage', name: 'Homepage', icon: Layout },
-    { id: 'our_series', name: 'Our Series', icon: FileText },
-    { id: 'shop_all', name: 'Shop All', icon: FileText },
-    { id: 'about_us', name: 'About Us', icon: FileText },
-    { id: 'readers_mode', name: 'Readers Mode', icon: FileText },
-    { id: 'announcements', name: 'Announcements', icon: FileText },
-    { id: 'footer', name: 'Footer', icon: Layout },
-  ];
-
-  const getPageSections = (pageId: string) => {
-    return sections.filter(section => section.page_name === pageId);
-  };
-
   if (isLoading) {
     return (
-      <div className="container mx-auto px-4 py-8">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="flex items-center justify-center h-64">
           <p className="text-lg text-muted-foreground">Loading CMS...</p>
         </div>
@@ -52,59 +38,36 @@ export const AdminDashboard = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold flex items-center gap-2">
-          <Settings className="h-8 w-8" />
-          CMS Admin Dashboard
-        </h1>
-        <p className="text-muted-foreground mt-2">
-          Manage your website content across all pages
-        </p>
+    <SidebarProvider defaultOpen={true}>
+      <div className="min-h-screen flex w-full bg-background">
+        <AdminSidebar 
+          selectedPage={selectedPage} 
+          onPageSelect={setSelectedPage} 
+        />
+        
+        <main className="flex-1 flex flex-col">
+          {/* Header */}
+          <header className="h-14 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40">
+            <div className="flex items-center h-full px-4 gap-4">
+              <SidebarTrigger className="ml-0" />
+              <div className="flex items-center gap-2">
+                <Shield className="h-5 w-5 text-primary" />
+                <h1 className="font-semibold">CMS Admin Dashboard</h1>
+              </div>
+              <div className="ml-auto text-sm text-muted-foreground">
+                Welcome, {user.email}
+              </div>
+            </div>
+          </header>
+
+          {/* Content Area */}
+          <div className="flex-1 overflow-y-auto">
+            <div className="container mx-auto p-6 max-w-6xl">
+              <PageEditor selectedPage={selectedPage} />
+            </div>
+          </div>
+        </main>
       </div>
-
-      <Tabs value={selectedPage} onValueChange={setSelectedPage} className="space-y-6">
-        <TabsList className="grid grid-cols-3 lg:grid-cols-8 w-full">
-          {pages.map(page => {
-            const Icon = page.icon;
-            return (
-              <TabsTrigger key={page.id} value={page.id} className="flex items-center gap-2">
-                <Icon className="h-4 w-4" />
-                <span className="hidden sm:inline">{page.name}</span>
-              </TabsTrigger>
-            );
-          })}
-        </TabsList>
-
-        <TabsContent value="hero-banners">
-          <HeroBannerManager />
-        </TabsContent>
-
-        {pages.slice(1).map(page => (
-          <TabsContent key={page.id} value={page.id}>
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <page.icon className="h-5 h-5" />
-                  {page.name} Content
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-6">
-                  {getPageSections(page.id).map(section => (
-                    <ContentEditor
-                      key={section.id}
-                      pageName={section.page_name}
-                      sectionName={section.section_name}
-                      initialContent={section.content}
-                    />
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        ))}
-      </Tabs>
-    </div>
+    </SidebarProvider>
   );
 };
