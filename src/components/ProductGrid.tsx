@@ -79,6 +79,38 @@ const ProductGrid = () => {
       <section className="relative bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 py-12 overflow-hidden">
         <div className="container mx-auto px-4 text-center">
           <div className="text-white text-lg">No books available. Add books through the CMS to see them here.</div>
+          <div className="text-gray-400 text-sm mt-2">Debug: Total books in database = {books.length}</div>
+        </div>
+      </section>
+    );
+  }
+
+  // Show products count for debugging
+  if (products.length === 0) {
+    return (
+      <section className="relative bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 py-12 overflow-hidden">
+        <div className="container mx-auto px-4 text-center">
+          <div className="text-white text-lg">No products to display in "{activeSection}" section</div>
+          <div className="text-gray-400 text-sm mt-2">
+            Debug: Total books = {books.length}, Active section = {activeSection}
+          </div>
+          <div className="text-gray-400 text-sm">
+            Available sections: {books.map(b => b.section_type).join(', ')}
+          </div>
+          <div className="mt-4">
+            <button 
+              onClick={() => setActiveSection('best-sellers')} 
+              className="bg-red-600 text-white px-4 py-2 rounded mr-2"
+            >
+              Try Best Sellers
+            </button>
+            <button 
+              onClick={() => setShowAll(true)} 
+              className="bg-blue-600 text-white px-4 py-2 rounded"
+            >
+              Show All Books
+            </button>
+          </div>
         </div>
       </section>
     );
