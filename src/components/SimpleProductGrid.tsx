@@ -79,23 +79,6 @@ const SimpleProductGrid = () => {
                     className="w-full h-96 object-cover transition-all duration-500 ease-in-out"
                   />
                   
-                  {/* Hover Overlay */}
-                  <div className={`absolute inset-0 bg-black/60 transition-opacity duration-300 ${
-                    hoveredBook === book.id ? 'opacity-100' : 'opacity-0'
-                  }`}>
-                    <div className="absolute inset-0 flex items-center justify-center space-x-4">
-                      <button className="bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-200 hover:scale-110">
-                        <Heart size={20} />
-                      </button>
-                      <button className="bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-all duration-200 hover:scale-110">
-                        <Eye size={20} />
-                      </button>
-                      <button className="bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-200 hover:scale-110">
-                        <ShoppingCart size={20} />
-                      </button>
-                    </div>
-                  </div>
-                  
                   {/* Badges */}
                   <div className="absolute top-3 left-3 space-y-2 z-10">
                     {book.is_new && (
