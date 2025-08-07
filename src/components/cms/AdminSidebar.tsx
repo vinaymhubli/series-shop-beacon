@@ -62,6 +62,18 @@ const adminPages: AdminPage[] = [
     description: 'Manage reading experience settings'
   },
   { 
+    id: 'books-management', 
+    title: 'Books Management', 
+    icon: BookOpen,
+    description: 'Manage book catalog and metadata'
+  },
+  { 
+    id: 'announcements-management', 
+    title: 'Announcements Management', 
+    icon: Megaphone,
+    description: 'Manage announcements section content'
+  },
+  { 
     id: 'announcement-page', 
     title: 'Announcement Page', 
     icon: Megaphone,
