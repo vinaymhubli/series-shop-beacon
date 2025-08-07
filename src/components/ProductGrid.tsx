@@ -2,173 +2,39 @@
 import { useState } from 'react';
 import ProductCard from './ProductCard';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useBooks } from '@/hooks/useBooks';
 
 const ProductGrid = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.1);
+  const { books, isLoading, getBooksBySection } = useBooks();
   const [activeSection, setActiveSection] = useState('new-releases');
   const [showAll, setShowAll] = useState(false);
 
-  const newReleases = [
-    {
-      title: "One Piece Vol. 98",
-      author: "Eiichiro Oda",
-      volume: "Adventure",
-      price: "$11.99",
-      coins: "1199 coins",
-      imageUrl: "https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=400&h=600&fit=crop&crop=center",
-      hoverImageUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&h=600&fit=crop&crop=center",
-      isNew: true,
-      canUnlockWithCoins: true,
-      label: "Vol 98 out now"
-    },
-    {
-      title: "Attack on Titan Vol. 34",
-      author: "Hajime Isayama",
-      volume: "Action",
-      price: "$12.99",
-      coins: "1299 coins",
-      imageUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&h=600&fit=crop&crop=center",
-      hoverImageUrl: "https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=400&h=600&fit=crop&crop=center",
-      isNew: true,
-      canUnlockWithCoins: false,
-      label: "Final volume available"
-    },
-    {
-      title: "Jujutsu Kaisen Vol. 15",
-      author: "Gege Akutami",
-      volume: "Horror",
-      price: "$9.99",
-      originalPrice: "$14.99",
-      coins: "999 coins",
-      imageUrl: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&h=600&fit=crop&crop=center",
-      hoverImageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
-      isOnSale: true,
-      canUnlockWithCoins: true,
-      label: "Vol 16 coming soon"
-    },
-    {
-      title: "Demon Slayer Vol. 23",
-      author: "Koyoharu Gotouge",
-      volume: "Action",
-      price: "$10.99",
-      coins: "1099 coins",
-      imageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
-      hoverImageUrl: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&h=600&fit=crop&crop=center",
-      isNew: true,
-      canUnlockWithCoins: true,
-      label: "Final arc complete"
-    }
-  ];
-
-  const bestSellers = [
-    {
-      title: "Naruto Complete Series",
-      author: "Masashi Kishimoto",
-      volume: "Adventure",
-      price: "$199.99",
-      coins: "19999 coins",
-      imageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
-      hoverImageUrl: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&h=600&fit=crop&crop=center",
-      canUnlockWithCoins: true,
-      label: "Complete 700+ chapters"
-    },
-    {
-      title: "Dragon Ball Z Ultimate",
-      author: "Akira Toriyama",
-      volume: "Action",
-      price: "$89.99",
-      coins: "8999 coins",
-      imageUrl: "https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?w=400&h=600&fit=crop&crop=center",
-      hoverImageUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&h=600&fit=crop&crop=center",
-      canUnlockWithCoins: true,
-      label: "Legendary series"
-    },
-    {
-      title: "My Hero Academia Set",
-      author: "Kohei Horikoshi",
-      volume: "Superhero",
-      price: "$149.99",
-      coins: "14999 coins",
-      imageUrl: "https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=400&h=600&fit=crop&crop=center",
-      hoverImageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
-      canUnlockWithCoins: false,
-      label: "Hero academia bundle"
-    },
-    {
-      title: "Hunter x Hunter Collection",
-      author: "Yoshihiro Togashi",
-      volume: "Adventure",
-      price: "$129.99",
-      coins: "12999 coins",
-      imageUrl: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&h=600&fit=crop&crop=center",
-      hoverImageUrl: "https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?w=400&h=600&fit=crop&crop=center",
-      canUnlockWithCoins: true,
-      label: "Complete collection"
-    }
-  ];
-
-  const leavingSoon = [
-    {
-      title: "Chainsaw Man Vol. 8",
-      author: "Tatsuki Fujimoto",
-      volume: "Action",
-      price: "$10.99",
-      coins: "1099 coins",
-      imageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
-      hoverImageUrl: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=400&h=600&fit=crop&crop=center",
-      
-      canUnlockWithCoins: true,
-      label: "Limited time offer"
-    },
-    {
-      title: "Spy x Family Vol. 7",
-      author: "Tatsuya Endo",
-      volume: "Comedy",
-      price: "$9.99",
-      coins: "999 coins",
-      imageUrl: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&h=600&fit=crop&crop=center",
-      hoverImageUrl: "https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?w=400&h=600&fit=crop&crop=center",
-      canUnlockWithCoins: true,
-      label: "Leaving in 7 days"
-    },
-    {
-      title: "Tokyo Ghoul Vol. 14",
-      author: "Sui Ishida",
-      volume: "Horror",
-      price: "$12.99",
-      coins: "1299 coins",
-      imageUrl: "https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?w=400&h=600&fit=crop&crop=center",
-      hoverImageUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&h=600&fit=crop&crop=center",
-      
-      canUnlockWithCoins: false,
-      label: "Last chance"
-    },
-    {
-      title: "Mob Psycho 100 Vol. 16",
-      author: "ONE",
-      volume: "Supernatural",
-      price: "$11.99",
-      coins: "1199 coins",
-      imageUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&h=600&fit=crop&crop=center",
-      hoverImageUrl: "https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?w=400&h=600&fit=crop&crop=center",
-      canUnlockWithCoins: true,
-      label: "Final volume"
-    }
-  ];
+  // Transform books data to match ProductCard interface
+  const transformBooksToProducts = (booksList: any[]) => {
+    return booksList.map(book => ({
+      title: book.title,
+      author: book.author,
+      volume: book.category,
+      price: `$${book.price}`,
+      originalPrice: book.original_price ? `$${book.original_price}` : undefined,
+      coins: book.coins || `${Math.round(book.price * 100)} coins`,
+      imageUrl: book.image_url,
+      hoverImageUrl: book.hover_image_url,
+      isNew: book.is_new,
+      isOnSale: book.is_on_sale,
+      canUnlockWithCoins: book.can_unlock_with_coins,
+      label: book.label || undefined,
+    }));
+  };
 
   const getProductsForSection = () => {
     if (showAll) {
-      return [...newReleases, ...bestSellers, ...leavingSoon];
+      return transformBooksToProducts(books);
     }
     
-    switch (activeSection) {
-      case 'best-sellers':
-        return bestSellers;
-      case 'leaving-soon':
-        return leavingSoon;
-      default:
-        return newReleases;
-    }
+    const sectionBooks = getBooksBySection(activeSection);
+    return transformBooksToProducts(sectionBooks);
   };
 
   const products = getProductsForSection();
@@ -185,6 +51,28 @@ const ProductGrid = () => {
   };
 
   const sectionOrder = ['new-releases', 'best-sellers', 'leaving-soon'];
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <section className="relative bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 py-12 overflow-hidden">
+        <div className="container mx-auto px-4 text-center">
+          <div className="text-white text-lg">Loading books...</div>
+        </div>
+      </section>
+    );
+  }
+
+  // Show empty state if no books
+  if (books.length === 0) {
+    return (
+      <section className="relative bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 py-12 overflow-hidden">
+        <div className="container mx-auto px-4 text-center">
+          <div className="text-white text-lg">No books available. Add books through the CMS to see them here.</div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section 

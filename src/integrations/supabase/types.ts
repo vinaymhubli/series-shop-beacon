@@ -14,6 +14,69 @@ export type Database = {
   }
   public: {
     Tables: {
+      books: {
+        Row: {
+          author: string
+          can_unlock_with_coins: boolean
+          category: string
+          coins: string | null
+          created_at: string
+          display_order: number | null
+          hover_image_url: string
+          id: string
+          image_url: string
+          is_active: boolean
+          is_new: boolean | null
+          is_on_sale: boolean | null
+          label: string | null
+          original_price: number | null
+          price: number
+          section_type: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author: string
+          can_unlock_with_coins?: boolean
+          category: string
+          coins?: string | null
+          created_at?: string
+          display_order?: number | null
+          hover_image_url: string
+          id?: string
+          image_url: string
+          is_active?: boolean
+          is_new?: boolean | null
+          is_on_sale?: boolean | null
+          label?: string | null
+          original_price?: number | null
+          price: number
+          section_type: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author?: string
+          can_unlock_with_coins?: boolean
+          category?: string
+          coins?: string | null
+          created_at?: string
+          display_order?: number | null
+          hover_image_url?: string
+          id?: string
+          image_url?: string
+          is_active?: boolean
+          is_new?: boolean | null
+          is_on_sale?: boolean | null
+          label?: string | null
+          original_price?: number | null
+          price?: number
+          section_type?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       hero_banners: {
         Row: {
           created_at: string

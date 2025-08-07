@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ContentEditor } from './ContentEditor';
 import { HeroBannerManager } from './HeroBannerManager';
+import { BooksManager } from './BooksManager';
 import { useCMS } from '@/hooks/useCMS';
 import { AdminPage } from './AdminSidebar';
 import { Construction, Settings, Image } from 'lucide-react';
@@ -42,6 +43,18 @@ export function PageEditor({ selectedPage }: PageEditorProps) {
           <HeroBannerManager />
         </CardContent>
       </Card>
+    </div>
+  );
+
+  const renderBooksManagement = () => (
+    <div className="space-y-6">
+      <div>
+        <h2 className="text-xl font-semibold mb-4">Books Management</h2>
+        <p className="text-muted-foreground mb-6">
+          Manage books that appear in the sections below the hero banner (New Releases, Best Sellers, Leaving Soon)
+        </p>
+      </div>
+      <BooksManager />
     </div>
   );
 
@@ -94,6 +107,8 @@ export function PageEditor({ selectedPage }: PageEditorProps) {
   switch (selectedPage) {
     case 'home-page':
       return renderHomePage();
+    case 'books-management':
+      return renderBooksManagement();
     case 'hero-banners':
       return renderHeroBanners();
     case 'our-series':

@@ -38,6 +38,12 @@ const adminPages: AdminPage[] = [
     description: 'Manage homepage content and layout'
   },
   { 
+    id: 'books-management', 
+    title: 'Books Management', 
+    icon: BookOpen,
+    description: 'Add books below home banner'
+  },
+  { 
     id: 'our-series', 
     title: 'Our Series', 
     icon: BookOpen,
