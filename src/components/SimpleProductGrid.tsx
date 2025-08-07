@@ -74,9 +74,9 @@ const SimpleProductGrid = () => {
               >
                 <div className="relative overflow-hidden">
                   <img 
-                    src={book.image_url} 
+                    src={hoveredBook === book.id && book.hover_image_url ? book.hover_image_url : book.image_url} 
                     alt={book.title}
-                    className="w-full h-96 object-cover"
+                    className="w-full h-96 object-cover transition-all duration-500 ease-in-out"
                   />
                   
                   {/* Hover Overlay */}
