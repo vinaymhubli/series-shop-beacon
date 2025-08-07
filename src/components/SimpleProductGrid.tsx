@@ -1,12 +1,33 @@
 import { useState } from 'react';
+import { useBooks } from '@/hooks/useBooks';
 
 const SimpleProductGrid = () => {
+  const { books, isLoading } = useBooks();
   const [activeSection, setActiveSection] = useState('best-sellers');
+
+  // Filter books based on selected section
+  const getFilteredBooks = () => {
+    if (!books || books.length === 0) return [];
+    return books.filter(book => book.section_type === activeSection);
+  };
+
+  const filteredBooks = getFilteredBooks();
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <section className="relative bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 py-12 overflow-hidden">
+        <div className="container mx-auto px-4 text-center">
+          <div className="text-white text-lg">Loading books...</div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="relative bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 py-12 overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
-        {/* Section Navigation - ALWAYS VISIBLE */}
+        {/* Section Navigation */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex space-x-6">
             <button 
@@ -39,60 +60,101 @@ const SimpleProductGrid = () => {
           </button>
         </div>
 
-        {/* Simple Card Grid - ALWAYS VISIBLE */}
+        {/* Books Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {/* Test Card to verify rendering */}
-          <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden border border-gray-700/50 min-h-[560px]">
-            <div className="relative overflow-hidden">
-              <img 
-                src="https://static.vecteezy.com/system/resources/thumbnails/044/280/984/small_2x/stack-of-books-on-a-brown-background-concept-for-world-book-day-photo.jpg" 
-                alt="Test Book"
-                className="w-full h-96 object-cover"
-              />
-              <div className="absolute top-3 left-3">
-                <span className="bg-gradient-to-r from-red-600 to-red-700 text-white text-xs font-bold px-3 py-1 rounded-full">
-                  NEW
-                </span>
-              </div>
-              <div className="absolute top-3 right-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white text-xs font-bold px-3 py-1 rounded-full">
-                vol 98
-              </div>
-            </div>
-            
-            <div className="p-5 space-y-3 flex-1 flex flex-col">
-              <h3 className="text-white font-semibold text-lg">Test Book</h3>
-              <p className="text-gray-400 text-sm">Author Test</p>
-              <p className="text-gray-500 text-xs uppercase tracking-wide">Horror</p>
-              
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <span className="text-white font-bold text-lg">$19.00</span>
-                  <span className="text-gray-500 line-through text-sm">$34.00</span>
+          {filteredBooks.length > 0 ? (
+            filteredBooks.map((book, index) => (
+              <div key={book.id} className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden border border-gray-700/50 min-h-[560px]">
+                <div className="relative overflow-hidden">
+                  <img 
+                    src={book.image_url} 
+                    alt={book.title}
+                    className="w-full h-96 object-cover"
+                  />
+                  
+                  {/* Badges */}
+                  <div className="absolute top-3 left-3 space-y-2">
+                    {book.is_new && (
+                      <span className="bg-gradient-to-r from-red-600 to-red-700 text-white text-xs font-bold px-3 py-1 rounded-full">
+                        NEW
+                      </span>
+                    )}
+                    {book.is_on_sale && (
+                      <span className="bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                        SALE
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Label */}
+                  {book.label && (
+                    <div className="absolute top-3 right-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white text-xs font-bold px-3 py-1 rounded-full">
+                      {book.label}
+                    </div>
+                  )}
                 </div>
-                <span className="text-gray-400 text-xs">1900 coins</span>
+                
+                <div className="p-5 space-y-3 flex-1 flex flex-col">
+                  <h3 className="text-white font-semibold text-lg">{book.title}</h3>
+                  <p className="text-gray-400 text-sm">{book.author}</p>
+                  <p className="text-gray-500 text-xs uppercase tracking-wide">{book.category}</p>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-white font-bold text-lg">${book.price}</span>
+                      {book.original_price && (
+                        <span className="text-gray-500 line-through text-sm">${book.original_price}</span>
+                      )}
+                    </div>
+                    {book.can_unlock_with_coins && (
+                      <span className="text-gray-400 text-xs">
+                        {book.coins || `${Math.round(book.price * 100)} coins`}
+                      </span>
+                    )}
+                  </div>
+                  
+                  <div className="flex flex-col space-y-2 pt-2 mt-auto">
+                    <button className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-semibold py-2 rounded">
+                      Add to Cart
+                    </button>
+                    <button className="w-full bg-white text-black text-xs py-2 rounded">
+                      Buy Now
+                    </button>
+                    {book.can_unlock_with_coins && (
+                      <button className="w-full text-gray-400 hover:text-white text-xs border border-gray-600 py-2 rounded">
+                        Unlock with {book.coins || `${Math.round(book.price * 100)} coins`}
+                      </button>
+                    )}
+                  </div>
+                </div>
               </div>
-              
-              <div className="flex flex-col space-y-2 pt-2 mt-auto">
-                <button className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white text-xs font-semibold py-2 rounded">
-                  Add to Cart
-                </button>
-                <button className="w-full bg-white text-black text-xs py-2 rounded">
-                  Buy Now
-                </button>
-                <button className="w-full text-gray-400 hover:text-white text-xs border border-gray-600 py-2 rounded">
-                  Unlock with coins
-                </button>
+            ))
+          ) : (
+            <div className="col-span-full text-center py-12">
+              <div className="text-white text-lg">No books in "{activeSection.replace('-', ' ')}" section</div>
+              <div className="text-gray-400 text-sm mt-2">
+                Total books available: {books?.length || 0}
               </div>
+              {books && books.length > 0 && (
+                <div className="text-gray-400 text-sm mt-1">
+                  Available sections: {books.map(b => b.section_type).filter((v, i, a) => a.indexOf(v) === i).join(', ')}
+                </div>
+              )}
             </div>
-          </div>
+          )}
         </div>
 
         {/* Debug Information */}
         <div className="mt-8 p-4 bg-gray-800 rounded-lg">
           <h4 className="text-white font-semibold mb-2">Debug Information:</h4>
-          <p className="text-gray-300 text-sm">This is a simplified version that should always be visible.</p>
           <p className="text-gray-300 text-sm">Active section: {activeSection}</p>
-          <p className="text-red-400 text-sm">If you can see this, the component is rendering correctly!</p>
+          <p className="text-gray-300 text-sm">Total books: {books?.length || 0}</p>
+          <p className="text-gray-300 text-sm">Books in current section: {filteredBooks.length}</p>
+          {books && books.length > 0 && (
+            <p className="text-gray-300 text-sm">
+              Book sections: {books.map(book => `${book.title} (${book.section_type})`).join(', ')}
+            </p>
+          )}
         </div>
       </div>
     </section>
