@@ -7,7 +7,7 @@ import { useBooks } from '@/hooks/useBooks';
 const ProductGrid = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.1);
   const { books, isLoading, getBooksBySection } = useBooks();
-  const [activeSection, setActiveSection] = useState('new-releases');
+  const [activeSection, setActiveSection] = useState('best-sellers');
   const [showAll, setShowAll] = useState(false);
 
   // Transform books data to match ProductCard interface
