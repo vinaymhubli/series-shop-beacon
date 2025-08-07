@@ -261,14 +261,14 @@ const AnnouncementsManager = () => {
                 <div>
                   <Label htmlFor="badge_type">Badge Type</Label>
                   <Select 
-                    value={formData.badge_type || ''} 
-                    onValueChange={(value) => setFormData(prev => ({ ...prev, badge_type: value as 'hot' | 'new' | 'limited' || undefined }))}
+                    value={formData.badge_type || 'none'} 
+                    onValueChange={(value) => setFormData(prev => ({ ...prev, badge_type: value === 'none' ? undefined : value as 'hot' | 'new' | 'limited' }))}
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Select badge type" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">None</SelectItem>
+                      <SelectItem value="none">None</SelectItem>
                       <SelectItem value="hot">Hot</SelectItem>
                       <SelectItem value="new">New</SelectItem>
                       <SelectItem value="limited">Limited</SelectItem>
