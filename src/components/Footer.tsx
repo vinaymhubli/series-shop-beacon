@@ -3,14 +3,11 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useCMS } from '@/hooks/useCMS';
 import { useSupabaseAuth } from '@/hooks/useSupabaseAuth';
 import { Link } from 'react-router-dom';
-import { AuthModal } from '@/components/auth/AuthModal';
-import { useState } from 'react';
 
 const Footer = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.2);
   const { getSectionContent } = useCMS();
   const { isAdmin, user } = useSupabaseAuth();
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   // Get footer content from CMS or use defaults
   const footerContent = getSectionContent('footer', 'main_content');
@@ -168,14 +165,14 @@ const Footer = () => {
               </Link>
             )}
             {!user && (
-              <button
-                onClick={() => setIsAuthModalOpen(true)}
+              <Link
+                to="/auth"
                 className="text-gray-400 hover:text-red-500 transition-all duration-200 transform hover:scale-110 flex items-center gap-1 text-xs"
                 title="Admin Login"
               >
                 <LogIn className="w-4 h-4" />
                 <span className="hidden sm:inline">Admin Login</span>
-              </button>
+              </Link>
             )}
           </div>
           
@@ -184,11 +181,6 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      
-      <AuthModal 
-        isOpen={isAuthModalOpen}
-        onOpenChange={setIsAuthModalOpen}
-      />
     </footer>
   );
 };
