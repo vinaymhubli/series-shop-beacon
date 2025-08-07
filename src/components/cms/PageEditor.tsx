@@ -54,6 +54,16 @@ export function PageEditor({ selectedPage }: PageEditorProps) {
           <BooksManager />
         </CardContent>
       </Card>
+
+      {/* Announcements Management Section */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Announcements Section</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <AnnouncementsManager />
+        </CardContent>
+      </Card>
     </div>
   );
 
