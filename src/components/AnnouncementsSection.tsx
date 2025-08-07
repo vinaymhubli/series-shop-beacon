@@ -8,26 +8,38 @@ const AnnouncementsSection = () => {
   const { elementRef, isVisible } = useScrollAnimation(0.1);
   const { announcements, isLoading } = useAnnouncements();
 
+  // Debug logging
+  console.log('AnnouncementsSection rendering:', { 
+    announcementsCount: announcements?.length || 0, 
+    isLoading, 
+    announcements: announcements 
+  });
+
   if (isLoading) {
+    console.log('AnnouncementsSection: Showing loading state');
     return (
       <section className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-16">
         <div className="container mx-auto px-4 text-center">
           <div className="text-white text-lg">Loading announcements...</div>
+          <div className="text-green-500 text-xl mt-4 font-bold">LOADING STATE VISIBLE</div>
         </div>
       </section>
     );
   }
 
   if (announcements.length === 0) {
+    console.log('AnnouncementsSection: Showing no announcements state');
     return (
       <section className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-16">
         <div className="container mx-auto px-4 text-center">
           <div className="text-gray-400 text-lg">No announcements available</div>
+          <div className="text-red-500 text-xl mt-4 font-bold">NO ANNOUNCEMENTS STATE VISIBLE</div>
         </div>
       </section>
     );
   }
 
+  console.log('AnnouncementsSection: Showing announcements list');
   return (
     <section 
       ref={elementRef}
