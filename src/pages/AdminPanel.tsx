@@ -1,13 +1,74 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AdminDashboard } from '@/components/cms/AdminDashboard';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import { useSupabaseAuth } from '@/hooks/useSupabaseAuth';
+import { Card, CardContent } from '@/components/ui/card';
+import { Shield, LogOut } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const AdminPanel = () => {
+  const { user, isAdmin, signOut } = useSupabaseAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Redirect non-admin users to auth page
+    if (!user || !isAdmin) {
+      navigate('/auth');
+    }
+  }, [user, isAdmin, navigate]);
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/');
+  };
+
+  // Show loading or redirect for non-admin users
+  if (!user || !isAdmin) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Card className="w-full max-w-md">
+          <CardContent className="p-8 text-center">
+            <Shield className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
+            <h2 className="text-2xl font-bold mb-2">Admin Access Required</h2>
+            <p className="text-muted-foreground mb-4">
+              This area is restricted to administrators only.
+            </p>
+            <Button onClick={() => navigate('/auth')} className="w-full">
+              Go to Login
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      {/* Admin Header */}
+      <header className="border-b bg-card">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Shield className="h-6 w-6 text-primary" />
+            <h1 className="text-xl font-bold">Admin Dashboard</h1>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="text-sm text-muted-foreground">
+              Welcome, {user.email}
+            </span>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={handleSignOut}
+              className="flex items-center gap-2"
+            >
+              <LogOut className="h-4 w-4" />
+              Sign Out
+            </Button>
+          </div>
+        </div>
+      </header>
+      
       <AdminDashboard />
-      <Footer />
     </div>
   );
 };
