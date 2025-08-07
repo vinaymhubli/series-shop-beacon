@@ -39,33 +39,9 @@ export function PageEditor({ selectedPage }: PageEditorProps) {
           <CardTitle>Hero Section</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground mb-4">
-            Manage the main hero content for your homepage.
-          </p>
-          <div className="p-4 bg-muted/30 rounded">
-            <p className="text-sm">Hero section editing tools will be available here.</p>
-          </div>
+          <HeroBannerManager />
         </CardContent>
       </Card>
-
-      {/* Existing CMS Sections */}
-      {getPageSections('home-page').length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Additional Sections</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {getPageSections('home-page').map(section => (
-              <ContentEditor
-                key={section.id}
-                pageName={section.page_name}
-                sectionName={section.section_name}
-                initialContent={section.content}
-              />
-            ))}
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
 

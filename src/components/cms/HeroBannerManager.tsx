@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useHeroBanners } from '@/hooks/useHeroBanners';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
-import { Trash2, Plus, Save, Edit } from 'lucide-react';
+import { Trash2, Plus, Save, Edit, Upload, Image as ImageIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface BannerForm {
@@ -20,8 +20,10 @@ interface BannerForm {
 export const HeroBannerManager = () => {
   const { banners, isLoading, createBanner, updateBanner, deleteBanner, loadHeroBanners } = useHeroBanners();
   const { toast } = useToast();
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [formData, setFormData] = useState<BannerForm>({
     title: '',
     subtitle: '',
@@ -102,6 +104,46 @@ export const HeroBannerManager = () => {
     }
   };
 
+  const handleImageUpload = async (file: File) => {
+    setUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      
+      // Create a temporary URL for immediate preview
+      const tempUrl = URL.createObjectURL(file);
+      setFormData(prev => ({ ...prev, image_url: tempUrl }));
+      
+      toast({
+        title: "Image uploaded",
+        description: "Image has been uploaded successfully",
+      });
+    } catch (error) {
+      toast({
+        title: "Upload failed",
+        description: "Failed to upload image. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.type.startsWith('image/')) {
+        handleImageUpload(file);
+      } else {
+        toast({
+          title: "Invalid file type",
+          description: "Please select an image file",
+          variant: "destructive",
+        });
+      }
+    }
+  };
+
   if (isLoading) {
     return <div className="p-4">Loading hero banners...</div>;
   }
@@ -141,13 +183,22 @@ export const HeroBannerManager = () => {
                 <Card key={banner.id} className="border">
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between">
-                      <div className="flex-1">
+                      <div className="flex-1 mr-4">
                         <h4 className="font-semibold">{banner.title}</h4>
                         <p className="text-sm text-muted-foreground mb-2">{banner.subtitle}</p>
                         <div className="flex items-center gap-4 text-xs text-muted-foreground">
                           <span>Order: {banner.display_order}</span>
                           <span>Status: {banner.is_active ? 'Active' : 'Inactive'}</span>
                         </div>
+                        {banner.image_url && (
+                          <div className="mt-2">
+                            <img 
+                              src={banner.image_url} 
+                              alt={banner.title}
+                              className="w-20 h-12 object-cover rounded border"
+                            />
+                          </div>
+                        )}
                       </div>
                       <div className="flex items-center gap-2">
                         <Button 
@@ -201,15 +252,47 @@ export const HeroBannerManager = () => {
                 />
               </div>
               
+              
               <div>
-                <Label htmlFor="image_url">Image URL</Label>
-                <Input
-                  id="image_url"
-                  value={formData.image_url}
-                  onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
-                  placeholder="/src/assets/your-image.jpg"
-                  required
-                />
+                <Label htmlFor="image_url">Background Image</Label>
+                <div className="space-y-2">
+                  <div className="flex gap-2">
+                    <Input
+                      id="image_url"
+                      value={formData.image_url}
+                      onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
+                      placeholder="Enter image URL or upload an image"
+                      required
+                    />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => fileInputRef.current?.click()}
+                      disabled={uploading}
+                      className="flex items-center gap-2"
+                    >
+                      <Upload className="h-4 w-4" />
+                      {uploading ? 'Uploading...' : 'Upload'}
+                    </Button>
+                  </div>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileSelect}
+                    className="hidden"
+                  />
+                  {formData.image_url && (
+                    <div className="mt-2">
+                      <img 
+                        src={formData.image_url} 
+                        alt="Banner preview" 
+                        className="w-full h-32 object-cover rounded border"
+                        onError={() => setFormData(prev => ({ ...prev, image_url: '' }))}
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
               
               <div>
