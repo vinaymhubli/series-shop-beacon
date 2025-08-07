@@ -66,19 +66,29 @@ export const useBooks = () => {
   const loadBooks = async () => {
     try {
       setIsLoading(true);
+      console.log('Starting to load books...');
+      
       const { data, error } = await supabase
         .from('books')
         .select('*')
         .eq('is_active', true)
         .order('display_order', { ascending: true });
 
-      if (error) throw error;
+      console.log('Books query result:', { data, error, count: data?.length });
+      
+      if (error) {
+        console.error('Supabase books error:', error);
+        throw error;
+      }
+      
+      console.log('Setting books data:', data);
       setBooks((data || []) as Book[]);
     } catch (err) {
       console.error('Error loading books:', err);
       setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
       setIsLoading(false);
+      console.log('Books loading finished');
     }
   };
 
