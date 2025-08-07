@@ -52,7 +52,7 @@ export const AdminDashboard = () => {
               <SidebarTrigger className="ml-0" />
               <div className="flex items-center gap-2">
                 <Shield className="h-5 w-5 text-primary" />
-                <h1 className="font-semibold">CMS Admin Dashboard</h1>
+                <h1 className="text-sm font-medium">CMS Admin Dashboard</h1>
               </div>
               <div className="ml-auto text-sm text-muted-foreground">
                 Welcome, {user.email}
