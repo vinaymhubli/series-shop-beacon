@@ -106,7 +106,12 @@ export const HeroBannerManager = () => {
     <div className="space-y-6">
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle>Hero Banners Management</CardTitle>
+          <div>
+            <CardTitle>Hero Banners Management</CardTitle>
+            <p className="text-sm text-muted-foreground mt-1">
+              Create up to 3 rotating banner slides for your home page
+            </p>
+          </div>
           <Button 
             onClick={() => setShowAddForm(true)}
             disabled={banners.length >= 3}
@@ -118,9 +123,14 @@ export const HeroBannerManager = () => {
         </CardHeader>
         <CardContent>
           {banners.length === 0 ? (
-            <p className="text-muted-foreground text-center py-4">
-              No hero banners found. Add your first banner to get started.
-            </p>
+            <div className="text-center py-8">
+              <p className="text-muted-foreground mb-4">
+                No hero banners created yet. Start by adding your first banner to display on the home page carousel.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                You can add up to 3 hero banners that will be displayed as a rotating carousel on your website's home page.
+              </p>
+            </div>
           ) : (
             <div className="space-y-4">
               {banners.map((banner) => (
