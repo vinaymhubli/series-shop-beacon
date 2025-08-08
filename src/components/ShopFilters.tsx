@@ -16,7 +16,7 @@ const ShopFilters = ({ viewMode, setViewMode }: ShopFiltersProps) => {
   ];
 
   return (
-    <div className="bg-gray-900 py-6 sticky top-16 z-40 shadow-lg border-b border-gray-800">
+    <div className="bg-gray-900 py-6 fixed top-16 left-0 right-0 z-40 shadow-lg border-b border-gray-800">
       <div className="container mx-auto px-4">
         {/* Search Bar and Filter Controls */}
         <div className="flex flex-col lg:flex-row gap-4 items-center justify-between mb-6">
