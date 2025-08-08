@@ -12,6 +12,7 @@ const ComicsHome = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [activeFilter, setActiveFilter] = useState('all');
   const [sortBy, setSortBy] = useState('newest');
+  const [searchTerm, setSearchTerm] = useState('');
 
   // Mock comic data
   const comics = [
@@ -77,6 +78,60 @@ const ComicsHome = () => {
     { id: 'ongoing', label: 'Ongoing', count: comics.filter(c => c.status === 'Ongoing').length }
   ];
 
+  // Filter and search logic
+  const filteredComics = comics.filter(comic => {
+    // Apply search filter
+    const matchesSearch = searchTerm === '' || 
+      comic.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      comic.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      comic.genre.some(genre => genre.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+    // Apply category filter
+    let matchesFilter = true;
+    switch (activeFilter) {
+      case 'new':
+        matchesFilter = comic.isNew;
+        break;
+      case 'trending':
+        matchesFilter = comic.isTrending;
+        break;
+      case 'completed':
+        matchesFilter = comic.status === 'Completed';
+        break;
+      case 'ongoing':
+        matchesFilter = comic.status === 'Ongoing';
+        break;
+      default:
+        matchesFilter = true;
+    }
+    
+    return matchesSearch && matchesFilter;
+  });
+
+  // Sort logic
+  const sortedComics = [...filteredComics].sort((a, b) => {
+    switch (sortBy) {
+      case 'newest':
+        return b.id - a.id; // Assuming higher ID means newer
+      case 'oldest':
+        return a.id - b.id;
+      case 'popular':
+        return b.rating - a.rating;
+      case 'updated':
+        return new Date(b.lastUpdate).getTime() - new Date(a.lastUpdate).getTime();
+      default:
+        return 0;
+    }
+  });
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const clearSearch = () => {
+    setSearchTerm('');
+  };
+
   const ComicCard = ({ comic }: { comic: any }) => (
     <Link to={`/comic/${comic.id}`}>
       <Card className="bg-gray-800 border-gray-700 hover:border-red-500/50 transition-all duration-300 group cursor-pointer">
@@ -132,8 +187,20 @@ const ComicsHome = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <Input 
                 placeholder="Search comics, authors, or tags..."
-                className="pl-10 bg-gray-800 border-gray-700 text-white placeholder-gray-400"
+                value={searchTerm}
+                onChange={handleSearchChange}
+                className="pl-10 pr-10 bg-gray-800 border-gray-700 text-white placeholder-gray-400"
               />
+              {searchTerm && (
+                <button
+                  onClick={clearSearch}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
             </div>
             
             {/* View Mode Toggle */}
@@ -195,9 +262,27 @@ const ComicsHome = () => {
             ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' 
             : 'grid-cols-1'
         }`}>
-          {comics.map(comic => (
-            <ComicCard key={comic.id} comic={comic} />
-          ))}
+          {sortedComics.length > 0 ? (
+            sortedComics.map(comic => (
+              <ComicCard key={comic.id} comic={comic} />
+            ))
+          ) : (
+            <div className="col-span-full text-center py-12">
+              <div className="text-gray-400 text-lg mb-2">No comics found</div>
+              <div className="text-gray-500 text-sm">
+                {searchTerm ? `No results for "${searchTerm}"` : 'Try adjusting your filters'}
+              </div>
+              {searchTerm && (
+                <Button 
+                  onClick={clearSearch}
+                  variant="outline" 
+                  className="mt-4 border-gray-700 text-gray-300 hover:border-red-500"
+                >
+                  Clear Search
+                </Button>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Load More */}
