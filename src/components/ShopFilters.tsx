@@ -40,7 +40,11 @@ const ShopFilters = ({ viewMode, setViewMode, onFiltersApply, onSortChange }: Sh
 
   const handleSortChange = (sortOption: string) => {
     setSelectedSort(sortOption);
-    onSortChange?.(sortOption);
+  };
+
+  const applySortOption = () => {
+    onSortChange?.(selectedSort);
+    console.log('Applied sort option:', selectedSort);
   };
 
   const handleFilterChange = (filter: string, checked: boolean) => {
@@ -155,7 +159,17 @@ const ShopFilters = ({ viewMode, setViewMode, onFiltersApply, onSortChange }: Sh
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56 bg-gray-800 border-gray-700 z-50">
-                <DropdownMenuLabel className="text-white">Sort Options</DropdownMenuLabel>
+                <div className="flex items-center justify-between p-2">
+                  <DropdownMenuLabel className="text-white">Sort Options</DropdownMenuLabel>
+                  <Button
+                    variant="default"
+                    size="sm"
+                    onClick={applySortOption}
+                    className="bg-red-600 hover:bg-red-700 text-white h-auto px-3 py-1 text-xs"
+                  >
+                    Apply
+                  </Button>
+                </div>
                 <DropdownMenuSeparator className="bg-gray-700" />
                 {sortOptions.map((option) => (
                   <DropdownMenuItem
