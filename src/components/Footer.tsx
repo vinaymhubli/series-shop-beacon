@@ -123,8 +123,12 @@ const Footer = () => {
                         <Link to="/copyright" className="text-xs sm:text-sm hover:text-white transition-colors duration-200 transform hover:translate-x-1 block px-2 sm:px-0 py-1">
                           {link}
                         </Link>
-                      ) : link === "Shipping Info" || link === "Returns & Exchanges" ? (
+                      ) : link === "Shipping Info" ? (
                         <Link to="/order-shipping" className="text-xs sm:text-sm hover:text-white transition-colors duration-200 transform hover:translate-x-1 block px-2 sm:px-0 py-1">
+                          {link}
+                        </Link>
+                      ) : link === "Returns & Exchanges" ? (
+                        <Link to="/return-exchange" className="text-xs sm:text-sm hover:text-white transition-colors duration-200 transform hover:translate-x-1 block px-2 sm:px-0 py-1">
                           {link}
                         </Link>
                       ) : link === "Terms of Service" ? (
