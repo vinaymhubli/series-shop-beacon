@@ -83,6 +83,7 @@ const RecommendedSection = () => {
 
   return (
     <section 
+      id="featured-series"
       ref={elementRef}
       className={`relative bg-gradient-to-br from-gray-800 via-gray-850 to-gray-900 py-12 overflow-hidden transition-all duration-1000 transform ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
