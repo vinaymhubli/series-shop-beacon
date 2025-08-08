@@ -45,14 +45,15 @@ import CartPage from "./pages/CartPage";
 import LibraryPage from "./pages/LibraryPage";
 import ChatBot from "./components/ChatBot";
 import ScrollToTop from "./components/ScrollToTop";
-import { AuthProvider } from "./hooks/useSupabaseAuth";
+import { DummyAuthProvider } from "./hooks/useDummyAuth";
+import AuthPage from "./pages/AuthPage";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <AuthProvider>
+      <DummyAuthProvider>
         <Toaster />
         <Sonner />
         <BrowserRouter>
@@ -96,12 +97,12 @@ const App = () => (
             <Route path="/customer-support" element={<CustomerSupport />} />
             <Route path="/language-terms" element={<LanguageTerms />} />
             <Route path="/admin" element={<AdminPanel />} />
-            <Route path="/auth" element={<Auth />} />
+            <Route path="/auth" element={<AuthPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <ChatBot />
         </BrowserRouter>
-      </AuthProvider>
+      </DummyAuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

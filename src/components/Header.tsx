@@ -4,15 +4,13 @@ import { Menu, X, Search, ShoppingCart, User, Heart, Building2, Settings, LogOut
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
 import { CoinDisplay } from '@/components/CoinDisplay';
-import { useSupabaseAuth } from '@/hooks/useSupabaseAuth';
-import { AuthModal } from '@/components/auth/AuthModal';
+import { useDummyAuth } from '@/hooks/useDummyAuth';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const location = useLocation();
-  const { user, isAdmin, signOut, isLoading } = useSupabaseAuth();
+  const { user, isAuthenticated, logout, isLoading } = useDummyAuth();
 
   const scrollToFeaturedSeries = () => {
     const element = document.getElementById('featured-series');
@@ -116,84 +114,61 @@ const Header = () => {
             </Link>
             
             {/* Profile Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
-                  <UserCircle className="h-5 w-5" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56 bg-background border border-border shadow-lg z-50">
-                <DropdownMenuItem asChild>
-                  <Link to="/profile" className="flex items-center gap-2">
-                    <User className="h-4 w-4" />
-                    My Profile
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/profile?tab=orders" className="flex items-center gap-2">
-                    <History className="h-4 w-4" />
-                    Order History
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/wishlist" className="flex items-center gap-2">
-                    <Heart className="h-4 w-4" />
-                    Wishlist
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/profile?tab=settings" className="flex items-center gap-2">
-                    <Settings className="h-4 w-4" />
-                    Account Settings
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/buy-coins" className="flex items-center gap-2">
-                    <Coins className="h-4 w-4" />
-                    Coin Balance
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem 
-                  onClick={signOut} 
-                  className="flex items-center gap-2 text-destructive focus:text-destructive"
-                >
-                  <LogOut className="h-4 w-4" />
-                  Logout
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            {user ? (
+            {isAuthenticated ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
-                    <User className="h-5 w-5" />
+                    <UserCircle className="h-5 w-5" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56 bg-background border border-border shadow-lg z-50">
                   <DropdownMenuItem asChild>
                     <Link to="/profile" className="flex items-center gap-2">
                       <User className="h-4 w-4" />
-                      Profile
+                      My Profile
                     </Link>
                   </DropdownMenuItem>
-                  {isAdmin && (
-                    <DropdownMenuItem asChild>
-                      <Link to="/admin" className="flex items-center gap-2">
-                        <Settings className="h-4 w-4" />
-                        Admin Panel
-                      </Link>
-                    </DropdownMenuItem>
-                  )}
+                  <DropdownMenuItem asChild>
+                    <Link to="/profile?tab=orders" className="flex items-center gap-2">
+                      <History className="h-4 w-4" />
+                      Order History
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/wishlist" className="flex items-center gap-2">
+                      <Heart className="h-4 w-4" />
+                      Wishlist
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/profile?tab=settings" className="flex items-center gap-2">
+                      <Settings className="h-4 w-4" />
+                      Account Settings
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/buy-coins" className="flex items-center gap-2">
+                      <Coins className="h-4 w-4" />
+                      Coin Balance
+                    </Link>
+                  </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={signOut} className="flex items-center gap-2">
+                  <DropdownMenuItem 
+                    onClick={logout} 
+                    className="flex items-center gap-2 text-destructive focus:text-destructive"
+                  >
                     <LogOut className="h-4 w-4" />
-                    Sign Out
+                    Logout
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-            ) : null}
+            ) : (
+              <Link to="/auth">
+                <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
+                  <LogIn className="h-5 w-5" />
+                </Button>
+              </Link>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -230,7 +205,7 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
-              {user ? (
+              {isAuthenticated ? (
                 <>
                   <Link
                     to="/profile"
@@ -239,24 +214,23 @@ const Header = () => {
                   >
                     Profile
                   </Link>
-                  {isAdmin && (
-                    <Link
-                      to="/admin"
-                      className="text-gray-300 hover:text-white hover:bg-gray-800 text-sm font-medium px-3 py-2 rounded-md"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Admin Panel
-                    </Link>
-                  )}
                   <Button
                     variant="ghost"
-                    onClick={signOut}
+                    onClick={logout}
                     className="text-gray-300 hover:text-white hover:bg-gray-800 text-sm font-medium px-3 py-2 rounded-md w-full justify-start"
                   >
                     Sign Out
                   </Button>
                 </>
-              ) : null}
+              ) : (
+                <Link
+                  to="/auth"
+                  className="text-gray-300 hover:text-white hover:bg-gray-800 text-sm font-medium px-3 py-2 rounded-md"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Sign In
+                </Link>
+              )}
               <div className="flex items-center justify-center space-x-4 px-3 pt-4 border-t border-gray-800">
                 <CoinDisplay />
                 <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
