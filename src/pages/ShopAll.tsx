@@ -68,14 +68,7 @@ const ShopAll = () => {
       </section>
 
       {/* Filters Section */}
-      <div 
-        ref={filtersRef as any}
-        className={`transition-all duration-1000 transform ${
-          filtersVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
-      >
-        <ShopFilters viewMode={viewMode} setViewMode={setViewMode} />
-      </div>
+      <ShopFilters viewMode={viewMode} setViewMode={setViewMode} />
 
       {/* Featured Series Slideshow */}
       <FeaturedSeriesSlideshow />
