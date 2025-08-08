@@ -213,6 +213,15 @@ const Footer = () => {
           <p className="text-xs sm:text-sm text-gray-500 text-center">
             {copyrightText}
           </p>
+          
+          <a 
+            href="https://satprimeai.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-xs sm:text-sm text-red-500 hover:text-red-400 transition-colors duration-200 text-center block mt-2"
+          >
+            Designed and developed by SATPRIME.AI
+          </a>
         </div>
       </div>
     </footer>
