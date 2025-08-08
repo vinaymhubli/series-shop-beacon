@@ -161,7 +161,7 @@ const Announcements = () => {
   const filteredAllAnnouncements = getFilteredContent(allAnnouncements);
   const filteredBlogPosts = getFilteredContent(blogPosts);
 
-  // Share functionality
+  // Enhanced share functionality with multiple options
   const handleShare = (item: any) => {
     const shareData = {
       title: item.title,
@@ -169,23 +169,77 @@ const Announcements = () => {
       url: `${window.location.origin}/announcement/${item.id}`,
     };
 
+    // Check if device supports native sharing
     if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
       navigator.share(shareData).catch((error) => {
         console.log('Error sharing:', error);
-        fallbackShare(shareData);
+        showShareOptions(shareData);
       });
     } else {
-      fallbackShare(shareData);
+      showShareOptions(shareData);
     }
   };
 
-  const fallbackShare = (shareData: any) => {
+  const showShareOptions = (shareData: any) => {
+    const shareText = `${shareData.title}\n\n${shareData.text}\n\n${shareData.url}`;
+    
+    // Create social media share URLs
+    const socialShares = {
+      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareData.title)}&url=${encodeURIComponent(shareData.url)}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareData.url)}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareData.url)}`,
+      reddit: `https://reddit.com/submit?title=${encodeURIComponent(shareData.title)}&url=${encodeURIComponent(shareData.url)}`,
+      whatsapp: `https://wa.me/?text=${encodeURIComponent(shareText)}`,
+      telegram: `https://t.me/share/url?url=${encodeURIComponent(shareData.url)}&text=${encodeURIComponent(shareData.title)}`
+    };
+
+    // Try to copy to clipboard first
     if (navigator.clipboard) {
       navigator.clipboard.writeText(shareData.url).then(() => {
-        alert('Link copied to clipboard!');
+        const userChoice = confirm(
+          `Link copied to clipboard!\n\nWould you like to share on social media?\n\nClick OK to see sharing options, or Cancel to continue.`
+        );
+        if (userChoice) {
+          openSocialShareMenu(socialShares);
+        }
       }).catch(() => {
-        prompt('Copy this link:', shareData.url);
+        fallbackShare(shareData, socialShares);
       });
+    } else {
+      fallbackShare(shareData, socialShares);
+    }
+  };
+
+  const openSocialShareMenu = (socialShares: any) => {
+    const shareOptions = [
+      { name: 'Twitter', url: socialShares.twitter, emoji: '🐦' },
+      { name: 'Facebook', url: socialShares.facebook, emoji: '📘' },
+      { name: 'LinkedIn', url: socialShares.linkedin, emoji: '💼' },
+      { name: 'WhatsApp', url: socialShares.whatsapp, emoji: '💬' },
+      { name: 'Telegram', url: socialShares.telegram, emoji: '✈️' },
+      { name: 'Reddit', url: socialShares.reddit, emoji: '🔗' }
+    ];
+
+    const choice = prompt(
+      'Choose sharing platform:\n\n' + 
+      shareOptions.map((option, index) => `${index + 1}. ${option.emoji} ${option.name}`).join('\n') +
+      '\n\nEnter number (1-6) or press Cancel:'
+    );
+
+    const choiceIndex = parseInt(choice || '0') - 1;
+    if (choiceIndex >= 0 && choiceIndex < shareOptions.length) {
+      window.open(shareOptions[choiceIndex].url, '_blank', 'width=600,height=400');
+    }
+  };
+
+  const fallbackShare = (shareData: any, socialShares?: any) => {
+    const message = `Share: ${shareData.title}\n\nCopy this link:\n${shareData.url}`;
+    
+    if (socialShares) {
+      const userChoice = confirm(message + '\n\nClick OK to see social media options, or Cancel to continue.');
+      if (userChoice) {
+        openSocialShareMenu(socialShares);
+      }
     } else {
       prompt('Copy this link:', shareData.url);
     }
