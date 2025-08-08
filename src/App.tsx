@@ -36,6 +36,7 @@ import Auth from "./pages/Auth";
 import FAQ from "./pages/FAQ";
 import ReturnExchange from "./pages/ReturnExchange";
 import CustomerSupport from "./pages/CustomerSupport";
+import LanguageTerms from "./pages/LanguageTerms";
 import ChatBot from "./components/ChatBot";
 import { AuthProvider } from "./hooks/useSupabaseAuth";
 
@@ -79,6 +80,7 @@ const App = () => (
             <Route path="/faq" element={<FAQ />} />
             <Route path="/return-exchange" element={<ReturnExchange />} />
             <Route path="/customer-support" element={<CustomerSupport />} />
+            <Route path="/language-terms" element={<LanguageTerms />} />
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="*" element={<NotFound />} />
