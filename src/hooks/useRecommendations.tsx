@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSupabaseAuth } from './useSupabaseAuth';
+import { useDummyAuth } from './useDummyAuth';
 
 interface RecommendedProduct {
   id: string;
@@ -15,7 +15,7 @@ interface RecommendedProduct {
 }
 
 export const useRecommendations = () => {
-  const { user } = useSupabaseAuth();
+  const { user } = useDummyAuth();
   const [recommendations, setRecommendations] = useState<RecommendedProduct[]>([]);
   const [loading, setLoading] = useState(true);
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { useSupabaseAuth } from './useSupabaseAuth';
+import { useDummyAuth } from './useDummyAuth';
 
 interface PageSection {
   id: string;
@@ -14,7 +14,7 @@ interface PageSection {
 export const useCMS = () => {
   const [sections, setSections] = useState<PageSection[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { isAdmin } = useSupabaseAuth();
+  const { user } = useDummyAuth();
 
   useEffect(() => {
     loadAllSections();
@@ -81,7 +81,7 @@ export const useCMS = () => {
     sectionName: string, 
     content: any
   ) => {
-    if (!isAdmin) {
+    if (!user) {
       throw new Error('Only admins can update content');
     }
 

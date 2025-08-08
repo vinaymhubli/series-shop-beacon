@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSupabaseAuth } from '@/hooks/useSupabaseAuth';
+import { useDummyAuth } from '@/hooks/useDummyAuth';
 import { useCMS } from '@/hooks/useCMS';
 import { AdminSidebar } from './AdminSidebar';
 import { PageEditor } from './PageEditor';
@@ -9,10 +9,10 @@ import { Shield } from 'lucide-react';
 
 export const AdminDashboard = () => {
   const { isLoading } = useCMS();
-  const { isAdmin, user } = useSupabaseAuth();
+  const { user } = useDummyAuth();
   const [selectedPage, setSelectedPage] = useState('home-page');
 
-  if (!isAdmin || !user) {
+  if (!user) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <Card className="w-full max-w-md">

@@ -1,29 +1,29 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AdminDashboard } from '@/components/cms/AdminDashboard';
-import { useSupabaseAuth } from '@/hooks/useSupabaseAuth';
+import { useDummyAuth } from '@/hooks/useDummyAuth';
 import { Card, CardContent } from '@/components/ui/card';
 import { Shield, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const AdminPanel = () => {
-  const { user, isAdmin, signOut } = useSupabaseAuth();
+  const { user, logout } = useDummyAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     // Redirect non-admin users to auth page
-    if (!user || !isAdmin) {
+    if (!user) {
       navigate('/auth');
     }
-  }, [user, isAdmin, navigate]);
+  }, [user, navigate]);
 
   const handleSignOut = async () => {
-    await signOut();
+    logout();
     navigate('/');
   };
 
   // Show loading or redirect for non-admin users
-  if (!user || !isAdmin) {
+  if (!user) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <Card className="w-full max-w-md">

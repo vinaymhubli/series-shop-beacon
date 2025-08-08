@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { useSupabaseAuth } from './useSupabaseAuth';
+import { useDummyAuth } from './useDummyAuth';
 
 export interface Announcement {
   id: string;
@@ -22,7 +22,7 @@ export const useAnnouncements = () => {
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { isAdmin } = useSupabaseAuth();
+  const { user } = useDummyAuth();
 
   useEffect(() => {
     loadAnnouncements();
@@ -138,6 +138,5 @@ export const useAnnouncements = () => {
     updateAnnouncement,
     deleteAnnouncement,
     loadAnnouncements,
-    isAdmin
   };
 };
