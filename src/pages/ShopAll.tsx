@@ -71,22 +71,20 @@ const ShopAll = () => {
       <ShopFilters viewMode={viewMode} setViewMode={setViewMode} />
 
       {/* Featured Series Slideshow */}
-      <div className="pt-32">
-        <FeaturedSeriesSlideshow />
+      <FeaturedSeriesSlideshow />
 
-        {/* Content Grid - Show SeriesGrid or ShopGrid based on view mode */}
-        <div 
-          ref={gridRef as any}
-          className={`transition-all duration-1000 transform ${
-            gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          {viewMode === 'series' ? <SeriesGrid /> : <ShopGrid />}
-        </div>
-
-        <Newsletter />
-        <Footer />
+      {/* Content Grid - Show SeriesGrid or ShopGrid based on view mode */}
+      <div 
+        ref={gridRef as any}
+        className={`transition-all duration-1000 transform ${
+          gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}
+      >
+        {viewMode === 'series' ? <SeriesGrid /> : <ShopGrid />}
       </div>
+
+      <Newsletter />
+      <Footer />
     </div>
   );
 };
