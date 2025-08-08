@@ -643,35 +643,41 @@ const Announcements = () => {
         <section>
           <h2 className="text-2xl font-bold text-foreground mb-6">Related Links</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            <Card className="p-6 hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 bg-destructive rounded-full flex items-center justify-center">
-                  <Calendar className="w-4 h-4 text-destructive-foreground" />
+            <Link to="/announcements?filter=ACTIVITIES">
+              <Card className="p-6 hover:shadow-md transition-shadow cursor-pointer hover:bg-muted/50">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 bg-destructive rounded-full flex items-center justify-center">
+                    <Calendar className="w-4 h-4 text-destructive-foreground" />
+                  </div>
+                  <h3 className="font-semibold text-foreground">Event Calendar</h3>
                 </div>
-                <h3 className="font-semibold text-foreground">Event Calendar</h3>
-              </div>
-              <p className="text-sm text-muted-foreground">View upcoming manga events</p>
-            </Card>
+                <p className="text-sm text-muted-foreground">View upcoming manga events</p>
+              </Card>
+            </Link>
             
-            <Card className="p-6 hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 bg-destructive rounded-full flex items-center justify-center">
-                  <BookOpen className="w-4 h-4 text-destructive-foreground" />
+            <Link to="/our-series">
+              <Card className="p-6 hover:shadow-md transition-shadow cursor-pointer hover:bg-muted/50">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 bg-destructive rounded-full flex items-center justify-center">
+                    <BookOpen className="w-4 h-4 text-destructive-foreground" />
+                  </div>
+                  <h3 className="font-semibold text-foreground">Release Schedule</h3>
                 </div>
-                <h3 className="font-semibold text-foreground">Release Schedule</h3>
-              </div>
-              <p className="text-sm text-muted-foreground">Check out our latest releases</p>
-            </Card>
+                <p className="text-sm text-muted-foreground">Check out our latest releases</p>
+              </Card>
+            </Link>
             
-            <Card className="p-6 hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 bg-destructive rounded-full flex items-center justify-center">
-                  <Share2 className="w-4 h-4 text-destructive-foreground" />
+            <Link to="/faq">
+              <Card className="p-6 hover:shadow-md transition-shadow cursor-pointer hover:bg-muted/50">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 bg-destructive rounded-full flex items-center justify-center">
+                    <Share2 className="w-4 h-4 text-destructive-foreground" />
+                  </div>
+                  <h3 className="font-semibold text-foreground">FAQ</h3>
                 </div>
-                <h3 className="font-semibold text-foreground">FAQ</h3>
-              </div>
-              <p className="text-sm text-muted-foreground">Frequently asked questions</p>
-            </Card>
+                <p className="text-sm text-muted-foreground">Frequently asked questions</p>
+              </Card>
+            </Link>
           </div>
         </section>
       </div>
