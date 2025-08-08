@@ -94,24 +94,6 @@ const ProfileHeader = () => {
             </div>
           </div>
           
-          <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
-            <Badge className="bg-blue-600 text-white">
-              <Star className="w-3 h-3 mr-1" />
-              Early Adopter
-            </Badge>
-            <Badge className="bg-purple-600 text-white">
-              <BookOpen className="w-3 h-3 mr-1" />
-              Collector
-            </Badge>
-            <Badge className="bg-yellow-600 text-white">
-              <Trophy className="w-3 h-3 mr-1" />
-              Reviewer
-            </Badge>
-            <Badge className="bg-green-600 text-white">
-              <Users className="w-3 h-3 mr-1" />
-              Premium Member
-            </Badge>
-          </div>
           
           <div className="flex flex-wrap justify-center md:justify-start gap-4">
             <Button className="bg-red-600 hover:bg-red-700 text-white">
