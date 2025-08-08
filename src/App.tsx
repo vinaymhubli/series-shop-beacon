@@ -35,6 +35,7 @@ import TermsConditions from "./pages/TermsConditions";
 import Auth from "./pages/Auth";
 import FAQ from "./pages/FAQ";
 import ReturnExchange from "./pages/ReturnExchange";
+import CustomerSupport from "./pages/CustomerSupport";
 import ChatBot from "./components/ChatBot";
 import { AuthProvider } from "./hooks/useSupabaseAuth";
 
@@ -77,6 +78,7 @@ const App = () => (
             <Route path="/terms-conditions" element={<TermsConditions />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/return-exchange" element={<ReturnExchange />} />
+            <Route path="/customer-support" element={<CustomerSupport />} />
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="*" element={<NotFound />} />
