@@ -117,6 +117,23 @@ const CartPage = () => {
   const tax = (subtotal - discountAmount) * 0.08; // 8% tax
   const total = subtotal - discountAmount + shipping + tax;
 
+  const handleContinueShopping = () => {
+    // Track analytics for continue shopping action
+    console.log('Analytics: User continued shopping from cart', {
+      cartItems: cartItems.length,
+      cartValue: total.toFixed(2),
+      timestamp: new Date().toISOString()
+    });
+
+    toast({
+      title: "Happy shopping!",
+      description: "Browse our collection and find more amazing items.",
+    });
+
+    // Navigate to shop page
+    navigate('/shop-all');
+  };
+
   const handleCheckout = () => {
     if (cartItems.length === 0) {
       toast({
@@ -368,11 +385,13 @@ const CartPage = () => {
                     Proceed to Checkout
                   </Button>
 
-                  <Link to="/shop-all">
-                    <Button variant="outline" className="w-full">
-                      Continue Shopping
-                    </Button>
-                  </Link>
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={handleContinueShopping}
+                  >
+                    Continue Shopping
+                  </Button>
                 </CardContent>
               </Card>
             </div>
