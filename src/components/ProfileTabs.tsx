@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import ProfileActivity from './ProfileActivity';
 import ProfileLastViewed from './ProfileLastViewed';
@@ -10,9 +10,15 @@ import AccountSettingsModal from './AccountSettingsModal';
 
 const ProfileTabs = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const activeTab = searchParams.get('tab') || 'overview';
 
   const handleTabChange = (value: string) => {
+    if (value === 'wishlist') {
+      navigate('/wishlist');
+      return;
+    }
+    
     if (value === 'overview') {
       searchParams.delete('tab');
     } else {
@@ -59,9 +65,6 @@ const ProfileTabs = () => {
         <ProfileOrderHistory />
       </TabsContent>
 
-      <TabsContent value="wishlist" className="mt-8">
-        <ProfileWishlist />
-      </TabsContent>
 
       <TabsContent value="settings" className="mt-8">
         <div className="max-w-2xl">
