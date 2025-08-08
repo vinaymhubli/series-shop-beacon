@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Menu, X, Search, ShoppingCart, User, Heart, Library, Settings, LogOut, LogIn } from 'lucide-react';
+import { Menu, X, Search, ShoppingCart, User, Heart, Building2, Settings, LogOut, LogIn } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
 import { CoinDisplay } from '@/components/CoinDisplay';
@@ -99,7 +99,7 @@ const Header = () => {
               size="icon"
               className="text-gray-300 hover:text-blue-400 hover:bg-blue-500/10 transition-all duration-300"
             >
-              <Library className="w-5 h-5" />
+              <Building2 className="w-5 h-5" />
             </Button>
             <CoinDisplay />
             <Link to="/search">
