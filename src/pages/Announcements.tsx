@@ -14,6 +14,7 @@ const Announcements = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
   const [contentFilter, setContentFilter] = useState('ALL');
+  const [sortOrder, setSortOrder] = useState<'desc' | 'asc'>('desc');
 
   // Function to get symbol and color based on category
   const getCategorySymbol = (category: string) => {
@@ -157,9 +158,23 @@ const Announcements = () => {
     });
   };
 
-  const filteredFeaturedAnnouncements = getFilteredContent(featuredAnnouncements);
-  const filteredAllAnnouncements = getFilteredContent(allAnnouncements);
-  const filteredBlogPosts = getFilteredContent(blogPosts);
+  // Sort content by date
+  const getSortedContent = (content: any[]) => {
+    return [...content].sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return sortOrder === 'desc' ? dateB.getTime() - dateA.getTime() : dateA.getTime() - dateB.getTime();
+    });
+  };
+
+  // Handle sort toggle
+  const handleSort = () => {
+    setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc');
+  };
+
+  const filteredFeaturedAnnouncements = getSortedContent(getFilteredContent(featuredAnnouncements));
+  const filteredAllAnnouncements = getSortedContent(getFilteredContent(allAnnouncements));
+  const filteredBlogPosts = getSortedContent(getFilteredContent(blogPosts));
 
   // Enhanced share functionality with multiple options
   const handleShare = (item: any) => {
@@ -397,8 +412,8 @@ const Announcements = () => {
                       className="w-64"
                     />
                   </div>
-                  <Button variant="outline" size="sm">
-                    Sort by Date ↓
+                  <Button variant="outline" size="sm" onClick={handleSort}>
+                    Sort by Date {sortOrder === 'desc' ? '↓' : '↑'}
                   </Button>
                 </div>
               </div>
@@ -511,8 +526,8 @@ const Announcements = () => {
                       className="w-64"
                     />
                   </div>
-                  <Button variant="outline" size="sm">
-                    Sort by Date ↓
+                  <Button variant="outline" size="sm" onClick={handleSort}>
+                    Sort by Date {sortOrder === 'desc' ? '↓' : '↑'}
                   </Button>
                 </div>
               </div>
