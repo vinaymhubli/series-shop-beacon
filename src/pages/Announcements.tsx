@@ -744,13 +744,15 @@ const Announcements = () => {
             <Dialog>
               <DialogTrigger asChild>
                 <Card className="p-6 hover:shadow-md transition-shadow cursor-pointer hover:bg-muted/50">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-8 h-8 bg-destructive rounded-full flex items-center justify-center">
-                      <Share2 className="w-4 h-4 text-destructive-foreground" />
+                  <Link to="/faq" className="block">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-8 h-8 bg-destructive rounded-full flex items-center justify-center">
+                        <Share2 className="w-4 h-4 text-destructive-foreground" />
+                      </div>
+                      <h3 className="font-semibold text-foreground">FAQ</h3>
                     </div>
-                    <h3 className="font-semibold text-foreground">FAQ</h3>
-                  </div>
-                  <p className="text-sm text-muted-foreground">Frequently asked questions</p>
+                    <p className="text-sm text-muted-foreground">Frequently asked questions</p>
+                  </Link>
                 </Card>
               </DialogTrigger>
               <DialogContent className="max-w-lg">
