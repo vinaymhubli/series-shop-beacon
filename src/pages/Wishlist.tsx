@@ -8,13 +8,11 @@ import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Heart, Search, Trash2, ShoppingCart, Filter, Grid, List, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
 
 const Wishlist = () => {
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const [sortBy, setSortBy] = useState('newest');
-  const [filterCategory, setFilterCategory] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
-
+  const { toast } = useToast();
+  
   // Mock wishlist data
   const wishlistItems = [
     {
@@ -75,17 +73,52 @@ const Wishlist = () => {
     }
   ];
 
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [sortBy, setSortBy] = useState('newest');
+  const [filterCategory, setFilterCategory] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [items, setItems] = useState(wishlistItems);
+
   const handleRemoveFromWishlist = (itemId: number) => {
-    console.log('Removing item from wishlist:', itemId);
-    // Here you would implement actual wishlist removal logic
+    const item = items.find(item => item.id === itemId);
+    setItems(items.filter(item => item.id !== itemId));
+    toast({
+      title: "Removed from wishlist",
+      description: `${item?.title} has been removed from your wishlist.`,
+    });
   };
 
   const handleAddToCart = (itemId: number) => {
-    console.log('Adding item to cart:', itemId);
-    // Here you would implement cart functionality
+    const item = items.find(item => item.id === itemId);
+    if (!item) return;
+
+    // Simulate adding to cart with realistic behavior
+    if (item.availability === 'Out of Stock') {
+      toast({
+        title: "Item unavailable",
+        description: "This item is currently out of stock.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Show success message
+    toast({
+      title: "Added to cart",
+      description: `${item.title} has been added to your cart.`,
+    });
+
+    // Optionally remove from wishlist after adding to cart
+    setTimeout(() => {
+      setItems(prevItems => prevItems.filter(prevItem => prevItem.id !== itemId));
+      toast({
+        title: "Moved to cart",
+        description: `${item.title} was removed from your wishlist since it's now in your cart.`,
+      });
+    }, 1000);
   };
 
-  const filteredItems = wishlistItems.filter(item => {
+  const filteredItems = items.filter(item => {
     const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          item.author.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = filterCategory === 'all' || item.category.toLowerCase() === filterCategory.toLowerCase();
