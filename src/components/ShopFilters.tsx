@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Filter, Search, ArrowUpDown } from 'lucide-react';
+import { Filter, Search, ArrowUpDown, X } from 'lucide-react';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator, DropdownMenuLabel } from '@/components/ui/dropdown-menu';
+import { Checkbox } from '@/components/ui/checkbox';
 
 interface ShopFiltersProps {
   viewMode: 'series' | 'volume';
@@ -9,11 +11,32 @@ interface ShopFiltersProps {
 
 const ShopFilters = ({ viewMode, setViewMode }: ShopFiltersProps) => {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   
   const categories = [
     'All', 'Action', 'Adventure', 'Romance', 'Fantasy', 'Sci-Fi', 
     'Horror', 'Comedy', 'Drama', 'More...'
   ];
+
+  const filterOptions = {
+    'Rating': ['5 Stars', '4+ Stars', '3+ Stars'],
+    'Status': ['Ongoing', 'Completed', 'Upcoming'],
+    'Type': ['Manga', 'Webtoon', 'Light Novel'],
+    'Language': ['English', 'Japanese', 'Korean'],
+    'Price Range': ['Free', 'Under $5', '$5-$10', '$10+']
+  };
+
+  const handleFilterChange = (filter: string, checked: boolean) => {
+    if (checked) {
+      setSelectedFilters([...selectedFilters, filter]);
+    } else {
+      setSelectedFilters(selectedFilters.filter(f => f !== filter));
+    }
+  };
+
+  const clearAllFilters = () => {
+    setSelectedFilters([]);
+  };
 
   return (
     <div className="bg-gray-900 py-6 sticky top-16 z-40 shadow-lg border-b border-gray-800">
@@ -32,13 +55,63 @@ const ShopFilters = ({ viewMode, setViewMode }: ShopFiltersProps) => {
 
           {/* Filter and Sort Buttons */}
           <div className="flex items-center gap-3">
-            <Button 
-              variant="outline" 
-              className="bg-blue-900/50 border-blue-700 text-white hover:bg-blue-800/60 px-6 py-2 rounded-lg"
-            >
-              <Filter className="h-4 w-4 mr-2" />
-              Filters
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button 
+                  variant="outline" 
+                  className="bg-blue-900/50 border-blue-700 text-white hover:bg-blue-800/60 px-6 py-2 rounded-lg relative"
+                >
+                  <Filter className="h-4 w-4 mr-2" />
+                  Filters
+                  {selectedFilters.length > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                      {selectedFilters.length}
+                    </span>
+                  )}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-80 bg-gray-800 border-gray-700">
+                <div className="flex items-center justify-between p-2">
+                  <DropdownMenuLabel className="text-white">Filter Options</DropdownMenuLabel>
+                  {selectedFilters.length > 0 && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={clearAllFilters}
+                      className="text-red-400 hover:text-red-300 h-auto p-1"
+                    >
+                      <X className="h-4 w-4 mr-1" />
+                      Clear All
+                    </Button>
+                  )}
+                </div>
+                <DropdownMenuSeparator className="bg-gray-700" />
+                {Object.entries(filterOptions).map(([category, options]) => (
+                  <div key={category} className="p-2">
+                    <div className="text-sm font-medium text-gray-300 mb-2">{category}</div>
+                    <div className="space-y-2">
+                      {options.map((option) => (
+                        <div key={option} className="flex items-center space-x-2">
+                          <Checkbox
+                            id={option}
+                            checked={selectedFilters.includes(option)}
+                            onCheckedChange={(checked) => handleFilterChange(option, checked as boolean)}
+                            className="border-gray-600 data-[state=checked]:bg-red-600 data-[state=checked]:border-red-600"
+                          />
+                          <label 
+                            htmlFor={option} 
+                            className="text-sm text-gray-300 cursor-pointer hover:text-white"
+                          >
+                            {option}
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+                    {category !== 'Price Range' && <DropdownMenuSeparator className="bg-gray-700 my-2" />}
+                  </div>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Button 
               variant="outline" 
               className="bg-blue-900/50 border-blue-700 text-white hover:bg-blue-800/60 px-6 py-2 rounded-lg"
