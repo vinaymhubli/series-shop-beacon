@@ -681,11 +681,6 @@ const Announcements = () => {
                       <p className="text-sm text-muted-foreground">August 10, 2025 - Online Ceremony</p>
                     </div>
                   </div>
-                  <Link to="/announcements?filter=ACTIVITIES">
-                    <Button variant="destructive" className="w-full">
-                      View All Events
-                    </Button>
-                  </Link>
                 </div>
               </DialogContent>
             </Dialog>
