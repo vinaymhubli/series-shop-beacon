@@ -13,6 +13,7 @@ const Announcements = () => {
   const [activeTab, setActiveTab] = useState('announcements');
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
+  const [contentFilter, setContentFilter] = useState('ALL');
 
   // Function to get symbol and color based on category
   const getCategorySymbol = (category: string) => {
@@ -137,6 +138,29 @@ const Announcements = () => {
     }
   ];
 
+  // Filter content based on secondary filter
+  const getFilteredContent = (content: any[]) => {
+    if (contentFilter === 'ALL') return content;
+    
+    return content.filter(item => {
+      switch (contentFilter) {
+        case 'NEWS':
+          return item.category?.toLowerCase().includes('licensing') || 
+                 item.category?.toLowerCase().includes('features') ||
+                 item.category?.toLowerCase().includes('reprints');
+        case 'ACTIVITIES':
+          return item.category?.toLowerCase().includes('events') || 
+                 item.category?.toLowerCase().includes('volume');
+        default:
+          return true;
+      }
+    });
+  };
+
+  const filteredFeaturedAnnouncements = getFilteredContent(featuredAnnouncements);
+  const filteredAllAnnouncements = getFilteredContent(allAnnouncements);
+  const filteredBlogPosts = getFilteredContent(blogPosts);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -178,9 +202,36 @@ const Announcements = () => {
               ANNOUNCEMENT
             </button>
             <div className="ml-auto flex items-center gap-4 text-sm">
-              <span className="text-destructive font-semibold">ALL</span>
-              <span className="text-muted-foreground">NEWS</span>
-              <span className="text-muted-foreground">ACTIVITIES</span>
+              <button
+                onClick={() => setContentFilter('ALL')}
+                className={`transition-colors duration-200 ${
+                  contentFilter === 'ALL' 
+                    ? 'text-destructive font-semibold' 
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                ALL
+              </button>
+              <button
+                onClick={() => setContentFilter('NEWS')}
+                className={`transition-colors duration-200 ${
+                  contentFilter === 'NEWS' 
+                    ? 'text-destructive font-semibold' 
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                NEWS
+              </button>
+              <button
+                onClick={() => setContentFilter('ACTIVITIES')}
+                className={`transition-colors duration-200 ${
+                  contentFilter === 'ACTIVITIES' 
+                    ? 'text-destructive font-semibold' 
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                ACTIVITIES
+              </button>
             </div>
           </div>
         </div>
@@ -193,7 +244,8 @@ const Announcements = () => {
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-foreground mb-6">Featured Updates</h2>
               <div className="grid md:grid-cols-2 gap-6">
-                {featuredAnnouncements.map((announcement) => (
+                {filteredFeaturedAnnouncements.length > 0 ? (
+                  filteredFeaturedAnnouncements.map((announcement) => (
                   <Card key={announcement.id} className="overflow-hidden group hover:shadow-lg transition-shadow">
                     <div className="relative">
                       <img 
@@ -232,7 +284,18 @@ const Announcements = () => {
                       </Link>
                     </CardContent>
                   </Card>
-                ))}
+                  ))
+                ) : (
+                  <div className="col-span-2 text-center py-8">
+                    <p className="text-muted-foreground">No featured announcements found for "{contentFilter}"</p>
+                    <button 
+                      onClick={() => setContentFilter('ALL')}
+                      className="text-destructive text-sm hover:underline mt-2"
+                    >
+                      Show all announcements
+                    </button>
+                  </div>
+                )}
               </div>
             </section>
 
@@ -257,7 +320,8 @@ const Announcements = () => {
               </div>
 
               <div className="space-y-4">
-                {allAnnouncements.map((announcement) => (
+                {filteredAllAnnouncements.length > 0 ? (
+                  filteredAllAnnouncements.map((announcement) => (
                   <Card key={announcement.id} className="overflow-hidden hover:shadow-md transition-shadow">
                     <CardContent className="p-0">
                       <div className="flex flex-col md:flex-row">
@@ -310,7 +374,18 @@ const Announcements = () => {
                       </div>
                     </CardContent>
                   </Card>
-                ))}
+                  ))
+                ) : (
+                  <div className="col-span-full text-center py-8">
+                    <p className="text-muted-foreground">No blog posts found for "{contentFilter}"</p>
+                    <button 
+                      onClick={() => setContentFilter('ALL')}
+                      className="text-destructive text-sm hover:underline mt-2"
+                    >
+                      Show all posts
+                    </button>
+                  </div>
+                )}
               </div>
 
               {/* Pagination */}
@@ -352,7 +427,8 @@ const Announcements = () => {
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {blogPosts.map((post) => (
+                {filteredBlogPosts.length > 0 ? (
+                  filteredBlogPosts.map((post) => (
                   <Card key={post.id} className="overflow-hidden group hover:shadow-lg transition-shadow">
                     <div className="relative">
                       <img 
@@ -386,7 +462,18 @@ const Announcements = () => {
                       </div>
                     </CardContent>
                   </Card>
-                ))}
+                  ))
+                ) : (
+                  <div className="text-center py-8">
+                    <p className="text-muted-foreground">No announcements found for "{contentFilter}"</p>
+                    <button 
+                      onClick={() => setContentFilter('ALL')}
+                      className="text-destructive text-sm hover:underline mt-2"
+                    >
+                      Show all announcements
+                    </button>
+                  </div>
+                )}
               </div>
 
               {/* Pagination for blogs */}
