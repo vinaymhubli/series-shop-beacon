@@ -38,6 +38,7 @@ import FAQ from "./pages/FAQ";
 import ReturnExchange from "./pages/ReturnExchange";
 import CustomerSupport from "./pages/CustomerSupport";
 import LanguageTerms from "./pages/LanguageTerms";
+import Wishlist from "./pages/Wishlist";
 import ChatBot from "./components/ChatBot";
 import ScrollToTop from "./components/ScrollToTop";
 import { AuthProvider } from "./hooks/useSupabaseAuth";
@@ -74,6 +75,7 @@ const App = () => (
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/affiliation-programs" element={<AffiliationPrograms />} />
             <Route path="/readers/:seriesTitle" element={<ReadersMode />} />
             <Route path="/readers-mode/:seriesTitle" element={<ReadersMode />} />

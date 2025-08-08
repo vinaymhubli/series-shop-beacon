@@ -85,13 +85,15 @@ const Header = () => {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button 
-              variant="ghost" 
-              size="icon"
-              className="text-gray-300 hover:text-red-400 hover:bg-red-500/10 transition-all duration-300"
-            >
-              <Heart className="w-5 h-5" />
-            </Button>
+            <Link to="/wishlist">
+              <Button 
+                variant="ghost" 
+                size="icon"
+                className="text-gray-300 hover:text-red-400 hover:bg-red-500/10 transition-all duration-300"
+              >
+                <Heart className="w-5 h-5" />
+              </Button>
+            </Link>
             <Button 
               variant="ghost" 
               size="icon"
