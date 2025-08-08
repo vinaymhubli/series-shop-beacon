@@ -217,7 +217,7 @@ const Footer = () => {
               {copyrightText}
             </p>
             <p className="text-xs text-gray-600 text-center">
-              Designed and developed by <span className="text-red-500">SATPRIME.AI</span>
+              Designed and developed by <a href="https://satprimeai.com" target="_blank" rel="noopener noreferrer" className="text-red-500 hover:text-red-400 transition-colors duration-200">SATPRIME.AI</a>
             </p>
           </div>
           
