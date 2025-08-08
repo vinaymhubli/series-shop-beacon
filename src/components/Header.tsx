@@ -94,13 +94,15 @@ const Header = () => {
                 <Heart className="w-5 h-5" />
               </Button>
             </Link>
-            <Button 
-              variant="ghost" 
-              size="icon"
-              className="text-gray-300 hover:text-blue-400 hover:bg-blue-500/10 transition-all duration-300"
-            >
-              <Building2 className="w-5 h-5" />
-            </Button>
+            <Link to="/library">
+              <Button 
+                variant="ghost" 
+                size="icon"
+                className="text-gray-300 hover:text-blue-400 hover:bg-blue-500/10 transition-all duration-300"
+              >
+                <Building2 className="w-5 h-5" />
+              </Button>
+            </Link>
             <CoinDisplay />
             <Link to="/search">
               <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
