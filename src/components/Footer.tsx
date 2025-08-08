@@ -212,9 +212,12 @@ const Footer = () => {
             </div>
           </div>
           
-          <div className="flex justify-center">
+          <div className="flex flex-col items-center space-y-2">
             <p className="text-xs sm:text-sm text-gray-500 text-center">
               {copyrightText}
+            </p>
+            <p className="text-xs text-gray-600 text-center">
+              Designed and developed by SATPRIME.AI
             </p>
           </div>
           
