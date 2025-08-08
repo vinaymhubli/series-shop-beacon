@@ -15,14 +15,7 @@ const Profile = () => {
       <Header />
       
       <div className="container mx-auto px-4 py-8">
-        {/* Breadcrumb */}
-        <nav className="text-sm text-gray-400 mb-6">
-          <span>Home</span>
-          <span className="mx-2">/</span>
-          <span>Account</span>
-          <span className="mx-2">/</span>
-          <span className="text-red-400">Profile</span>
-        </nav>
+        {/* Profile content starts here */}
 
         <ProfileHeader />
         <ProfileTabs />
