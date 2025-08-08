@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { BookOpen, Calendar, Share2, Bookmark, ChevronLeft, ChevronRight, Bell, Heart, Diamond, Clover, Spade } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -275,7 +276,8 @@ const Announcements = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <TooltipProvider>
+      <div className="min-h-screen bg-background">
       <Header />
       
       {/* Page Header */}
@@ -695,7 +697,14 @@ const Announcements = () => {
                     <div className="w-8 h-8 bg-destructive rounded-full flex items-center justify-center">
                       <BookOpen className="w-4 h-4 text-destructive-foreground" />
                     </div>
-                    <h3 className="font-semibold text-foreground">Release Schedule</h3>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <h3 className="font-semibold text-foreground cursor-help">Release Schedule</h3>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Click to see upcoming manga releases and schedules</p>
+                      </TooltipContent>
+                    </Tooltip>
                   </div>
                   <p className="text-sm text-muted-foreground">Check out our latest releases</p>
                 </Card>
@@ -779,7 +788,8 @@ const Announcements = () => {
       </div>
       
       <Footer />
-    </div>
+      </div>
+    </TooltipProvider>
   );
 };
 
