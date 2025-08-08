@@ -174,11 +174,7 @@ const BannerCarousel = ({
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}
             >
-            {/* Test visibility */}
-            <div className="text-red-500 text-xl mb-4 font-bold">
-              HERO SECTION VISIBLE - Banner: {currentBanner?.title}
-            </div>
-            {currentBanner.overlayText && (
+            {currentBanner.overlayText && typeof currentBanner.overlayText === 'string' && (
               <div
                 className="inline-block bg-gradient-to-r from-red-600 to-red-700 text-white text-sm font-bold px-4 py-2 rounded-full mb-6 animate-pulse shadow-lg"
                 style={{ transitionDelay: '200ms' }}
