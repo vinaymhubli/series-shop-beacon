@@ -100,10 +100,6 @@ const ProfileHeader = () => {
               <Edit2 className="w-4 h-4 mr-2" />
               Edit Profile
             </Button>
-            <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700">
-              <Share2 className="w-4 h-4 mr-2" />
-              Share Profile
-            </Button>
           </div>
         </div>
       </div>
