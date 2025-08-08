@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { BookOpen, Calendar, Share2, Bookmark, ChevronLeft, ChevronRight, Bell, Heart, Diamond, Clover, Spade } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -643,41 +644,136 @@ const Announcements = () => {
         <section>
           <h2 className="text-2xl font-bold text-foreground mb-6">Related Links</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            <Link to="/announcements?filter=ACTIVITIES">
-              <Card className="p-6 hover:shadow-md transition-shadow cursor-pointer hover:bg-muted/50">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-8 h-8 bg-destructive rounded-full flex items-center justify-center">
-                    <Calendar className="w-4 h-4 text-destructive-foreground" />
+            <Dialog>
+              <DialogTrigger asChild>
+                <Card className="p-6 hover:shadow-md transition-shadow cursor-pointer hover:bg-muted/50">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-8 bg-destructive rounded-full flex items-center justify-center">
+                      <Calendar className="w-4 h-4 text-destructive-foreground" />
+                    </div>
+                    <h3 className="font-semibold text-foreground">Event Calendar</h3>
                   </div>
-                  <h3 className="font-semibold text-foreground">Event Calendar</h3>
+                  <p className="text-sm text-muted-foreground">View upcoming manga events</p>
+                </Card>
+              </DialogTrigger>
+              <DialogContent className="max-w-md">
+                <DialogHeader>
+                  <DialogTitle className="flex items-center gap-2">
+                    <Calendar className="w-5 h-5" />
+                    Event Calendar
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <p className="text-muted-foreground">Upcoming manga events and activities:</p>
+                  <div className="space-y-3">
+                    <div className="border-l-4 border-destructive pl-4">
+                      <h4 className="font-semibold">Summer Manga Festival 2025</h4>
+                      <p className="text-sm text-muted-foreground">July 3, 2025 - Tokyo Convention Center</p>
+                    </div>
+                    <div className="border-l-4 border-destructive pl-4">
+                      <h4 className="font-semibold">Manga Creator Meetup</h4>
+                      <p className="text-sm text-muted-foreground">July 15, 2025 - Virtual Event</p>
+                    </div>
+                    <div className="border-l-4 border-destructive pl-4">
+                      <h4 className="font-semibold">Annual Manga Awards</h4>
+                      <p className="text-sm text-muted-foreground">August 10, 2025 - Online Ceremony</p>
+                    </div>
+                  </div>
+                  <Link to="/announcements?filter=ACTIVITIES">
+                    <Button variant="destructive" className="w-full">
+                      View All Events
+                    </Button>
+                  </Link>
                 </div>
-                <p className="text-sm text-muted-foreground">View upcoming manga events</p>
-              </Card>
-            </Link>
+              </DialogContent>
+            </Dialog>
             
-            <Link to="/our-series">
-              <Card className="p-6 hover:shadow-md transition-shadow cursor-pointer hover:bg-muted/50">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-8 h-8 bg-destructive rounded-full flex items-center justify-center">
-                    <BookOpen className="w-4 h-4 text-destructive-foreground" />
+            <Dialog>
+              <DialogTrigger asChild>
+                <Card className="p-6 hover:shadow-md transition-shadow cursor-pointer hover:bg-muted/50">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-8 bg-destructive rounded-full flex items-center justify-center">
+                      <BookOpen className="w-4 h-4 text-destructive-foreground" />
+                    </div>
+                    <h3 className="font-semibold text-foreground">Release Schedule</h3>
                   </div>
-                  <h3 className="font-semibold text-foreground">Release Schedule</h3>
+                  <p className="text-sm text-muted-foreground">Check out our latest releases</p>
+                </Card>
+              </DialogTrigger>
+              <DialogContent className="max-w-md">
+                <DialogHeader>
+                  <DialogTitle className="flex items-center gap-2">
+                    <BookOpen className="w-5 h-5" />
+                    Release Schedule
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <p className="text-muted-foreground">Upcoming manga releases:</p>
+                  <div className="space-y-3">
+                    <div className="border-l-4 border-destructive pl-4">
+                      <h4 className="font-semibold">Demon Slayer Volume 25</h4>
+                      <p className="text-sm text-muted-foreground">July 5, 2025</p>
+                    </div>
+                    <div className="border-l-4 border-destructive pl-4">
+                      <h4 className="font-semibold">Naruto Anniversary Edition</h4>
+                      <p className="text-sm text-muted-foreground">July 6, 2025</p>
+                    </div>
+                    <div className="border-l-4 border-destructive pl-4">
+                      <h4 className="font-semibold">One Piece Volume 105</h4>
+                      <p className="text-sm text-muted-foreground">July 12, 2025</p>
+                    </div>
+                  </div>
+                  <Link to="/our-series">
+                    <Button variant="destructive" className="w-full">
+                      View All Series
+                    </Button>
+                  </Link>
                 </div>
-                <p className="text-sm text-muted-foreground">Check out our latest releases</p>
-              </Card>
-            </Link>
+              </DialogContent>
+            </Dialog>
             
-            <Link to="/faq">
-              <Card className="p-6 hover:shadow-md transition-shadow cursor-pointer hover:bg-muted/50">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-8 h-8 bg-destructive rounded-full flex items-center justify-center">
-                    <Share2 className="w-4 h-4 text-destructive-foreground" />
+            <Dialog>
+              <DialogTrigger asChild>
+                <Card className="p-6 hover:shadow-md transition-shadow cursor-pointer hover:bg-muted/50">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-8 bg-destructive rounded-full flex items-center justify-center">
+                      <Share2 className="w-4 h-4 text-destructive-foreground" />
+                    </div>
+                    <h3 className="font-semibold text-foreground">FAQ</h3>
                   </div>
-                  <h3 className="font-semibold text-foreground">FAQ</h3>
+                  <p className="text-sm text-muted-foreground">Frequently asked questions</p>
+                </Card>
+              </DialogTrigger>
+              <DialogContent className="max-w-lg">
+                <DialogHeader>
+                  <DialogTitle className="flex items-center gap-2">
+                    <Share2 className="w-5 h-5" />
+                    Frequently Asked Questions
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold mb-2">How do I read manga online?</h4>
+                      <p className="text-sm text-muted-foreground">Simply create an account and browse our digital library. You can read on any device.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2">When are new chapters released?</h4>
+                      <p className="text-sm text-muted-foreground">New chapters are typically released weekly. Check our announcements for specific dates.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2">Can I download manga for offline reading?</h4>
+                      <p className="text-sm text-muted-foreground">Yes, premium subscribers can download up to 10 chapters for offline reading.</p>
+                    </div>
+                  </div>
+                  <Link to="/faq">
+                    <Button variant="destructive" className="w-full">
+                      View All FAQs
+                    </Button>
+                  </Link>
                 </div>
-                <p className="text-sm text-muted-foreground">Frequently asked questions</p>
-              </Card>
-            </Link>
+              </DialogContent>
+            </Dialog>
           </div>
         </section>
       </div>
