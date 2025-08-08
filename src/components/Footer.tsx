@@ -210,19 +210,20 @@ const Footer = () => {
             )}
           </div>
           
-          <p className="text-xs sm:text-sm text-gray-500 text-center">
-            {copyrightText}
-          </p>
-          
-          <a 
-            href="https://satprimeai.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-xs sm:text-sm transition-colors duration-200 text-center block mt-2"
-          >
-            <span className="text-white">Designed and developed by </span>
-            <span className="text-red-500 hover:text-red-400">SATPRIME.AI</span>
-          </a>
+          <div className="text-center">
+            <p className="text-xs sm:text-sm text-gray-500">
+              {copyrightText}
+            </p>
+            <a 
+              href="https://satprimeai.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-xs sm:text-sm transition-colors duration-200 text-center block mt-1"
+            >
+              <span className="text-white">Designed and developed by </span>
+              <span className="text-red-500 hover:text-red-400">SATPRIME.AI</span>
+            </a>
+          </div>
         </div>
       </div>
     </footer>
