@@ -41,6 +41,7 @@ import LanguageTerms from "./pages/LanguageTerms";
 import Wishlist from "./pages/Wishlist";
 import CoinPurchase from "./pages/CoinPurchase";
 import SearchPage from "./pages/SearchPage";
+import CartPage from "./pages/CartPage";
 import ChatBot from "./components/ChatBot";
 import ScrollToTop from "./components/ScrollToTop";
 import { AuthProvider } from "./hooks/useSupabaseAuth";
@@ -80,6 +81,7 @@ const App = () => (
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/coin-purchase" element={<CoinPurchase />} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/cart" element={<CartPage />} />
             <Route path="/affiliation-programs" element={<AffiliationPrograms />} />
             <Route path="/readers/:seriesTitle" element={<ReadersMode />} />
             <Route path="/readers-mode/:seriesTitle" element={<ReadersMode />} />

@@ -107,9 +107,11 @@ const Header = () => {
                 <Search className="h-5 w-5" />
               </Button>
             </Link>
-            <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
-              <ShoppingCart className="h-5 w-5" />
-            </Button>
+            <Link to="/cart">
+              <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
+                <ShoppingCart className="h-5 w-5" />
+              </Button>
+            </Link>
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
