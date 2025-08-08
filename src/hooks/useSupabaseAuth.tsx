@@ -174,9 +174,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
-    
-    // Redirect to home page after logout
-    window.location.href = '/';
   };
 
   const updateProfile = async (updates: Partial<Profile>) => {

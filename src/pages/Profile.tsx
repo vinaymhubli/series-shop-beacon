@@ -1,6 +1,4 @@
 
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProfileHeader from '@/components/ProfileHeader';
@@ -14,32 +12,8 @@ import { Button } from '@/components/ui/button';
 import { Edit2 } from 'lucide-react';
 import QuickActionEditProfile from '@/components/QuickActionEditProfile';
 import AccountSettingsModal from '@/components/AccountSettingsModal';
-import { useSupabaseAuth } from '@/hooks/useSupabaseAuth';
 
 const Profile = () => {
-  const navigate = useNavigate();
-  const { user, isLoading } = useSupabaseAuth();
-
-  // Redirect if not authenticated
-  useEffect(() => {
-    if (!isLoading && !user) {
-      navigate('/auth');
-    }
-  }, [user, isLoading, navigate]);
-
-  // Show loading state while checking auth
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-gray-950 flex items-center justify-center">
-        <div className="text-white">Loading...</div>
-      </div>
-    );
-  }
-
-  // Don't render if not authenticated
-  if (!user) {
-    return null;
-  }
   return (
     <div className="min-h-screen bg-gray-950">
       <Header />
