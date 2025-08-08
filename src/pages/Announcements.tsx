@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { BookOpen, Calendar, Share2, Bookmark, ChevronLeft, ChevronRight, Bell, Heart, Diamond, Clover, Spade } from 'lucide-react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Announcements = () => {
   const [activeTab, setActiveTab] = useState('announcements');
@@ -224,9 +225,11 @@ const Announcements = () => {
                       </div>
                       <h3 className="text-xl font-bold text-foreground mb-3">{announcement.title}</h3>
                       <p className="text-muted-foreground mb-4 line-clamp-3">{announcement.description}</p>
-                      <Button variant="destructive" size="sm">
-                        Read More →
-                      </Button>
+                      <Link to={`/announcement/${announcement.id}`}>
+                        <Button variant="destructive" size="sm">
+                          Read More →
+                        </Button>
+                      </Link>
                     </CardContent>
                   </Card>
                 ))}
@@ -298,9 +301,11 @@ const Announcements = () => {
                             </span>
                           </div>
                           <p className="text-muted-foreground mb-4 line-clamp-2">{announcement.description}</p>
-                          <Button variant="destructive" size="sm">
-                            Read More →
-                          </Button>
+                          <Link to={`/announcement/${announcement.id}`}>
+                            <Button variant="destructive" size="sm">
+                              Read More →
+                            </Button>
+                          </Link>
                         </div>
                       </div>
                     </CardContent>
@@ -373,9 +378,11 @@ const Announcements = () => {
                           <Calendar className="w-4 h-4" />
                           {post.date}
                         </span>
-                        <Button variant="destructive" size="sm">
-                          Read More →
-                        </Button>
+                        <Link to={`/announcement/${post.id}`}>
+                          <Button variant="destructive" size="sm">
+                            Read More →
+                          </Button>
+                        </Link>
                       </div>
                     </CardContent>
                   </Card>

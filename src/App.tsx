@@ -13,6 +13,7 @@ import BuyCoins from "./pages/BuyCoins";
 import OurSeries from "./pages/OurSeries";
 import ShopAll from "./pages/ShopAll";
 import Announcements from "./pages/Announcements";
+import AnnouncementDetail from "./pages/AnnouncementDetail";
 import PreOrder from "./pages/PreOrder";
 import SeriesPage from "./pages/SeriesPage";
 import Checkout from "./pages/Checkout";
@@ -61,6 +62,7 @@ const App = () => (
             <Route path="/our-series" element={<OurSeries />} />
             <Route path="/shop-all" element={<ShopAll />} />
             <Route path="/announcements" element={<Announcements />} />
+            <Route path="/announcement/:id" element={<AnnouncementDetail />} />
             <Route path="/pre-order/:productId" element={<PreOrder />} />
             <Route path="/series/:seriesId" element={<SeriesPage />} />
             <Route path="/product/:productId" element={<MerchandiseDetail />} />
