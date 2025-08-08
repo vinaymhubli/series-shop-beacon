@@ -19,7 +19,7 @@ const Footer = () => {
         "A global publishing house specialising in the English localization of Japanese manga and Korean webcomics.",
         "Announcements",
         "Blogs",
-        "Crossed Hearts Ambassador's Program"
+        "Contact Us"
       ]
     },
     {
@@ -153,6 +153,10 @@ const Footer = () => {
                         </Link>
                       ) : link === "Blogs" ? (
                         <Link to="/announcements" className="text-xs sm:text-sm hover:text-white transition-colors duration-200 transform hover:translate-x-1 block px-2 sm:px-0 py-1">
+                          {link}
+                        </Link>
+                      ) : link === "Contact Us" ? (
+                        <Link to="/contact-us" className="text-xs sm:text-sm hover:text-white transition-colors duration-200 transform hover:translate-x-1 block px-2 sm:px-0 py-1">
                           {link}
                         </Link>
                       ) : (
