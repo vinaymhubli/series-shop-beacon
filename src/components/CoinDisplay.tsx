@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Coins, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 import {
   Dialog,
   DialogContent,
@@ -12,6 +13,7 @@ import {
 
 export function CoinDisplay() {
   const [coins, setCoins] = useState(1250); // Mock coin balance
+  const navigate = useNavigate();
 
   const coinPackages = [
     { amount: 100, price: 0.99, bonus: 0 },
@@ -22,8 +24,12 @@ export function CoinDisplay() {
   ];
 
   const purchaseCoins = (packageItem: typeof coinPackages[0]) => {
-    setCoins(prev => prev + packageItem.amount + packageItem.bonus);
-    console.log('Purchased coins:', packageItem);
+    // Navigate to coin purchase page with package data
+    navigate('/coin-purchase', { 
+      state: { 
+        package: packageItem 
+      }
+    });
   };
 
   return (
