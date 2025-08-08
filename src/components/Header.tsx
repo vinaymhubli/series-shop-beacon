@@ -102,9 +102,11 @@ const Header = () => {
               <Library className="w-5 h-5" />
             </Button>
             <CoinDisplay />
-            <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
-              <Search className="h-5 w-5" />
-            </Button>
+            <Link to="/search">
+              <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
+                <Search className="h-5 w-5" />
+              </Button>
+            </Link>
             <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
               <ShoppingCart className="h-5 w-5" />
             </Button>
