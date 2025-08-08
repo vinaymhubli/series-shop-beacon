@@ -78,7 +78,7 @@ const EditProfileModal = () => {
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
-        <Button className="bg-red-600 hover:bg-red-700 text-white">
+        <Button className="w-full justify-start bg-red-600 hover:bg-red-700 text-white">
           <Edit2 className="w-4 h-4 mr-2" />
           Edit Profile
         </Button>

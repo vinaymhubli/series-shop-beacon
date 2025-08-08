@@ -10,6 +10,7 @@ import ProfileLastViewed from '@/components/ProfileLastViewed';
 import ProfileRecommended from '@/components/ProfileRecommended';
 import { Button } from '@/components/ui/button';
 import { Edit2 } from 'lucide-react';
+import QuickActionEditProfile from '@/components/QuickActionEditProfile';
 
 const Profile = () => {
   return (
@@ -46,10 +47,7 @@ const Profile = () => {
             <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
               <h3 className="text-lg font-semibold text-white mb-4">Quick Actions</h3>
               <div className="space-y-3">
-                <Button className="w-full justify-start bg-red-600 hover:bg-red-700 text-white">
-                  <Edit2 className="w-4 h-4 mr-2" />
-                  Edit Profile
-                </Button>
+                <QuickActionEditProfile />
                 <Button variant="outline" className="w-full justify-start border-gray-600 text-gray-300 hover:bg-gray-700">
                   Account Settings
                 </Button>
