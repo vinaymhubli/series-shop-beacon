@@ -43,8 +43,6 @@ import CoinPurchase from "./pages/CoinPurchase";
 import SearchPage from "./pages/SearchPage";
 import CartPage from "./pages/CartPage";
 import LibraryPage from "./pages/LibraryPage";
-import AuthPage from "./pages/AuthPage";
-import ProtectedRoute from "./components/ProtectedRoute";
 import ChatBot from "./components/ChatBot";
 import ScrollToTop from "./components/ScrollToTop";
 import { AuthProvider } from "./hooks/useSupabaseAuth";
@@ -80,13 +78,12 @@ const App = () => (
             <Route path="/payment-success" element={<PaymentSuccess />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/contact-us" element={<ContactUs />} />
-            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-            <Route path="/wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/coin-purchase" element={<CoinPurchase />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/cart" element={<CartPage />} />
-            <Route path="/library" element={<ProtectedRoute><LibraryPage /></ProtectedRoute>} />
-            <Route path="/auth" element={<AuthPage />} />
+            <Route path="/library" element={<LibraryPage />} />
             <Route path="/affiliation-programs" element={<AffiliationPrograms />} />
             <Route path="/readers/:seriesTitle" element={<ReadersMode />} />
             <Route path="/readers-mode/:seriesTitle" element={<ReadersMode />} />
@@ -99,7 +96,7 @@ const App = () => (
             <Route path="/customer-support" element={<CustomerSupport />} />
             <Route path="/language-terms" element={<LanguageTerms />} />
             <Route path="/admin" element={<AdminPanel />} />
-            
+            <Route path="/auth" element={<Auth />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <ChatBot />
