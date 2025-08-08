@@ -727,11 +727,6 @@ const Announcements = () => {
                       <p className="text-sm text-muted-foreground">July 12, 2025</p>
                     </div>
                   </div>
-                  <Link to="/our-series">
-                    <Button variant="destructive" className="w-full">
-                      View All Series
-                    </Button>
-                  </Link>
                 </div>
               </DialogContent>
             </Dialog>
