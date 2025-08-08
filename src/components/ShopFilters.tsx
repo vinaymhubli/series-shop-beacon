@@ -19,11 +19,9 @@ const ShopFilters = ({ viewMode, setViewMode }: ShopFiltersProps) => {
   ];
 
   const filterOptions = {
-    'Rating': ['5 Stars', '4+ Stars', '3+ Stars'],
-    'Status': ['Ongoing', 'Completed', 'Upcoming'],
-    'Type': ['Manga', 'Webtoon', 'Light Novel'],
-    'Language': ['English', 'Japanese', 'Korean'],
-    'Price Range': ['Free', 'Under $5', '$5-$10', '$10+']
+    'Types': ['Manga', 'Webtoon', 'Light Novel', 'Anthology'],
+    'Price': ['Free', 'Under $5', '$5-$10', '$10-$20', '$20+'],
+    'Status': ['Ongoing', 'Completed', 'Upcoming', 'On Hold']
   };
 
   const handleFilterChange = (filter: string, checked: boolean) => {
@@ -107,7 +105,7 @@ const ShopFilters = ({ viewMode, setViewMode }: ShopFiltersProps) => {
                         </div>
                       ))}
                     </div>
-                    {category !== 'Price Range' && <DropdownMenuSeparator className="bg-gray-700 my-2" />}
+                    {category !== 'Status' && <DropdownMenuSeparator className="bg-gray-700 my-2" />}
                   </div>
                 ))}
               </DropdownMenuContent>
