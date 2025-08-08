@@ -14,6 +14,24 @@ const Header = () => {
   const location = useLocation();
   const { user, isAdmin, signOut, isLoading } = useSupabaseAuth();
 
+  const scrollToFeaturedSeries = () => {
+    const element = document.getElementById('featured-series');
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
+  const handleHomeClick = (e: React.MouseEvent) => {
+    // If we're already on the home page, scroll to featured series instead
+    if (location.pathname === '/') {
+      e.preventDefault();
+      scrollToFeaturedSeries();
+    }
+  };
+
   const navItems = [
     { name: 'Home', href: '/' },
     { name: 'Our Series', href: '/our-series' },
@@ -31,7 +49,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/">
+            <Link to="/" onClick={handleHomeClick}>
               {/* Mobile logo */}
               <img 
                 src="/lovable-uploads/fdd0cb0d-369d-4e2c-b325-fd7bac14abc3.png" 
@@ -53,6 +71,7 @@ const Header = () => {
               <Link
                 key={item.name}
                 to={item.href}
+                onClick={item.name === 'Home' ? handleHomeClick : undefined}
                 className={`transition-colors duration-200 text-sm font-medium whitespace-nowrap hover:text-red-400 ${
                   location.pathname === item.href 
                     ? 'text-red-500' 
@@ -143,7 +162,12 @@ const Header = () => {
                       ? 'text-red-500 bg-gray-800' 
                       : 'text-gray-300 hover:text-white hover:bg-gray-800'
                   }`}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(e) => {
+                    setIsMenuOpen(false);
+                    if (item.name === 'Home') {
+                      handleHomeClick(e);
+                    }
+                  }}
                 >
                   {item.name}
                 </Link>
