@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Edit2, Share2, Trophy, Star, Users, BookOpen } from 'lucide-react';
+import EditProfileModal from './EditProfileModal';
 
 const ProfileHeader = () => {
   const [selectedAvatar, setSelectedAvatar] = useState('/lovable-uploads/cf6711d2-4c1f-4104-a0a1-1b856886e610.png');
@@ -96,10 +97,7 @@ const ProfileHeader = () => {
           
           
           <div className="flex flex-wrap justify-center md:justify-start gap-4">
-            <Button className="bg-red-600 hover:bg-red-700 text-white">
-              <Edit2 className="w-4 h-4 mr-2" />
-              Edit Profile
-            </Button>
+            <EditProfileModal />
           </div>
         </div>
       </div>

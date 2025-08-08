@@ -14,6 +14,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<boolean>;
   register: (email: string, password: string, name: string) => Promise<boolean>;
   logout: () => void;
+  updateProfile: (updates: Partial<User>) => Promise<boolean>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -98,6 +99,22 @@ export const DummyAuthProvider = ({ children }: AuthProviderProps) => {
     localStorage.removeItem('dummyUser');
   };
 
+  const updateProfile = async (updates: Partial<User>): Promise<boolean> => {
+    if (!user) return false;
+    
+    setIsLoading(true);
+    
+    // Simulate API call delay
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    const updatedUser = { ...user, ...updates };
+    setUser(updatedUser);
+    localStorage.setItem('dummyUser', JSON.stringify(updatedUser));
+    
+    setIsLoading(false);
+    return true;
+  };
+
   const value = {
     user,
     isAuthenticated: !!user,
@@ -105,6 +122,7 @@ export const DummyAuthProvider = ({ children }: AuthProviderProps) => {
     login,
     register,
     logout,
+    updateProfile,
   };
 
   return (
