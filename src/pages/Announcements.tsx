@@ -161,6 +161,36 @@ const Announcements = () => {
   const filteredAllAnnouncements = getFilteredContent(allAnnouncements);
   const filteredBlogPosts = getFilteredContent(blogPosts);
 
+  // Share functionality
+  const handleShare = (item: any) => {
+    const shareData = {
+      title: item.title,
+      text: item.description,
+      url: `${window.location.origin}/announcement/${item.id}`,
+    };
+
+    if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+      navigator.share(shareData).catch((error) => {
+        console.log('Error sharing:', error);
+        fallbackShare(shareData);
+      });
+    } else {
+      fallbackShare(shareData);
+    }
+  };
+
+  const fallbackShare = (shareData: any) => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(shareData.url).then(() => {
+        alert('Link copied to clipboard!');
+      }).catch(() => {
+        prompt('Copy this link:', shareData.url);
+      });
+    } else {
+      prompt('Copy this link:', shareData.url);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -337,11 +367,21 @@ const Announcements = () => {
                             <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                               {announcement.title}
                             </h3>
-                             <div className="flex items-center gap-2">
-                               <Button variant="ghost" size="sm">
-                                 <Share2 className="w-4 h-4" />
-                               </Button>
-                             </div>
+                              <div className="flex items-center gap-2">
+                                <Button 
+                                  variant="ghost" 
+                                  size="sm"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    handleShare(announcement);
+                                  }}
+                                  className="hover:bg-muted transition-colors"
+                                  title="Share this announcement"
+                                >
+                                  <Share2 className="w-4 h-4" />
+                                </Button>
+                              </div>
                           </div>
                           <div className="flex items-center gap-4 mb-3">
                             <div className="flex items-center gap-2">
