@@ -17,6 +17,13 @@ const ShopAll = () => {
   const { elementRef: gridRef, isVisible: gridVisible } = useScrollAnimation(0.2);
   
   const [viewMode, setViewMode] = useState<'series' | 'volume'>('series');
+  const [appliedFilters, setAppliedFilters] = useState<string[]>([]);
+
+  const handleFiltersApply = (filters: string[]) => {
+    setAppliedFilters(filters);
+    console.log('Applied filters:', filters);
+    // Here you would typically filter your data based on the applied filters
+  };
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -68,7 +75,7 @@ const ShopAll = () => {
       </section>
 
       {/* Filters Section */}
-      <ShopFilters viewMode={viewMode} setViewMode={setViewMode} />
+      <ShopFilters viewMode={viewMode} setViewMode={setViewMode} onFiltersApply={handleFiltersApply} />
 
       {/* Featured Series Slideshow */}
       <FeaturedSeriesSlideshow />

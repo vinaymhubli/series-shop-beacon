@@ -7,9 +7,10 @@ import { Checkbox } from '@/components/ui/checkbox';
 interface ShopFiltersProps {
   viewMode: 'series' | 'volume';
   setViewMode: (mode: 'series' | 'volume') => void;
+  onFiltersApply?: (filters: string[]) => void;
 }
 
-const ShopFilters = ({ viewMode, setViewMode }: ShopFiltersProps) => {
+const ShopFilters = ({ viewMode, setViewMode, onFiltersApply }: ShopFiltersProps) => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   
@@ -34,6 +35,11 @@ const ShopFilters = ({ viewMode, setViewMode }: ShopFiltersProps) => {
 
   const clearAllFilters = () => {
     setSelectedFilters([]);
+  };
+
+  const applyFilters = () => {
+    onFiltersApply?.(selectedFilters);
+    // You could also close the dropdown here if needed
   };
 
   return (
@@ -71,17 +77,27 @@ const ShopFilters = ({ viewMode, setViewMode }: ShopFiltersProps) => {
               <DropdownMenuContent className="w-80 bg-gray-800 border-gray-700">
                 <div className="flex items-center justify-between p-2">
                   <DropdownMenuLabel className="text-white">Filter Options</DropdownMenuLabel>
-                  {selectedFilters.length > 0 && (
+                  <div className="flex items-center gap-2">
                     <Button
-                      variant="ghost"
+                      variant="default"
                       size="sm"
-                      onClick={clearAllFilters}
-                      className="text-red-400 hover:text-red-300 h-auto p-1"
+                      onClick={applyFilters}
+                      className="bg-red-600 hover:bg-red-700 text-white h-auto px-3 py-1 text-xs"
                     >
-                      <X className="h-4 w-4 mr-1" />
-                      Clear All
+                      Apply
                     </Button>
-                  )}
+                    {selectedFilters.length > 0 && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={clearAllFilters}
+                        className="text-red-400 hover:text-red-300 h-auto p-1"
+                      >
+                        <X className="h-4 w-4 mr-1" />
+                        Clear All
+                      </Button>
+                    )}
+                  </div>
                 </div>
                 <DropdownMenuSeparator className="bg-gray-700" />
                 {Object.entries(filterOptions).map(([category, options]) => (
