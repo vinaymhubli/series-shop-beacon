@@ -7,14 +7,25 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search, Filter, Star, Heart, ShoppingCart, BookOpen, Zap } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SearchPage = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [category, setCategory] = useState('all');
   const [sortBy, setSortBy] = useState('relevance');
   const [priceRange, setPriceRange] = useState('all');
   const [isSearching, setIsSearching] = useState(false);
+
+  const handleAddToCart = (item: any) => {
+    // Navigate to checkout page with item details
+    navigate(`/checkout/${item.id}`, {
+      state: {
+        product: item,
+        fromSearch: true
+      }
+    });
+  };
 
   // Mock search results data
   const allResults = [
@@ -362,6 +373,7 @@ const SearchPage = () => {
                         variant="destructive" 
                         size="sm"
                         disabled={!item.inStock}
+                        onClick={() => handleAddToCart(item)}
                       >
                         <ShoppingCart className="w-4 h-4 mr-1" />
                         {item.inStock ? 'Add' : 'Sold Out'}
