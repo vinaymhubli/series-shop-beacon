@@ -131,6 +131,10 @@ const Footer = () => {
                         <Link to="/terms-conditions" className="text-xs sm:text-sm hover:text-white transition-colors duration-200 transform hover:translate-x-1 block px-2 sm:px-0 py-1">
                           {link}
                         </Link>
+                      ) : link === "FAQ" ? (
+                        <Link to="/faq" className="text-xs sm:text-sm hover:text-white transition-colors duration-200 transform hover:translate-x-1 block px-2 sm:px-0 py-1">
+                          {link}
+                        </Link>
                       ) : (
                         <a href="#" className="text-xs sm:text-sm hover:text-white transition-colors duration-200 transform hover:translate-x-1 block px-2 sm:px-0 py-1">
                           {link}
