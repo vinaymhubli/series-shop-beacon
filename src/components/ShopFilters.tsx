@@ -9,12 +9,14 @@ interface ShopFiltersProps {
   setViewMode: (mode: 'series' | 'volume') => void;
   onFiltersApply?: (filters: string[]) => void;
   onSortChange?: (sortOption: string) => void;
+  onSearchChange?: (searchTerm: string) => void;
 }
 
-const ShopFilters = ({ viewMode, setViewMode, onFiltersApply, onSortChange }: ShopFiltersProps) => {
+const ShopFilters = ({ viewMode, setViewMode, onFiltersApply, onSortChange, onSearchChange }: ShopFiltersProps) => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [selectedSort, setSelectedSort] = useState('Newest First');
+  const [searchTerm, setSearchTerm] = useState('');
   
   const categories = [
     'All', 'Action', 'Adventure', 'Romance', 'Fantasy', 'Sci-Fi', 
@@ -64,6 +66,17 @@ const ShopFilters = ({ viewMode, setViewMode, onFiltersApply, onSortChange }: Sh
     // You could also close the dropdown here if needed
   };
 
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    onSearchChange?.(value);
+  };
+
+  const clearSearch = () => {
+    setSearchTerm('');
+    onSearchChange?.('');
+  };
+
   return (
     <div className="bg-gray-900 py-6 sticky top-16 z-40 shadow-lg border-b border-gray-800">
       <div className="container mx-auto px-4">
@@ -75,8 +88,18 @@ const ShopFilters = ({ viewMode, setViewMode, onFiltersApply, onSortChange }: Sh
             <input
               type="text"
               placeholder="Search series..."
-              className="w-full pl-12 pr-4 py-3 bg-blue-900/30 border border-blue-800 text-white placeholder-gray-400 rounded-full text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="w-full pl-12 pr-10 py-3 bg-blue-900/30 border border-blue-800 text-white placeholder-gray-400 rounded-full text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+            {searchTerm && (
+              <button
+                onClick={clearSearch}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            )}
           </div>
 
           {/* Filter and Sort Buttons */}
