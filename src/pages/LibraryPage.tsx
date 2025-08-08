@@ -248,16 +248,12 @@ const LibraryPage = () => {
                     </div>
 
                     <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-1">
-                          {[...Array(5)].map((_, i) => (
-                            <Star key={i} className={`w-3 h-3 ${i < item.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
-                          ))}
-                        </div>
-                        <Button size="sm" variant="destructive">
-                          <BookOpen className="w-4 h-4 mr-1" />
-                          {item.status === 'Completed' ? 'Re-read' : 'Continue'}
-                        </Button>
-                      </div>
+                      <div></div>
+                      <Button size="sm" variant="destructive">
+                        <BookOpen className="w-4 h-4 mr-1" />
+                        {item.status === 'Completed' ? 'Re-read' : 'Continue'}
+                      </Button>
+                    </div>
                   </CardContent>
                 </div>
               ) : (
@@ -305,16 +301,12 @@ const LibraryPage = () => {
                       </div>
 
                       <div className="flex justify-between items-center mt-3">
-                            <div className="flex items-center gap-1">
-                              {[...Array(5)].map((_, i) => (
-                                <Star key={i} className={`w-3 h-3 ${i < item.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
-                              ))}
-                            </div>
-                            <Button size="sm" variant="destructive">
-                              <BookOpen className="w-4 h-4 mr-1" />
-                              {item.status === 'Completed' ? 'Re-read' : 'Continue'}
-                            </Button>
-                          </div>
+                        <div></div>
+                        <Button size="sm" variant="destructive">
+                          <BookOpen className="w-4 h-4 mr-1" />
+                          {item.status === 'Completed' ? 'Re-read' : 'Continue'}
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
