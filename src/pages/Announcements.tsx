@@ -337,14 +337,11 @@ const Announcements = () => {
                             <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                               {announcement.title}
                             </h3>
-                            <div className="flex items-center gap-2">
-                              <Button variant="ghost" size="sm">
-                                <Share2 className="w-4 h-4" />
-                              </Button>
-                              <Button variant="ghost" size="sm">
-                                <Bookmark className="w-4 h-4" />
-                              </Button>
-                            </div>
+                             <div className="flex items-center gap-2">
+                               <Button variant="ghost" size="sm">
+                                 <Share2 className="w-4 h-4" />
+                               </Button>
+                             </div>
                           </div>
                           <div className="flex items-center gap-4 mb-3">
                             <div className="flex items-center gap-2">
