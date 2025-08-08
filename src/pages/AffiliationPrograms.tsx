@@ -1,7 +1,9 @@
 
+import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Newsletter from '@/components/Newsletter';
+import ContactModal from '@/components/ContactModal';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -20,6 +22,7 @@ import {
 } from 'lucide-react';
 
 const AffiliationPrograms = () => {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation(0.1);
   const { elementRef: benefitsRef, isVisible: benefitsVisible } = useScrollAnimation(0.1);
   const { elementRef: programsRef, isVisible: programsVisible } = useScrollAnimation(0.1);
@@ -109,11 +112,21 @@ const AffiliationPrograms = () => {
           }`}>
             Join our affiliate network and earn while sharing amazing manga and novels with your audience
           </p>
-          <div className={`transition-all duration-1000 delay-500 transform ${
+          <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-1000 delay-500 transform ${
             heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <Button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 text-lg">
+            <Button 
+              onClick={() => setIsContactModalOpen(true)}
+              className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 text-lg"
+            >
               Apply Now
+            </Button>
+            <Button 
+              onClick={() => setIsContactModalOpen(true)}
+              variant="outline"
+              className="border-red-600 text-red-400 hover:bg-red-600 hover:text-white px-8 py-3 text-lg"
+            >
+              Contact Us
             </Button>
           </div>
         </div>
@@ -297,7 +310,10 @@ const AffiliationPrograms = () => {
                   </div>
                 </div>
                 <div className="text-center pt-8 border-t border-gray-700">
-                  <Button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 text-lg">
+                  <Button 
+                    onClick={() => setIsContactModalOpen(true)}
+                    className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 text-lg"
+                  >
                     Apply for Partnership
                   </Button>
                   <p className="text-gray-400 text-sm mt-4">
@@ -312,6 +328,13 @@ const AffiliationPrograms = () => {
 
       <Newsletter />
       <Footer />
+      
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        title="Partnership Inquiry"
+        subtitle="Tell us about your interest in joining our affiliate program"
+      />
     </div>
   );
 };
