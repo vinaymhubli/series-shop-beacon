@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { usePageScrollAnimation } from '@/hooks/usePageScrollAnimation';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const FAQ = () => {
-  const { elementRef, isVisible } = useScrollAnimation(0.2);
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  usePageScrollAnimation();
 
   const faqs = [
     {
@@ -121,67 +121,32 @@ const FAQ = () => {
     }
   ];
 
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-black via-gray-900 to-black py-16 sm:py-24">
-        <div className="absolute inset-0 bg-[url('/lovable-uploads/907e2c66-ea0e-425d-8b48-a80ffcbd2267.png')] bg-cover bg-center opacity-20"></div>
-        <div className="relative container mx-auto px-4 text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Frequently Asked Questions
-          </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Find answers to commonly asked questions about Crossed Hearts
-          </p>
-        </div>
-      </div>
-
-      {/* FAQ Section */}
-      <section 
-        ref={elementRef}
-        className={`py-16 transition-all duration-1000 transform ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
-      >
+    <div className="min-h-screen bg-background">
+      <Header />
+      <main className="pt-24 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <div 
-                key={index}
-                className={`bg-card border border-border rounded-lg overflow-hidden transition-all duration-500 transform ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                }`}
-                style={{ transitionDelay: `${index * 50}ms` }}
-              >
-                <button
-                  onClick={() => toggleFAQ(index)}
-                  className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-accent/50 transition-colors duration-200"
-                >
-                  <h3 className="text-lg font-semibold text-foreground pr-4">
-                    {faq.question}
-                  </h3>
-                  {openIndex === index ? (
-                    <ChevronUp className="w-5 h-5 text-primary flex-shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                  )}
-                </button>
-                {openIndex === index && (
-                  <div className="px-6 pb-4 border-t border-border">
-                    <p className="text-muted-foreground leading-relaxed pt-4">
-                      {faq.answer}
-                    </p>
-                  </div>
-                )}
-              </div>
-            ))}
+          <div className="prose prose-lg max-w-none">
+            <h1 className="text-4xl font-bold text-foreground mb-8">Frequently Asked Questions</h1>
+            
+            <div className="bg-card p-6 rounded-lg border">
+              <Accordion type="single" collapsible className="w-full">
+                {faqs.map((faq, index) => (
+                  <AccordionItem key={index} value={`item-${index}`}>
+                    <AccordionTrigger className="text-left">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <p className="text-muted-foreground">{faq.answer}</p>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
           </div>
         </div>
-      </section>
+      </main>
+      <Footer />
     </div>
   );
 };
