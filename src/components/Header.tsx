@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Menu, X, Search, ShoppingCart, User, Heart, Building2, Settings, LogOut, LogIn } from 'lucide-react';
+import { Menu, X, Search, ShoppingCart, User, Heart, Building2, Settings, LogOut, LogIn, UserCircle, Clock, Coins, History } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
 import { CoinDisplay } from '@/components/CoinDisplay';
@@ -114,6 +114,56 @@ const Header = () => {
                 <ShoppingCart className="h-5 w-5" />
               </Button>
             </Link>
+            
+            {/* Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="text-gray-300 hover:text-white">
+                  <UserCircle className="h-5 w-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56 bg-background border border-border shadow-lg z-50">
+                <DropdownMenuItem asChild>
+                  <Link to="/profile" className="flex items-center gap-2">
+                    <User className="h-4 w-4" />
+                    My Profile
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/profile?tab=orders" className="flex items-center gap-2">
+                    <History className="h-4 w-4" />
+                    Order History
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/wishlist" className="flex items-center gap-2">
+                    <Heart className="h-4 w-4" />
+                    Wishlist
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/profile?tab=settings" className="flex items-center gap-2">
+                    <Settings className="h-4 w-4" />
+                    Account Settings
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/buy-coins" className="flex items-center gap-2">
+                    <Coins className="h-4 w-4" />
+                    Coin Balance
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem 
+                  onClick={signOut} 
+                  className="flex items-center gap-2 text-destructive focus:text-destructive"
+                >
+                  <LogOut className="h-4 w-4" />
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -121,7 +171,7 @@ const Header = () => {
                     <User className="h-5 w-5" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuContent align="end" className="w-56 bg-background border border-border shadow-lg z-50">
                   <DropdownMenuItem asChild>
                     <Link to="/profile" className="flex items-center gap-2">
                       <User className="h-4 w-4" />
