@@ -38,6 +38,7 @@ import ReturnExchange from "./pages/ReturnExchange";
 import CustomerSupport from "./pages/CustomerSupport";
 import LanguageTerms from "./pages/LanguageTerms";
 import ChatBot from "./components/ChatBot";
+import ScrollToTop from "./components/ScrollToTop";
 import { AuthProvider } from "./hooks/useSupabaseAuth";
 
 const queryClient = new QueryClient();
@@ -49,6 +50,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/comics" element={<ComicsHome />} />
