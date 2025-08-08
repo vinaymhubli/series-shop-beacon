@@ -112,7 +112,7 @@ const AffiliationPrograms = () => {
           }`}>
             Join our affiliate network and earn while sharing amazing manga and novels with your audience
           </p>
-          <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-1000 delay-500 transform ${
+          <div className={`transition-all duration-1000 delay-500 transform ${
             heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             <Button 
@@ -120,13 +120,6 @@ const AffiliationPrograms = () => {
               className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 text-lg"
             >
               Apply Now
-            </Button>
-            <Button 
-              onClick={() => setIsContactModalOpen(true)}
-              variant="outline"
-              className="border-red-600 text-red-400 hover:bg-red-600 hover:text-white px-8 py-3 text-lg"
-            >
-              Contact Us
             </Button>
           </div>
         </div>
