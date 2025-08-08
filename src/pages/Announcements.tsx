@@ -158,6 +158,19 @@ const Announcements = () => {
     });
   };
 
+  // Search content based on query
+  const getSearchedContent = (content: any[]) => {
+    if (!searchQuery.trim()) return content;
+    
+    const query = searchQuery.toLowerCase();
+    return content.filter(item => 
+      item.title.toLowerCase().includes(query) ||
+      item.description.toLowerCase().includes(query) ||
+      item.category.toLowerCase().includes(query) ||
+      (item.author && item.author.toLowerCase().includes(query))
+    );
+  };
+
   // Sort content by date
   const getSortedContent = (content: any[]) => {
     return [...content].sort((a, b) => {
@@ -172,9 +185,9 @@ const Announcements = () => {
     setSortOrder(sortOrder === 'desc' ? 'asc' : 'desc');
   };
 
-  const filteredFeaturedAnnouncements = getSortedContent(getFilteredContent(featuredAnnouncements));
-  const filteredAllAnnouncements = getSortedContent(getFilteredContent(allAnnouncements));
-  const filteredBlogPosts = getSortedContent(getFilteredContent(blogPosts));
+  const filteredFeaturedAnnouncements = getSortedContent(getSearchedContent(getFilteredContent(featuredAnnouncements)));
+  const filteredAllAnnouncements = getSortedContent(getSearchedContent(getFilteredContent(allAnnouncements)));
+  const filteredBlogPosts = getSortedContent(getSearchedContent(getFilteredContent(blogPosts)));
 
   // Enhanced share functionality with multiple options
   const handleShare = (item: any) => {
