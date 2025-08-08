@@ -18,11 +18,18 @@ const ShopAll = () => {
   
   const [viewMode, setViewMode] = useState<'series' | 'volume'>('series');
   const [appliedFilters, setAppliedFilters] = useState<string[]>([]);
+  const [selectedSort, setSelectedSort] = useState('Newest First');
 
   const handleFiltersApply = (filters: string[]) => {
     setAppliedFilters(filters);
     console.log('Applied filters:', filters);
     // Here you would typically filter your data based on the applied filters
+  };
+
+  const handleSortChange = (sortOption: string) => {
+    setSelectedSort(sortOption);
+    console.log('Selected sort:', sortOption);
+    // Here you would typically sort your data based on the selected sort option
   };
 
   return (
@@ -75,7 +82,12 @@ const ShopAll = () => {
       </section>
 
       {/* Filters Section */}
-      <ShopFilters viewMode={viewMode} setViewMode={setViewMode} onFiltersApply={handleFiltersApply} />
+      <ShopFilters 
+        viewMode={viewMode} 
+        setViewMode={setViewMode} 
+        onFiltersApply={handleFiltersApply}
+        onSortChange={handleSortChange}
+      />
 
       {/* Featured Series Slideshow */}
       <FeaturedSeriesSlideshow />

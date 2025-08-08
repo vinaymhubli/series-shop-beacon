@@ -8,11 +8,13 @@ interface ShopFiltersProps {
   viewMode: 'series' | 'volume';
   setViewMode: (mode: 'series' | 'volume') => void;
   onFiltersApply?: (filters: string[]) => void;
+  onSortChange?: (sortOption: string) => void;
 }
 
-const ShopFilters = ({ viewMode, setViewMode, onFiltersApply }: ShopFiltersProps) => {
+const ShopFilters = ({ viewMode, setViewMode, onFiltersApply, onSortChange }: ShopFiltersProps) => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const [selectedSort, setSelectedSort] = useState('Newest First');
   
   const categories = [
     'All', 'Action', 'Adventure', 'Romance', 'Fantasy', 'Sci-Fi', 
@@ -23,6 +25,22 @@ const ShopFilters = ({ viewMode, setViewMode, onFiltersApply }: ShopFiltersProps
     'Types': ['Manga', 'Webtoon', 'Light Novel', 'Anthology'],
     'Price': ['Free', 'Under $5', '$5-$10', '$10-$20', '$20+'],
     'Status': ['Ongoing', 'Completed', 'Upcoming', 'On Hold']
+  };
+
+  const sortOptions = [
+    'Newest First',
+    'Oldest First', 
+    'A-Z',
+    'Z-A',
+    'Price: Low to High',
+    'Price: High to Low',
+    'Most Popular',
+    'Highest Rated'
+  ];
+
+  const handleSortChange = (sortOption: string) => {
+    setSelectedSort(sortOption);
+    onSortChange?.(sortOption);
   };
 
   const handleFilterChange = (filter: string, checked: boolean) => {
@@ -126,13 +144,35 @@ const ShopFilters = ({ viewMode, setViewMode, onFiltersApply }: ShopFiltersProps
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <Button 
-              variant="outline" 
-              className="bg-blue-900/50 border-blue-700 text-white hover:bg-blue-800/60 px-6 py-2 rounded-lg"
-            >
-              <ArrowUpDown className="h-4 w-4 mr-2" />
-              Sort By
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button 
+                  variant="outline" 
+                  className="bg-blue-900/50 border-blue-700 text-white hover:bg-blue-800/60 px-6 py-2 rounded-lg"
+                >
+                  <ArrowUpDown className="h-4 w-4 mr-2" />
+                  Sort By
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56 bg-gray-800 border-gray-700 z-50">
+                <DropdownMenuLabel className="text-white">Sort Options</DropdownMenuLabel>
+                <DropdownMenuSeparator className="bg-gray-700" />
+                {sortOptions.map((option) => (
+                  <DropdownMenuItem
+                    key={option}
+                    onClick={() => handleSortChange(option)}
+                    className={`cursor-pointer text-gray-300 hover:bg-gray-700 hover:text-white ${
+                      selectedSort === option ? 'bg-red-600/20 text-red-400' : ''
+                    }`}
+                  >
+                    {option}
+                    {selectedSort === option && (
+                      <span className="ml-auto text-red-500">✓</span>
+                    )}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
 
