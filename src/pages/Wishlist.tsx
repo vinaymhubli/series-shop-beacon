@@ -358,16 +358,6 @@ const Wishlist = () => {
         {/* Wishlist Actions */}
         {sortedItems.length > 0 && (
           <div className="mt-12 text-center">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button variant="outline" size="lg">
-                <Heart className="w-4 h-4 mr-2" />
-                Share Wishlist
-              </Button>
-              <Button variant="destructive" size="lg">
-                <ShoppingCart className="w-4 h-4 mr-2" />
-                Add All to Cart
-              </Button>
-            </div>
           </div>
         )}
       </div>
