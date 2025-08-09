@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ContentEditor } from './ContentEditor';
 import { HeroBannerManager } from './HeroBannerManager';
 import { BooksManager } from './BooksManager';
+import { ProductsManager } from './ProductsManager';
 import AnnouncementsManager from './AnnouncementsManager';
 import { useCMS } from '@/hooks/useCMS';
 import { AdminPage } from './AdminSidebar';
@@ -130,6 +131,18 @@ export function PageEditor({ selectedPage }: PageEditorProps) {
       return renderHomePage();
     case 'books-management':
       return renderBooksManagement();
+    case 'products-management':
+      return (
+        <div className="space-y-6">
+          <div>
+            <h2 className="text-xl font-semibold mb-4">Products Management</h2>
+            <p className="text-muted-foreground mb-6">
+              Manage all products including books, merchandise, digital items, and other products
+            </p>
+          </div>
+          <ProductsManager />
+        </div>
+      );
     case 'hero-banners':
       return renderHeroBanners();
     case 'our-series':

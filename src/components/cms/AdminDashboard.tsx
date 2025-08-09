@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDummyAuth } from '@/hooks/useDummyAuth';
 import { useCMS } from '@/hooks/useCMS';
 import { AdminSidebar } from './AdminSidebar';
@@ -11,8 +11,25 @@ export const AdminDashboard = () => {
   const { isLoading } = useCMS();
   const { user } = useDummyAuth();
   const [selectedPage, setSelectedPage] = useState('home-page');
+  const [loadingTimeout, setLoadingTimeout] = useState(false);
+
+  // Add a timeout fallback for loading
+  useEffect(() => {
+    if (isLoading) {
+      const timeoutId = setTimeout(() => {
+        setLoadingTimeout(true);
+      }, 5000); // 5 second timeout
+
+      return () => clearTimeout(timeoutId);
+    } else {
+      setLoadingTimeout(false);
+    }
+  }, [isLoading]);
+
+  console.log('AdminDashboard render:', { user, isLoading, loadingTimeout, selectedPage });
 
   if (!user) {
+    console.log('AdminDashboard: No user, showing access denied');
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <Card className="w-full max-w-md">
@@ -27,16 +44,21 @@ export const AdminDashboard = () => {
     );
   }
 
-  if (isLoading) {
+  // Show loading for a maximum of 5 seconds, then proceed anyway
+  if (isLoading && !loadingTimeout) {
+    console.log('AdminDashboard: Loading CMS...');
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="flex items-center justify-center h-64">
+        <div className="flex flex-col items-center justify-center h-64 gap-4">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
           <p className="text-lg text-muted-foreground">Loading CMS...</p>
+          <p className="text-sm text-muted-foreground">This may take a few moments</p>
         </div>
       </div>
     );
   }
 
+  console.log('AdminDashboard: Rendering main dashboard');
   return (
     <SidebarProvider defaultOpen={true}>
       <div className="min-h-screen flex w-full bg-background">

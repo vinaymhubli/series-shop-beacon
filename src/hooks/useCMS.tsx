@@ -17,7 +17,38 @@ export const useCMS = () => {
   const { user } = useDummyAuth();
 
   useEffect(() => {
-    loadAllSections();
+    let isMounted = true;
+    
+    const loadData = async () => {
+      try {
+        setIsLoading(true);
+        const { data, error } = await supabase
+          .from('page_sections')
+          .select('*')
+          .order('page_name', { ascending: true })
+          .order('section_name', { ascending: true });
+
+        if (!isMounted) return;
+
+        if (error) {
+          console.error('Error loading sections:', error);
+          setSections([]);
+        } else {
+          setSections(data || []);
+        }
+      } catch (error) {
+        console.error('Error loading sections:', error);
+        if (isMounted) {
+          setSections([]);
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadData();
     
     // Set up real-time subscription
     const channel = supabase
@@ -30,6 +61,8 @@ export const useCMS = () => {
           table: 'page_sections'
         },
         (payload) => {
+          if (!isMounted) return;
+          
           if (payload.eventType === 'INSERT') {
             setSections(prev => [...prev, payload.new as PageSection]);
           } else if (payload.eventType === 'UPDATE') {
@@ -47,27 +80,20 @@ export const useCMS = () => {
       )
       .subscribe();
 
+    // Add a timeout to prevent infinite loading
+    const timeoutId = setTimeout(() => {
+      if (isMounted && isLoading) {
+        console.warn('CMS loading timeout - forcing completion');
+        setIsLoading(false);
+      }
+    }, 5000); // 5 second timeout
+
     return () => {
+      isMounted = false;
       supabase.removeChannel(channel);
+      clearTimeout(timeoutId);
     };
   }, []);
-
-  const loadAllSections = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('page_sections')
-        .select('*')
-        .order('page_name', { ascending: true })
-        .order('section_name', { ascending: true });
-
-      if (error) throw error;
-      setSections(data || []);
-    } catch (error) {
-      console.error('Error loading sections:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const getSectionContent = (pageName: string, sectionName: string) => {
     const section = sections.find(
@@ -113,6 +139,5 @@ export const useCMS = () => {
     getSectionContent,
     updateSectionContent,
     getSectionsByPage,
-    loadAllSections,
   };
 };

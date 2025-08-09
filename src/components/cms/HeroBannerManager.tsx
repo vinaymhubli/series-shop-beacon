@@ -32,6 +32,9 @@ export const HeroBannerManager = () => {
     is_active: true,
   });
 
+  // Debug logging
+  console.log('HeroBannerManager render:', { banners, isLoading, bannersLength: banners.length });
+
   const resetForm = () => {
     setFormData({
       title: '',
@@ -53,14 +56,14 @@ export const HeroBannerManager = () => {
         await updateBanner(editingId, formData);
         toast({
           title: "Success",
-          description: "Banner updated successfully",
+          description: editingId.startsWith('temp-') ? "Banner updated successfully (local)" : "Banner updated successfully",
         });
       } else {
         console.log('Creating new banner');
         await createBanner(formData);
         toast({
           title: "Success",
-          description: "Banner created successfully",
+          description: "Banner created successfully (stored locally)",
         });
       }
       resetForm();
@@ -70,7 +73,7 @@ export const HeroBannerManager = () => {
       console.error('Error saving banner:', error);
       toast({
         title: "Error",
-        description: "Failed to save banner",
+        description: error instanceof Error ? error.message : "Failed to save banner",
         variant: "destructive",
       });
     }
@@ -94,14 +97,14 @@ export const HeroBannerManager = () => {
         await deleteBanner(id);
         toast({
           title: "Success",
-          description: "Banner deleted successfully",
+          description: id.startsWith('temp-') ? "Banner deleted successfully (local)" : "Banner deleted successfully",
         });
         // Force reload to ensure data is fresh
         await loadHeroBanners();
       } catch (error) {
         toast({
           title: "Error",
-          description: "Failed to delete banner",
+          description: error instanceof Error ? error.message : "Failed to delete banner",
           variant: "destructive",
         });
       }

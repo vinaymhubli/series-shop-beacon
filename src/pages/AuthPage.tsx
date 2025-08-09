@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -12,6 +12,7 @@ import { toast } from 'sonner';
 const AuthPage = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { login, register, isAuthenticated, isLoading } = useDummyAuth();
   
   const [showPassword, setShowPassword] = useState(false);
@@ -20,11 +21,16 @@ const AuthPage = () => {
   const [activeTab, setActiveTab] = useState(searchParams.get('tab') || 'login');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Check if user is trying to access admin panel
+  const isAdminAccess = location.state?.from === '/admin' || searchParams.get('redirect') === 'admin';
+
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/');
+      // Redirect to admin if they were trying to access admin, otherwise go to home
+      const redirectPath = isAdminAccess ? '/admin' : '/';
+      navigate(redirectPath);
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, navigate, isAdminAccess]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,7 +44,9 @@ const AuthPage = () => {
       const success = await login(loginForm.email, loginForm.password);
       if (success) {
         toast.success('Welcome back!');
-        navigate('/');
+        // Redirect to admin if they were trying to access admin, otherwise go to home
+        const redirectPath = isAdminAccess ? '/admin' : '/';
+        navigate(redirectPath);
       } else {
         toast.error('Invalid credentials');
       }
@@ -71,7 +79,9 @@ const AuthPage = () => {
       const success = await register(registerForm.email, registerForm.password, registerForm.name);
       if (success) {
         toast.success('Account created successfully!');
-        navigate('/');
+        // Redirect to admin if they were trying to access admin, otherwise go to home
+        const redirectPath = isAdminAccess ? '/admin' : '/';
+        navigate(redirectPath);
       } else {
         toast.error('Registration failed');
       }

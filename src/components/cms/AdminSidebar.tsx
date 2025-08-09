@@ -8,7 +8,8 @@ import {
   Settings as SettingsIcon, 
   Megaphone,
   Image,
-  Settings
+  Settings,
+  Package
 } from 'lucide-react';
 import {
   Sidebar,
@@ -66,6 +67,12 @@ const adminPages: AdminPage[] = [
     title: 'Books Management', 
     icon: BookOpen,
     description: 'Manage book catalog and metadata'
+  },
+  { 
+    id: 'products-management', 
+    title: 'Products Management', 
+    icon: Package,
+    description: 'Manage all products including books, merchandise, and digital items'
   },
 ];
 

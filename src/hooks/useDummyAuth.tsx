@@ -5,6 +5,7 @@ interface User {
   email: string;
   name: string;
   avatar?: string;
+  role?: 'admin' | 'user';
 }
 
 interface AuthContextType {
@@ -31,6 +32,15 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
+// Permanent admin credentials
+const ADMIN_CREDENTIALS = {
+  email: 'admin@series-shop.com',
+  password: 'Admin@2024!',
+  name: 'Admin User',
+  id: 'admin-001',
+  role: 'admin' as const
+};
+
 export const DummyAuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -50,12 +60,29 @@ export const DummyAuthProvider = ({ children }: AuthProviderProps) => {
     // Simulate API call delay
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    // Dummy validation - accept any email/password combination
+    // Check for permanent admin credentials first
+    if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
+      const adminUser = {
+        id: ADMIN_CREDENTIALS.id,
+        email: ADMIN_CREDENTIALS.email,
+        name: ADMIN_CREDENTIALS.name,
+        role: ADMIN_CREDENTIALS.role,
+        avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${ADMIN_CREDENTIALS.email}`
+      };
+      
+      setUser(adminUser);
+      localStorage.setItem('dummyUser', JSON.stringify(adminUser));
+      setIsLoading(false);
+      return true;
+    }
+    
+    // Dummy validation - accept any other email/password combination for regular users
     if (email && password) {
       const dummyUser = {
-        id: '1',
+        id: 'user-' + Date.now(),
         email,
         name: email.split('@')[0],
+        role: 'user' as const,
         avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`
       };
       
@@ -75,12 +102,19 @@ export const DummyAuthProvider = ({ children }: AuthProviderProps) => {
     // Simulate API call delay
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    // Dummy validation - accept any email/password combination
+    // Check if trying to register with admin email
+    if (email === ADMIN_CREDENTIALS.email) {
+      setIsLoading(false);
+      return false; // Don't allow registration with admin email
+    }
+    
+    // Dummy validation - accept any other email/password combination
     if (email && password && name) {
       const dummyUser = {
-        id: '1',
+        id: 'user-' + Date.now(),
         email,
         name,
+        role: 'user' as const,
         avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`
       };
       
