@@ -137,6 +137,11 @@ export const useBooks = () => {
       if (error) {
         console.error('Error creating book:', error);
         
+        // If it's an RLS issue, provide helpful message
+        if (error.code === '42501') {
+          throw new Error('Permission denied. Please check your authentication and admin privileges. The books table has restrictive security policies.');
+        }
+        
         // If it's a column not found error, provide helpful message
         if (error.message && error.message.includes('product_type')) {
           throw new Error('Database migration required. Please run the SQL migration to add the product_type column and other new fields to the books table.');
@@ -192,6 +197,11 @@ export const useBooks = () => {
       if (error) {
         console.error('Error updating book:', error);
         
+        // If it's an RLS issue, provide helpful message
+        if (error.code === '42501') {
+          throw new Error('Permission denied. Please check your authentication and admin privileges. The books table has restrictive security policies.');
+        }
+        
         // If it's a column not found error, provide helpful message
         if (error.message && error.message.includes('product_type')) {
           throw new Error('Database migration required. Please run the SQL migration to add the product_type column and other new fields to the books table.');
@@ -215,7 +225,16 @@ export const useBooks = () => {
         .delete()
         .eq('id', id);
 
-      if (error) throw error;
+      if (error) {
+        console.error('Error deleting book:', error);
+        
+        // If it's an RLS issue, provide helpful message
+        if (error.code === '42501') {
+          throw new Error('Permission denied. Please check your authentication and admin privileges. The books table has restrictive security policies.');
+        }
+        
+        throw error;
+      }
       
       // Reload data after successful deletion
       setTimeout(() => loadBooks(), 100);
