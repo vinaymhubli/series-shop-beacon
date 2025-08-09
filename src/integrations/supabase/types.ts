@@ -64,13 +64,15 @@ export type Database = {
       }
       books: {
         Row: {
-          author: string
+          author: string | null
           can_unlock_with_coins: boolean
           category: string
           coins: string | null
           created_at: string
+          description: string | null
+          dimensions: string | null
           display_order: number | null
-          hover_image_url: string
+          hover_image_url: string | null
           id: string
           image_url: string
           is_active: boolean
@@ -79,18 +81,25 @@ export type Database = {
           label: string | null
           original_price: number | null
           price: number
+          product_type: string | null
           section_type: string
+          sku: string | null
+          stock_quantity: number | null
+          tags: string[] | null
           title: string
           updated_at: string
+          weight: number | null
         }
         Insert: {
-          author: string
+          author?: string | null
           can_unlock_with_coins?: boolean
           category: string
           coins?: string | null
           created_at?: string
+          description?: string | null
+          dimensions?: string | null
           display_order?: number | null
-          hover_image_url: string
+          hover_image_url?: string | null
           id?: string
           image_url: string
           is_active?: boolean
@@ -99,18 +108,25 @@ export type Database = {
           label?: string | null
           original_price?: number | null
           price: number
+          product_type?: string | null
           section_type: string
+          sku?: string | null
+          stock_quantity?: number | null
+          tags?: string[] | null
           title: string
           updated_at?: string
+          weight?: number | null
         }
         Update: {
-          author?: string
+          author?: string | null
           can_unlock_with_coins?: boolean
           category?: string
           coins?: string | null
           created_at?: string
+          description?: string | null
+          dimensions?: string | null
           display_order?: number | null
-          hover_image_url?: string
+          hover_image_url?: string | null
           id?: string
           image_url?: string
           is_active?: boolean
@@ -119,9 +135,14 @@ export type Database = {
           label?: string | null
           original_price?: number | null
           price?: number
+          product_type?: string | null
           section_type?: string
+          sku?: string | null
+          stock_quantity?: number | null
+          tags?: string[] | null
           title?: string
           updated_at?: string
+          weight?: number | null
         }
         Relationships: []
       }
